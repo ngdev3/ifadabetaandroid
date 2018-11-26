@@ -124,7 +124,7 @@ var currentid;
               'productListID': productListID
           }
           $cookieStore.put('categoryInfo', categoryInfo);
-
+ 
           $location.path('/product/list');
       } */
     $scope.product_view = function (pid) {

@@ -22,7 +22,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
               'Content-Type': 'application/x-www-form-urlencoded'
           },
           method: 'POST',
-          url: app_url + '/product_list',
+          url: app_url + '/product_list', 
           data: args 
 
           }).then(function (response) {
