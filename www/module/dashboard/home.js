@@ -1,20 +1,29 @@
 app.controller('home', function ($scope, $http, $location, $cookieStore, $timeout, loading, model, $rootScope, $route) {
-    // if (!$cookieStore.get('userinfo')) {
-    //     $location.path('/login');
-    //     return false;
-    // }
+    
+    if (!$cookieStore.get('userinfo')) {
+        $scope.loggedin == false;
+       
+    }
 
+    if ($cookieStore.get('userinfo')) {
+        $scope.loggedin == true;
+        alert($scope.loggedin)
+    }
 
     // if (!$cookieStore.get('storeinfo')) {
     //     $location.path('/store');
     //     return false;
     // }
 
+    $scope.login = function(){
+        $location.path('/login');
+    }
+
     $scope.season_fetch =   function(){
         loading.active();
 
         var args = $.param({
-            country_id: localStorage.country,
+            country_id: sessionStorage.country,
         });
         
         $http({

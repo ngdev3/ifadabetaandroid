@@ -6,7 +6,7 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
         return false;
     }
 
-    $scope.sendAt = $cookieStore.get('otpverification').mobile
+    $scope.sendAt = $cookieStore.get('otpverification').mobile_number
     console.log($cookieStore.get('otpverification'))
 
 
@@ -61,8 +61,9 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
 
 
             var args = $.param({
-                uid: $cookieStore.get('otpverification').uid,
+                mobile_number: $cookieStore.get('otpverification').mobile_number,
                 otp: $scope.otpcode,
+                language_code : 'en'
             });
 
             $http({
@@ -70,22 +71,22 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: 'POST',
-                url: app_url + 'profileapi/verifyPasswordotp',
+                url: app_url + '/auth/otp_verify',
                 data: args //forms user object
 
             }).then(function (response) {
 
-                if (response.data.status !== 'invalid') {
+                console.log(response)
+                if (response.data.data.status == 'success') {
 
                     model.show('Success', 'Successfully Verified');
                     $cookieStore.remove('otpverification');
-
-                    if ($cookieStore.get('userid')) {
+                    $location.path('/login');
+                    /* if ($cookieStore.get('userid')) {
                         $location.path('/newpassword');
                     } else {
                         $location.path('/login');
-                    }
-
+                    } */
 
                 } else {
                     model.show('Alert', response.data.status);

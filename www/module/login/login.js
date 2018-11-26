@@ -15,9 +15,9 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
 
     });
 
-    if ($cookieStore.get('userinfo')) {
+   /*  if ($cookieStore.get('userinfo')) {
         $location.path('/dashboard/home');
-    }
+    } */
 
     $rootScope.initOneSignal();
     loading.deactive();
@@ -80,8 +80,7 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
             }).then(function (response) {
                 console.log("---------------");
                 
-                if (!response.data.responseCode !== 400) {
-                    
+                if (response.data.responseStatus == 'success') {
                     console.log(response);
                     db.transaction(function (tx) {
                         tx.executeSql('INSERT INTO userinfo ( uid, phone_no, email_address, country_id, date_added) VALUES ("' + response.data.data.id + '","' + response.data.data.mobile_number + '","' + response.data.data.email + '","' + response.data.data.country_id + '","' + response.data.data.created_date + '")');
@@ -96,7 +95,16 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                     $location.path('/dashboard/home');
 
                 } else {
-                    model.show('Alert', response.data.responseMessage);
+
+                    if(response.data.responseMessage == 'Your account is not verified please Verify OTP !'){
+                        alert('Please Varify OTP');
+                        $location.path('/otp');
+                        return false;
+                    }
+
+
+                    alert('Invalid Credentials');
+                    //model.show('Alert', response.data.responseMessage);
                 }
 
             }).finally(function () {

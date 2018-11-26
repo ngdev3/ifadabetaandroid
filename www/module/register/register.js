@@ -6,6 +6,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
     }
 
     $scope.user_registers = function (form) {
+    
         var error_str = '';
         if ($scope[form].$error) {
 
@@ -72,7 +73,8 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                 email: $scope.email,
                 mobile_number: $scope.mob_number,
                 password: $scope.password,
-                language_code: 'en'
+                language_code: 'en',
+                referal_code: $scope.referal_code
             });
             loading.active();
             $http({
@@ -90,10 +92,24 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                 console.log("response from the server ")
                 console.log(response.data)
                 if(res.data.responseCode == 200){
-                    alert(res.data.responseStatus);
+                   
+                    var setOTPCookies = {
+                        'email': res.data.data.email,
+                        'first_name': res.data.data.first_name,
+                        'last_name': res.data.data.last_name,
+                        'mobile_number': res.data.data.mobile_number,
+                        'user_id': res.data.data.user_id,
+                        'user_type': res.data.data.user_type,
+                        'status':res.data.data.status,
+                        'is_verify': res.data.data.is_verify,
+                        'from' : 'register'
+                    }
+                    $cookieStore.put('otpverification', setOTPCookies);
+                    //console.log($cookieStore.get('otpverification'))
                     $location.path('/otp');
                 }else{
-                    alert(res.data.responseMessage.error_msg)
+                    alert(res.data.responseMessage.error_msg);
+                    return false;
                 }
 
             }).finally(function () {

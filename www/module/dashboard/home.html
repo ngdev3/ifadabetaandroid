@@ -96,7 +96,8 @@
                 <li ng-click="language()"><a href="javascript:void(0)"><img src="assets/img/icon/language.png" alt="" /> <span>{{'Switch_Language' | translate}}</span></a></li>
                 <li ng-click="change_password()"><a href="javascript:void(0)"><img src="assets/img/icon/password.png" alt="" /> <span>{{'Change_Password' | translate}}</span></a></li>
                 <li ng-click="contact_us()"><a href="javascript:void(0)"><img src="assets/img/icon/contact.png" alt="" /> <span>{{'Contact_Us' | translate}}</span></a></li>
-                <li ng-click="logout()"><a href="javascript:void(0)"><img src="assets/img/icon/logout.png" alt="" /> <span>{{'Log_Out' | translate}}</span></a></li>
+                <li ng-if="loggedin" ng-click="logout()"><a href="javascript:void(0)"><img src="assets/img/icon/logout.png" alt="" /> <span>{{'Log_Out' | translate}}</span></a></li>
+                <li ng-if="!loggedin" ng-click="login()"><a href="javascript:void(0)"><img src="assets/img/icon/logout.png" alt="" /> <span>{{'Log_In' | translate}}</span></a></li>
             </ul>
         </div>
         </div>
