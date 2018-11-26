@@ -45,7 +45,19 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
         
 
     }
-
+var currentid;
+    $scope.toggleData = function(id){
+        currentid = id;
+        // alert(id)
+        $.each($scope.category_data, function(idx, item) {
+        console.log(item.id + "-----------"+id)
+        if(item.id !== id){
+            $('#collapseOne_'+item.id).removeClass('show').addClass('hide')
+        }
+        });
+        $('#collapseOne_'+id).removeClass('hide').addClass('show')
+        
+    }
     /**
      * Funtion: searchbar on ng-keyup from category.html
      * Name: Sajal Goyal
@@ -118,6 +130,11 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
     $scope.product_view = function (pid) {
         $cookieStore.put('productviewID', pid);
         $location.path('/product/view')
+    }
+
+    $scope.showProducts = function(id){
+        $cookieStore.put("subcategoryID",id)
+        $location.path("/subcategory");
     }
 
 });

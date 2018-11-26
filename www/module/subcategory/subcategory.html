@@ -1,4 +1,4 @@
-<div ng-controller="sub_category" ng-init="fetch_subcategory()">
+<div ng-controller="sub_category" ng-init="fetch_product_list()">
         <style type="text/css">
             
         .owl-carousel .owl-stage
@@ -11,21 +11,21 @@
                 <nav class="navbar navbar-inverse">
                   <div class="container no-padding">
                     <ul class="nav navbar-nav top_header">
-                      <li class="menu_icon "><a href="#"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
+                      <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
                         <li class="page_name left">
-                            <a href="#" class="text-left ">
-                                <p>Pulses</p>
+                            <a href="javascript:void(0)" class="text-left ">
+                                <p>{{categoryData.name}}</p>
                             </a>
                         </li>
                       <li class="cart_icon">
-                          <a href="./view_cart.php"><img src="assets/img/icon/cart_icon.png" alt="cart icon"  />
+                          <a href="javascript:void(0)"><img src="assets/img/icon/cart_icon.png" alt="cart icon"  />
                             <!--<span class="badge">14</span>-->
                           </a>
-                          <a href="#"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
+                          <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
                       </li>
                     </ul>
                     <ul class="nav navbar-nav bottom_header">
-                      <li class="menu_search_container"><a href="#">
+                      <li class="menu_search_container"><a href="javascript:void(0)">
                         <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
                         <input type="text" class="menu_search" placeholder="Search products brands and more"/>
                       </a></li>
@@ -43,16 +43,16 @@
                 <div class="row">
                     <div class="">
                         <!-- ** Buttons** -->
-                        <div class="pulses_buttons mb-20 mt-10">
-                            <div id="" class="owl-carousel owl2 owl-theme">
+                        <div class="pulses_buttons mb-20 mt-10" >
+                            <div id="" class="owl-carousel owl2 owl-theme owl-loaded owl-drag">
                                 <!-- Buttons Items -->
-                                <div class="item">
+                                <div class="item" style="width:max-content;display:inline-block;">
                                     <input type="button" class="btn btn-success all-sub-cat_first" name="" value="All">
                                 </div>
-                                <div class="item">
-                                    <input type="button" class="btn btn-success all-sub-cat_buttons" name="" value="Sub-Category 1">
+                               <div class="item"  ng-repeat="y in sub_sub_cat">
+                                    <input type="button" class="btn btn-success all-sub-cat_buttons" name="" value="{{y.name}}">
                                 </div>
-                                <div class="item">
+                                <!-- <div class="item">
                                     <input type="button" class="btn btn-success all-sub-cat_buttons" name="" value="Sub-Category 2">
                                 </div>
                                 <div class="item">
@@ -60,22 +60,22 @@
                                 </div>
                                 <div class="item">
                                     <input type="button" class="btn btn-success all-sub-cat_buttons" name="" value="Sub-Category 4">
-                                </div>
+                                </div> -->
                                 <!-- !. Buttons Items -->
                             </div>
                         </div>
                         <!-- ** !. Buttons ** -->
                         <!-- ** Product Lists ** -->
                         
-                        <div class="no-padding item_lists_main">
+                        <div class="no-padding item_lists_main" ng-repeat="x in product">
                             <div class="prodcut_main_container">
                                 <div class="products_wrapper">
                                     <div class="col-md-3 col-sm-3 col-xs-3">
-                                        <a href="product_detail.php"><img class="img-responsive sub_cat_product_img" src="assets/img/all_category/title_product.png"></a>
+                                        <a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="assets/img/all_category/title_product.png"></a>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
                                         <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off">
-                                        <a href="product_detail.php"><p class="sub_produt_name">Best Value Arhar Daal</p></a>
+                                        <a href="javascript:void(0)"><p class="sub_produt_name">{{x.content}}</p></a>
                                         <p class="sub_product_qty">1 Kg</p>
                                         <p class="sub_prcing"><strike>AED 190</strike><span id="sub_rrp">AED 100</span></p>
                                     </div>
