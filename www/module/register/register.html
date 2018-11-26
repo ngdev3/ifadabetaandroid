@@ -1,0 +1,65 @@
+<div ng-controller="user_register">
+
+  <header class="container-fluid nav-down">
+    <div class="row">
+      <nav class="navbar navbar-inverse">
+        <div class="container no-padding">
+          <ul class="nav navbar-nav top_header text-center">
+
+            <li class="page_name">
+              <a href="javascript:void(0)" class="text-left text-center">
+                <p>{{'Buyer_Registration'| translate}}</p>
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+      </nav>
+
+    </div>
+    <!-- MOBILE-MENU-AREA END -->
+  </header>
+  <!-- END HEADER -->
+
+
+  <div class="container">
+    <div class="login_form">
+      <div class="form_container">
+        <form method="post" name="loginform" novalidate>
+          <div class="mui-textfield  col-sm-6 col-xs-12">
+            <input type="text" id="first" name="fname" ng-model="fname" placeholder="{{'First_Name' | translate}}" required>
+            <label for="first">{{'First_Name' | translate}}</label>
+          </div>
+          <div class="mui-textfield col-sm-6 col-xs-12">
+            <input type="text" id="last" ng-model="lname" name="lname" placeholder="{{'Last_Name' | translate}}" required>
+            <label for="last">{{'Last_Name' | translate}}</label>
+          </div>
+                  
+          <div class="mui-textfield col-sm-6 col-xs-12">
+            <input type="tel" id="mbl_num" name="mob_number" ng-model="mob_number" placeholder="{{'Mobile_Number' | translate}}" pattern="[0-9]{10}" required>
+            <label for="mbl_num">{{'Mobile_Number' | translate}}</label>
+          </div>
+          <div class="mui-textfield col-sm-6 col-xs-12">
+            <input type="email" id="email" name="email" ng-model="email" placeholder="{{'Email' | translate}}" required>
+            <label for="email">{{'Email' | translate}}</label>
+          </div>
+          <div class="mui-textfield col-sm-6 col-xs-12">
+            <input type="password" id="pass" ng-model="password" name="password" placeholder="{{'Password' | translate}}" required>
+            <label for="pass">{{'Password' | translate}}</label>
+          </div>
+          <div class="mui-textfield col-sm-6 col-xs-12">
+            <input type="text" id="cnf_pass" ng-model="referal_code" name="referal_code" placeholder="{{'Referal_Code' | translate}}" required>
+            <label for="cnf_pass">{{'Referal_Code' | translate}}</label>
+          </div>
+          <div class="submit-btn col-sm-6 col-xs-12 text-center" ng-click="user_registers('loginform')">
+            <a href="javascript:void(0)">{{'Sign_Up' | translate}}</a>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--  END Banner SLIDER -->
+
+</div>

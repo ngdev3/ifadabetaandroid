@@ -1,0 +1,59 @@
+<div class="bg" ng-controller="login" id="containernew">
+	<div style='display:none;' class="homes"></div>
+	<!-- END HEADER -->
+
+
+	<header class="container-fluid nav-down">
+		<div class="row">
+			<nav class="navbar navbar-inverse">
+				<div class="container no-padding">
+					<ul class="nav navbar-nav top_header text-center">
+
+						<li class="page_name">
+							<a href="javascript:void(0)" class="text-left text-center">
+								<p>Login</p>
+							</a>
+						</li>
+
+					</ul>
+
+				</div>
+			</nav>
+
+		</div>
+		<!-- MOBILE-MENU-AREA END -->
+	</header>
+	<!-- END HEADER -->
+	<div class="container">
+		<div class="login_form">
+			<form method="post" name="loginform" novalidate>
+				<div class="form_container">
+					<div class="mui-textfield col-sm-6 col-xs-12">
+						<input type="number" id="email" name="mobileno" ng-model="mobileno" placeholder="Mobile No." required>
+						<label for="email">Mobile No</label>
+					</div>
+					<div class="mui-textfield col-sm-6 col-xs-12">
+						<input type="password" id="pass" name="userpassword" ng-model="userpassword" placeholder="Password" required>
+						<label for="pass">Password</label>
+					</div>
+				</div>
+
+				<div class="forgot_password">
+					<a href="javascript:void(0)" class="" ng-click="SentToforgot()">Forgot Password?</a>
+				</div>
+
+				<div class="submit-btn col-sm-6 col-xs-12 text-center">
+					<a href="javascript:void(0)" ng-click="loginuser('loginform')">Submit</a>
+				</div>
+			</form>
+			<div class="exist-account" ng-click="signup()">
+				<p class="">Don't Have an account? <a href="javascript:void(0)" class="sign-in-link"> Sign Up </a></p>
+			</div>
+
+
+		</div>
+	</div>
+
+
+
+</div>

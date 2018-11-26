@@ -1,0 +1,112 @@
+<div ng-controller="orderdetails" ng-init="ordersDetalisInit()" >
+
+
+        <header class="container-fluid nav-down">
+            <div class="row">
+                <nav class="navbar navbar-inverse">
+                  <div class="container no-padding">
+                    <ul class="nav navbar-nav top_header text-center">
+                      <li class="menu_icon "><a href="#"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
+                        <li class="page_name left">
+                            <a href="#" class="text-left ">
+                                <p>Order Summary</p>
+                            </a>
+                        </li>
+                      
+                    </ul>
+                    
+                  </div>
+                </nav>
+            
+            </div>
+            <!-- MOBILE-MENU-AREA END -->
+        </header>
+        <!-- END HEADER -->
+            
+        <!--  START Banner SLIDER -->
+            <div class="container-fluid mt-55">
+            <div class="row">
+                <div class="order_container">
+                    <div class="dlvry_container no-padding">
+                        <div class="order_heading col-xs-12">
+                            <p>Order ID <span>{{detail.id}}</span></p>
+                        </div>
+                        <div class="order_subcontainer">
+                            <div class="order_subcontainer_heading col-xs-12">
+                                <p>Order ID &nbsp;<span> OD08842-1</span></p>
+                                <p class="status_btn">Pending</p>
+                                <a href="" class="track_btn" ng-click="trackOrder()">Track Order</a>
+                            </div>
+                            <div class="order_subcontainer_detail col-xs-12">
+                                <p><span>Order On: 12-7-2018</span><span>Order Amt: AED 220</span></p>
+                            </div>
+                            <div class="order_subcontainer__content col-xs-12">
+                                <div class="prod_row_wrapper">
+                                    <div class="prod_img_wrapper">
+                                        <img src="assets/img/product/order_img1.png" class="img-responsive" />						
+                                    </div>
+                                    <div class="prod_content_wrapper">
+                                        <p class="order_sub_name">Dry Fruits</p>
+                                        <p><span>Unit </span>500g</p>
+                                        <p><span>Price </span>AED 140</p>
+                                    </div>
+                                </div>
+                                <div class="prod_row_wrapper">
+                                    <div class="prod_img_wrapper">
+                                        <img src="assets/img/product/order_img1.png" class="img-responsive" />						
+                                    </div>
+                                    <div class="prod_content_wrapper">
+                                        <p class="order_sub_name">Dry Fruits</p>
+                                        <p><span>Unit </span>500g</p>
+                                        <p><span>Price </span>AED 140</p>
+                                    </div>
+                                </div>
+                                    <div class="submit-btn col-sm-6 col-xs-12 text-center">
+                                        <a href="#">Cancel</a>
+                                      </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="dlvry_time_container mt-15">
+                        <div class="dlvry_address col-xs-12">
+                            <div class="dlvry_address_heading">
+                                
+                                
+                                <table class="mui-table">
+                                  <tbody>
+                                    <tr>
+                                      <td width="100px;">Payment</td>
+                                      <td width="20px;">:</td>
+                                      <td>COD</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Ordered On</td>
+                                      <td width="20px;">:</td>
+                                      <td>2:30PM, 11-2-2018</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Deliver To</td>
+                                      <td width="20px;">:</td>
+                                      <td>4 Clarke Street South, Abu Dubai</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Mobile No.</td>
+                                      <td width="20px;">:</td>
+                                      <td>9898999999</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view_prod">
+                        <p class="col-xs-6"><a href="view_cart.php">Total Amount</a></p>
+                        <p class="col-xs-6 text-right">AED {{detail.total_amount}}</p>
+                    </div>
+                    
+                </div>
+            </div>
+            </div>
+        <!--  END Banner SLIDER -->
+</div>

@@ -1,0 +1,127 @@
+<div class="bg" ng-controller="myprofile" ng-init="myprofile_data()">
+  <header class="container-fluid nav-down">
+    <div class="row">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid no-padding">
+          <ul class="nav navbar-nav top_header">
+            <li class="menu_icon back_icon"><a href="javascript:void(0)"><img ng-click="my_account()" src="assets/img/header/back.png"
+                  id="asdf" alt="menu icon" /></a></li>
+            <li class="logo_name"><a class="text-left back">My Profile</a></li>
+            <li class="cart_icon mr-5">
+              <a href="javascript:void(0);"><img src="assets/img/edit_profile.png" alt="search icon" id="toEdit" /></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+    <!-- MOBILE-MENU-AREA END -->
+  </header>
+
+  <!-- END HEADER -->
+
+
+  <div class="my_profile mt-70 mb-30">
+    <div class="edit-profile pb-10">
+      <div class="profile_pic_container">
+        <div class="profile_pic">
+          <img id="blah" src="{{image}}">
+        </div>
+        <div class="edit-button">
+          <!-- <a><img src="assets/img/edit-button.png"></a> -->
+          <div class="overlay">
+            <form action="" name="profile_form" enctype="multipart/form-data" nonvalidate>
+              <input type="file" ng-model="formData.profile_pic" name="formData.profile_pic" onchange="angular.element(this).scope().profile_update(this)" >
+            </form>
+            <!-- <p>Edit</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <form method="post" name="profileForm" class="form-label" novalidate>
+
+    <div class="input-container pr-20 pl-20" id="sign_up">
+      <div class="sign-up-form mb-20">
+        <input type="text" id="user_name" value="" name="fname" ng-model="fname" placeholder="Full Name" readonly required>
+        <img src="assets/img/name.png">
+      </div>
+      <div class="sign-up-form mb-20">
+        <input type="text" value="" name="email" ng-model="email" placeholder="Email Address" disabled required>
+        <img src="assets/img/email.png">
+      </div>
+      <div class="sign-up-form mb-20">
+        <input type="text" value="" name="mobile" ng-model="mobile" placeholder="Mobile Number" disabled required>
+        <img src="assets/img/phone.png" class="mobile_img">
+      </div>
+      <div class="sign-up-form mb-20">
+        <input kendo-date-picker ng-model="dob" name="dob" id="dob_picker" style="width: 100%;" k-ng-model="dateObject" k-max = "maxDate" k-options="monthSelectorOptions" placeholder="Date Of Birth" required readonly>
+        <!-- <img src="assets/img/dob.png"> -->
+        <!-- <img class="calender" src="assets/img/calender.png"> -->
+      </div>
+      <div class="sign-up-form mb-20" style="box-shadow: none;">
+        <label class="radio-inline gender">
+          Gender
+        </label>
+        <div class="pretty p-icon p-round p-pulse">
+          <input type="radio" id="male" name="gender" ng-model="gender" required disabled value="Male"/>
+          <div class="state p-info-o">
+            <i class="icon fa fa-check" ></i>
+            <label>Male</label>
+          </div>
+        </div>
+        <div class="pretty p-icon p-round p-pulse">
+          <input type="radio" id="female" name="gender" ng-model="gender" required disabled value="Female" />
+          <div class="state p-info-o">
+            <i class="icon fa fa-check" ></i>
+            <label>Female</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="sign-up-button mt-35">
+      <button class="btn profile_btn" ng-click="update_profile('profileForm')">
+        Submit
+      </button>
+    </div>
+  </form>
+
+</div>
+
+<script>
+  $("#toEdit").click(function () {
+    alert("You Can Edit Your Profile Now");
+    $("#sign_up").find("input").removeAttr("readonly");
+    $("input[type=radio]").removeAttr("disabled");
+    $('.profile_btn').show();
+  }); 
+
+    document.querySelector("#user_name").addEventListener("keypress", function (evt) {
+        if (evt.which <32 || evt.which>32 && evt.which < 65 || evt.which > 90 && evt.which < 97 || evt.which >122)
+        {
+            evt.preventDefault();
+        }
+    }); 
+    
+  /* document.querySelector("#dob_picker").addEventListener("keypress", function (evt) {
+    if (evt.which < 255)
+    {
+        evt.preventDefault();
+    }
+  }); */ 
+
+$( document ).ready(function() {
+  $('.profile_btn').hide();
+});
+
+$( document ).ready(function() {
+  $('.profile_btn').hide();
+});
+
+</script>

@@ -1,0 +1,213 @@
+<style>
+    .ty_main .enter-user-name {
+        margin-top: 80px;
+        font-family: Montserrat-Light;
+        margin-bottom: 55px;
+        font-size: 20px;
+    }
+
+    .wallet-balance {
+        font-family: Montserrat-Light;
+        font-size: 20px;
+        margin-bottom: 35px;
+        color: #51a900;
+        text-align: center;
+    }
+
+    .wallet-balance span {
+        border-bottom: 0px solid #51a900;
+    }
+
+    .add-balance-money {
+        color: #93989B;
+        font-family: Montserrat-Light;
+    }
+
+    .add-balance-money {
+        margin-bottom: 40px;
+    }
+
+    .add-balance-money span {
+        font-family: Montserrat-Regular;
+        font-size: 17px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #51a900;
+        padding-bottom: 7px;
+        text-transform: uppercase;
+        color: #51a900;
+    }
+
+    .wallet {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .choose-payment h5 {
+        margin-top: 25px;
+        font-family: Montserrat-Regular;
+        font-size: 17px;
+        font-weight: 300;
+        text-align: center;
+        line-height: 22px;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        color: #585858;
+    }
+
+    label.amount-label-balance {
+        float: left;
+        width: 23%;
+        font-family: Montserrat-Light;
+        font-weight: 300;
+        padding-top: 6px;
+    }
+
+    .amount-input-wallet {
+        float: right;
+        width: 75%;
+    }
+
+    .amount-input-wallet input {
+        font-weight: 300;
+        font-family: Montserrat-Light;
+    }
+
+    .card-header h6 {
+        margin-top: 0px;
+        font-family: Montserrat-Regular;
+    }
+
+    .card-header button {
+        padding: 0px;
+        color: #000000;
+        letter-spacing: 0.5px;
+    }
+
+    .card-header {
+        border-radius: 0;
+        box-shadow: none;
+        padding: 12px 15px;
+        background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    div#accordionExample {
+        border: 1px solid #ebebeb;
+    }
+
+    div#collapseOne {
+        padding: 10px 15px;
+        font-size: 13px;
+        font-family: Montserrat-Light;
+        width: 100%;
+        float: left;
+        border: 1px solid #ebebeb;
+    }
+
+    .btn-link:focus,
+    .btn-link:hover {
+        color: #000;
+    }
+
+    .credit-card {
+        float: left;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .choose-payment form {
+        margin-top: 0px;
+        float: left;
+        width: 100%;
+    }
+
+    .checkout-cc {
+        width: 11%;
+        float: left;
+    }
+
+    .Add-Payment {
+        float: right;
+        width: 89%;
+    }
+
+    .add-pay {
+        margin-top: 17px;
+    }
+
+    .add-pay button {
+        background: #51a900;
+        border: 1px solid #51a900;
+        color: #fff;
+        padding: 7px 14px;
+        border-radius: 5px;
+        font-family: Montserrat-Light;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        display: block;
+    }
+</style>
+
+<div class="bg" ng-controller="wallet" ng-init="my_wallet_data()">
+
+    <header class="container-fluid nav-down">
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid no-padding">
+                    <ul class="nav navbar-nav top_header">
+                        <li class="menu_icon back_icon"><a href="javascript:void(0)" ng-click="back()"><img src="assets/img/header/back.png"
+                                    id="asdf" alt="menu icon" /></a></li>
+                        <li class="logo_name"><a class="text-left back">My Wallet</a></li>
+
+                    </ul>
+                </div>
+            </nav>
+
+        </div>
+        <!-- MOBILE-MENU-AREA END -->
+    </header>
+
+    <!-- END HEADER -->
+    <div class="ty_main wallet">
+        <div class="enter-user-name">{{usedata.phone_no}}</div>
+        <div class="wallet-balance"> Balance : <span class="balance-amt_rupee">₹ {{getdata.wallet_amount}} </span></div>
+        <div class="add-balance-money"><span>Add Money</span></div>
+        <div class="choose-payment">
+            <h5>Choose a Payment Method for add money</h5>
+            <form method="post" name="profileForm" class="form-label" novalidate>
+                <label class="amount-label-balance">Amount <span class="text-danger">*</span></label>
+                <div class="amount-input-wallet">
+                    <input type="number" class="form-control required" ng-model="amount" name="amount" required id="amount"
+                        placeholder="Fill Money" >
+                    <span id="amount_id"></span>
+                </div>
+
+                <div class="credit-card">
+                    <div class="accordion1" id="accordionExample">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h6 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-credit-card"
+                                            aria-hidden="true"></i>&nbsp;&nbsp;Credit or Debit Card</button>
+                                </h6>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show1" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <div class="checkout-cc"><input type="checkbox"></div>
+                                    <div class="Add-Payment"><i class="fa fa-cc" aria-hidden="true"></i>&nbsp;Checkout
+                                        with
+                                        ccAvenue</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-pay"><button type="submit" class="add-round-pay-off" ng-click="update_profile('profileForm')">Add
+                            Payment&nbsp;&nbsp;<i class="fa fa-arrow-right" aria-hidden="true"></i></button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>
