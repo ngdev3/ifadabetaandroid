@@ -297,12 +297,12 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     }
 
 
-    /* $scope.see_all = function(id){
-        alert(id);
+    /* $scope.see_all = function(){
+        alert();
         loading.active();
 
         var args = $.param({
-          category_id : id,
+        //   category_id : id,
           country_id : 2,
           language_code : 'en'
           //user_type : 4,
@@ -328,7 +328,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
           // return;
 
           if (res.data.data.status == 'success') {
-            $scope.best_picks_of_the_season = res.data.data.best_picks_of_the_season;
+            $rootScope.best_picks_of_the_season = res.data.data.best_picks_of_the_season;
             $location.path('/subcategory');
           } else {
 

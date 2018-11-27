@@ -39,6 +39,7 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
           console.log(res.data.data);
           if(res.data.data.status == 'success'){
             $scope.category_data = res.data.data.category; 
+            // console.log($scope.category_data);
           }
 
         }).finally(function () {
@@ -136,8 +137,13 @@ var currentid;
     }
 
     $scope.showProducts = function(id){
-        $cookieStore.put("subcategoryID",id)
-        $location.path("/subcategory");
+        var subcategoryInfo = {
+            'subcatid': id,
+            'from':'category'
+        }
+        $cookieStore.put('subcategoryInfo', subcategoryInfo);
+
+        $location.path('/subcategory');
     }
 
 });

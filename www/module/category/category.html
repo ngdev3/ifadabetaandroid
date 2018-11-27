@@ -6,7 +6,7 @@
 			<nav class="navbar navbar-inverse">
 				<div class="container no-padding">
 					<ul class="nav navbar-nav top_header">
-						<li class="menu_icon "><a href="javacript:void(0)"><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"
+						<li class="menu_icon "><a href="javacript:void(0)"><img src="assets/img/icon/back.png" id="asdf" ng-click="back()"  alt="menu icon"
 								 style="width: 13px;" /></a></li>
 						<li class="page_name left">
 							<a href="javacript:void(0)" class="text-left ">
@@ -69,7 +69,7 @@
 										<!-- == row 1 == -->
 										<div class="row" >
 											<a href="javascript:void(0)"  >
-												<div class="col-md-4 col-sm-4 col-xs-4 text-center all_cat_odd_bg mt-5" ng-repeat="y in x.sub" ng-click="showProducts(x.id)">
+												<div class="col-md-4 col-sm-4 col-xs-4 text-center all_cat_odd_bg mt-5" ng-repeat="y in x.sub" ng-click="showProducts(y.id)">
 													<img class="all_cat_product_img img-responsive" src="assets/img/all_category/p1.png">
 													<p class="all_cat_product_name">{{y.name}}</p>
 												</div>
