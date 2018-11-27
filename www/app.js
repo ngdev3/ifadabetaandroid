@@ -170,6 +170,10 @@ app.config(function ($routeProvider, $httpProvider) {
             templateUrl: "module/switchlanguage/switchlanguage.html"
 
         })
+        .when("/switch_country", {
+            templateUrl: "module/switch_country/switch_country.html"
+
+        })
 
 });
 
