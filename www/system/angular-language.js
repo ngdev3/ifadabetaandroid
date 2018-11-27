@@ -12,7 +12,21 @@ app.config(function ($translateProvider) {
     See_all:'See all',
     product_of_the_day:'Product Of The Day',
     Featured_Product:'Best Picks of The Featured Products',
-    Featured_Category:'Best Picks of The Dairy Products'
+    Featured_Category:'Best Picks of The Dairy Products',
+    Login:'Login',
+    Contact_Us:'Contact Us',
+    Log_Out:'Log Out',
+    Log_In:'Log In',
+    Change_Password:'Change Password',
+    Switch_Language:'Switch Language',
+    Switch_Country:'Switch Country',
+    Manage_Tickets:'Manage Tickets',
+    Valued_Pack:'Valued Pack',
+    Wishlist:'Wishlist',
+    All_Categories:'All Categories',
+    My_Orders:'My Orders',
+    My_Cart:'My Cart',
+    My_Profile:'My Profile',
     
   });
 
@@ -56,7 +70,8 @@ app.config(function ($translateProvider) {
     See_all:'اظهار الكل',
     product_of_the_day:'منتج اليوم',
     Featured_Product:'المنتج المميز',
-    Featured_Category:'الفئة المميز'
+    Featured_Category:'الفئة المميز',
+    Log_In:'تسجيل الدخول'
   });
 
 
