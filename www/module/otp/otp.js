@@ -41,7 +41,7 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
         };
         if ($scope[form].$valid) {
 
-            if ($scope.third.toString().length > 4) {
+            if ($scope.third.toString().length > 4 ||$scope.third.toString().length < 4 ) {
                 alert('OTP must be 4 Digits allowed')
                 return false;
             }
@@ -79,7 +79,8 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
                 console.log(response)
                 if (response.data.data.status == 'success') {
 
-                    model.show('Success', 'Successfully Verified');
+                    //model.show('Success', 'Successfully Verified');
+                    alert('OTP verified Successfully')
                     $cookieStore.remove('otpverification');
                     $location.path('/login');
                     /* if ($cookieStore.get('userid')) {
@@ -89,7 +90,7 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
                     } */
 
                 } else {
-                    model.show('Alert', response.data.status);
+                    alert("Please enter valid OTP");
                 }
 
             }).finally(function () {

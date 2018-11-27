@@ -1,5 +1,9 @@
 app.controller('login', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope) {
 
+    if ($cookieStore.get('userinfo')) {
+
+        $location.path('/dashboard/home')
+    }
 
     document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -81,7 +85,6 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                 console.log("---------------");
                 
                 if (response.data.responseStatus == 'success') {
-                    console.log(response);
                     db.transaction(function (tx) {
                         tx.executeSql('INSERT INTO userinfo ( uid, phone_no, email_address, country_id, date_added) VALUES ("' + response.data.data.id + '","' + response.data.data.mobile_number + '","' + response.data.data.email + '","' + response.data.data.country_id + '","' + response.data.data.created_date + '")');
                     });
@@ -97,13 +100,26 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                 } else {
 
                     if(response.data.responseMessage == 'Your account is not verified please Verify OTP !'){
+                        var setOTPCookies = {
+                            'mobile_number': $scope.mobileno,
+                            'from' : 'login'
+                    }
+                        $cookieStore.put('otpverification', setOTPCookies);
                         alert('Please Varify OTP');
                         $location.path('/otp');
                         return false;
+                    }else if(response.data.responseMessage == 'Invalid login credentials'){
+                        
+                        alert('Mobile No. is Invalid');
+                    
+                    }else if(response.data.responseMessage =='Password does not match !'){
+                        
+                        alert('Password is Invalid');
+                    
+                    }else{
+
+                        alert('Login Credentials are Wrong');
                     }
-
-
-                    alert('Invalid Credentials');
                     //model.show('Alert', response.data.responseMessage);
                 }
 

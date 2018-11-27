@@ -1,13 +1,13 @@
 app.controller('home', function ($scope, $http, $location, $cookieStore, $timeout, loading, model, $rootScope, $route) {
     
     if (!$cookieStore.get('userinfo')) {
-        $scope.loggedin == false;
+        $scope.loggedin = false;
        
     }
 
     if ($cookieStore.get('userinfo')) {
-        $scope.loggedin == true;
-        alert($scope.loggedin)
+        $scope.loggedin = true;
+        
     }
 
     // if (!$cookieStore.get('storeinfo')) {
@@ -339,7 +339,8 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         $location.path('/contact_us');
     }
     $scope.logout = function(){
-        $location.path('/logout');
+        $cookieStore.remove('userinfo');
+        $location.path('/login');
     }
 
 });
