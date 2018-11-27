@@ -174,6 +174,10 @@ app.config(function ($routeProvider, $httpProvider) {
             templateUrl: "module/switch_country/switch_country.html"
 
         })
+        .when("/value_packs", {
+            templateUrl: "module/value_packs/value_packs.html"
+
+        })
 
 });
 
