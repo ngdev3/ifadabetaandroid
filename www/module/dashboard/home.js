@@ -80,6 +80,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     $scope.see_all = function(subcatid){
         var subcategoryInfo = {
             'subcatid': subcatid,
+            'from':'home'
         }
         $cookieStore.put('subcategoryInfo', subcategoryInfo);
 
@@ -292,6 +293,51 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
 
 
     }
+
+
+    /* $scope.see_all = function(id){
+        alert(id);
+        loading.active();
+
+        var args = $.param({
+          category_id : id,
+          country_id : 2,
+          language_code : 'en'
+          //user_type : 4,
+          //user_id : 52,
+          //retailer_id : 47
+        });
+
+        // console.log(args);return;
+
+        $http({
+          headers: {
+              //'token': '40d3dfd36e217abcade403b73789d732',
+              'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          method: 'POST',
+          url: app_url + '/get_pick_season_product', 
+          data: args 
+
+          }).then(function (response) {
+
+          res = response;
+          // console.log(res.data);
+          // return;
+
+          if (res.data.data.status == 'success') {
+            $scope.best_picks_of_the_season = res.data.data.best_picks_of_the_season;
+            $location.path('/subcategory');
+          } else {
+
+              alert(res.data.status);
+          }
+
+          }).finally(function () {
+              loading.deactive();
+          });
+
+    } */
 
     $scope.product_view = function (pid) {
         $cookieStore.put('productviewID', pid);

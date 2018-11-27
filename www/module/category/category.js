@@ -7,9 +7,12 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
 
     $scope.subcategory = function (id) {
         // console.log(id)
-        $cookieStore.put('id', id);
-        $location.path('subcategory')
+        var subcategoryInfo = {
+            'subcatid': id,
+        }
+        $cookieStore.put('subcategoryInfo', subcategoryInfo);
 
+        $location.path('/subcategory');
     }
 
     $scope.category_data = function () {
