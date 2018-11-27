@@ -384,7 +384,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         $location.path('/change_password');
     }
     $scope.contact_us = function(){
-        $location.path('/contact_us');
+        $location.path('/contactus');
     }
     $scope.logout = function(){
         $cookieStore.remove('userinfo');

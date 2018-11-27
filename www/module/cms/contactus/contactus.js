@@ -73,7 +73,7 @@ app.controller('contactus', function ($scope, $http, $location, $cookieStore, mo
             var args = $.param({
                 first_name: $scope.fname,
                 last_name: $scope.lname,
-                Email: $scope.email,
+                email: $scope.email,
                 query: $scope.query,
                 language_code: 'en'
             });
@@ -94,7 +94,7 @@ app.controller('contactus', function ($scope, $http, $location, $cookieStore, mo
                 console.log(response.data)
                 if (res.data.responseCode == 200) {
                     alert(res.data.responseStatus);
-                    // $location.path('/otp');
+                    $location.path('/dashboard/home');
                 } else {
                     alert(res.data.responseMessage.error_msg)
                 }

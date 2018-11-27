@@ -1,4 +1,4 @@
-<div ng-controller="sub_category" ng-init="fetch_product_list()">
+<div ng-controller="sub_category" >
         <style type="text/css">
             
         .owl-carousel .owl-stage
@@ -12,9 +12,14 @@
                   <div class="container no-padding"> 
                     <ul class="nav navbar-nav top_header">
                       <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back()" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
-                        <li class="page_name left">
+                        <li class="page_name left" ng-if="categoryData">
                             <a href="javascript:void(0)" class="text-left ">
                                 <p>{{categoryData.name}}</p>
+                            </a>
+                        </li>
+                        <li class="page_name left" ng-if="best_picks_of_the_season">
+                            <a href="javascript:void(0)" class="text-left ">
+                                <p>{{'best_picks_of_the_season' | translate}}</p>
                             </a>
                         </li>
                       <li class="cart_icon">
