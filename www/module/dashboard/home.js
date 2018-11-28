@@ -330,7 +330,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         $location.path('/language');
     }
     $scope.change_password = function(){
-        $location.path('/change_password');
+        $location.path('/changepassword');
     }
     $scope.contact_us = function(){
         $location.path('/contactus');

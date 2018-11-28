@@ -8,10 +8,6 @@ app.controller('changepassword', function ($scope, $http, $location, $cookieStor
    $rootScope.initOneSignal();
     loading.deactive();
 
-  /*  if (!$cookieStore.get('userinfo')) {
-        $location.path('/login');
-    } */
-
     // function for back button on my account page created by sajal
     $scope.my_account = function(){
         $location.path("myaccount/account");
@@ -102,9 +98,11 @@ app.controller('changepassword', function ($scope, $http, $location, $cookieStor
              //console.log($scope.old_pwd)
             //store cookie if check box for remember me is checked and codition goes true only otherwise none
             var args = $.param({
-                'uid'  : $cookieStore.get('userinfo').uid,
-                'oldpassword'   :   $scope.old_pwd,
-                'newpassword'   :    $scope.new_pwd
+                'user_id'  : $cookieStore.get('userinfo').uid,
+                'old_password'   :   $scope.old_pwd,
+                'new_password'   :    $scope.new_pwd,
+                'confirm_new_password'   :    $scope.conf_pwd,
+                'language_code'   :    sessionStorage.lang_code,
             });
 
             $http({
@@ -113,30 +111,31 @@ app.controller('changepassword', function ($scope, $http, $location, $cookieStor
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: 'POST',
-                url: app_url + '/profileapi/changePassword',
+                url: app_url + '/auth/change_password',
                 data: args //forms user object
 
             }).then(function (response) {
                
                 res = response;
-                //console.log(response);
-                if (res.data.status == 'pass') {
+                
+                if (res.data.responseStatus == 'success') {
+                    
                     //put cookie and redirect it    
                     
                     // $cookieStore.remove("upload_ads_type");
                     // $cookieStore.remove("uploads_ads_detail");
                     // $cookieStore.remove("interestids_cookies");
                     // $cookieStore.remove("register_step1");
-                    // $cookieStore.remove('userinfo');
                     // model.show('Alert', res.data.responseMessage);
                     alert("Password Changed Successfully")
+                    $cookieStore.remove('userinfo');
                     $location.path('/login');
 
                 } else {
                    
                     //Throw error if not logged in
                      //model.show('Alert', res.data.responseMessage);
-                     alert("Something went wrong");
+                     alert(res.data.responseMessage);
                 }
 
 
