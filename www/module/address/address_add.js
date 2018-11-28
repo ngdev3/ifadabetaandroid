@@ -3,7 +3,10 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
     /**
      * This will check if user is registered with app or not , if not user will be redirected to login screen
      */
-
+    $scope.toBasic = function(){
+        $location.path("/myaccount/profile");
+    }
+    return;
     console.log($cookieStore.get('storeinfo'))
 
     if (!$cookieStore.get('userinfo')) {
@@ -183,5 +186,7 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
      * End of Function 
      */
     //loading.deactive();
+
+   
 
 });

@@ -1,6 +1,4 @@
 <div ng-controller="myprofile" ng-init="myprofile_data()">
-
-    
 <header class="container-fluid nav-down">
 	<div class="row">
 		<nav class="navbar navbar-inverse">
@@ -12,6 +10,11 @@
 						<p>My info</p>
 					</a>
 				</li>
+				<li class="cart_icon">
+					<a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/edit_profile.png" alt="cart icon"  />
+						<!--<span class="badge">14</span>-->
+					</a>
+			</li>
 			  
 			</ul>
 			
@@ -27,29 +30,53 @@
 		<div class="login_form">
 			<div class="info-container"> 
 				<div class="info-btn col-xs-6 text-center pl-10 pr-10 active">
-					<a href="javascript:void(0)">Basic Info</a>
+					<a href="javascript:void(0)" >Basic Info</a>
 				</div>
 				<div class="info-btn col-xs-6 text-center pl-10 pr-10">
-					<a href="javascript:void(0)">Address Detail</a>
+					<a href="javascript:void(0)" ng-click="toAddress()">Address Detail</a>
 				</div>
 			</div>
 			<div class="form_container pt-10">
 				<form class="mui-form">
 				
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="frst" placeholder="Enter first name" required>
+					<input type="text"  id="frst" name="fname" ng-model="fname" placeholder="Enter first name" required>
 					<label for="frst">First Name</label>
 				  </div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="lst" placeholder="Enter last name" required>
+					<input type="text"  id="lst" name="lname" ng-model="lname" placeholder="Enter last name" required>
 					<label for="lst">Last Name</label>
-				  </div>
+					</div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="email"  id="email" placeholder="Enter email id" required>
+					<input type="text"  id="lst" name="country" ng-model="country" placeholder="Enter Country" required>
+					<label for="lst">Country</label>
+					</div>
+				  <div class="mui-textfield col-sm-6 col-xs-12">
+					<input type="text"  id="lst" name="city" ng-model="city" placeholder="Enter City" required>
+					<label for="lst">City</label>
+					</div>
+					<!-- <div class="mui-select col-sm-6 col-xs-12">
+						<select id="country" name="country" ng-model="country" required>
+							<option>Select Country</option>
+						  <option value="country">{{country}}</option>
+						</select>
+						<label for="country">Country</label>
+					</div>
+					<div class="mui-select col-sm-6 col-xs-12">
+						<select id="city"  name="city" ng-model="city"  required>
+							<option>Select City</option></select>
+						<label for="city">City</label>
+					</div> -->
+					<div class="mui-textfield col-sm-6 col-xs-12">
+						<input type="text"  id="address" name="address" ng-model="address" placeholder="Enter Address" required>
+						<label for="email">Address</label>
+					</div>
+				  <div class="mui-textfield col-sm-6 col-xs-12">
+					<input type="email"  id="email" name="email" ng-model="email" placeholder="Enter email id" required>
 					<label for="email">Email ID</label>
 				  </div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="tel"  id="mbl_num" placeholder="Mobile Number" pattern="[0-9]{10}" required>
+					<input type="tel"  id="mbl_num"  name="mobile" ng-model="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required>
 					<label for="mbl_num">Mobile Number</label>
 				  </div>
 				  <div class="submit-btn col-sm-6 col-xs-12 text-center">

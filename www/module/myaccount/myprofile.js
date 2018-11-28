@@ -44,7 +44,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
         //console.log("Profile data initialize")
 
         var args = $.param({
-            'user_id': '52',
+            'user_id': $cookieStore.get("userinfo").uid,
             'language_code' : 'en'
         });
 
@@ -59,16 +59,19 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
         }).then(function (response) {
             loading.deactive();
             res = response;
-            console.log(res);return;
-            if (res.data.status == 'success') {
-                console.log(response)
+            // console.log(res.data.data);return;
+            if (res.data.data.status == 'success') {
+                console.log(res);
                 //put cookie and redirect it    
-                $scope.fname = res.data.name;
-                $scope.email = res.data.email;
-                $scope.mobile = res.data.mobile;
-                $scope.dob = res.data.dob;
-                $scope.image = res.data.image;
-                $scope.gender = res.data.gender;
+                $scope.fname = res.data.data.basic_info.first_name;
+                $scope.lname = res.data.data.basic_info.last_name;
+                $scope.email = res.data.data.basic_info.email;
+                $scope.mobile = res.data.data.basic_info.mobile_number;
+                $scope.address = res.data.data.address_details[0].address;
+                $scope.country = res.data.data.address_details[0].COUNTRY_NAME;
+                $scope.city = res.data.data.address_details[0].CITY_NAME;
+                console.log($scope.country);
+                $scope.image = res.data.data.basic_info.image;
             } else {
 
                 //Throw error if not logged in
@@ -197,6 +200,11 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
             loading.deactive();
             console.log(response)    
         })
+    }
+
+
+    $scope.toAddress = function(){
+        $location.path("/address/add");
     }
 });
 

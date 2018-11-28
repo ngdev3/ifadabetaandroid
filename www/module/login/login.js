@@ -83,16 +83,24 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
 
             }).then(function (response) {
                 console.log("---------------");
+                console.log(response);
                 
                 if (response.data.responseStatus == 'success') {
                     db.transaction(function (tx) {
                         tx.executeSql('INSERT INTO userinfo ( uid, phone_no, email_address, country_id, date_added) VALUES ("' + response.data.data.id + '","' + response.data.data.mobile_number + '","' + response.data.data.email + '","' + response.data.data.country_id + '","' + response.data.data.created_date + '")');
                     });
+                    var fname = response.data.data.first_name;
+                    var lname = response.data.data.last_name;
+
+                    var fullName = fname+" "+lname;
+                    // console.log(fullName);
                     var userinfo = {
                         'uid': response.data.data.id,
                         'phone_no': response.data.data.mobile_number,
                         'email_address': response.data.data.email,
                         'country_id': response.data.data.country_id,
+                        'fullName' : fullName,
+                        'profile_image' : response.data.data.profile_image
                     }
                     $cookieStore.put('userinfo', userinfo);
                     $location.path('/dashboard/home');
