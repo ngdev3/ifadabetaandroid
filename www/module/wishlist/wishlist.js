@@ -1,5 +1,10 @@
 app.controller('wishlist', function ($scope, $http, $location, $cookieStore, model, loading, $cordovaDialogs, $cordovaGeolocation, $rootScope, $route) {
  
+    if (!$cookieStore.get('userinfo')) {
+        $location.path('/login');
+        return false;
+    }
+
     $scope.whiteListData = function () {
 
         loading.active();
