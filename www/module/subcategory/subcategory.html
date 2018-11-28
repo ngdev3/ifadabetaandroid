@@ -23,7 +23,7 @@
                             </a>
                         </li>
                       <li class="cart_icon">
-                          <a href="javascript:void(0)"><img src="assets/img/icon/cart_icon.png" alt="cart icon"  />
+                          <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
                             <!--<span class="badge">14</span>-->
                           </a>
                           <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
@@ -71,7 +71,7 @@
                         </div>
                         <!-- ** !. Buttons ** -->
                         <!-- ** Product Lists ** -->
-                        <div class="no-padding item_lists_main" ng-repeat="x in product" ng-if="categoryData">
+                        <div class="no-padding item_lists_main" ng-repeat="x in product" ng-if="categoryData" >
                            
                             <div class="prodcut_main_container">
                                 <div class="products_wrapper">
@@ -104,7 +104,7 @@
                             </div>
                         </div>
 
-                        <div class="no-padding item_lists_main" ng-repeat="x in best_picks_of_the_season" ng-if="best_picks_of_the_season">
+                        <div class="no-padding item_lists_main" ng-repeat="x in best_picks_of_the_season" ng-if="best_picks_of_the_season" ng-click="product_view(x.id)">
                            
                                 <div class="prodcut_main_container">
                                     <div class="products_wrapper">

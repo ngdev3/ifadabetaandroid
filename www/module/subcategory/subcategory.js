@@ -3,6 +3,9 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
     // console.log($rootScope.best_picks_of_the_season);return;
 
   
+    $scope.cart = function(){
+        $location.path('/cart');
+    }
 
     var ID;
     $scope.fetch_product_list = function(id){
@@ -116,6 +119,12 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
        
     }else{
         $scope.fetch_product_list();
+    }
+
+
+    $scope.product_view = function(id){
+        $cookieStore.put('id',id);
+        $location.path('/product/view');
     }
 
 });

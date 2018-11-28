@@ -1,4 +1,4 @@
-<div ng-controller="view_product" >
+<div ng-controller="view_product" ng-init="fetch_product_data()">
 <style type="text/css">
 	
 
@@ -8,21 +8,21 @@
 		<nav class="navbar navbar-inverse">
 		  <div class="container no-padding">
 			<ul class="nav navbar-nav top_header">
-			  <li class="menu_icon "><a href="#"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
+			  <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back()" alt="menu icon"style="width: 13px;" /></a></li>
 				<li class="page_name left">
-					<a href="#" class="text-left ">
+					<a href="javascript:void(0)" class="text-left ">
 						<p>Pulses</p>
 					</a>
 				</li>
 			  <li class="cart_icon">
-				  <a href="./view_cart.php"><img src="assets/img/icon/cart_icon.png" alt="cart icon"  />
+				  <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
 					<!--<span class="badge">14</span>-->
 				  </a>
-				  <a href="#"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
+				  <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
 			  </li>
 			</ul>
 			<ul class="nav navbar-nav bottom_header">
-			  <li class="menu_search_container"><a href="#">
+			  <li class="menu_search_container"><a href="javascript:void(0)">
 				<!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
 				<input type="text" class="menu_search" placeholder="Search products brands and more"/>
 			  </a></li>
@@ -41,14 +41,14 @@
 			<div class="">
 				<!-- ** Buttons** -->
 				<div class="pulses_buttons mb-20 mt-10">
-					<div id="" class="owl-carousel owl3 owl-theme">
+					<div id="" class="owl-carousel owl3 owl-theme owl-drag owl-loaded" ng-repeat="y in product_images">
 						<!-- Buttons Items -->
 						<div class="item">
 							<div class="prod_images">
-								<img class="img-responsive" src="assets/img/product/product_detail.png">
+								<img class="img-responsive" src="{{y.product_image}}">
 							</div>
 						</div>
-						<div class="item">
+					<!-- 	<div class="item">
 							<div class="prod_images">
 								<img class="img-responsive" src="assets/img/product/product_detail.png">
 							</div>
@@ -57,7 +57,7 @@
 							<div class="prod_images">
 								<img class="img-responsive" src="assets/img/product/product_detail.png">
 							</div>
-						</div>
+						</div> -->
 						
 						<!-- !. Buttons Items -->
 					</div>
@@ -70,11 +70,11 @@
 					<div class="prodcut_main_container">
 						<div class="products_wrapper">
 							<div class="col-md-3 col-sm-3 col-xs-3 items_img_div">
-								<img class="img-responsive sub_cat_product_img" src="assets/img/all_category/title_product.png">
+								<img class="img-responsive sub_cat_product_img" src="{{product_details.image}}">
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
 								<input type="button" class="btn btn-default btn_discounts" name="" value="6% Off">
-								<p class="sub_produt_name">Best Value Arhar Daal</p>
+								<p class="sub_produt_name">{{product_details.menu_name}}</p>
 								<p class="sub_product_qty">1 Kg</p>
 								<p class="sub_prcing"><strike>AED 190</strike><span id="sub_rrp">AED 100</span></p>
 							</div>
@@ -99,11 +99,11 @@
 				</div>
 				<!-- ** !. Product Details Lists ** -->
 				<!-- ** Product Units ** -->
-				<div class="product_untis">
+				<div class="product_untis" >
 					<h5 class="unit_head">Units</h5>
-					<div class="unit_container">
-						<input type="button" class="btn btn-default marked" name="" value="500 gm">
-						<input type="button" class="btn btn-default" name="" value="1 Kg">
+					<div class="unit_container" ng-repeat="x in product_details_varients">
+						<input type="button" class="btn btn-default marked" name="" value="{{x.unit_value}}{{x.UNIT_NAME}}">
+						<!-- <input type="button" class="btn btn-default" name="" value="1 Kg"> -->
 					</div>
 				</div>
 				<!-- ** !. Product Units ** -->
