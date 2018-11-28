@@ -85,7 +85,7 @@
 					<input type="tel"  id="mbl_num"  name="mobile" ng-model="mobile" readonly placeholder="Mobile Number" pattern="[0-9]{10}" required>
 					<label for="mbl_num">Mobile Number</label>
 				  </div>
-				  <div class="submit-btn col-sm-6 col-xs-12 text-center">
+				  <div class="submit-btn col-sm-6 col-xs-12 text-center hide" id="submitProfile">
 					<a href="javascript:void(0)" ng-click="updateUserProfile('updateProfile')">Submit</a>
 				  </div>
 				</form>
@@ -106,6 +106,7 @@
 			$("#address").removeAttr("readonly");
 			$("#input_city").removeAttr("readonly");
 			$("#input_country").removeAttr("readonly");
+			$("#submitProfile").removeClass("hide");
 		})
 	});
 </script>

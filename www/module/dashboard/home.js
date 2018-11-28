@@ -47,6 +47,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
                 $scope.best_picks_of_the_featured_products = res.data.data.best_picks_of_the_featured_products;
                 $scope.dairy_product = res.data.data.dairy_product;
                 $scope.slider = res.data.data.banner;
+                console.log($scope.slider);
                 $scope.sliderCount =  $scope.slider.length;
            }else{
 
