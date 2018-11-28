@@ -1,6 +1,9 @@
 <div ng-controller="view_product" ng-init="fetch_product_data()">
 <style type="text/css">
-	
+	.sub_product_qty{
+		border: 1px solid #006d07;
+    border-radius: 3px;
+	}
 
 </style>
 <header class="container-fluid nav-down">
@@ -75,7 +78,11 @@
 							<div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
 								<input type="button" class="btn btn-default btn_discounts" name="" value="6% Off">
 								<p class="sub_produt_name">{{product_details.menu_name}}</p>
-								<p class="sub_product_qty">1 Kg</p>
+								<select class="sub_product_qty">
+									<option>1 kg</option>
+									<option>1.5 kg</option>
+									<option>2.0 kg</option>
+								</select>
 								<p class="sub_prcing"><strike>AED 190</strike><span id="sub_rrp">AED 100</span></p>
 							</div>
 								<div class="wislist_sub wishlist-container">

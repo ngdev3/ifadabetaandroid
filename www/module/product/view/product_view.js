@@ -7,14 +7,13 @@ app.controller('view_product', function ($scope, $http, $location, $cookieStore,
 
     $scope.fetch_product_data = function () {
        
-        loading.active();
+        //loading.active();
         $scope.pid = $cookieStore.get('productviewID');
         var args = $.param({
             'product_id': $cookieStore.get('id'),
             'country_id': sessionStorage.country,
             'manufacture_id': '',
-            'language_code': sessionStorage.lang_code,
-            'user_id': $cookieStore.get('userinfo').uid
+            'language_code': sessionStorage.lang_code,     
         });
 
         $http({

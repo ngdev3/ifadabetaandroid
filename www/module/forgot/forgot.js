@@ -76,14 +76,17 @@ app.controller('forgot', function ($scope, $http, $location, $cookieStore, model
             }).then(function (response) {
 
                 res = response;
-                console.log(res.data);
-
+                
                 if(res.data.responseStatus == 'error'){
                     alert(res.data.responseMessage);
                 }else{
                     alert(res.data.responseMessage);
-                    $location.path('/login')
-                    
+                    var setOTPCookies = {
+                        'mobile_number': $scope.mobile_no,
+                        'from' : 'forgot'
+                }
+                    $cookieStore.put('otpverification', setOTPCookies);
+                    $location.path('/otp')     
                 }
                 // if (res.data.status == 'pass') {
                 //     //put cookie and redirect it    
