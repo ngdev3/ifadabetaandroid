@@ -11,7 +11,7 @@
 					</a>
 				</li>
 				<li class="cart_icon">
-					<a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/edit_profile.png" alt="cart icon"  />
+					<a href="javascript:void(0)"><img ng-click="toEditProfile()" src="assets/img/edit_profile.png" alt="cart icon"  id="editProfile"/>
 						<!--<span class="badge">14</span>-->
 					</a>
 			</li>
@@ -40,43 +40,48 @@
 				<form class="mui-form">
 				
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="frst" name="fname" ng-model="fname" placeholder="Enter first name" required>
+					<input type="text"  id="fname" name="fname" ng-model="fname" readonly placeholder="Enter first name" required>
 					<label for="frst">First Name</label>
 				  </div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="lst" name="lname" ng-model="lname" placeholder="Enter last name" required>
+					<input type="text"  id="lname" name="lname" ng-model="lname" readonly placeholder="Enter last name" required>
 					<label for="lst">Last Name</label>
 					</div>
-				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="lst" name="country" ng-model="country" placeholder="Enter Country" required>
-					<label for="lst">Country</label>
+					<div id="onLoad">
+						<div class="mui-textfield col-sm-6 col-xs-12">
+						<input type="text"  id="input_country" name="country" ng-model="country" readonly placeholder="Enter Country" required>
+						<label for="lst">Country</label>
+						</div>
+						<div class="mui-textfield col-sm-6 col-xs-12">
+						<input type="text"  id="input_city" name="city" ng-model="city" readonly placeholder="Enter City" required>
+						<label for="lst">City</label>
+						</div>
 					</div>
-				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="lst" name="city" ng-model="city" placeholder="Enter City" required>
-					<label for="lst">City</label>
+					<div id="onEdit">
+						<div class="mui-select col-sm-6 col-xs-12">
+							<select id="country" name="country" ng-model="country" readonly required ng-click="">
+								<option>Select Country</option>
+								<option value="" >{{country}}</option>
+							</select>
+							<label for="country">Country</label>
+						</div>
+						<div class="mui-select col-sm-6 col-xs-12">
+							<select id="city"  name="city" ng-model="city"  required>
+								<option>Select City</option></select>
+							<label for="city">City</label>
+						</div>
 					</div>
-					<!-- <div class="mui-select col-sm-6 col-xs-12">
-						<select id="country" name="country" ng-model="country" required>
-							<option>Select Country</option>
-						  <option value="country">{{country}}</option>
-						</select>
-						<label for="country">Country</label>
-					</div>
-					<div class="mui-select col-sm-6 col-xs-12">
-						<select id="city"  name="city" ng-model="city"  required>
-							<option>Select City</option></select>
-						<label for="city">City</label>
-					</div> -->
+					
 					<div class="mui-textfield col-sm-6 col-xs-12">
-						<input type="text"  id="address" name="address" ng-model="address" placeholder="Enter Address" required>
+						<input type="text"  id="address" name="address" ng-model="address" readonly placeholder="Enter Address" required>
 						<label for="email">Address</label>
 					</div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="email"  id="email" name="email" ng-model="email" placeholder="Enter email id" required>
+					<input type="email"  id="email" name="email" ng-model="email" readonly placeholder="Enter email id" required>
 					<label for="email">Email ID</label>
 				  </div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="tel"  id="mbl_num"  name="mobile" ng-model="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required>
+					<input type="tel"  id="mbl_num"  name="mobile" ng-model="mobile" readonly placeholder="Mobile Number" pattern="[0-9]{10}" required>
 					<label for="mbl_num">Mobile Number</label>
 				  </div>
 				  <div class="submit-btn col-sm-6 col-xs-12 text-center">
@@ -87,3 +92,18 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$(document).ready(function(){
+		$("#onEdit").hide();
+		$("#editProfile").click(function(){
+			$("#onLoad").hide();
+			$("#onEdit").show();
+			$("#fname").removeAttr("readonly");
+			$("#lname").removeAttr("readonly");
+			$("#address").removeAttr("readonly");
+			$("#input_city").removeAttr("readonly");
+			$("#input_country").removeAttr("readonly");
+		})
+	});
+</script>

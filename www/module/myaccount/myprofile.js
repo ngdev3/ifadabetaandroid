@@ -45,7 +45,8 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
 
         var args = $.param({
             'user_id': $cookieStore.get("userinfo").uid,
-            'language_code' : 'en'
+            'language_code' : 'en',
+            'city_id' : 16
         });
 
         $http({
@@ -83,28 +84,36 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
 
     /*Update user profile */
 
-    $scope.update_profile = function (form) {
+    $scope.toEditProfile = function (form) {
         var error_str = '';
         
         if ($scope[form].$error) {
 
             if ($scope[form].fname.$error.required !== undefined) {
-                error_str += "Full Name, ";
+                error_str += "First Name, ";
+            }
+            
+            if ($scope[form].lname.$error.required !== undefined) {
+                error_str += "Last Name, ";
             }
 
-            if ($scope[form].email.$error.required !== undefined || $scope[form].email.$error.email) {
+           /*  if ($scope[form].email.$error.required !== undefined || $scope[form].email.$error.email) {
                 error_str += "Email Id, ";
             }
             if ($scope[form].mobile.$error.required !== undefined) {
                 error_str += "Mobile Number, ";
-            }
+            } */
 
-            if ($scope[form].dob.$error.required !== undefined) {
-                error_str += "Date of Birth, ";
+            if ($scope[form].address.$error.required !== undefined) {
+                error_str += "Address, ";
             }
             
-            if ($scope[form].gender.$error.required !== undefined) {
-                error_str += "Gender, ";
+            if ($scope[form].city.$error.required !== undefined) {
+                error_str += "City, ";
+            }
+
+            if ($scope[form].country.$error.required !== undefined) {
+                error_str += "Country, ";
             }
         }
         setTimeout(function () {
@@ -117,23 +126,23 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
         }, 400);
         if (error_str == '') {
 
-            var reg1 = /[0-9]{2}[-|\/]{1}[0-9]{2}[-|\/]{1}[0-9]{4}/;
+            /* var reg1 = /[0-9]{2}[-|\/]{1}[0-9]{2}[-|\/]{1}[0-9]{4}/;
 
             if (reg1.test($scope.dob) == false) {
                 error_str = "Date Format Is Wrong";
                 // model.show('Alert', error_str);
                 alert(error_str);
                 return false;
-            }
+            } */
             loading.active();
             var args = $.param({
-                uid: GlobalUID,
+                uid: $cookieStore.get("userinfo").uid,
                 email: $scope.email,
-                mobile: $scope.mobile,
-                dob: $scope.dob,
-                gender: $scope.gender,
-                name: $scope.fname,
-
+                mobile_number: $scope.mobile,
+                first_name: $scope.fname,
+                last_name: $scope.lname,
+                address: $scope.address,
+                language_code : 'en',
             });
 
             $http({
@@ -141,7 +150,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: 'POST',
-                url: app_url + 'profileapi/updateProfile',
+                url: app_url + '/edit_account',
                 data: args //forms user object
 
             }).then(function (response) {
@@ -149,7 +158,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 res = response;
 
                 console.log("response from the server ");
-                console.log(response);
+                console.log(response);return;
 
                 if (res.data.status == 'success') {
                    
@@ -172,7 +181,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
     }
 
   
-    $scope.profile_update = function(files){
+    $scope.toEditProfile = function(files){
         
       
         //console.log(files)
@@ -194,7 +203,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 'Content-Type': 'application/x-www-form-urlencoded' //'multipart/form-data' 
             },
             method: 'POST',
-            url: app_url + '/profileapi/update_profile_image',
+            url: app_url + '/edit_account',
             data: args
         }).then(function (response) {  
             loading.deactive();
