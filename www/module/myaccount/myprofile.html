@@ -11,7 +11,7 @@
 					</a>
 				</li>
 				<li class="cart_icon">
-					<a href="javascript:void(0)"><img ng-click="toEditProfile()" src="assets/img/edit_profile.png" alt="cart icon"  id="editProfile"/>
+					<a href="javascript:void(0)"><img  src="assets/img/edit_profile.png" alt="cart icon"  id="editProfile"/>
 						<!--<span class="badge">14</span>-->
 					</a>
 			</li>
@@ -29,15 +29,15 @@
 <div class="container">
 		<div class="login_form">
 			<div class="info-container"> 
-				<div class="info-btn col-xs-6 text-center pl-10 pr-10 active">
+				<div class="info-btn col-xs-6 text-center pl-10 pr-10 active" ng-init="fetchcountry()">
 					<a href="javascript:void(0)" >Basic Info</a>
 				</div>
-				<div class="info-btn col-xs-6 text-center pl-10 pr-10">
+				<div class="info-btn col-xs-6 text-center pl-10 pr-10" ng-init="fetchcountry()">
 					<a href="javascript:void(0)" ng-click="toAddress()">Address Detail</a>
 				</div>
 			</div>
 			<div class="form_container pt-10">
-				<form class="mui-form">
+				<form class="mui-form" name="updateProfile" method="POST" novalidate>
 				
 				  <div class="mui-textfield col-sm-6 col-xs-12">
 					<input type="text"  id="fname" name="fname" ng-model="fname" readonly placeholder="Enter first name" required>
@@ -59,15 +59,16 @@
 					</div>
 					<div id="onEdit">
 						<div class="mui-select col-sm-6 col-xs-12">
-							<select id="country" name="country" ng-model="country" readonly required ng-click="">
-								<option>Select Country</option>
-								<option value="" >{{country}}</option>
+							<select id="country" name="select_country" ng-model="select_country"  readonly required ng-change="fetchcity()">
+								<!-- <option>Select Country</option> -->
+								<option value="{{c.id}}" ng-repeat="c in Countries" >{{c.name}}</option>
 							</select>
 							<label for="country">Country</label>
 						</div>
 						<div class="mui-select col-sm-6 col-xs-12">
-							<select id="city"  name="city" ng-model="city"  required>
-								<option>Select City</option></select>
+							<select id="city"  name="select_city" ng-model="select_city"  required">
+								<option value="{{city.id}}" ng-repeat="city in Cities">{{city.name}}</option>
+							</select>
 							<label for="city">City</label>
 						</div>
 					</div>
@@ -85,7 +86,7 @@
 					<label for="mbl_num">Mobile Number</label>
 				  </div>
 				  <div class="submit-btn col-sm-6 col-xs-12 text-center">
-					<a href="javascript:void(0)">Submit</a>
+					<a href="javascript:void(0)" ng-click="updateUserProfile('updateProfile')">Submit</a>
 				  </div>
 				</form>
 			</div>
@@ -97,6 +98,7 @@
 	$(document).ready(function(){
 		$("#onEdit").hide();
 		$("#editProfile").click(function(){
+			alert("You can Edit your profile now");
 			$("#onLoad").hide();
 			$("#onEdit").show();
 			$("#fname").removeAttr("readonly");

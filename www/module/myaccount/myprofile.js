@@ -1,6 +1,7 @@
 app.controller('myprofile', function ($scope, $http, $location, $interval, $cookieStore, model, $locale, loading, $route) {
 
 
+    // $scope.select_country = "INDIA";
     // return;
     $scope.maxDate = new Date();
     $scope.monthSelectorOptions = {
@@ -37,6 +38,11 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
     /* get Profile data for perticular user id  */
 
 
+    $scope.toAddress = function(){
+        $location.path("/address/add");
+    }
+
+
     //Function to fetch the User's Data
 
     $scope.myprofile_data = function () {
@@ -68,9 +74,10 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 $scope.lname = res.data.data.basic_info.last_name;
                 $scope.email = res.data.data.basic_info.email;
                 $scope.mobile = res.data.data.basic_info.mobile_number;
-                $scope.address = res.data.data.address_details[0].address;
-                $scope.country = res.data.data.address_details[0].COUNTRY_NAME;
-                $scope.city = res.data.data.address_details[0].CITY_NAME;
+                $scope.address = res.data.data.basic_info.address;
+                $scope.country = res.data.data.basic_info.COUNTRY_NAME;
+                $scope.countryID = res.data.data.address_details[0].country;
+                $scope.city = res.data.data.basic_info.CITY_NAME;
                 console.log($scope.country);
                 $scope.image = res.data.data.basic_info.image;
             } else {
@@ -84,7 +91,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
 
     /*Update user profile */
 
-    $scope.toEditProfile = function (form) {
+    $scope.updateUserProfile = function (form) {
         var error_str = '';
         
         if ($scope[form].$error) {
@@ -108,11 +115,11 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 error_str += "Address, ";
             }
             
-            if ($scope[form].city.$error.required !== undefined) {
+            if ($scope[form].select_city.$error.required !== undefined) {
                 error_str += "City, ";
             }
 
-            if ($scope[form].country.$error.required !== undefined) {
+            if ($scope[form].select_country.$error.required !== undefined) {
                 error_str += "Country, ";
             }
         }
@@ -136,14 +143,16 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
             } */
             loading.active();
             var args = $.param({
-                uid: $cookieStore.get("userinfo").uid,
-                email: $scope.email,
-                mobile_number: $scope.mobile,
+                user_id: $cookieStore.get("userinfo").uid,
                 first_name: $scope.fname,
                 last_name: $scope.lname,
                 address: $scope.address,
+                country_id : $scope.select_country,
+                city_id : $scope.select_city,
                 language_code : 'en',
             });
+
+            // alert(args);return;
 
             $http({
                 headers: {
@@ -158,9 +167,9 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 res = response;
 
                 console.log("response from the server ");
-                console.log(response);return;
+                console.log(res);
 
-                if (res.data.status == 'success') {
+                if (res.data.data.status == 'success') {
                    
                     //console.log("Profile updated")
                     model.show('Alert', 'Profile Updated Successfully');
@@ -180,21 +189,42 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
         }
     }
 
-  
-    $scope.toEditProfile = function(files){
-        
-      
-        //console.log(files)
-         this.files = event.target.files;
-         var profile_image = this.files[0].name;	
-        
-        console.log(profile_image)
-        loading.active();
-        
-        // return false
+
+   
+
+
+    //defualt country
+    $scope.fetchcountry = function(){        
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded' //'multipart/form-data' 
+            },
+            method: 'POST',
+            url: app_url + '/get_country',
+            //data: args
+        }).then(function (response) {  
+            loading.deactive();
+            console.log(response);
+            res = response;   
+            if (res.data.data.status == 'success') {
+                $scope.Countries = res.data.data.country;   
+                console.log($scope.Countries);             
+            } else {    
+                model.show('Alert', res.data.responseMessage);
+                $location.path('/dashboard/myprofile');
+            }
+        }).finally(function () {
+            //loading.deactive();
+        })
+    }
+
+    //default city
+    $scope.fetchcity = function(){
+        // alert($scope.select_country);
         var args = $.param({
-            'uid': $cookieStore.get('userinfo').uid,
-            'file' : profile_image
+            'country_id': $scope.select_country
+           // 'file' : profile_image
         });
         
         $http({
@@ -203,17 +233,27 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 'Content-Type': 'application/x-www-form-urlencoded' //'multipart/form-data' 
             },
             method: 'POST',
-            url: app_url + '/edit_account',
+            url: app_url + '/get_city',
             data: args
         }).then(function (response) {  
             loading.deactive();
-            console.log(response)    
+            console.log(response);
+
+            res = response;   
+            if (res.data.data.status == 'success') {
+                console.log(res.data.data.city);
+                if(res.data.data.city == 'false'){
+                    alert('No Cities Found!');
+                }else{
+                    $scope.Cities = res.data.data.city;   
+                    console.log($scope.Cities); 
+                }
+            } else {    
+                model.show('Alert', res.data.responseMessage);
+                $location.path('/dashboard/myprofile');
+            }
+        }).finally(function () {
+            //loading.deactive();
         })
     }
-
-
-    $scope.toAddress = function(){
-        $location.path("/address/add");
-    }
 });
-

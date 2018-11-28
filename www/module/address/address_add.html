@@ -33,33 +33,33 @@
 				</div>
 			</div>
 			<div class="form_container pt-10">
-				<form class="mui-form">
+				<form class="mui-form" name="addAddress" method="POST" novalidate>
 				  <div class="col-xs-12">
-					<div class="addr_heading mb-20">
-						<div class="radio col-sm-2 col-xs-4 no-padding">
-							<input id="home_addr" name="addr" type="radio">
-							<label for="home_addr" class="radio-label">Home</label>
+						<div class="addr_heading mb-20">
+							<div class="radio col-sm-2 col-xs-4 no-padding">
+								<input id="home_addr" name="addr" type="radio" ng-model="address_type" name="address_type" value="home">
+								<label for="home_addr" class="radio-label">Home</label>
+							</div>
+							<div class="radio col-sm-2 col-xs-4 no-padding">
+								<input id="off_addr" name="addr" type="radio" ng-model="address_type" name="address_type" value="office">
+								<label for="off_addr" class="radio-label">Office</label>
+							</div>
+							<div class="radio col-sm-2 col-xs-4 no-padding">
+								<input id="other_addr" name="addr" type="radio" ng-model="address_type" name="address_type" value="other">
+								<label for="other_addr" class="radio-label">Other</label>
+							</div>
 						</div>
-						<div class="radio col-sm-2 col-xs-4 no-padding">
-							<input id="off_addr" name="addr" type="radio">
-							<label for="off_addr" class="radio-label">Office</label>
-						</div>
-						<div class="radio col-sm-2 col-xs-4 no-padding">
-							<input id="other_addr" name="addr" type="radio">
-							<label for="other_addr" class="radio-label">Other</label>
-						</div>
-					</div>
 				  </div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="hno" placeholder="House Number" required>
+					<input type="text"  id="hno" name="hno" model="hno" placeholder="House Number" required>
 					<label for="hno">H. No.</label>
 				  </div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="street" placeholder="Street Name" required>
+					<input type="text"  id="street" name="hno" model="hno" placeholder="Street Name" required>
 					<label for="street">Street</label>
 				  </div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="lndmrk" placeholder="Landmark" required>
+					<input type="text"  id="lndmrk" name="hno" model="hno" placeholder="Landmark" required>
 					<label for="street">Landmark</label>
 				  </div>
 				  <div class="mui-select col-sm-6 col-xs-12">
@@ -85,7 +85,11 @@
 				  </div>
 				  
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="zip" placeholder="Zip Code" required>
+					<input type="text"  id="delivery" name="delivery" model="delivery" placeholder="Zip Code" required>
+					<label for="street">Zip Code</label>
+				  </div>
+				  <div class="mui-textfield col-sm-6 col-xs-12">
+					<input type="text"  id="zip" name="hno" model="hno" placeholder="Zip Code" required>
 					<label for="street">Zip Code</label>
 				  </div>
 				  <div class="submit-btn col-sm-6 col-xs-12 text-center">
