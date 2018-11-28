@@ -4,6 +4,8 @@ function openNav() {
     //document.getElementById("main").style.marginLeft = "250px";
 	//document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
     document.getElementById("main").style.width = "100%";
+	$('.backdrop').css('display', 'block');
+	$('body').css('overflow', 'auto');
 }
 function closeNav() {
 	if(event.target.id != 'asdf'){

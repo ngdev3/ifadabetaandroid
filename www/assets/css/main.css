@@ -1645,3 +1645,13 @@ li.menu_search_container a input{
 
 
 
+/*Loader*/
+.loading-overlay{
+	height: 100vh;
+}
+.loading-overlay > .loading{
+	z-index: 99999999;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
