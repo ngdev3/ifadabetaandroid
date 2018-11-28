@@ -98,7 +98,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         // return;
 
         if (res.data.data.status == 'success') {
-            $scope.best_picks_of_the_season = res.data.data.best_picks_of_the_season;
+            $scope.best_picks_of_the_season = res.data.data.view_all;
             $location.path('/subcategory');
         } else {
 

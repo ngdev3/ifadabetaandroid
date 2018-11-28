@@ -1,7 +1,7 @@
 app.controller('myprofile', function ($scope, $http, $location, $interval, $cookieStore, model, $locale, loading, $route) {
 
 
-    return;
+    // return;
     $scope.maxDate = new Date();
     $scope.monthSelectorOptions = {
         format: "dd-MM-yyyy"
@@ -44,7 +44,8 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
         //console.log("Profile data initialize")
 
         var args = $.param({
-            'uid': '2'
+            'user_id': '52',
+            'language_code' : 'en'
         });
 
         $http({
@@ -52,13 +53,13 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + 'profileapi',
+            url: app_url + '/basic_info',
             data: args //forms user object
 
         }).then(function (response) {
             loading.deactive();
             res = response;
-            // console.log(res);
+            console.log(res);return;
             if (res.data.status == 'success') {
                 console.log(response)
                 //put cookie and redirect it    

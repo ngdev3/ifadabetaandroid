@@ -87,14 +87,14 @@
                 <li><a href="javascript:void(0)"><img src="assets/img/icon/flag_icon.png" alt="" /> <span>Clarke South, ,Abu Dhabi</span><img src="assets/img/icon/edit_icon.png" alt="" class="location_view"/> </a></li>
                 <li ng-click="profile()"><a href="javascript:void(0)"><img src="assets/img/icon/profile.png" alt="" /> <span>{{'My_Profile' | translate}}</span></a></li>
                 <li ng-click="cart()"><a href="javascript:void(0)"><img src="assets/img/icon/cart_black.png" alt="" /> <span>{{'My_Cart' |translate}}</span></a></li>
-                <li ng-click="myorder()"><a href="javascript:void(0)"><img src="assets/img/icon/orders.png" alt="" /> <span>{{'My_Orders' | translate}}</span></a></li>
+                <li ng-if="loggedin" ng-click="myorder()"><a href="javascript:void(0)"><img src="assets/img/icon/orders.png" alt="" /> <span>{{'My_Orders' | translate}}</span></a></li>
                 <li ng-click="category()"><a href="javascript:void(0)"><img src="assets/img/icon/category.png" alt="" /> <span>{{'All_Categories' | translate}}</span></a></li>
-                <li ng-click="wishlist()"><a href="javascript:void(0)"><img src="assets/img/icon/wishlist.png" alt="" /> <span>{{'Wishlist' | translate}}</span></a></li>
+                <li ng-if="loggedin" ng-click="wishlist()"><a href="javascript:void(0)"><img src="assets/img/icon/wishlist.png" alt="" /> <span>{{'Wishlist' | translate}}</span></a></li>
                 <li ng-click="valuedpack()"><a href="javascript:void(0)"><img src="assets/img/icon/valued.png" alt="" /> <span>{{'Valued_Pack' | translate}}</span></a></li>
-                <li ng-click="manage_ticket()"><a href="javascript:void(0)"><img src="assets/img/icon/tickets.png" alt="" /> <span>{{'Manage_Tickets' | translate}}</span></a></li>
+                <li ng-if="loggedin" ng-click="manage_ticket()"><a href="javascript:void(0)"><img src="assets/img/icon/tickets.png" alt="" /> <span>{{'Manage_Tickets' | translate}}</span></a></li>
                 <li ng-click="switch_country()"><a href="javascript:void(0)"><img src="assets/img/icon/country.png" alt="" /> <span>{{'Switch_Country' | translate}}</span></a></li>
                 <li ng-click="language()"><a href="javascript:void(0)"><img src="assets/img/icon/language.png" alt="" /> <span>{{'Switch_Language' | translate}}</span></a></li>
-                <li ng-click="change_password()"><a href="javascript:void(0)"><img src="assets/img/icon/password.png" alt="" /> <span>{{'Change_Password' | translate}}</span></a></li>
+                <li ng-if="loggedin" ng-click="change_password()"><a href="javascript:void(0)"><img src="assets/img/icon/password.png" alt="" /> <span>{{'Change_Password' | translate}}</span></a></li>
                 <li ng-click="contact_us()"><a href="javascript:void(0)"><img src="assets/img/icon/contact.png" alt="" /> <span>{{'Contact_Us' | translate}}</span></a></li>
                 <li ng-if="loggedin" ng-click="logout()"><a href="javascript:void(0)"><img src="assets/img/icon/logout.png" alt="" /> <span>{{'Log_Out' | translate}}</span></a></li>
                 <li ng-if="!loggedin" ng-click="login()"><a href="javascript:void(0)"><img src="assets/img/icon/logout.png" alt="" /> <span>{{'Log_In' | translate}}</span></a></li>
@@ -119,7 +119,7 @@
                       <a href="javascript:void(0)"><img src="assets/img/icon/cart_icon.png" alt="cart icon"  />
                         <!--<span class="badge">14</span>-->
                       </a>
-                      <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
+                      <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" ng-click="searchBar()" /></a>
                   </li>
                 </ul>
                 <ul class="nav navbar-nav bottom_header">

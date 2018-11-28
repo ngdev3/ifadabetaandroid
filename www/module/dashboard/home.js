@@ -236,110 +236,62 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
           }
  */
 
+        
+        
+    //     $scope.searchBar = function () {
 
-    /**
-     * Funtion: searchbar on ng-keyup from home.html
-     * Name: Sajal Goyal
-     * Created-on: 17/10/2018 at 12:00pm 
-     * Get product on searching
-     */
-    $scope.searchbar = function () {
-        $scope.datanotfound = false;
-        $scope.resultstatus = false;
-        $scope.searchresult = '';
+    //     // $scope.datanotfound = false;
+    //     // $scope.resultstatus = false;
+    //     // $scope.searchresult = '';
+    //     // $scope.enableDiv = false;
+        
+    //    /*  if (($scope.search.length >= 1) && ($scope.search.length < 3)) {
+    //         $scope.resultstatus = true;
+    //         return false;
+    //     } else if ($scope.search.length == 0) {
 
-        if (($scope.search.length >= 1) && ($scope.search.length < 3)) {
-            $scope.resultstatus = true;
-            return false;
-        } else if ($scope.search.length == 0) {
+    //         $scope.resultstatus = false;
+    //         return false;
+    //     } */
 
-            $scope.resultstatus = false;
-            return false;
-        }
+    //     // console.log($scope.search.length)
+    //     loading.active();
 
-        // console.log($scope.search.length)
-        loading.active();
+    //     /* var args = $.param({
+    //         'search_key': $scope.search,
+    //         'uid': $cookieStore.get('userinfo').uid,
+    //         'mid': uuid
+    //     }) */
+    //     $http({
+    //         headers: {
+    //             //'token': '40d3dfd36e217abcade403b73789d732',
+    //             'Content-Type': 'application/x-www-form-urlencoded'
+    //         },
+    //         method: 'GET',
+    //         url: app_url + '/search/searchapi_result/?search_key=' + $scope.search+'&uid='+$cookieStore.get('userinfo').uid+'&mid='+uuid,
+    //         //data: args
 
-        var args = $.param({
-            'search_key': $scope.search,
-            'uid': $cookieStore.get('userinfo').uid,
-            'mid': uuid
-        })
-        $http({
-            headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: 'POST',
-            url: app_url + '/search/searchapi_result/?search_key=' + $scope.search,
-            data: args
+    //     }).then(function (response) {
 
-        }).then(function (response) {
+    //         res = response;
+    //         // console.log(res.data.data)
 
-            res = response;
+    //         if (res.data.total_record > 0) {
+    //             $scope.searchresult = res.data.data;
+    //             $scope.enableDiv = true;
+    //         } else {
+    //             // alert()
+    //             $scope.resultstatus = false;
+    //             $scope.searchresult = '';
+    //             $scope.datanotfound = true;
+    //         }
 
-            if (res.data.count > 0) {
-                //console.log(res.data.data)
-                $scope.searchresult = res.data.data;
-                $scope.enableDiv = true;
-            } else {
-                $scope.resultstatus = false;
-                $scope.searchresult = '';
-                $scope.datanotfound = true;
-            }
-
-        }).finally(function () {
-            loading.deactive();
-        });
-
+    //     }).finally(function () {
+    //         loading.deactive();
+    //     });
+    // }
 
 
-    }
-
-
-    /* $scope.see_all = function(){
-        alert();
-        loading.active();
-
-        var args = $.param({
-        //   category_id : id,
-          country_id : 2,
-          language_code : 'en'
-          //user_type : 4,
-          //user_id : 52,
-          //retailer_id : 47
-        });
-
-        // console.log(args);return;
-
-        $http({
-          headers: {
-              //'token': '40d3dfd36e217abcade403b73789d732',
-              'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          method: 'POST',
-          url: app_url + '/get_pick_season_product', 
-          data: args 
-
-          }).then(function (response) {
-
-          res = response;
-          // console.log(res.data);
-          // return;
-
-          if (res.data.data.status == 'success') {
-            $rootScope.best_picks_of_the_season = res.data.data.best_picks_of_the_season;
-            $location.path('/subcategory');
-          } else {
-
-              alert(res.data.status);
-          }
-
-          }).finally(function () {
-              loading.deactive();
-          });
-
-    } */
 
     $scope.product_view = function (pid) {
         $cookieStore.put('productviewID', pid);
@@ -357,13 +309,10 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         $location.path('/category');
     }
     $scope.profile = function(){
-        $location.path('/profile');
+        $location.path('/myaccount/profile');
     }
     $scope.cart = function(){
         $location.path('/cart');
-    }
-    $scope.myorder = function(){
-        $location.path('/myorder');
     }
     $scope.wishlist = function(){
         $location.path('/wishlist');
