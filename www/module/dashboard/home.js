@@ -369,7 +369,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         $location.path('/wishlist');
     }
     $scope.valuedpack = function(){
-        $location.path('/valuedpack');
+        $location.path('/value_packs');
     }
     $scope.manage_ticket = function(){
         $location.path('/manage_ticket');

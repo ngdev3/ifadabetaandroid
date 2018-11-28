@@ -1,6 +1,7 @@
 app.controller('myprofile', function ($scope, $http, $location, $interval, $cookieStore, model, $locale, loading, $route) {
 
 
+    return;
     $scope.maxDate = new Date();
     $scope.monthSelectorOptions = {
         format: "dd-MM-yyyy"
@@ -43,7 +44,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
         //console.log("Profile data initialize")
 
         var args = $.param({
-            'uid': GlobalUID
+            'uid': '2'
         });
 
         $http({
