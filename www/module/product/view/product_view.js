@@ -8,7 +8,7 @@ app.controller('view_product', function ($scope, $http, $location, $cookieStore,
 
 $scope.change_units = function(){
     
-    console.log($scope.z.price);
+    //console.log($scope.z.price);
 }
     
 
