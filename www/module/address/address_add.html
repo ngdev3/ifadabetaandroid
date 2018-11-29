@@ -1,5 +1,5 @@
 
-<div class="bg" ng-controller="address_add">
+<div class="bg" ng-controller="address_add" ng-init="fetchcountry()">
 <header class="container-fluid nav-down">
 	<div class="row">
 		<nav class="navbar navbar-inverse">
@@ -34,7 +34,7 @@
 			</div>
 			<div class="form_container pt-10">
 				<form class="mui-form" name="addAddress" method="POST" novalidate>
-				  <div class="col-xs-12">
+				 <!--  <div class="col-xs-12">
 						<div class="addr_heading mb-20">
 							<div class="radio col-sm-2 col-xs-4 no-padding">
 								<input id="home_addr" name="addr" type="radio" ng-model="address_type" name="address_type" value="home">
@@ -49,56 +49,53 @@
 								<label for="other_addr" class="radio-label">Other</label>
 							</div>
 						</div>
-				  </div>
-				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="hno" name="hno" model="hno" placeholder="House Number" required>
-					<label for="hno">H. No.</label>
-				  </div>
-				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="street" name="hno" model="hno" placeholder="Street Name" required>
-					<label for="street">Street</label>
-				  </div>
-				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="lndmrk" name="hno" model="hno" placeholder="Landmark" required>
-					<label for="street">Landmark</label>
-				  </div>
+					</div> -->
+					<div class="mui-select col-sm-6 col-xs-12">
+						<select id="country" name="country" ng-model="country" ng-change="fetchcity()" required>
+							<option>Select Country</option>
+							<option value="{{c.id}}" ng-repeat="c in Countries">{{c.name}}</option>
+						</select>
+						<label for="country">Country</label>
+					</div>
 				  <div class="mui-select col-sm-6 col-xs-12">
-					<select id="city" required>
+					<select id="city" name="city" ng-model="city" required>
 					  <option>Select City</option>
-					  <option>Abu Dhabi</option>
-					  <option>Sharjah</option>
-					  <option>Fujairah</option>
-					  <option>Al Ain</option>
-					  <option>Masdar City</option>
+					  <option value="{{city.id}}" ng-repeat="city in Cities">{{city.name}}</option>
 					</select>
 					<label for="city">City</label>
+				  </div>	
+				  <div class="mui-textfield col-sm-6 col-xs-12">
+					<input type="text"  id="address" name="address" ng-model="address" placeholder="Address" required>
+					<label for="hno">Address</label>
 				  </div>
-				  <div class="mui-select col-sm-6 col-xs-12">
-					<select id="country" required>
-					  <option>Select Country</option>
-					  <option>UAE</option>
-					  <option>Dubai</option>
-					  <option>Qatar</option>
-					  <option>Bahrain</option>
-					</select>
-					<label for="country">Country</label>
-				  </div>
+				  <!-- <div class="mui-textfield col-sm-6 col-xs-12">
+					<input type="text"  id="street" name="hno" model="hno" placeholder="Street Name" required>
+					<label for="street">Street</label> -->
 				  
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="delivery" name="delivery" model="delivery" placeholder="Zip Code" required>
+					<input type="text"  id="landmark" name="landmark" ng-model="landmark" placeholder="Landmark" required>
+					<label for="street">Landmark</label>
+					</div>				  
+				  <div class="mui-textfield col-sm-6 col-xs-12">
+					<input type="number"  id="zip" name="zip" ng-model="zip" placeholder="Zip Code" required>
 					<label for="street">Zip Code</label>
 				  </div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="zip" name="hno" model="hno" placeholder="Zip Code" required>
-					<label for="street">Zip Code</label>
+					<input type="text"  id="instruction" name="instruction" ng-model="instruction" placeholder="Delivery Instruction" required>
+					<label for="street">Delivery Instruction</label>
+				  </div>
+				  <div class="mui-textfield col-sm-6 col-xs-12">
+					<input type="text"  id="mobile" name="mobile" ng-model="mobile" placeholder="Mobile Number" required>
+					<label for="street">Mobile Number</label>
 				  </div>
 				  <div class="submit-btn col-sm-6 col-xs-12 text-center">
-					<a href="javascript:void(0)">Save</a>
-				  </div>
-					
+					<a href="javascript:void(0)" ng-click="saveAddress('addAddress')">Save</a>
+					</div>
 				</form>
+				</div>
+					
 			</div>
 		</div>
     </div>
-    </div>
+
 

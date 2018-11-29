@@ -32,7 +32,7 @@
 				<div class="info-btn col-xs-6 text-center pl-10 pr-10 active" ng-init="fetchcountry()">
 					<a href="javascript:void(0)" >Basic Info</a>
 				</div>
-				<div class="info-btn col-xs-6 text-center pl-10 pr-10" ng-init="fetchcountry()">
+				<div class="info-btn col-xs-6 text-center pl-10 pr-10">
 					<a href="javascript:void(0)" ng-click="toAddress()">Address Detail</a>
 				</div>
 			</div>
@@ -103,9 +103,9 @@
 			$("#onEdit").show();
 			$("#fname").removeAttr("readonly");
 			$("#lname").removeAttr("readonly");
-			$("#address").removeAttr("readonly");
+			$("#address").removeAttr("readonly");/* 
 			$("#input_city").removeAttr("readonly");
-			$("#input_country").removeAttr("readonly");
+			$("#input_country").removeAttr("readonly"); */
 			$("#submitProfile").removeClass("hide");
 		})
 	});
