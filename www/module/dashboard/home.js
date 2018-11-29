@@ -322,7 +322,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         $location.path('/value_packs');
     }
     $scope.manage_ticket = function(){
-        $location.path('/manage_ticket');
+        $location.path('/list_ticket');
     }
     $scope.switch_country = function(){
         $location.path('/switch_country');

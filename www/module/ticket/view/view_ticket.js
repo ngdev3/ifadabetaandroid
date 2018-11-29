@@ -1,12 +1,26 @@
 app.controller('view_ticket', function ($scope, $http, $location, $cookieStore, model, loading, $cordovaDialogs, $cordovaGeolocation, $rootScope, $route) {
   
+
+    if (!$cookieStore.get('userinfo')) {
+        $location.path('/login');
+        return false;
+    }
+
+
+
+    if (!$cookieStore.get('ticketid')) {
+        $location.path('/list_ticket');
+        return false;
+    }
+
+
     $scope.ticketviewData = function () {
 
         loading.active();
 
         var args = $.param({
             // user_id:$cookieStore.get("userinfo").uid,
-            ticket_id:24//$cookieStore.get("ticketid").view_id,
+            ticket_id:$cookieStore.get("ticketid").view_id,
             // language_code: sessionStorage.lang_code
         })
         $http({

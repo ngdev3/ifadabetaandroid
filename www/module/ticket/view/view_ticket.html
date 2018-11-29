@@ -58,8 +58,8 @@
                                         <h5>CMP{{view_ticket.id}}</h5>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-3 no-padding">
-                                        <input type="button" class="btn btn-default btn_discounts ticket_process_btns ticket_in_process"
-                                            name="" value="In Process">
+                                        <input type="button" ng-if="view_ticket.status == 0" class="btn btn-default btn_discounts ticket_process_btns ticket_in_process" name="" value="In Process">
+                                        <input type="button" ng-if="view_ticket.status == 1" class="btn btn-default btn_discounts ticket_process_btns ticket_resolved" name="" value="Resolved">
                                     </div>
                                 </div>
                                 <div class="row padding_ticket">
