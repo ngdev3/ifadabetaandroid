@@ -1,6 +1,6 @@
 app.controller('forgot', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope) {
 
-    $rootScope.initOneSignal();
+    
     loading.deactive();
 
     if ($cookieStore.get('userinfo')) {

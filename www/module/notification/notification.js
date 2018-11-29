@@ -5,7 +5,7 @@ app.controller('notification', function ($scope, $http, $location, $cookieStore,
         $location.path("/login");
         return false;
     }
-    $rootScope.initOneSignal();
+    
     loading.deactive();
 
     $scope.notify = function (form) {

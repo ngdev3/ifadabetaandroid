@@ -8,7 +8,7 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
 
   //  var GlobalUID = $cookieStore.get('userinfo').uid; //Global Uid for get the response by sending the http request.
 
-    $rootScope.initOneSignal();
+    
     loading.deactive();
 
     $scope.home = function () {

@@ -3,7 +3,7 @@ app.controller('contactus', function ($scope, $http, $location, $cookieStore, mo
 
     var ID = 1; //global Id for about us
 
-    $rootScope.initOneSignal();
+    
     loading.deactive();
 
     $scope.home = function () {

@@ -5,7 +5,7 @@ app.controller('sidemenu', function ($scope, $http, $location, $interval, $cooki
          return false;
     }
     
-    $rootScope.initOneSignal();
+    
     loading.deactive();
 
 

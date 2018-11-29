@@ -17,7 +17,7 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
         $location.path('/dashboard/home');
     } */
 
-   // $rootScope.initOneSignal();
+   // 
     loading.deactive();
 
 

@@ -5,7 +5,7 @@ app.controller('changepassword', function ($scope, $http, $location, $cookieStor
         return false;
     }
 
-   $rootScope.initOneSignal();
+   
     loading.deactive();
 
     // function for back button on my account page created by sajal
