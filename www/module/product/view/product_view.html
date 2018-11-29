@@ -39,7 +39,7 @@
 <!-- END HEADER -->
 
 <!--  [PULSES] Sub categories content -->
-	<div class="container-fluid mt-55">
+	<div class="container-fluid mt-55" ng-if="product_details != ''" >
 		<div class="row">
 			<div class="">
 				<!-- ** Buttons** -->
@@ -51,6 +51,7 @@
 								<img class="img-responsive" src="{{y.product_image}}">
 							</div>
 						</div>
+						
 					<!-- 	<div class="item">
 							<div class="prod_images">
 								<img class="img-responsive" src="assets/img/product/product_detail.png">
@@ -119,7 +120,7 @@
 						    <div class="all_cat panel panel-default">
 						        <div class="panel-heading" role="tab" id="headingOne">
 						             <h4 class="prod_det_panel  panel-title prod_details_head">
-						        		<a class="all_cat_headbar collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+						        		<a class="all_cat_headbar collapsed" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapseOne">
 						        			Product Details
 						        		</a>
 						      		</h4>
@@ -128,9 +129,8 @@
 						            <div class="prod_dec panel-body">
 						            	
 						            	<!-- Inside -->
-						            	<p>Wholesome Pulse</p>
-						            	<p>Healthy and Nutiritions</p>
-						            	<p>Used in variety of preparations</p>
+						            	<p>{{product_details.content}}</p>
+						            	
 						            	
 
 						            </div>
@@ -155,5 +155,10 @@ $(document).ready(function(){
 		$(".bottom_header").slideToggle();
 		//$("#banner_slider").toggleClass("search-container")
 	});	
+});
+
+
+$('.collapsed').click(function(){	
+	$('#collapseOne').slideToggle(500);
 });
     </script>	

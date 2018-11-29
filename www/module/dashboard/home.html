@@ -126,7 +126,7 @@
                         </a>
                     </li>
                   <li class="cart_icon">
-                      <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
+                      <a ng-if="loggedin" href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
                         <!--<span class="badge">14</span>-->
                       </a>
                       <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" ng-click="searchBar()" /></a>
@@ -239,7 +239,7 @@
                         <div class="col-xs-4 mt-15 mb-10 no-padding pl-5 pr-5" ng-repeat="y in product_of_the_day | limitTo:3:0" >
                             <div class="catg_product_container">
                                 <a href="javascript:void(0)">
-                                    <div class="offer-img">
+                                    <div class="offer-img" ng-click="product_view(y.id)">
                                         <img src="{{y.product_image}}" alt="" class="img-responsive"/>
                                         <div class="catg_overlay text-center">
                                             <p>{{y.menu_name}}</p>
@@ -290,7 +290,7 @@
                         <div class="col-xs-4 mt-15 mb-10 no-padding pl-5 pr-5" ng-repeat="x in best_picks_of_the_featured_products | limitTo:3:0">
                             <div class="catg_product_container">
                                 <a href="javascript:void(0)">
-                                    <div class="offer-img">
+                                    <div class="offer-img" ng-click="product_view(x.id)">
                                         <img src="{{x.product_image}}" alt="" class="img-responsive"/>
                                         <div class="catg_overlay text-center">
                                             <p>{{x.menu_name}}</p>
@@ -324,7 +324,7 @@
                         <div class="col-xs-4 mt-15 mb-10 no-padding pl-5 pr-5" ng-repeat="x in dairy_product | limitTo:3:0">
                             <div class="catg_product_container">
                                 <a href="javascript:void(0)">
-                                    <div class="offer-img">
+                                    <div class="offer-img" ng-click="product_view(x.id)">
                                         <img src="{{x.product_image}}" alt="" class="img-responsive"/>
                                         <div class="catg_overlay text-center">
                                             <p>{{x.menu_name}}</p>

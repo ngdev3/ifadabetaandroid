@@ -12,10 +12,11 @@ $scope.change_units = function(){
 }
     
 
-
+$scope.product_details = '';
 $scope.fetch_product_data = function () {
        
-        //loading.active();
+        loading.active();
+
         $scope.pid = $cookieStore.get('productviewID');
         var args = $.param({
             'product_id': $cookieStore.get('id'),
@@ -35,8 +36,7 @@ $scope.fetch_product_data = function () {
 
         }).then(function (response) {
             //alert();
-            loading.deactive();
-            
+        
             if (response.data.data.status == 'success') {
 
                 $scope.product_details = response.data.data.product_details;
@@ -46,12 +46,15 @@ $scope.fetch_product_data = function () {
                 $scope.product_weight_value = response.data.data.product_details.menu_varient[0].unit_value;
                 $scope.product_weight_unit = +response.data.data.product_details.menu_varient[0].UNIT_NAME;
                 $scope.product_images = response.data.data.product_details.gallery_image;
-            
+                
             } else {
-
                 alert("Sorry..No Data Found!");
+                $scope.product_details = '';
             }
-        })
+            
+        }).finally(function () {
+            loading.deactive();
+        });
     }
 
     /**

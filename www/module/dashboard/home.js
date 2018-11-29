@@ -298,10 +298,10 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
 
 
 
-    $scope.product_view = function (pid) {
+   /*  $scope.product_view = function (pid) {
         $cookieStore.put('productviewID', pid);
         $location.path('/product/view')
-    }
+    } */
 
 
     $scope.language = function(){
