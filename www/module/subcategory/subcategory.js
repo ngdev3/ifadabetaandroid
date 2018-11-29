@@ -95,8 +95,8 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
               if(!id){
                   $scope.categorysubData = res.data.data.category_data[0].sub;
                  // $scope.number0 =$scope.categorysubData;//[{img:'assets/img/banner/banner_01.png'}, {img:'assets/img/banner/banner_01.png'}, {img:'assets/img/banner/banner_01.png'}];
-				  console.log("-------------------");
-                  console.log($scope.number0);
+				//   console.log("-------------------");
+                //   console.log($scope.number0);
                   $scope.slickConfig0Loaded = true;
                   $scope.slickConfig0 = {
                     method: {},

@@ -51,6 +51,46 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
                 $scope.best_picks_of_the_featured_products = res.data.data.best_picks_of_the_featured_products;
                 $scope.dairy_product = res.data.data.dairy_product;
                 $scope.slider = res.data.data.banner;
+                $scope.slickConfig0Loaded = true;
+                $scope.slickConfig0 = {
+                  method: {},
+                  dots: false,
+                  infinite: false,
+                  speed: 100,
+                   autoplay:true,
+                   autoplaySpeed:2500,
+                   arrows:false,
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                  responsive: [
+                    {
+                      breakpoint: 1024,
+                      settings: {
+                        slidesToShow: 1,
+                        infinite: true,
+                        dots: false,
+                      }
+                    },
+                    {
+                      breakpoint: 600,
+                      settings: {
+                        slidesToShow: 1,
+                      }
+                    },
+                    {
+                      breakpoint: 480,
+                      settings: {
+                        slidesToShow: 1,
+                      }
+                    },
+                    {
+                      breakpoint: 360,
+                      settings: {
+                        slidesToShow: 1,
+                      }
+                    }
+                  ]
+                };
                 console.log($scope.slider);
                 $scope.sliderCount =  $scope.slider.length;
            }else{

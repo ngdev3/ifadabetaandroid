@@ -75,6 +75,13 @@
     #autocomplete {
   width: 100%;
 }
+.slick-slide {
+    display: none;
+    float: left;
+    height: auto;
+    min-height: 1px;
+    outline: 0;
+}
     /** ! controls **/
     </style>
 <div class="bg" ng-controller="home" id="containernew">
@@ -153,22 +160,12 @@
                 <div id="banner_slider">
                     <div id="slides_control" >
                         <div>
-                            <carousel interval="myInterval">
-                                <slide ng-repeat="slide in slider" active="slide.active" ng-init=" image = '{{slide.androidbanner}}{{slide.image}}'">
-                               
+                            <slick class="slider" settings="slickConfig0">
+                                <div ng-repeat="slide in slider">
                                         <img style="height:200px;" class="slide_image" ng-src="{{slide.product_image}}">
-                                </slide>
-                                <!-- <slide > -->
-                                    <!-- <img ng-if="sliderCount != 0" ng-src="{{slide.androidbanner}}{{slide.image}}"> -->
-                                    <!-- <img ng-if="sliderCount == 0" ng-src="assets/img/banner/banner_01.png"> -->
-                                    <!-- <img  ng-src="assets/img/banner/banner_01.png"> -->
-                                <!-- </slide> -->
-                               
-                                <a class="left carousel-control" ng-click="prev()" ng-show="slides.length > 1"><i class="fa fa-chevron-left"
-                                        aria-hidden="true"></i></a>
-                                <a class="right carousel-control" ng-click="next()" ng-show="slides.length > 1"><i
-                                        class="fa fa-chevron-right" aria-hidden="true"></i></a>
-                            </carousel>
+                                </div>
+                            </slick>
+                            
                         </div>
                     </div>
                 </div>
