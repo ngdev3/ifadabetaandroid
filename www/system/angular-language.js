@@ -27,8 +27,8 @@ app.config(function ($translateProvider) {
     My_Orders:'My Orders',
     My_Cart:'My Cart',
     My_Profile:'My Profile',
-    Units:'Units'
-    
+    Units:'Units',
+    Product_Details: 'Product Details'
   });
 
 
@@ -73,7 +73,8 @@ app.config(function ($translateProvider) {
     Featured_Product:'المنتج المميز',
     Featured_Category:'الفئة المميز',
     Log_In:'تسجيل الدخول',
-    Units:'وحدات'
+    Units:'وحدات',
+    Product_Details:' تفاصيل المنتج'
   });
 
 
