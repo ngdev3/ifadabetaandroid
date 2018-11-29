@@ -338,13 +338,22 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     }
     $scope.logout = function(){
         $cookieStore.remove('userinfo');
+        $cookieStore.remove('FullName');
         $location.path('/login');
     }
 
-    if($cookieStore.get("userinfo")){
+   /*  if($cookieStore.get("userinfo")){
         $scope.fullName = $cookieStore.get("userinfo").fullName;
         $scope.profileImage = $cookieStore.get("userinfo").profile_image;
         
+    } */
+
+    if($cookieStore.get("FullName")){
+        $scope.fullName = $cookieStore.get("FullName").fullName;  
+    }else{  
+        if($cookieStore.get("userinfo")){
+            $scope.fullName = $cookieStore.get("userinfo").fullName; 
+        }      
     }
     //console.log($scope.profile);
 });
