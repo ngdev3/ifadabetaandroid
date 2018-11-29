@@ -13,6 +13,7 @@ function closeNav() {
 		//document.getElementById("main").style.marginLeft= "0";
 		$('body').css('overflow', 'auto');
 		$('.backdrop').css('display', 'none');
+		
 	}
 }
 
