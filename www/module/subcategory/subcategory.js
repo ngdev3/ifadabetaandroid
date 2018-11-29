@@ -2,7 +2,52 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
 
     // console.log($rootScope.best_picks_of_the_season);return;
 
-  
+    $scope.number0 =[{img:'assets/img/banner/banner_01.png'}, {img:'assets/img/banner/banner_01.png'}, {img:'assets/img/banner/banner_01.png'}];
+				
+    console.log($scope.number0);
+    $scope.slickConfig0Loaded = true;
+    $scope.slickConfig0 = {
+      method: {},
+      dots: false,
+      infinite: false,
+      speed: 100,
+       autoplay:true,
+       autoplaySpeed:2500,
+       arrows:false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 1,
+            infinite: true,
+            dots: false,
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+          }
+        }
+      ]
+    };
+    // return;
+                 
+/*   	} else {
+                $scope.bannerhome = "";
+            }
+            jQuery(".loading-bg").hide();
+        });	
+    
+    } */
     $scope.cart = function(){
         $location.path('/cart');
     }
@@ -49,6 +94,49 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
               $scope.categoryData = res.data.data.category_data[0];
               if(!id){
                   $scope.categorysubData = res.data.data.category_data[0].sub;
+                 // $scope.number0 =$scope.categorysubData;//[{img:'assets/img/banner/banner_01.png'}, {img:'assets/img/banner/banner_01.png'}, {img:'assets/img/banner/banner_01.png'}];
+				  console.log("-------------------");
+                  console.log($scope.number0);
+                  $scope.slickConfig0Loaded = true;
+                  $scope.slickConfig0 = {
+                    method: {},
+                    dots: false,
+                    infinite: false,
+                    speed: 100,
+                     autoplay:true,
+                     autoplaySpeed:2500,
+                     arrows:false,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    responsive: [
+                      {
+                        breakpoint: 1024,
+                        settings: {
+                          slidesToShow: 4,
+                          infinite: true,
+                          dots: false,
+                        }
+                      },
+                      {
+                        breakpoint: 600,
+                        settings: {
+                          slidesToShow: 3.5,
+                        }
+                      },
+                      {
+                        breakpoint: 480,
+                        settings: {
+                          slidesToShow: 3,
+                        }
+                      },
+                      {
+                        breakpoint: 360,
+                        settings: {
+                          slidesToShow: 2,
+                        }
+                      }
+                    ]
+                  };
                 }
              /*  for(var i = 0; i< $scope.categorysubData.length; i++){
                 $scope.categorysubSubData = $scope.categorysubData[i];
@@ -126,5 +214,10 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         $cookieStore.put('id',id);
         $location.path('/product/view');
     }
+
+
+
+   
+
 
 });

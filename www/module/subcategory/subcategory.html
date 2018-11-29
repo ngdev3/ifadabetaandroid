@@ -5,6 +5,13 @@
         {
             width: 40000px !important;
         }
+        .slick-slide {
+            display: none;
+            float: left;
+            height: auto;
+            min-height: 1px;
+            outline: 0;
+        }
         </style>
         <header class="container-fluid nav-down">
             <div class="row">
@@ -54,8 +61,16 @@
                                 <div class="item" style="width:max-content;display:inline-block;">
                                     <input type="button" class="btn btn-success all-sub-cat_buttons"  ng-if="!categorysubData" id="all" name="" value="All" ng-click="fetch_product_list()">
                                 </div>
-                               <div class="item" ng-repeat="sub in categorysubData">
-                                    <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id)">
+                               <div class="item">
+                                    <!-- <script type="text/ng-template" id="slider-top">
+                                        <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id)">                       
+                                      </script> -->
+                                   <slick class="slider" settings="slickConfig0">
+                                               <div ng-repeat="sub in categorysubData">
+                                                    <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id)">                      
+
+                                               </div>
+                                    </slick>
                                 </div>
                                 <!-- <div class="item">
                                     <input type="button" class="btn btn-success all-sub-cat_buttons" name="" value="Sub-Category 2">

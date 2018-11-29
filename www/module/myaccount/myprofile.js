@@ -52,6 +52,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
         var args = $.param({
             'user_id': $cookieStore.get("userinfo").uid,
             'language_code' :sessionStorage.lang_code
+            // 'country_id' : sessionStorage.country
         });
 
         $http({
