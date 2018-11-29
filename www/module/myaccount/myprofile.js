@@ -77,8 +77,11 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 $scope.address = res.data.data.basic_info.address;
                 $scope.country = res.data.data.basic_info.COUNTRY_NAME;
                 $scope.countryID = res.data.data.address_details[0].country;
+                $scope.cityID = res.data.data.address_details[0].city;
+                $scope.countryName = res.data.data.address_details[0].COUNTRY_NAME;
+                $scope.cityName = res.data.data.address_details[0].CITY_NAME;
                 $scope.city = res.data.data.basic_info.CITY_NAME;
-                console.log($scope.country);
+                console.log($scope.countryID);
                 $scope.image = res.data.data.basic_info.image;
 
                

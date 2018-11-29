@@ -59,15 +59,15 @@
 					</div>
 					<div id="onEdit">
 						<div class="mui-select col-sm-6 col-xs-12">
-							<select id="country" name="select_country" ng-model="select_country"  readonly required ng-change="fetchcity()">
+							<select id="country" name="select_country" ng-model="select_country"  readonly required ng-change="fetchcity()" ng-init="select_country = countryID; c.name = countryName" >
 								<!-- <option>Select Country</option> -->
-								<option value="{{c.id}}" ng-repeat="c in Countries" >{{c.name}}</option>
+								<option ng-selected="countryID" ng-repeat="c in Countries" ng-value="{{c.id}}" >{{c.name}}</option>
 							</select>
 							<label for="country">Country</label>
 						</div>
 						<div class="mui-select col-sm-6 col-xs-12">
-							<select id="city"  name="select_city" ng-model="select_city"  required">
-								<option value="{{city.id}}" ng-repeat="city in Cities">{{city.name}}</option>
+							<select id="city"  name="select_city" ng-model="select_city"  required>
+								<option ng-value="{{city.id}}" ng-repeat="city in Cities">{{city.name}}</option>
 							</select>
 							<label for="city">City</label>
 						</div>
