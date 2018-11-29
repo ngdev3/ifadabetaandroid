@@ -39,10 +39,7 @@ body {
 	    transition: background-color .5s;
 }
 body {
-    height: 100%;
 	overflow-x: hidden;
-	
-	
 }
 
 h1,

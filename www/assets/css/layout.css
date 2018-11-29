@@ -1005,3 +1005,21 @@ li.progtrckr-todo.inprocessed span.pending_check i
 .slide_image{
 	width:100%;
 }
+.no_data_wrapper{
+    height: 65vh;
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    vertical-align: middle;
+}
+
+.no_data_wrapper > div{
+    width: 100%;
+}
+.no_data_wrapper > div img{
+    margin: 0 auto;
+    display: block;
+}
