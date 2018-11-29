@@ -28,10 +28,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
             if ($scope[form].password.$error.required !== undefined) {
                 error_str += "Password, ";
             }
-            if ($scope[form].referal_code.$error.required !== undefined) {
-                error_str += "Referal Code, ";
-            }
-
+            
 
         }
         setTimeout(function () {

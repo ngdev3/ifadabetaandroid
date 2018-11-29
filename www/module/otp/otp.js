@@ -81,8 +81,24 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
 
                     //model.show('Success', 'Successfully Verified');
                     alert('OTP verified Successfully')
-                    $cookieStore.remove('otpverification');
-                    $location.path('/login');
+                    //console.log(response.data.data.result[0])
+                    if($cookieStore.get('otpverification').from == 'forgot'){
+                        $cookieStore.put('userid', response.data.data.result[0].id);
+                        $cookieStore.remove('otpverification'); 
+                        $location.path('/newpassword');
+                    }else{
+                        var userinfo = {
+                            'uid': response.data.data.result[0].id,
+                            'phone_no': response.data.data.result[0].mobile_number,
+                            'email_address': response.data.data.result[0].email,
+                            'country_id': response.data.data.result[0].country_id,
+                            'fullName' : response.data.data.result[0].first_name+" "+response.data.data.result[0].last_name,
+                            'profile_image' : response.data.data.result[0].profile_image
+                        }
+                        $cookieStore.put('userinfo', userinfo);  
+                        $cookieStore.remove('otpverification');
+                        $location.path('/dashboard/home');
+                    }
                     /* if ($cookieStore.get('userid')) {
                         $location.path('/newpassword');
                     } else {

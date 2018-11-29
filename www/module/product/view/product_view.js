@@ -5,7 +5,15 @@ app.controller('view_product', function ($scope, $http, $location, $cookieStore,
         $location.path('/cart');
     }
 
-    $scope.fetch_product_data = function () {
+
+$scope.change_units = function(){
+    
+    console.log($scope.z.price_for_retailer);
+}
+    
+
+
+$scope.fetch_product_data = function () {
        
         //loading.active();
         $scope.pid = $cookieStore.get('productviewID');
@@ -33,6 +41,10 @@ app.controller('view_product', function ($scope, $http, $location, $cookieStore,
 
                 $scope.product_details = response.data.data.product_details;
                 $scope.product_details_varients = response.data.data.product_details.menu_varient;
+                $scope.product_price = response.data.data.product_details.menu_varient[0].price_for_retailer;
+                console.log($scope.product_price)
+                $scope.product_weight_value = response.data.data.product_details.menu_varient[0].unit_value;
+                $scope.product_weight_unit = +response.data.data.product_details.menu_varient[0].UNIT_NAME;
                 $scope.product_images = response.data.data.product_details.gallery_image;
             
             } else {

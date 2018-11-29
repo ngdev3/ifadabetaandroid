@@ -80,7 +80,7 @@ app.controller('forgot', function ($scope, $http, $location, $cookieStore, model
                 if(res.data.responseStatus == 'error'){
                     alert(res.data.responseMessage);
                 }else{
-                    alert(res.data.responseMessage);
+                    alert('OTP Has been Sent Successfully on Your Email Address');
                     var setOTPCookies = {
                         'mobile_number': $scope.mobile_no,
                         'from' : 'forgot'
