@@ -102,6 +102,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                         'from' : 'register'
                     }
                     $cookieStore.put('otpverification', setOTPCookies);
+                    alert('Registered Successfully')
                     //console.log($cookieStore.get('otpverification'))
                     $location.path('/otp');
                 }else{

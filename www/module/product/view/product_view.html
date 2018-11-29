@@ -78,12 +78,11 @@
 							<div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
 								<input type="button" class="btn btn-default btn_discounts" name="" value="6% Off">
 								<p class="sub_produt_name">{{product_details.menu_name}}</p>
-								<select class="sub_product_qty" ng-init="z.price_for_retailer = product_price;" ng-model="z.price_for_retailer" name="z.price_for_retailer" ng-change="change_units()" 
-								>
-									<option  ng-repeat="z in product_details_varients" ng-value="z.price_for_retailer">{{z.unit_value}}{{z.UNIT_NAME}}</option>
-									<!-- ng-init="z.price_for_retailer = product_price; z.unit_value = product_weight_value; z.UNIT_NAME = product_weight_unit" -->
+								<select class="sub_product_qty" ng-model="z.price" name="z.price" ng-change="change_units()" ng-init="z.price = product_price;">
+									<option ng-repeat="z in product_details_varients"  ng-value="z.price">{{z.unit_value}}{{z.UNIT_NAME}}</option>
+									<!-- ng-init="z.price = product_price; z.unit_value = product_weight_value; z.UNIT_NAME = product_weight_unit" -->
 								</select>
-								<p class="sub_prcing"><span id="sub_rrp">AED {{z.price_for_retailer}}</span></p>
+								<p class="sub_prcing"><span id="sub_rrp">AED {{z.price}}</span></p>
 							</div>
 								<div class="wislist_sub wishlist-container">
 								  <i class="fa heart fa-heart-o"></i> 

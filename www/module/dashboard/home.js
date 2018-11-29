@@ -9,7 +9,11 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         $scope.loggedin = true;
         
     }
-
+    
+    $scope.product_view = function(id){
+        $cookieStore.put('id',id);
+        $location.path('/product/view');
+    }
     // if (!$cookieStore.get('storeinfo')) {
     //     $location.path('/store');
     //     return false;

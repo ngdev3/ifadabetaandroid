@@ -156,7 +156,7 @@
                             <carousel interval="myInterval">
                                 <slide ng-repeat="slide in slider" active="slide.active" ng-init=" image = '{{slide.androidbanner}}{{slide.image}}'">
                                
-                                        <img class="slide_image" ng-src="{{slide.product_image}}">
+                                        <img style="height:200px;" class="slide_image" ng-src="{{slide.product_image}}">
                                 </slide>
                                 <!-- <slide > -->
                                     <!-- <img ng-if="sliderCount != 0" ng-src="{{slide.androidbanner}}{{slide.image}}"> -->
@@ -206,7 +206,7 @@
                             <!-- {{$index}} -->
                             <div class="catg_product_container">
                                 <a href="javascript:void(0)">
-                                    <div class="offer-img">
+                                    <div class="offer-img" ng-click="product_view(x.id)">
                                         <img src="{{x.product_image}}" alt="" class="img-responsive"/>
                                         <div class="catg_overlay text-center">
                                             <p>{{x.menu_name}}</p>

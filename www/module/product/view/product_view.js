@@ -8,7 +8,7 @@ app.controller('view_product', function ($scope, $http, $location, $cookieStore,
 
 $scope.change_units = function(){
     
-    console.log($scope.z.price_for_retailer);
+    console.log($scope.z.price);
 }
     
 
@@ -41,7 +41,7 @@ $scope.fetch_product_data = function () {
 
                 $scope.product_details = response.data.data.product_details;
                 $scope.product_details_varients = response.data.data.product_details.menu_varient;
-                $scope.product_price = response.data.data.product_details.menu_varient[0].price_for_retailer;
+                $scope.product_price = response.data.data.product_details.menu_varient[0].price;
                 console.log($scope.product_price)
                 $scope.product_weight_value = response.data.data.product_details.menu_varient[0].unit_value;
                 $scope.product_weight_unit = +response.data.data.product_details.menu_varient[0].UNIT_NAME;

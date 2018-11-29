@@ -78,7 +78,7 @@ app.controller('forgot', function ($scope, $http, $location, $cookieStore, model
                 res = response;
                 
                 if(res.data.responseStatus == 'error'){
-                    alert(res.data.responseMessage);
+                    alert('Please Enter Registered Mobile no.');
                 }else{
                     alert('OTP Has been Sent Successfully on Your Email Address');
                     var setOTPCookies = {
