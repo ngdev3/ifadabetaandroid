@@ -55,7 +55,7 @@
                                         <h5>Ticket ID</h5>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-4 no-padding complaint_content">
-                                        <h5>CMP001</h5>
+                                        <h5>CMP{{view_ticket.id}}</h5>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-3 no-padding">
                                         <input type="button" class="btn btn-default btn_discounts ticket_process_btns ticket_in_process"
@@ -67,7 +67,7 @@
                                         <h5>Date & Time</h5>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-6 no-padding complaint_content">
-                                        <h5>27-06-2018 10:27</h5>
+                                        <h5>{{view_ticket.created_date}}</h5>
                                     </div>
 
                                 </div>
@@ -78,7 +78,7 @@
                                         <h5>Order Number</h5>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-6 no-padding complaint_content">
-                                        <h5>0D948</h5>
+                                        <h5>0D{{view_ticket.order_id}}</h5>
                                     </div>
 
                                 </div>
@@ -87,7 +87,8 @@
                                         <h5>Complaint Type</h5>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-6 no-padding complaint_content">
-                                        <h5>Faulty</h5>
+                                        <h5 ng-if="view_ticket.complaint_type == 1">Normal</h5>
+                                        <h5 ng-if="view_ticket.complaint_type == 2">Complex</h5>
                                     </div>
                                 </div>
                                 <div class="row padding_ticket">
@@ -95,9 +96,7 @@
                                         <h5>Description</h5>
                                     </div>
                                     <div class="col-md-7 col-sm-7 col-xs-7 no-padding complaint_content">
-                                        <h5 style="text-align: justify; line-height: 1.4em">Lorem Ipsum s simply dummy
-                                            text of the printing and typesetting industry. Lorem Ipsum has been the
-                                            industry's .</h5>
+                                        <h5 style="text-align: justify; line-height: 1.4em">{{view_ticket.description}}</h5>
                                     </div>
                                 </div>
                             </div>

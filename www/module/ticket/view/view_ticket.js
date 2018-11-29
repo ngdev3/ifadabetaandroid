@@ -5,8 +5,9 @@ app.controller('view_ticket', function ($scope, $http, $location, $cookieStore, 
         loading.active();
 
         var args = $.param({
-            user_id:52,//$cookieStore.get("userinfo").uid,
-            language_code: sessionStorage.lang_code
+            // user_id:$cookieStore.get("userinfo").uid,
+            ticket_id:24//$cookieStore.get("ticketid").view_id,
+            // language_code: sessionStorage.lang_code
         })
         $http({
             headers: {
@@ -14,16 +15,16 @@ app.controller('view_ticket', function ($scope, $http, $location, $cookieStore, 
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/ticket_list',
+            url: app_url + '/view_ticket',
             data: args
 
         }).then(function (response) {
 
             res = response;
 
-          console.log(res.data.data);
+          console.log(res);
           if(res.data.data.status == 'success'){
-            $scope.order_list = res.data.data.order_list; 
+            $scope.view_ticket = res.data.data.view_ticket; 
           }
 
         }).finally(function () {

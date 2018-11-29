@@ -6,7 +6,7 @@ app.controller('list_ticket', function ($scope, $http, $location, $cookieStore, 
         return false;
     }
 
-    
+
     $scope.ticketlistData = function () {
 
         loading.active();
@@ -45,7 +45,7 @@ app.controller('list_ticket', function ($scope, $http, $location, $cookieStore, 
     $scope.view_ticket = function(id){
         
         var ticketid = {
-            'view_list': id,           
+            'view_id': id,           
         }
         $cookieStore.put('ticketid', ticketid);
 
