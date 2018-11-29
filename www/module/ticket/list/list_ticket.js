@@ -6,6 +6,9 @@ app.controller('list_ticket', function ($scope, $http, $location, $cookieStore, 
         return false;
     }
 
+    $scope.cart = function(){
+        $location.path('/cart');
+    }
 
     $scope.ticketlistData = function () {
 

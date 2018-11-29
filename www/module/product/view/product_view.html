@@ -59,18 +59,19 @@
 											<img class="slide_image" ng-src="{{y.product_image}}" />
 										</div>
 								</slick>
+								
 						</div>
 						
 					<!-- 	<div class="item">
 							<div class="prod_images">
 								<img class="img-responsive" src="assets/img/product/product_detail.png">
 							</div>
-						</div>
-						<div class="item">
+						</div>-->
+						<div class="item" ng-if="!product_images">
 							<div class="prod_images">
-								<img class="img-responsive" src="assets/img/product/product_detail.png">
+								<img style="height:250px; width:250px" class="img-responsive" src="assets/img/product/default.png">
 							</div>
-						</div> -->
+						</div> 
 						
 						<!-- !. Buttons Items -->
 					</div>
