@@ -180,6 +180,9 @@ app.config(function ($routeProvider, $httpProvider) {
         }).when("/view_ticket", {
             templateUrl: "module/ticket/view/view_ticket.html"
 
+        }).when("/list_ticket", {
+            templateUrl: "module/ticket/view/view_ticket.html"
+
         })
 
 });
