@@ -5,7 +5,7 @@ function openNav() {
 	//document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
     document.getElementById("main").style.width = "100%";
 	$('.backdrop').css('display', 'block');
-	$('body').css('overflow', 'auto');
+	$('body').css('overflow', 'hidden');
 }
 function closeNav() {
 	if(event.target.id != 'asdf'){
