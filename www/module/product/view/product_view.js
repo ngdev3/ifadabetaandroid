@@ -46,6 +46,46 @@ $scope.fetch_product_data = function () {
                 $scope.product_weight_value = response.data.data.product_details.menu_varient[0].unit_value;
                 $scope.product_weight_unit = +response.data.data.product_details.menu_varient[0].UNIT_NAME;
                 $scope.product_images = response.data.data.product_details.gallery_image;
+                $scope.slickConfig0Loaded = true;
+                  $scope.slickConfig0 = {
+                    method: {},
+                    dots: false,
+                    infinite: false,
+                    speed: 100,
+                    autoplay:true,
+                    autoplaySpeed:2500,
+                    arrows:false,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    responsive: [
+                      {
+                        breakpoint: 1024,
+                        settings: {
+                          slidesToShow: 1,
+                          infinite: true,
+                          dots: false,
+                        }
+                      },
+                      {
+                        breakpoint: 600,
+                        settings: {
+                          slidesToShow: 1,
+                        }
+                      },
+                      {
+                        breakpoint: 480,
+                        settings: {
+                          slidesToShow: 1,
+                        }
+                      },
+                      {
+                        breakpoint: 360,
+                        settings: {
+                          slidesToShow: 1,
+                        }
+                      }
+                    ]
+                  };
                 
             } else {
                 alert("Sorry..No Data Found!");

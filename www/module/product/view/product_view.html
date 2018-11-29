@@ -4,6 +4,13 @@
 		border: 1px solid #006d07;
     border-radius: 3px;
 	}
+	.slick-slide {
+    display: none;
+    float: left;
+    height: auto;
+    min-height: 1px;
+    outline: 0;
+}
 
 </style>
 <header class="container-fluid nav-down">
@@ -44,12 +51,14 @@
 			<div class="">
 				<!-- ** Buttons** -->
 				<div class="pulses_buttons mb-20 mt-10">
-					<div id="" class="owl-carousel owl3 owl-theme owl-drag owl-loaded" ng-repeat="y in product_images">
+					<div id="" class="owl-carousel owl3 owl-theme owl-drag owl-loaded">
 						<!-- Buttons Items -->
 						<div class="item">
-							<div class="prod_images">
-								<img class="img-responsive" src="{{y.product_image}}">
-							</div>
+								<slick class="slider" settings="slickConfig0">										
+										<div ng-repeat="y in product_images">
+											<img class="slide_image" ng-src="{{y.product_image}}" />
+										</div>
+								</slick>
 						</div>
 						
 					<!-- 	<div class="item">

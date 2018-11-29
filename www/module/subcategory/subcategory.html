@@ -58,18 +58,18 @@
                         <div class="pulses_buttons mb-20 mt-10" ng-if="categoryData">
                             <div id="" class="owl-carousel owl2 owl-theme owl-loaded owl-drag">
                                 <!-- Buttons Items -->
-                                <div class="item" style="width:max-content;display:inline-block;">
-                                    <input type="button" class="btn btn-success all-sub-cat_buttons"  ng-if="!categorysubData" id="all" name="" value="All" ng-click="fetch_product_list()">
-                                </div>
-                               <div class="item">
+                                <div class="item">
                                     <!-- <script type="text/ng-template" id="slider-top">
                                         <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id)">                       
-                                      </script> -->
-                                   <slick class="slider" settings="slickConfig0">
-                                               <div ng-repeat="sub in categorysubData">
-                                                    <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id)">                      
+                                    </script> -->
+                                    <slick class="slider" settings="slickConfig0">
+                                        <div>
+                                            <input type="button" ng-if="categorysubData" class="btn btn-success all-sub-cat_buttons" id="all" name="" value="All" ng-click="fetch_product_list()">
+                                        </div>
+                                        <div ng-repeat="sub in categorysubData">
+                                            <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id)">                      
 
-                                               </div>
+                                        </div>
                                     </slick>
                                 </div>
                                 <!-- <div class="item">
@@ -84,6 +84,9 @@
                                 <!-- !. Buttons Items -->
                             </div>
                         </div>
+                        <!-- <div ng-if="!categoryData">
+                            <p>No Sub Categories</p >
+                        </div> -->
                         <!-- ** !. Buttons ** -->
                         <!-- ** Product Lists ** -->
                         <div class="no-padding item_lists_main" ng-repeat="x in product" ng-if="categoryData" ng-click="product_view(x.id)">
