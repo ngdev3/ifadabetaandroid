@@ -177,6 +177,9 @@ app.config(function ($routeProvider, $httpProvider) {
         .when("/value_packs", {
             templateUrl: "module/value_packs/value_packs.html"
 
+        }).when("/view_ticket", {
+            templateUrl: "module/ticket/view/view_ticket.html"
+
         })
 
 });
