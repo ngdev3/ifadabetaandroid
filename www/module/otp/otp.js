@@ -63,7 +63,7 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
             var args = $.param({
                 mobile_number: $cookieStore.get('otpverification').mobile_number,
                 otp: $scope.otpcode,
-                language_code : 'en'
+                language_code : sessionStorage.lang_code
             });
 
             $http({

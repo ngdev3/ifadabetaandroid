@@ -1,21 +1,15 @@
 app.controller('login', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope) {
 
+    
+   // alert();
     if ($cookieStore.get('userinfo')) {
 
         $location.path('/dashboard/home')
     }
 
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    function onDeviceReady() {
-        uuid = device.uuid;
-        device_type = device.platform;
-        // alert(uuid)
-    }
-
     //create table at local database to store the data of users information at time of login
     db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS userinfo (id INTEGER PRIMARY KEY AUTOINCREMENT, uid, phone_no, email_address, username, date_added)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS userinfo (id INTEGER PRIMARY KEY AUTOINCREMENT, uid, phone_no, email_address, country_id, date_added)');
 
     });
 
@@ -23,7 +17,7 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
         $location.path('/dashboard/home');
     } */
 
-    $rootScope.initOneSignal();
+   // $rootScope.initOneSignal();
     loading.deactive();
 
 

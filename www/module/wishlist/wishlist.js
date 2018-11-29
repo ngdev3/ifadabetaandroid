@@ -10,9 +10,9 @@ app.controller('wishlist', function ($scope, $http, $location, $cookieStore, mod
         loading.active();
 
         var args = $.param({
-            user_id:'52',
-            country_id: '2',//$scope.search,
-            language_code: 'en'//$cookieStore.get('userinfo').uid,
+            user_id:$cookieStore.get("userinfo").uid,
+            country_id: sessionStorage.country,
+            language_code: sessionStorage.lang_code
         })
         $http({
             headers: {

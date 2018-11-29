@@ -73,7 +73,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                 email: $scope.email,
                 mobile_number: $scope.mob_number,
                 password: $scope.password,
-                language_code: 'en',
+                language_code: sessionStorage.lang_code,
                 referal_code: $scope.referal_code
             });
             loading.active();

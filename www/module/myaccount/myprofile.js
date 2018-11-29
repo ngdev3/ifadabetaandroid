@@ -51,7 +51,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
 
         var args = $.param({
             'user_id': $cookieStore.get("userinfo").uid,
-            'language_code' : 'en',
+            'language_code' :sessionStorage.lang_code,
             'city_id' : 16
         });
 
@@ -149,7 +149,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 address: $scope.address,
                 country_id : $scope.select_country,
                 city_id : $scope.select_city,
-                language_code : 'en',
+                language_code : sessionStorage.lang_code,
             });
 
             // alert(args);return;

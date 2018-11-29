@@ -52,7 +52,7 @@
                             <div id="" class="owl-carousel owl2 owl-theme owl-loaded owl-drag">
                                 <!-- Buttons Items -->
                                 <div class="item" style="width:max-content;display:inline-block;">
-                                    <input type="button" class="btn btn-success all-sub-cat_buttons"  id="all" name="" value="All" ng-click="fetch_product_list()">
+                                    <input type="button" class="btn btn-success all-sub-cat_buttons"  ng-if="!categorysubData" id="all" name="" value="All" ng-click="fetch_product_list()">
                                 </div>
                                <div class="item" ng-repeat="sub in categorysubData">
                                     <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id)">
@@ -102,6 +102,10 @@
                                         </div>
                                 </div>
                             </div>
+                        </div>
+                        <!-- {{product.length}} -->
+                        <div ng-if="product.length == '0'">
+                            No Product
                         </div>
 
                         <div class="no-padding item_lists_main" ng-repeat="x in best_picks_of_the_season" ng-if="best_picks_of_the_season" ng-click="product_view(x.id)">

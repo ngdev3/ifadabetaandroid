@@ -75,7 +75,7 @@ app.controller('contactus', function ($scope, $http, $location, $cookieStore, mo
                 last_name: $scope.lname,
                 email: $scope.email,
                 query: $scope.query,
-                language_code: 'en'
+                language_code:sessionStorage.lang_code
             });
             loading.active();
             $http({

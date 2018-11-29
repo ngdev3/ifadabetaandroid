@@ -61,7 +61,7 @@ app.controller('forgot', function ($scope, $http, $location, $cookieStore, model
 
             var args = $.param({
                 mobile_number_varify: $scope.mobile_no,
-                Language_code:'en'
+                Language_code:sessionStorage.lang_code
             });
 
             $http({

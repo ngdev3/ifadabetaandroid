@@ -20,8 +20,8 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
         loading.active();
 
         var args = $.param({
-            country_id: '2',//$scope.search,
-            Language_code: 'en'//$cookieStore.get('userinfo').uid,
+            country_id: sessionStorage.country,//$scope.search,
+            Language_code: sessionStorage.lang_code
         })
         $http({
             headers: {

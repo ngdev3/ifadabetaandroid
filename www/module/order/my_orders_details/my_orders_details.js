@@ -23,10 +23,10 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
         loading.active();
 
         var args = $.param({
-            order_id: $cookieStore.get('orderID'),
-            user_id:'52',
-            country_id:'2',
-            language_code: 'en'
+        order_id: $cookieStore.get('orderID'),
+            user_id:$cookieStore.get("userinfo").uid,
+            country_id: sessionStorage.country,
+            language_code: sessionStorage.lang_code
         });
         loading.active();
         $http({
