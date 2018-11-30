@@ -44,4 +44,12 @@ $scope.val_packs = function(){
         });
 }
 
+$scope.product_list = function(id){
+var packs = {
+    'subcatid': id
+}
+   $cookieStore.put('subcategoryInfo',packs);
+   $location.path('/subcategory');
+}
+
 });
