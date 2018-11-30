@@ -405,15 +405,6 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         $scope.address = $cookieStore.get("userinfo").address;
     }
 
-    /* if(!$cookieStore.get("Country")){
-        $scope.default_country = 'UAE';
-    } */
-   /*  if(!$cookieStore.get("userinfo")){
-        $sco;
-    } */
-    
-    // console.log($scope.default_country);
-
     $scope.toswitchCountry = function(){
         $location.path("/switch_country");
     }
