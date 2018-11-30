@@ -51,19 +51,19 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
         var res = '';
         if ($scope[form].$error) {
             // alert();return false;
-            var error_str = '';
-
-            if ($scope[form].address.$error.required !== undefined) {
-                error_str += "Address, ";
-            }
-
-            if ($scope[form].city.$error.required !== undefined) {
-                error_str += "City, ";
-            }
+            var error_str = '';                       
 
             if ($scope[form].country.$error.required !== undefined) {
                 error_str += "Country, ";
             }
+
+            if($scope[form].city.$error.required !== undefined){
+                error_str += "City, ";
+            }
+
+            if ($scope[form].address.$error.required !== undefined) { 
+                error_str += "Address, ";
+            } 
            
             if ($scope[form].landmark.$error.required !== undefined) {
                 error_str += "Landmark, ";
@@ -79,55 +79,56 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
             if ($scope[form].mobile.$error.required !== undefined) {
                 error_str += "Mobile, ";
             }
+           
         }
         setTimeout(function () {
             error_str = error_str.substr(0, error_str.lastIndexOf(', '));
             if (error_str !== '') {
                 error_str = " <span style='font-weight:700;'>Following fields must have valid information:</span></br>" + error_str;
-                // model.show('Alert', error_str);
-                alert(error_str);
+                model.show('Alert', error_str);
+                // alert(error_str);
                 return false;
             }
         }, 400);
 
         if ($scope[form].$valid) { //if all field are filled then this will check pattern of input entered
             // alert("Success");
-            var reg1 = /^[a-zA-Z ]+$/;
-            var reg2 = /^[A-za-z\d-]{2,10}$/;
-            var reg3 = /^[(a-zA-Z)?0-9 ]+$/;
-            var reg4 = /^[a-zA-Z ]{3,20}$/;
-            var reg5 = /^[a-zA-Z0-9 ]+$/;
-            var reg6 = /^[0-9]{6}$/;
+            var reg1 = /^[a-zA-Z0-9- ]+$/;
+            var reg2 = /^[0-9]{6}$/;
+            var reg3 = /^[0-9]{10}$/;
+        //     var reg5 = /^[a-zA-Z ]+$/;
+        //    var reg2 = /^[A-za-z\d-]{2,10}$/;
+        //     var reg4 = /^[a-zA-Z ]{3,20}$/;
 
-         /*   if (reg1.test($scope.fname) == false) {
-                error_str = "Full Name should contain Alphabets Only";
-                // model.show('Alert', error_str);
-                alert(error_str);
+         if (reg1.test($scope.landmark) == false) {
+                error_str = "Landmark hould contain Numbers & Alphabets Only";
+                model.show('Alert', error_str);
+                // alert(error_str);
                 return false;
             }
 
-            if (reg2.test($scope.house_no) == false) {
-                error_str = "House Number should contain Numbers & Alphabets Only & Length should be between 2 to 10";
-                // model.show('Alert', error_str);
-                alert(error_str);
+            if (reg2.test($scope.zip) == false) {
+                error_str = "Zip Code should contain Numbers Only & Length should be 6";
+                model.show('Alert', error_str);
+                // alert(error_str);
                 return false;
             }
 
-            if (reg3.test($scope.street) == false) {
-                error_str = "Street should contain Alphabets Only";
-                // model.show('Alert', error_str);
-                alert(error_str);
+            if (reg1.test($scope.instructions) == false) {
+                error_str = "Delivery Instruction should Numbers & Alphabets Only";
+                model.show('Alert', error_str);
+                // alert(error_str);
                 return false;
             }
 
-            if (reg4.test($scope.city) == false) {
-                error_str = "City should contain Alphabets Only & Length should be between 3 to 20";
-                // model.show('Alert', error_str);
-                alert(error_str);
+            if (reg3.test($scope.mobile) == false) {
+                error_str = "Mobile Number should contain Numbers Only & Length should be 10";
+                model.show('Alert', error_str);
+                // alert(error_str);
                 return false;
             }
 
-            if (reg5.test($scope.landmark) == false) {
+           /*  if (reg5.test($scope.landmark) == false) {
                 error_str = "Landmark should contain Alphabets Only";
                 // model.show('Alert', error_str);
                 alert(error_str);
@@ -144,6 +145,8 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
 
 
             if (error_str == "") {
+               
+                alert();return;
                 loading.active();
                 var args = $.param({
                     'user_id': $cookieStore.get("userinfo").uid,
