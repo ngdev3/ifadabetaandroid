@@ -146,7 +146,7 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
 
             if (error_str == "") {
                
-                alert();return;
+                // alert();return;
                 loading.active();
                 var args = $.param({
                     'user_id': $cookieStore.get("userinfo").uid,

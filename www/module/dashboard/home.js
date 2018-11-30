@@ -51,6 +51,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
                 $scope.best_picks_of_the_featured_products = res.data.data.best_picks_of_the_featured_products;
                 $scope.dairy_product = res.data.data.dairy_product;
                 $scope.slider = res.data.data.banner;
+                $scope.country_name = res.data.data.country_name.name;
                 $scope.slickConfig0Loaded = true;
                 $scope.slickConfig0 = {
                   method: {},
@@ -403,5 +404,19 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     if($cookieStore.get("userinfo")){
         $scope.address = $cookieStore.get("userinfo").address;
     }
-    //console.log($scope.profile);
+
+    /* if(!$cookieStore.get("Country")){
+        $scope.default_country = 'UAE';
+    } */
+   /*  if(!$cookieStore.get("userinfo")){
+        $sco;
+    } */
+    
+    // console.log($scope.default_country);
+
+    $scope.toswitchCountry = function(){
+        $location.path("/switch_country");
+    }
 });
+
+

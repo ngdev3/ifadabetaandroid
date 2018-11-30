@@ -34,6 +34,7 @@ app.config(function ($translateProvider) {
     Ordered_On : 'Ordered_On',
     Deliver_To : 'Deliver_To',
     Mobile_Number : 'Mobile_Number',
+    Welcome : 'Welcome'
   });
 
 
@@ -85,6 +86,7 @@ app.config(function ($translateProvider) {
     Ordered_On :  'أمر على',
     Deliver_To : 'يسلم إلى',
     Mobile_Number : 'رقم الموبايل.',
+    Welcome : 'أهلا بك'
   });
 
 

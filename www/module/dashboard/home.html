@@ -92,8 +92,8 @@
             <ul class="side_nav">
                 <li ng-if="loggedin"><a href="javascript:void(0)"><span><img src="{{profileImage}}" alt="" /> </span><span>{{fullName}}</span></a></li>
                 
-                <li ng-if="!loggedin"><a href="javascript:void(0)"><span><img src="{{assets/img/icon/user_icon.png}}" alt=""/> </span><span>Welcome</span></a></li>
-                <li><a href="javascript:void(0)"><img src="assets/img/icon/flag_icon.png" alt="" /> <span>Clarke South, ,Abu Dhabi</span><img src="assets/img/icon/edit_icon.png" alt="" class="location_view"/> </a></li>
+                <li ng-if="!loggedin"><a href="javascript:void(0)"><span><img src="{{assets/img/icon/user_icon.png}}" alt=""/> </span><span>{{'Welcome' | translate}}</span></a></li>
+                <li><a href="javascript:void(0)"><img src="assets/img/icon/flag_icon.png" alt="" /> <span>{{country_name}}</span><img src="assets/img/icon/edit_icon.png" alt="" class="location_view"/> </a></li>
                 
                 <li ng-if="loggedin" ng-click="profile()"><a href="javascript:void(0)"><img src="assets/img/icon/profile.png" alt="" /> <span>{{'My_Profile' | translate}}</span></a></li>
                 <li ng-click="cart()"><a href="javascript:void(0)"><img src="assets/img/icon/cart_black.png" alt="" /> <span>{{'My_Cart' |translate}}</span></a></li>
@@ -120,7 +120,7 @@
         </div>
         <div id="main" onclick="closeNav()">
     <header class="container-fluid nav-down">
-        <div class="row">
+        <div class="row">   
             <nav class="navbar navbar-inverse">
               <div class="container no-padding" id="mySidenav" class="sidenav">
                 <ul class="nav navbar-nav top_header">
@@ -128,8 +128,8 @@
                     <li class="logo_name ">
                         <a href="javascript:void(0)" class="text-left ">
                             <p>{{'Delivery_Location' | translate}}</p>
-                            <span class="location_view">B-88 Sector 54, noida</span>
-                            <img src="assets/img/header/pencil.png" alt="" />
+                            <span class="location_view">{{country_name}}</span>
+                            <img src="assets/img/header/pencil.png" alt="" ng-click="toswitchCountry()"/>
                         </a>
                     </li>
                   <li class="cart_icon">
@@ -142,7 +142,7 @@
                 <ul class="nav navbar-nav bottom_header">
                   <li class="menu_search_container"><a href="javascript:void(0)">
 <!--                     <img src="assets/img/header/search_icon.png" alt="cart icon" />
- -->                    <input type="text" class="menu_search" name="searchProduct" ng-model="searchProduct" ng-keyup="searchBar()" placeholder="Search products brands and more"/>
+ -->                    <input type="text" class="menu_search" name="searchProduct" ng-model="searchProduct" ng-blur="searchBar('5')" placeholder="Search products brands and more"/>
                   </a></li>
                 </ul>
               </div>

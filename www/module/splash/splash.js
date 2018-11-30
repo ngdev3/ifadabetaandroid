@@ -32,9 +32,11 @@ app.controller('splash', function ($translate, $scope, $http, $location, $interv
            console.log(res.data.data.default_language_country);
 
            if(res.data.data.status == 'success'){
-            sessionStorage.country = res.data.data.default_language_country.default_country_id
+            sessionStorage.country = res.data.data.default_language_country.default_country_id;
+            sessionStorage.country_name = res.data.data.default_language_country.COUNTRY_NAME;
                sessionStorage.lang = res.data.data.default_language_country.default_language;
                sessionStorage.lang_code = res.data.data.default_language_country.language_code;
+               console.log("-----aaa-------"); 
                console.log(sessionStorage) 
                $translate.use(sessionStorage.lang_code);
                $location.path('/dashboard/home');

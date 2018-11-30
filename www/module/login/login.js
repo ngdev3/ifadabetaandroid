@@ -98,7 +98,7 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                         'profile_image' : response.data.data.profile_image
                     }
                     $cookieStore.put('userinfo', userinfo);
-                    $location.path('/dashboard/home');
+                    $location.path('/splash');
 
                 } else {
 

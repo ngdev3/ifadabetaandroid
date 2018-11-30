@@ -26,6 +26,8 @@ app.controller('SwitchCntry', function ($scope, $http, $location, $cookieStore, 
             console.log(res.data.data.order_list)
             if (res.data.data.status == 'success') {
                 $scope.countries = res.data.data.order_list;
+                $cookieStore.put("Country",sessionStorage.country);
+               
             } else {
                 alert('No Countries Found');
             }
@@ -34,6 +36,8 @@ app.controller('SwitchCntry', function ($scope, $http, $location, $cookieStore, 
                 console.log(sessionStorage.country)
                 
                 $scope.form.country = sessionStorage.country;
+
+               
             }
             
         }).finally(function () {

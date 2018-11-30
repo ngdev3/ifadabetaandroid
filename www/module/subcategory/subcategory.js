@@ -137,7 +137,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
 
     $scope.see_alls = function () {
         loading.active();
-        alert($cookieStore.get('subcategoryInfo').subcatid);
+        // alert($cookieStore.get('subcategoryInfo').subcatid);
         var args = $.param({
             product_type: $cookieStore.get('subcategoryInfo').subcatid,
             country_id: sessionStorage.country,
