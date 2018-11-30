@@ -398,6 +398,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     }else{  
         if($cookieStore.get("userinfo")){
             $scope.fullName = $cookieStore.get("userinfo").fullName; 
+            $scope.profileImage = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/'+$cookieStore.get("userinfo").profile_image; 
         }      
     }
 

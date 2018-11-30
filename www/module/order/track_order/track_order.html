@@ -57,11 +57,16 @@
                                           <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
                                           <span class="span_text"><img class="bar_icons" src="assets/img/order_placed.png">Order Placed</span>
                                       </li>
-                                      <li class="progtrckr-todo">
+                                      <li ng-if="trackorder_location.is_order_confirm == '1'" class="progtrckr-todo inprocessed" >
                                           <span class="span_date_tarck">27 Oct 2018</span>
                                           <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
                                           <span class="span_text"><img class="bar_icons" src="assets/img/order_confirmed.png">Order Confirmed</span>
                                       </li>
+                                      <li ng-if="trackorder_location.is_order_confirm != '1'" class="progtrckr-todo " >
+                                        <span class="span_date_tarck">27 Oct 2018</span>
+                                        <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                        <span class="span_text"><img class="bar_icons" src="assets/img/order_confirmed.png">Order Confirmed</span>
+                                    </li>
                                      <li class="progtrckr-todo">
                                          <span class="span_date_tarck">28 Oct 2018</span>
                                          <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>

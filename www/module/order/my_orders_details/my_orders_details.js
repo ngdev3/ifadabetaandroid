@@ -40,6 +40,7 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
             if (res.data.responseStatus == 'success') {
                 
                 $scope.trackorder = res.data.data.order_status;
+                $scope.trackorder_location = res.data.data.order_location;
                 $location.path('/order/track_order');
 
             } else {

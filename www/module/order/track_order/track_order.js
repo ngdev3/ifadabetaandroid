@@ -52,7 +52,7 @@ app.controller('track_order', function ($scope, $http, $location, $cookieStore, 
 
                 //Throw error if not logged in
                 //model.show('Alert', res.data.responseMessage);
-                alert(res.data.status);
+                //alert(res.data.status);
             }
 
         }).finally(function () {
