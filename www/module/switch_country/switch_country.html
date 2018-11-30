@@ -31,7 +31,7 @@
 						<div class="sec_title"><p>Select Countrys</p></div>
 						  <div class="radio mb-20 mt-10" ng-repeat="x in countries">
 							<input id="radio_{{x.id}}" name="country" ng-model="form.country" type="radio" value="{{x.id}}"  required>
-							<label class="radio-label"><img src="assets/img/icon/flag_3.png" alt="" class="flag_img"/> <span>{{x.address}}</span></label>
+							<label class="radio-label" for="radio_{{x.id}}"><img src="assets/img/icon/flag_3.png" alt="" class="flag_img"/> <span>{{x.address}}</span></label>
 						  </div>
 						  <!-- <div class="radio mb-20">
 							<input id="radio-2" name="radio" type="radio">

@@ -206,7 +206,7 @@ input.btn.btn-success.all-sub-cat_buttons:focus
 }
 #sub_rrp
 {
-    margin-left:20px;
+    margin-left:0px;
         font-weight: 700;
 }
 .sub_product_desc p
@@ -246,7 +246,7 @@ input.btn.btn-success.all-sub-cat_buttons:focus
 .sub_add_product
 {
     position: absolute;
-    bottom: 0px;
+    bottom: -15px;
     right: 15px;
     width: auto;
     max-width: 20%;
@@ -331,7 +331,7 @@ input.btn.btn-success.all-sub-cat_buttons:focus
     margin: 0 auto;
 }
 .add_cart_button.sub_add_btn > button {
-    width: 100%;
+    width: 49px;
     font-size: 13px;
     background-color: #006d07;
     border: none;
@@ -341,8 +341,10 @@ input.btn.btn-success.all-sub-cat_buttons:focus
     color: #ffffff;
     outline: none;
     margin-top: 3px;
-    
+    position: absolute;
     padding: 7px 12px;
+    right: -3px;
+    top: -15px;
 }
 .additem_span
 {
@@ -1022,4 +1024,35 @@ li.progtrckr-todo.inprocessed span.pending_check i
 .no_data_wrapper > div img{
     margin: 0 auto;
     display: block;
+}
+.slick-slide{
+    width: auto !important;
+    margin-right: 5px !important;
+}
+.nav > li.page_name.left {
+    float: left;
+    text-align: center;
+    width: auto !important;
+}
+
+.offer-img {
+    padding: 0px 0 10px 0px !important;
+}
+.navbar-nav>li.page_name > a {
+    text-align: left !important;
+}
+.nav > li.page_name {
+    width: 91% !important;
+}
+.sub_product_desc p:first-child {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+.prod_images img{
+	display: block;
+    margin: 0 auto !important;
+}
+    
+.btn_discounts{
+	display:  none !important;
 }

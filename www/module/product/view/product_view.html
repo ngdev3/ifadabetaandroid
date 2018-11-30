@@ -87,7 +87,7 @@
 								<img class="img-responsive sub_cat_product_img" src="{{product_details.image}}">
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
-								<input type="button" class="btn btn-default btn_discounts" name="" value="6% Off">
+								<!--<input type="button" class="btn btn-default btn_discounts" name="" value="6% Off">-->
 								<p class="sub_produt_name">{{product_details.menu_name}}</p>
 								<select class="sub_product_qty" ng-model="z.price" name="z.price" ng-change="change_units()" ng-init="z.price = product_price;">
 									<option ng-repeat="z in product_details_varients"  ng-value="z.price">{{z.unit_value}}{{z.UNIT_NAME}}</option>
