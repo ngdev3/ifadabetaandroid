@@ -136,13 +136,13 @@
                       <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
                         <!--<span class="badge">14</span>-->
                       </a>
-                      <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" ng-click="searchBar()" /></a>
+                      <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon"  /></a>
                   </li>
                 </ul>
                 <ul class="nav navbar-nav bottom_header">
                   <li class="menu_search_container"><a href="javascript:void(0)">
-                    <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
-                    <input type="text" class="menu_search" placeholder="Search products brands and more"/>
+<!--                     <img src="assets/img/header/search_icon.png" alt="cart icon" />
+ -->                    <input type="text" class="menu_search" name="searchProduct" ng-model="searchProduct" ng-keyup="searchBar()" placeholder="Search products brands and more"/>
                   </a></li>
                 </ul>
               </div>
@@ -365,4 +365,16 @@
  
 
 </div>
+
+
+<script>
+$(document).ready(function(){
+	$(".cart_icon a:last-child").click(function(){
+		//alert();
+		$(".bottom_header").slideToggle();
+		//$("#banner_slider").toggleClass("search-container")
+	});	
+});
+
+</script>
 

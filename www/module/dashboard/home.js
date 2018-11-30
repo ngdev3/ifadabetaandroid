@@ -284,7 +284,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         
         
         $scope.searchBar = function () {
-            alert("will work on it...soon");return;
+            // alert("will work on it...soon");return;
         // $scope.datanotfound = false;
         // $scope.resultstatus = false;
         // $scope.searchresult = '';
@@ -303,32 +303,32 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         loading.active();
 
         var args = $.param({
-            'country_id': $scope.search,
-            'uid': $cookieStore.get('userinfo').uid,
-            'mid': uuid
+            'country_id': sessionStorage.country,
+            'language_code': sessionStorage.lang_code,
+            'search_product': $scope.searchProduct
         })
         $http({
             headers: {
                 //'token': '40d3dfd36e217abcade403b73789d732',
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            method: 'GET',
+            method: 'POST',
             url: app_url + '/product_list',
-            //data: args
+            data: args
 
         }).then(function (response) {
 
             res = response;
-            // console.log(res.data.data)
+            console.log(res.data.data);
+            // return;
 
-            if (res.data.total_record > 0) {
-                $scope.searchresult = res.data.data;
-                $scope.enableDiv = true;
+            if (res.data.data.product.total_rows > 0) {
+                $scope.searchresult = res.data.data.products;
             } else {
                 // alert()
-                $scope.resultstatus = false;
+                // $scope.resultstatus = false;
                 $scope.searchresult = '';
-                $scope.datanotfound = true;
+                // $scope.datanotfound = true;
             }
 
         }).finally(function () {

@@ -137,12 +137,20 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
 
     $scope.see_alls = function () {
         loading.active();
-
+        alert($cookieStore.get('subcategoryInfo').subcatid);
         var args = $.param({
             product_type: $cookieStore.get('subcategoryInfo').subcatid,
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code
         });
+
+        if($cookieStore.get('subcategoryInfo').subcatid == 1){
+            $scope.feature_name = 'Best_picks_of_the_season';
+        }else if($cookieStore.get('subcategoryInfo').subcatid == 2){
+            $scope.feature_name = 'product_of_the_day';
+        }else{
+            $scope.feature_name = 'Featured_Product';
+        }
 
         // console.log(args);return;
 
@@ -160,6 +168,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             res = response;
             // console.log(res.data);
             // return;
+            
 
             if (res.data.data.status == 'success') {
                 $scope.best_picks_of_the_season = res.data.data.view_all;
