@@ -61,7 +61,7 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
                 error_str += "City, ";
             }
 
-            if ($scope[form].address.$error.required !== undefined) {
+            if ($scope[form].address.$error.required !== undefined) { 
                 error_str += "Address, ";
             } 
            
