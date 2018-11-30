@@ -28,7 +28,12 @@ app.config(function ($translateProvider) {
     My_Cart:'My Cart',
     My_Profile:'My Profile',
     Units:'Units',
-    Product_Details: 'Product Details'
+    Product_Details: 'Product Details',
+    Order_Summary: 'Order_Summary',
+    Payment : 'Payment',
+    Ordered_On : 'Ordered_On',
+    Deliver_To : 'Deliver_To',
+    Mobile_Number : 'Mobile_Number',
   });
 
 
@@ -74,7 +79,12 @@ app.config(function ($translateProvider) {
     Featured_Category:'الفئة المميز',
     Log_In:'تسجيل الدخول',
     Units:'وحدات',
-    Product_Details:' تفاصيل المنتج'
+    Product_Details:' تفاصيل المنتج',
+    Order_Summary : 'ملخص الطلب',
+    Payment :         'دفع',
+    Ordered_On :  'أمر على',
+    Deliver_To : 'يسلم إلى',
+    Mobile_Number : 'رقم الموبايل.',
   });
 
 

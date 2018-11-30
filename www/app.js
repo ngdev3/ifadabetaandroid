@@ -571,6 +571,10 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
         window.history.back();
     }
 
+    $rootScope.cart = function(){
+        $location.path('/cart');
+    }
+
     $rootScope.initOneSignal = function () {
 
         document.addEventListener("deviceready", onDeviceReady, false);

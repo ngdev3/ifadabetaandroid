@@ -59,9 +59,9 @@
 					</div>
 					<div id="onEdit">
 						<div class="mui-select col-sm-6 col-xs-12">
-							<select id="country" name="select_country" ng-model="select_country"  readonly required ng-change="fetchcity()" ng-init="select_country = countryID; c.name = countryName" >
+							<select id="country" name="select_country" ng-model="select_country"  readonly required ng-change="fetchcity()">
 								<!-- <option>Select Country</option> -->
-								<option ng-selected="countryID" ng-repeat="c in Countries" ng-value="{{c.id}}" >{{c.name}}</option>
+								<option ng-repeat="c in Countries" ng-value="{{c.id}}" >{{c.name}}</option>
 							</select>
 							<label for="country">Country</label>
 						</div>

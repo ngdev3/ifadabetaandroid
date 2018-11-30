@@ -15,8 +15,44 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
      */
 
 
-     $scope.trackOrder = function(){
-         $location.path('/order/track_order');
+     $scope.trackOrder = function(id,m_id){
+    
+        loading.active();
+
+        var args = $.param({
+            'order_id': id,
+            'm_order_id': m_id,
+            'language_code':sessionStorage.lang_code
+        });
+
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/track_order',
+            data: args
+
+        }).then(function (response) {
+            res = response;
+            
+            if (res.data.responseStatus == 'success') {
+                
+                $scope.trackorder = res.data.data.order_status;
+                $location.path('/order/track_order');
+
+            } else {
+                //Throw error if not logged in
+                //model.show('Alert', res.data.responseMessage);
+                alert(res.data.responseStatus);
+            }
+
+        }).finally(function () {
+            loading.deactive();
+        });
+        
+         
      }
 
     $scope.ordersDetalisInit = function () {
@@ -44,7 +80,23 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
             console.log(res.data.data)
             if (res.data.data.status == 'success') {
                 $scope.detail = res.data.data.basic_info;
+                $scope.delivery_address = res.data.data.delivery_address;
+                $scope.detail_distribution = res.data.data.basic_info.order_manufacturer_distribution;
+                var orderinfo = {
+                    'order_on': res.data.data.delivery_address.updated_date,
+                    'address': res.data.data.delivery_address.address,
+                    'mobile_number': res.data.data.delivery_address.mobile_number,
+                    'payment_type': res.data.data.basic_info.payment_type,
+                    
+                }
+                $cookieStore.put('orderinfo', orderinfo);
 
+                $scope.item= [];
+                for(var i=0; i<$scope.detail_distribution.length;i++){
+                    $scope.item = res.data.data.basic_info.order_manufacturer_distribution[i].items;
+                    
+                }
+                console.log($scope.item)
             } else {
 
                 //Throw error if not logged in
@@ -178,6 +230,75 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
     }
 
     //End of Function
+    $scope.deleteOrder = function (no) {
 
+        $.confirm({
+            title: 'Cancel Order!',
+            theme: 'light',
+            content: '' +
+                '<form action="" class="formReason">' +
+                '<div class="form-group">' +
+                '<label>Reason</label>' +
+                '<input type="text" placeholder="Enter Reason Here" class="name form-control" required />' +
+                '</div>' +
+                '</form>',
+            buttons: {
+
+                formSubmit: {
+                    text: 'Submit',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        var name = this.$content.find('.name').val();
+                        if (!name) {
+                            $.alert('Please Provide the Reason');
+                            return false;
+                        }
+                        loading.active();
+
+                        var name = this.$content.find('.name').val(); //to get the prompt value
+
+                        var args = $.param({
+                            'uid': GlobalUID,
+                            'order_no': no,
+                            'reason': name
+                        });
+
+                        //alert(name);return false; 
+                        if (name != "") {
+                            $http({
+                                headers: {
+                                    //'token': '40d3dfd36e217abcade403b73789d732',
+                                    'Content-Type': 'application/x-www-form-urlencoded'
+                                },
+                                method: 'POST',
+                                url: app_url + '/profileapi/cancelOrder',
+                                data: args
+                            }).then(function (response) {
+                                loading.deactive();
+                                // console.log(response);
+                                // return false;
+                                // $.alert('Confirmed!');
+                                if (response.data.status == "success") {
+                                    alert("Order Successfully Cancelled");
+                                    $scope.ordersInit();
+                                } else {
+                                    alert("Something went wrong.");
+                                }
+                            })
+                        } else {
+                            alert("Please Provide the Reason");
+                            $scope.ordersInit();
+                        }
+                    }
+                },
+                cancel: function () {
+
+                }
+            }
+        })
+    }
+
+
+   
 
 });

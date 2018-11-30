@@ -5,21 +5,21 @@
             <nav class="navbar navbar-inverse">
               <div class="container no-padding">
                 <ul class="nav navbar-nav top_header">
-                  <li class="menu_icon "><a href="#"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
+                  <li class="menu_icon "><a href="javascript:void(0)"  ><img ng-click="back()" src="assets/img/icon/back.png" alt="menu icon"style="width: 13px;" /></a></li>
                     <li class="page_name left">
-                        <a href="#" class="text-left ">
+                        <a href="javascript:void(0)" class="text-left ">
                             <p>Track Order</p>
                         </a>
                     </li>
                   <li class="cart_icon">
-                      <a href="./view_cart.php"><img src="assets/img/icon/cart_icon.png" alt="cart icon"  />
+                      <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
                         <!--<span class="badge">14</span>-->
                       </a>
-                      <a href="#"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
+                      <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
                   </li>
                 </ul>
                 <ul class="nav navbar-nav bottom_header">
-                  <li class="menu_search_container"><a href="#">
+                  <li class="menu_search_container"><a href="javascript:void(0)">
                     <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
                     <input type="text" class="menu_search" placeholder="Search products brands and more"/>
                   </a></li>
@@ -90,24 +90,26 @@
                             </div>
                             <div class="more_methods_opt">
                                 <div class="more_methods_opt_line">
-                                    <h5 class="opt_line_head">Payment Method</h5>
+                                    <h5 class="opt_line_head">{{'Payment' | translate}}</h5>
                                     <p>:</p>
-                                    <h5 class="opt_line_text">COD</h5>
+                                    <h5 class="opt_line_text" ng-if="orderinfo.payment_type == '1'">COD</h5>
+                                    <h5 class="opt_line_text" ng-if="orderinfo.payment_type == '2'">Online</h5>
+                                    <h5 class="opt_line_text" ng-if="orderinfo.payment_type == ''">Wallet</h5>
                                 </div>
                                 <div class="more_methods_opt_line">
-                                    <h5 class="opt_line_head">Ordered On</h5>
+                                    <h5 class="opt_line_head">{{'Ordered_On' | translate}}</h5>
                                     <p>:</p>
-                                    <h5 class="opt_line_text">26 Oct 2018 , 10:00</h5>
+                                    <h5 class="opt_line_text">{{orderinfo.order_on}}</h5>
                                 </div>
                                 <div class="more_methods_opt_line">
-                                    <h5 class="opt_line_head">Deliver To</h5>
+                                    <h5 class="opt_line_head">{{'Deliver_To' | translate}}</h5>
                                     <p>:</p>
-                                    <h5 class="opt_line_text">Al-Rajhi Buliding Flat no.22</h5>
+                                    <h5 class="opt_line_text">{{orderinfo.address}}</h5>
                                 </div>
                                 <div class="more_methods_opt_line">
-                                    <h5 class="opt_line_head">Mobile Number</h5>
+                                    <h5 class="opt_line_head">{{'Mobile_Number' | translate}}</h5>
                                     <p>:</p>
-                                    <h5 class="opt_line_text">7894563582</h5>
+                                    <h5 class="opt_line_text">{{orderinfo.mobile_number}}</h5>
                                 </div>
                                     
                             </div>

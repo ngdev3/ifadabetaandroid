@@ -9,7 +9,7 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
   //  var GlobalUID = $cookieStore.get('userinfo').uid; //Global Uid for get the response by sending the http request.
 
     
-    loading.deactive();
+    //loading.deactive();
 
     $scope.home = function () {
         //$location.path('/home');
@@ -35,8 +35,9 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
         loading.active();
 
         var args = $.param({
-            country_id: '2',
-             user_id:'52'
+            country_id: sessionStorage.country,
+             user_id: $cookieStore.get('userinfo').uid,
+             language_code : sessionStorage.lang_code
         });
         
 
@@ -53,11 +54,12 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
 
             res = response;
 
-           console.log(res.data.data.order_list)
+           console.log(res.data.data.order_list);
            if(res.data.data.status == 'success'){
             $scope.order_list = res.data.data.order_list;
            }else{
-
+               $scope.order_list= '';
+            alert(res.data.responseMessage)
            }
 
         }).finally(function () {
