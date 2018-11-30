@@ -1,12 +1,11 @@
 app.controller('new_pass', function ($scope, $http, $location, $cookieStore, $timeout, loading, model, $rootScope) {
 
-if ($cookieStore.get('userinfo')) {
+/* if ($cookieStore.get('userinfo')) {
     $location.path('/dashboard/home');
-}
+} */
 
 $scope.forgot = function(form){
 
-    
     //if fields are invalid
     if ($scope[form].$error) {
         var error_str = '';
@@ -63,8 +62,9 @@ $scope.forgot = function(form){
     loading.active();
 
             var args = $.param({
-                'uid': $cookieStore.get('userid'),
-                'password' : $scope.new_pwd
+                'user_id_verify': $cookieStore.get('userid'),
+                'change_password' : $scope.new_pwd,
+                'conform_password' : $scope.conf_pwd
             });
             $http({
                 headers: {
@@ -72,18 +72,26 @@ $scope.forgot = function(form){
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: 'POST',
-                url: app_url + '/profileapi/newPassword',
+                url: app_url + '/auth/reset_password',
                 data: args //forms user object
 
             }).then(function (response) {
 
                 res = response;
-                if (res.data.status == 'pass') {
-                    //put cookie and redirect it    
-                    //model.show('Alert', res.data.responseMessage);
+                console.log(response);
+                if (res.data.responseStatus == 'success') {
+                    var userinfo = {
+                        'uid': response.data.data.result.id,
+                        'phone_no': response.data.data.result.mobile_number,
+                        'email_address': response.data.data.result.email,
+                        'country_id': response.data.data.result.country_id,
+                        'fullName' : response.data.data.result.first_name+" "+response.data.data.result.last_name,
+                        'profile_image' : response.data.data.result.profile_image
+                    }
+                    $cookieStore.put('userinfo', userinfo);
                    alert('Password is successfully changed');
                    $cookieStore.remove('userid');
-                   $location.path('/login');
+                   $location.path('/dashboard/home');
                 } else {
 
                     alert('Password not changed')

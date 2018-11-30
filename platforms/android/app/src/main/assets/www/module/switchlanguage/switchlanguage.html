@@ -6,9 +6,9 @@
 		<nav class="navbar navbar-inverse">
 		  <div class="container no-padding">
 			<ul class="nav navbar-nav top_header text-center">
-			  <li class="menu_icon "><a href="#"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
+			  <li class="menu_icon "><a href="javascript:void(0)"><img ng-click="back()" src="assets/img/icon/back.png" alt="menu icon"style="width: 13px;" /></a></li>
 				<li class="page_name left">
-					<a href="#" class="text-left ">
+					<a href="javascript:void(0)" class="text-left ">
 						<p>{{'Switch_Language' | translate}}</p>
 					</a>
 				</li>
@@ -26,24 +26,25 @@
 <div class="container">
 		<div class="login_form switches">
 			<div class="form_container pt-10">
-				<form class="">
+				<form method="post" name="langform" novalidate>
 				  <div class="col-xs-12">
 					<!--<div class="addr_heading">-->
 					<div class="">
 						<div class="sec_title"><p>{{'SELECT_LANGUAGE'| translate}}</p></div>
 						  <div class="radio mb-20 mt-10">
-							<input id="radio-1" name="radio" type="radio">
-							<label for="radio-1" class="radio-label">{{'English' | translate}}</label>
+							<input id="radio-1" name="radio" ng-model="radio" type="radio" value="en">
+							<!-- <label for="radio-1" class="radio-label">{{'English' | translate}}</label> -->
+							<label for="radio-1" class="radio-label">English</label>
 						  </div>
 						  <div class="radio mb-20">
-							<input id="radio-2" name="radio" type="radio">
+							<input id="radio-2" name="radio" ng-model="radio"  type="radio" value="ar">
 							<label for="radio-2" class="radio-label">{{'Arab' | translate}}</span></label>
 						  </div>
 					</div>
 				  </div>
 				  
-				  <div class="submit-btn col-xs-12 text-center">
-					<a href="#">{{'OK' | translate}}</a>
+				  <div class="submit-btn col-xs-12 text-center" ng-click="submitlang('langform')">
+					<a href="javascript:void(0)" >{{'OK' | translate}}</a>
 				  </div>
 					
 				</form>

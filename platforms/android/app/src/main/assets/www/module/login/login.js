@@ -1,25 +1,23 @@
 app.controller('login', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope) {
 
+    
+   // alert();
+    if ($cookieStore.get('userinfo')) {
 
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    function onDeviceReady() {
-        uuid = device.uuid;
-        device_type = device.platform;
-        // alert(uuid)
+        $location.path('/dashboard/home')
     }
 
     //create table at local database to store the data of users information at time of login
     db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS userinfo (id INTEGER PRIMARY KEY AUTOINCREMENT, uid, phone_no, email_address, username, date_added)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS userinfo (id INTEGER PRIMARY KEY AUTOINCREMENT, uid, phone_no, email_address, country_id, date_added)');
 
     });
 
-    if ($cookieStore.get('userinfo')) {
+   /*  if ($cookieStore.get('userinfo')) {
         $location.path('/dashboard/home');
-    }
+    } */
 
-    $rootScope.initOneSignal();
+   // 
     loading.deactive();
 
 
@@ -79,24 +77,52 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
 
             }).then(function (response) {
                 console.log("---------------");
+                console.log(response);
                 
-                if (!response.data.responseCode !== 400) {
-                    
-                    console.log(response);
+                if (response.data.responseStatus == 'success') {
                     db.transaction(function (tx) {
                         tx.executeSql('INSERT INTO userinfo ( uid, phone_no, email_address, country_id, date_added) VALUES ("' + response.data.data.id + '","' + response.data.data.mobile_number + '","' + response.data.data.email + '","' + response.data.data.country_id + '","' + response.data.data.created_date + '")');
                     });
+                    var fname = response.data.data.first_name;
+                    var lname = response.data.data.last_name;
+
+                    var fullName = fname+" "+lname;
+                    // console.log(fullName);
                     var userinfo = {
                         'uid': response.data.data.id,
                         'phone_no': response.data.data.mobile_number,
                         'email_address': response.data.data.email,
                         'country_id': response.data.data.country_id,
+                        'fullName' : fullName,
+                        'profile_image' : response.data.data.profile_image
                     }
                     $cookieStore.put('userinfo', userinfo);
                     $location.path('/dashboard/home');
 
                 } else {
-                    model.show('Alert', response.data.responseMessage);
+
+                    if(response.data.responseMessage == 'Your account is not verified please Verify OTP !'){
+                        var setOTPCookies = {
+                            'mobile_number': $scope.mobileno,
+                            'from' : 'login'
+                    }
+                        $cookieStore.put('otpverification', setOTPCookies);
+                        alert('Please Varify OTP');
+                        $location.path('/otp');
+                        return false;
+                    }else if(response.data.responseMessage == 'Invalid login credentials'){
+                        
+                        alert('Mobile No. is Invalid');
+                    
+                    }else if(response.data.responseMessage =='Password does not match !'){
+                        
+                        alert('Password is Invalid');
+                    
+                    }else{
+
+                        alert('Login Credentials are Wrong');
+                    }
+                    //model.show('Alert', response.data.responseMessage);
                 }
 
             }).finally(function () {

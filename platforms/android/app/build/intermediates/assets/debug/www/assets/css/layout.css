@@ -941,4 +941,85 @@ li.progtrckr-todo.inprocessed span.pending_check i
 
 /** !. My Orders **/
 
+.backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0 ,0.5);
+	z-index: 9999;
+}
+/*OTP Screen*/
+/*pop up css*/
+.pop_up_div{
+	width: 100%;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    z-index: 99999;
+    background: rgba(0,0,0,0.5);
+}
+.pop_up_display{
+		height: 100vh;
+    display: flex;
+}
+.main_pop_up{
+	z-index: 9999999;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    
+    padding: 20px 30px;
+    text-align: center;
+}
+.popup2{
+	width: 100%;
+    text-align: center;
+    border: 1px solid #fff;
+    padding: 20px;
+    color: #000;
+    border-radius: 10px;
+    background: #fff;
+}
+.hedingpopup{
+	font-size: 16px;
+    color: #4f4f4f;
+	
 
+}
+.poupp{
+	font-size: 16px;
+    color: #4f4f4f;
+	margin-bottom: 10px;
+}
+.pop_up_cnfm{
+	background: #006d07;
+    color: #fff;
+    padding: 7px 20px;
+    border-radius: 5px;
+}
+.slide_image{
+	width:100%;
+}
+.no_data_wrapper{
+    height: 65vh;
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    vertical-align: middle;
+}
+
+.no_data_wrapper > div{
+    width: 100%;
+}
+.no_data_wrapper > div img{
+    margin: 0 auto;
+    display: block;
+}

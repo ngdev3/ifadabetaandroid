@@ -1,13 +1,13 @@
 -- Merging decision tree log ---
 manifest
-ADDED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-14:12
-INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-14:12
-INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-14:12
-INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-14:12
+ADDED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
+INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
+INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
+INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
 MERGED from [:CordovaLib] J:\xampp\htdocs\Projects2018\ifada\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:1-27:12
-INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-14:12
-INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-14:12
-INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-14:12
+INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
+INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
+INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
 	package
 		ADDED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:2:102-136
 		INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml
@@ -80,9 +80,17 @@ ADDED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\And
 		ADDED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:9:27-74
 uses-sdk
 ADDED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:13:5-74
+INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:13:5-74
 MERGED from [:CordovaLib] J:\xampp\htdocs\Projects2018\ifada\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:25:5-44
 MERGED from [:CordovaLib] J:\xampp\htdocs\Projects2018\ifada\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:25:5-44
+INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:13:5-74
 	android:targetSdkVersion
 		ADDED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:13:42-71
 	android:minSdkVersion
 		ADDED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:13:15-41
+		INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:14:5-79
+	android:name
+		ADDED from J:\xampp\htdocs\Projects2018\ifada\platforms\android\app\src\main\AndroidManifest.xml:14:22-76

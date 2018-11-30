@@ -1,0 +1,129 @@
+<style type="text/css">
+    .products_wrapper.ticket_wrapper {
+        display: block;
+        padding: 15px;
+    }
+</style>
+<div ng-controller="list_ticket" ng-init="ticketlistData()">
+
+    <header class="container-fluid nav-down">
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+                <div class="container no-padding">
+                    <ul class="nav navbar-nav top_header">
+                        <li class="menu_icon "><a href="javascript:void(0)"><img src="assets/img/icon/back.png" ng-click="back()" id="asdf" alt="menu icon"
+                                    style="width: 13px;" /></a></li>
+                        <li class="page_name left">
+                            <a href="javascript:void(0)" class="text-left ">
+                                <p>Ticket List</p>
+                            </a>
+                        </li>
+                        <li class="cart_icon">
+                            <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon" />
+                                <!--<span class="badge">14</span>-->
+                            </a>
+                            <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav bottom_header">
+                        <li class="menu_search_container"><a href="javascript:void(0)">
+                                <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
+                                <input type="text" class="menu_search" placeholder="Search products brands and more" />
+                            </a></li>
+                    </ul>
+                </div>
+            </nav>
+
+        </div>
+        <!-- MOBILE-MENU-AREA END -->
+    </header>
+    <!-- END HEADER -->
+
+    <!--  [PULSES] Sub categories content -->
+    <div class="container-fluid mt-55">
+        <div class="row">
+            <div class="">
+
+
+                <!-- ** Ticket Lists In process ** -->
+
+                <div class="no-padding item_lists_main" ng-repeat="x in order_list" >
+                    <div class="prodcut_main_container">
+                        <div class="products_wrapper ticket_wrapper">
+                            <div class="row padding_ticket">
+                                <div class="col-md-5 col-sm-5 col-xs-5 no-padding">
+                                    <h5>Ticket ID</h5>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4 no-padding complaint_content">
+                                    <h5>CMP{{x.id}}</h5>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 no-padding">
+                                        <input type="button" ng-if="x.status == 0" class="btn btn-default btn_discounts ticket_process_btns ticket_in_process" name="" value="In Process">
+                                        <input type="button" ng-if="x.status == 1" class="btn btn-default btn_discounts ticket_process_btns ticket_resolved" name="" value="Resolved">
+                 
+                                </div>
+                            </div>
+                            <div class="row padding_ticket">
+                                <div class="col-md-5 col-sm-5 col-xs-5 no-padding">
+                                    <h5>Order Number</h5>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 no-padding complaint_content">
+                                    <h5>0D{{x.order_id}}</h5>
+                                </div>
+
+                            </div>
+                            <div class="row padding_ticket">
+                                <div class="col-md-5 col-sm-5 col-xs-5 no-padding">
+                                    <h5>Complaint Type</h5>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 no-padding complaint_content">
+                                        <h5 ng-if="x.complaint_type == 1">Normal</h5>
+                                        <h5 ng-if="x.complaint_type == 2">Complex</h5>
+                                </div>
+
+                            </div>
+                            <div class="row padding_ticket">
+                                <div class="col-md-5 col-sm-5 col-xs-5 no-padding">
+                                    <h5>Date & Time</h5>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 no-padding complaint_content">
+                                    <h5>{{x.created_date}}</h5>
+                                </div>
+
+                            </div>
+                            <!-- View button -->
+                            <div class="row padding_ticket">
+                                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                                    <div class="view_tkt_btn" ng-click="view_ticket(x.id)">
+                                        <a href="javascript:void(0)"><input type="button" class="btn btn-success" value="View Ticket"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  view button -->
+                        </div>
+                    </div>
+                </div>
+                <!-- ** !. Ticket Lists In process ** -->
+                
+                <!-- ** !. Ticket Lists Resolved ** -->
+
+            </div>
+        </div>
+    </div>
+    <!--  !. [PULSES] Sub categories content -->
+
+
+
+    <script>
+
+
+        $(document).ready(function () {
+            $(".cart_icon a:last-child").click(function () {
+                //alert();
+                $(".bottom_header").slideToggle();
+                //$("#banner_slider").toggleClass("search-container")
+            });
+        });
+    </script>
+
+</div>

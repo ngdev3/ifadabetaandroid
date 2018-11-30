@@ -3,18 +3,21 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
     /**
      * This will check if user is registered with app or not , if not user will be redirected to login screen
      */
+    $scope.toBasic = function(){
+        $location.path("/myaccount/profile");
+    }
+    // return;
+    // console.log($cookieStore.get('storeinfo'))
 
-    console.log($cookieStore.get('storeinfo'))
-
-    if (!$cookieStore.get('userinfo')) {
+   /*  if (!$cookieStore.get('userinfo')) {
         $location.path("/login");
         return false;
-    }
+    } */
 
-    $scope.city = $cookieStore.get('storeinfo').store_city;
-    console.log($cookieStore.get('userinfo').phone_no);
+    // $scope.city = $cookieStore.get('storeinfo').store_city;
+    // console.log($cookieStore.get('userinfo').phone_no);
 
-    var GlobalUID = $cookieStore.get('userinfo').uid; //UID used for getting data from http request
+    // var GlobalUID = $cookieStore.get('userinfo').uid; //UID used for getting data from http request
 
 
     /**
@@ -24,11 +27,11 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
      * function name : toProduct
      * on clicking back icon render to the given path
      */
-    $scope.toAddress = function () {
+   /*  $scope.toAddress = function () {
         //$location.path("/address");
         window.history.back();
     }
-
+ */
     /**
      * End of function
      */
@@ -37,42 +40,44 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
 
     /**
      * Created By Nitin Kumar
-     * Dated on 10/10/2018
+     * Dated on 29/11/2018
      * Start of Function
-     * function name : add_address
+     * function name : saveAddress
      * this function will add the address on to the corresponding id
      */
-    $scope.add_address = function (form) {
+    //$scope.form = {};
+    $scope.saveAddress = function (form) {
+        console.log($scope.zip);
         var res = '';
         if ($scope[form].$error) {
             // alert();return false;
             var error_str = '';
 
-            if ($scope[form].fname.$error.required !== undefined) {
-                error_str += "Full Name, ";
+            if ($scope[form].address.$error.required !== undefined) {
+                error_str += "Address, ";
             }
 
-            if ($scope[form].house_no.$error.required !== undefined) {
-                error_str += "House Number, ";
-            }
-
-            if ($scope[form].street.$error.required !== undefined) {
-                error_str += "Street, ";
-            }
             if ($scope[form].city.$error.required !== undefined) {
                 error_str += "City, ";
             }
 
+            if ($scope[form].country.$error.required !== undefined) {
+                error_str += "Country, ";
+            }
+           
             if ($scope[form].landmark.$error.required !== undefined) {
                 error_str += "Landmark, ";
-            }
+            } 
 
-            if ($scope[form].pincode.$error.required !== undefined || $scope[form].pincode.$error.number) {
+            if ($scope[form].zip.$error.required !== undefined || $scope[form].zip.$error.number) {
                 error_str += "Pincode, ";
             }
 
-            if ($scope[form].address_type.$error.required !== undefined) {
-                error_str += "Address Type, ";
+            if ($scope[form].instruction.$error.required !== undefined) {
+                error_str += "Delivery Instructions, ";
+            }
+            if ($scope[form].mobile.$error.required !== undefined) {
+                error_str += "Mobile, ";
             }
         }
         setTimeout(function () {
@@ -94,7 +99,7 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
             var reg5 = /^[a-zA-Z0-9 ]+$/;
             var reg6 = /^[0-9]{6}$/;
 
-            if (reg1.test($scope.fname) == false) {
+         /*   if (reg1.test($scope.fname) == false) {
                 error_str = "Full Name should contain Alphabets Only";
                 // model.show('Alert', error_str);
                 alert(error_str);
@@ -134,23 +139,23 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
                 // model.show('Alert', error_str);
                 alert(error_str);
                 return false;
-            }
+            } */
 
 
 
             if (error_str == "") {
                 loading.active();
                 var args = $.param({
-                    'uid': GlobalUID,
-                    'fname': $scope.fname,
-                    'plot_no': $scope.house_no,
-                    'locality': $scope.street,
-                    'city': $scope.city,
+                    'user_id': $cookieStore.get("userinfo").uid,
+                    'country_id': $scope.country,
+                    'city_id': $scope.city,
+                    'address': $scope.address,
+                    'zip_code': $scope.zip,
                     'landmark': $scope.landmark,
-                    'pincode': $scope.pincode,
-                    'title' : $scope.address_type,
-                    'latitude': $cookieStore.get('storeinfo').lat,
-                    'longitude': $cookieStore.get('storeinfo').lng,
+                    'delivery_instructions': $scope.instruction,
+                    'mobile_number': $scope.mobile,
+                    'lattitude': 28.5355161,
+                    'longitude': 25.3019341,
                 });
 
                 $http({
@@ -159,7 +164,7 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
                     method: 'POST',
-                    url: app_url + 'itemcartapi/addAddress',
+                    url: app_url + '/add_address',
                     data: args
                 }).then(function (response) {
                     //alert();
@@ -168,10 +173,10 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
                     console.log(response);
                     // return false;
 
-                    if (response.data.status == "success") {
+                    if (response.data.data.status == "success") {
                         alert("Address Added  Successfully");
-                        //$location.path("/address");
-                        window.history.back();
+                        $location.path("/dashboard/home");
+                        // window.history.back();
                     } else {
                         alert("Something went wrong.");
                     }
@@ -184,4 +189,71 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
      */
     //loading.deactive();
 
+   
+
+    $scope.fetchcountry = function(){
+        loading.active();      
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded' //'multipart/form-data' 
+            },
+            method: 'POST',
+            url: app_url + '/get_country',
+            //data: args
+        }).then(function (response) {  
+            loading.deactive();
+            console.log(response);
+            res = response;   
+            if (res.data.data.status == 'success') {
+                $scope.Countries = res.data.data.country;   
+                console.log($scope.Countries);             
+            } else {    
+                model.show('Alert', res.data.responseMessage);
+                $location.path('/address/add');
+            }
+        }).finally(function () {
+            loading.deactive();
+        })
+    }
+
+     //default city
+     $scope.fetchcity = function(){
+        loading.active();
+        var args = $.param({
+            'country_id': $scope.country
+        });
+        
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded' //'multipart/form-data' 
+            },
+            method: 'POST',
+            url: app_url + '/get_city',
+            data: args
+        }).then(function (response) {  
+            loading.deactive();
+            // console.log(response);
+
+            res = response;   
+            if (res.data.data.status == 'success') {
+                // console.log(res.data.data.city);
+                if(!res.data.data.city){
+                    model.show('Alert','No Cities Found!');
+                    $scope.Cities = "";
+                    console.log($scope.Cities);
+                    return false;
+                }else{
+                    $scope.Cities = res.data.data.city;   
+                    console.log($scope.Cities); 
+                }
+            } else {    
+                model.show('Alert', res.data.responseMessage);
+                $location.path('/address/add');
+            }
+        }).finally(function () {
+            loading.deactive();
+        })
+    }
 });

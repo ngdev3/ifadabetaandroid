@@ -6,7 +6,7 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
         return false;
     }
 
-    $scope.sendAt = $cookieStore.get('otpverification').mobile
+    $scope.sendAt = $cookieStore.get('otpverification').mobile_number
     console.log($cookieStore.get('otpverification'))
 
 
@@ -41,7 +41,7 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
         };
         if ($scope[form].$valid) {
 
-            if ($scope.third.toString().length > 4) {
+            if ($scope.third.toString().length > 4 ||$scope.third.toString().length < 4 ) {
                 alert('OTP must be 4 Digits allowed')
                 return false;
             }
@@ -61,8 +61,9 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
 
 
             var args = $.param({
-                uid: $cookieStore.get('otpverification').uid,
+                mobile_number: $cookieStore.get('otpverification').mobile_number,
                 otp: $scope.otpcode,
+                language_code : sessionStorage.lang_code
             });
 
             $http({
@@ -70,25 +71,42 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: 'POST',
-                url: app_url + 'profileapi/verifyPasswordotp',
+                url: app_url + '/auth/otp_verify',
                 data: args //forms user object
 
             }).then(function (response) {
 
-                if (response.data.status !== 'invalid') {
+                console.log(response)
+                if (response.data.data.status == 'success') {
 
-                    model.show('Success', 'Successfully Verified');
-                    $cookieStore.remove('otpverification');
-
-                    if ($cookieStore.get('userid')) {
+                    //model.show('Success', 'Successfully Verified');
+                    alert('OTP verified Successfully')
+                    //console.log(response.data.data.result[0])
+                    if($cookieStore.get('otpverification').from == 'forgot'){
+                        $cookieStore.put('userid', response.data.data.result[0].id);
+                        $cookieStore.remove('otpverification'); 
+                        $location.path('/newpassword');
+                    }else{
+                        var userinfo = {
+                            'uid': response.data.data.result[0].id,
+                            'phone_no': response.data.data.result[0].mobile_number,
+                            'email_address': response.data.data.result[0].email,
+                            'country_id': response.data.data.result[0].country_id,
+                            'fullName' : response.data.data.result[0].first_name+" "+response.data.data.result[0].last_name,
+                            'profile_image' : response.data.data.result[0].profile_image
+                        }
+                        $cookieStore.put('userinfo', userinfo);  
+                        $cookieStore.remove('otpverification');
+                        $location.path('/dashboard/home');
+                    }
+                    /* if ($cookieStore.get('userid')) {
                         $location.path('/newpassword');
                     } else {
                         $location.path('/login');
-                    }
-
+                    } */
 
                 } else {
-                    model.show('Alert', response.data.status);
+                    alert("Please enter valid OTP");
                 }
 
             }).finally(function () {

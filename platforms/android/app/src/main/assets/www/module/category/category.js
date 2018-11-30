@@ -1,9 +1,5 @@
 app.controller('category', function ($scope, $http, $location, $interval, $cookieStore, model, $locale, loading, $rootScope) {
 
-    if (!$cookieStore.get('userinfo')) {
-        $location.path('/login');
-        return false;
-    }
 
     $scope.my_account = function () {
         $location.path('/myaccount/account');
@@ -11,28 +7,61 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
 
     $scope.subcategory = function (id) {
         // console.log(id)
-        $cookieStore.put('id', id);
-        $location.path('subcategory')
+        var subcategoryInfo = {
+            'subcatid': id,
+        }
+        $cookieStore.put('subcategoryInfo', subcategoryInfo);
 
+        $location.path('/subcategory');
     }
 
     $scope.category_data = function () {
 
-        // console.log("category init")
-        var allCategory = $rootScope.getCategory();
-        allCategory.then(function (response) {
-            loading.deactive();
+        loading.active();
+
+        var args = $.param({
+            country_id: sessionStorage.country,//$scope.search,
+            Language_code: sessionStorage.lang_code
+        })
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/category_api',
+            data: args
+
+        }).then(function (response) {
+
             res = response;
-            if (res.status == '200') {
-                // console.log(res.data.data)
-                $scope.allCategories = res.data.data
-            } else {
-                model.show('Alert', res.data.responseMessage);
-            }
+
+          console.log(res.data.data);
+          if(res.data.data.status == 'success'){
+            $scope.category_data = res.data.data.category; 
+            // console.log($scope.category_data);
+          }
+
+        }).finally(function () {
+            loading.deactive();
         });
 
-    }
+        
 
+    }
+var currentid;
+    $scope.toggleData = function(id){
+        currentid = id;
+        // alert(id)
+        $.each($scope.category_data, function(idx, item) {
+        console.log(item.id + "-----------"+id)
+        if(item.id !== id){
+            $('#collapseOne_'+item.id).removeClass('show').addClass('hide')
+        }
+        });
+        $('#collapseOne_'+id).removeClass('hide').addClass('show')
+        
+    }
     /**
      * Funtion: searchbar on ng-keyup from category.html
      * Name: Sajal Goyal
@@ -99,12 +128,22 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
               'productListID': productListID
           }
           $cookieStore.put('categoryInfo', categoryInfo);
-
+ 
           $location.path('/product/list');
       } */
     $scope.product_view = function (pid) {
         $cookieStore.put('productviewID', pid);
         $location.path('/product/view')
+    }
+
+    $scope.showProducts = function(id){
+        var subcategoryInfo = {
+            'subcatid': id,
+            'from':'category'
+        }
+        $cookieStore.put('subcategoryInfo', subcategoryInfo);
+
+        $location.path('/subcategory');
     }
 
 });

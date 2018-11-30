@@ -1,6 +1,6 @@
 app.controller('forgot', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope) {
 
-    $rootScope.initOneSignal();
+    
     loading.deactive();
 
     if ($cookieStore.get('userinfo')) {
@@ -37,6 +37,7 @@ app.controller('forgot', function ($scope, $http, $location, $cookieStore, model
         //if fields are invalid
         if ($scope[form].$error) {
             var error_str = '';
+            
             if ($scope[form].mobile_no.$error.required !== undefined || $scope[form].mobile_no.$error.number) {
                 error_str += "Mobile No ";
             }
@@ -59,7 +60,8 @@ app.controller('forgot', function ($scope, $http, $location, $cookieStore, model
             loading.active();
 
             var args = $.param({
-                'mobile': $scope.mobile_no
+                mobile_number_varify: $scope.mobile_no,
+                Language_code:sessionStorage.lang_code
             });
 
             $http({
@@ -68,33 +70,45 @@ app.controller('forgot', function ($scope, $http, $location, $cookieStore, model
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: 'POST',
-                url: app_url + '/profileapi/sendforgotOtp',
+                url: app_url + '/auth/forget',
                 data: args //forms user object
 
             }).then(function (response) {
 
                 res = response;
-                if (res.data.status == 'pass') {
-                    //put cookie and redirect it    
-                    //model.show('Alert', res.data.responseMessage);
-                    $cookieStore.put('userid',res.data.uid);
+                
+                if(res.data.responseStatus == 'error'){
+                    alert('Please Enter Registered Mobile no.');
+                }else{
+                    alert('OTP Has been Sent Successfully on Your Email Address');
                     var setOTPCookies = {
-                        'mobile': $scope.mobile_no,
-                        'uid': response.data.uid,
-                        'status': response.data.status,
-                        'from': 'login'
-                    }
-                    $cookieStore.put('otpverification', setOTPCookies);
-                    alert('Otp send successfully');
-                    $location.path('/otp');
-                    // return false;
-
-                } else {
-
-                    //Throw error if not logged in
-                    //model.show('Alert', res.data.responseMessage);
-                    alert("Invalid Mobile Number")
+                        'mobile_number': $scope.mobile_no,
+                        'from' : 'forgot'
                 }
+                    $cookieStore.put('otpverification', setOTPCookies);
+                    $location.path('/otp')     
+                }
+                // if (res.data.status == 'pass') {
+                //     //put cookie and redirect it    
+                //     //model.show('Alert', res.data.responseMessage);
+                //     $cookieStore.put('userid',res.data.uid);
+                //     var setOTPCookies = {
+                //         'mobile': $scope.mobile_no,
+                //         'uid': response.data.uid,
+                //         'status': response.data.status,
+                //         'from': 'login'
+                //     }
+                //     $cookieStore.put('otpverification', setOTPCookies);
+                //     alert('Otp send successfully');
+                //     $location.path('/otp');
+                //     // return false;
+
+                // } else {
+
+                //     //Throw error if not logged in
+                //     //model.show('Alert', res.data.responseMessage);
+                //     alert("Invalid Mobile Number")
+                // }
 
 
             }).finally(function () {

@@ -1,14 +1,14 @@
 app.controller('myorders', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope, $route) {
 
 
-    // if (!$cookieStore.get('userinfo')) {
-    //     $location.path('/login');
-    //     return false;
-    // }
+    if (!$cookieStore.get('userinfo')) {
+        $location.path('/login');
+        return false;
+    }
 
   //  var GlobalUID = $cookieStore.get('userinfo').uid; //Global Uid for get the response by sending the http request.
 
-    $rootScope.initOneSignal();
+    
     loading.deactive();
 
     $scope.home = function () {

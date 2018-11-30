@@ -47,8 +47,11 @@
 	
 
     <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="assets/slider/slick.min.css"/>	
+    <link rel="stylesheet" type="text/css" href="assets/slider/slick-theme.min.css"/>
+
 	
-    <title>Cart Full App</title>
+    <title>Ifada App</title>
 
 </head>
 
@@ -58,7 +61,7 @@
     <!--Loading Image-->
     <div class="loading-overlay hide">
         <div class="loading" style="z-index: 99999999;">
-            <img src="img/cartfull_loader.gif" style="margin: 0 auto;">
+            <img src="img/ifada_loader.gif" style="margin: 0 auto;">
         </div>
     </div>
     <!--End of Loading Image-->
@@ -74,7 +77,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <p class="poupp message"></p>
-                    <p class="closeBtn pop_up_cnfm" ng-click="globalAction(true)" href="javascript:void(0);">OK</p>
+                    <a class="closeBtn pop_up_cnfm" ng-click="globalAction(true)" href="javascript:void(0);">OK</a>
                 </div>
             </div>
         </div>
@@ -133,6 +136,8 @@
     <script type="text/javascript" src="system/angular-cookies.js"></script>
     <script type="text/javascript" src="system/angular-messages.js"></script>
     <script type="text/javascript" src="system/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script> 
+    <script src="assets/slider/angular-slick.js"></script>
     <script type="text/javascript" src="system/angular-sanitize.js"></script>
     <script type="text/javascript" src="system/ui-bootstrap-tpls.min.js"></script>
 
@@ -166,14 +171,14 @@
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>
     <script src="assets/map/ng-map.min.js"></script>
-
+    
+    <script type="text/javascript" src="system/angular-language.js"></script>
     <!-------------date picker js-------------->
     <script data-require="ui-bootstrap@0.12.1" data-semver="0.12.1" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.min.js"></script>
     <!----------------End date picker js------------------>
 
 
     <!-- Start Module Files -->
-    <script type="text/javascript" src="system/angular-language.js"></script>
     <script type="text/javascript" src="module/splash/splash.js"></script>
     <script type="text/javascript" src="module/login/login.js"></script>
     <script type="text/javascript" src="module/forgot/forgot.js"></script>
@@ -182,7 +187,7 @@
     <script type="text/javascript" src="module/address/address.js"></script>
     <script type="text/javascript" src="module/address/address_edit.js"></script>
     <script type="text/javascript" src="module/address/address_add.js"></script>
-    <script type="text/javascript" src="module/cms/about_us/about_us.js"></script>
+    <script type="text/javascript" src="module/cms/contactus/contactus.js"></script>
     <script type="text/javascript" src="module/category/category.js"></script>
     <script type="text/javascript" src="module/cms/privacy_policy/policy.js"></script>
     <script type="text/javascript" src="module/cms/terms_and_conditions/terms_and_conditions.js"></script>
@@ -190,8 +195,10 @@
     <script type="text/javascript" src="module/cart/cart.js"></script>
     <script type="text/javascript" src="module/myaccount/myaccount.js"></script>
     <script type="text/javascript" src="module/myaccount/myprofile.js"></script>
+    <script type="text/javascript" src="module/wishlist/wishlist.js"></script>
     <script type="text/javascript" src="module/order/my_orders/my_orders.js"></script>
     <script type="text/javascript" src="module/order/my_orders_details/my_orders_details.js"></script>
+    <script type="text/javascript" src="module/order/track_order/track_order.js"></script>
     <script type="text/javascript" src="module/product/list/product_list.js"></script>
     <script type="text/javascript" src="module/product/view/product_view.js"></script>
     <script type="text/javascript" src="module/notification/notification.js"></script>
@@ -207,6 +214,10 @@
     <script type="text/javascript" src="module/forgot/newpassword.js"></script>
     <script type="text/javascript" src="module/wallet/wallet.js"></script>
     <script type="text/javascript" src="module/switchlanguage/switchlanguage.js"></script>
+    <script type="text/javascript" src="module/switch_country/switch_country.js"></script>
+    <script type="text/javascript" src="module/value_packs/value_packs.js"></script>
+    <script type="text/javascript" src="module/ticket/view/view_ticket.js"></script>
+    <script type="text/javascript" src="module/ticket/list/list_ticket.js"></script>
 
     <!-- End Module Files -->
 

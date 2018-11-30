@@ -6,7 +6,7 @@ app.controller('policy', function ($scope, $http, $location, $cookieStore, model
 
     var ID = 4; //global Id for privacy policy
 
-    $rootScope.initOneSignal();
+    
     loading.deactive();
 
     $scope.home = function() {

@@ -1,140 +1,112 @@
-<div ng-controller="orderdetails" ng-init="ordersDetalisInit()" style="overflow: hidden;">
+<div ng-controller="orderdetails" ng-init="ordersDetalisInit()" >
 
-    <header class="container-fluid nav-down">
-        <div class="row">
-            <nav class="navbar navbar-inverse">
-                <div class="container-fluid no-padding">
-                    <ul class="nav navbar-nav top_header">
-                        <li class="menu_icon back_icon"><a href="javascript:void(0);">
-                                <img src="assets/img/header/back.png" alt="menu icon" ng-click="back();" /></a></li>
-                        <li class="logo_name"><a class="text-left back">Order Details</a></li>
-                        <li class="cart_icon mr-5" ng-click="downloadinvoice(myordersdetails.invoice_data.invoice_data_name, myordersdetails.invoice_data.invoice_data_url)">
 
-                            <a href="
-                            javascript:void(0);"><img src="assets/img/icon/invoice.png"
-                                    alt="search icon" /></a>
+        <header class="container-fluid nav-down">
+            <div class="row">
+                <nav class="navbar navbar-inverse">
+                  <div class="container no-padding">
+                    <ul class="nav navbar-nav top_header text-center">
+                      <li class="menu_icon "><a href="#"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
+                        <li class="page_name left">
+                            <a href="#" class="text-left ">
+                                <p>Order Summary</p>
+                            </a>
                         </li>
+                      
                     </ul>
-                </div>
-            </nav>
-
-        </div>
-        <!-- MOBILE-MENU-AREA END -->
-    </header>
-
-    <!-- END HEADER -->
-
-
-    <div class="order_cnfm mt-50">
-        <div class="dod pr-15">
-            <span><img src="assets/img/clock.png"></span>
-            <span class="font_type">{{myordersdetails.order_deliverytime}},{{myordersdetails.order_deliverydate}}</span>
-        </div>
-        <div class="delivery">
-            <span><img style="width:9%;" src="assets/img/order_deliver.png"></span>
-            <span class="font_type">{{myordersdetails.order_status}}</span>
-        </div>
-    </div>
-    <div class="order_cnfm">
-        <div class="dod">
-            <span class="font_type" style="font-weight: bold;">Delivered At:</span><br>
-            <span class="font_type">{{myordersdetails.cust_address}},
-                {{myordersdetails.cust_csz}}
-                {{myordersdetails.cust_landmark}}
-                {{myordersdetails.cust_locality}}
-            </span>
-        </div>
-        <div class="delivery">
-            <span class="font_type">Order ID : {{myordersdetails.order_no}}</span>
-            <br>
-            <span class="font_type">Payment Method: <span>{{paymentmode}}</span></span>
-        </div>
-    </div>
-
-
-    <!--ORDER DETAILS -->
-    <div class="">
-        <div class="my_order_details" ng-repeat="x in productdetails">
-            <div class="order_detail_img">
-                <img src="{{x.pimage}}">
-            </div>
-            <div class="order_detail_desc">
-                <div class="product_name">
-                    <h3>{{x.pname}}</h3>
-                </div>
-                <div class="product_rate" style="width:100%;">
-                    <div class="product_qty">
-                        <h3>{{x.weight}}</h3>
+                    
+                  </div>
+                </nav>
+            
+            </div> 
+            <!-- MOBILE-MENU-AREA END -->
+        </header>
+        <!-- END HEADER -->
+              
+        <!--  START Banner SLIDER -->
+            <div class="container-fluid mt-55">
+            <div class="row">    
+                <div class="order_container">
+                    <div class="dlvry_container no-padding">
+                        <div class="order_heading col-xs-12">
+                            <p>Order ID <span>{{detail.id}}</span></p>
+                        </div>
+                        <div class="order_subcontainer">
+                            <div class="order_subcontainer_heading col-xs-12">
+                                <p>Order ID &nbsp;<span> OD08842-1</span></p>
+                                <p class="status_btn">Pending</p>
+                                <a href="" class="track_btn" ng-click="trackOrder()">Track Order</a>
+                            </div>
+                            <div class="order_subcontainer_detail col-xs-12">
+                                <p><span>Order On: 12-7-2018</span><span>Order Amt: AED 220</span></p>
+                            </div>
+                            <div class="order_subcontainer__content col-xs-12">
+                                <div class="prod_row_wrapper">
+                                    <div class="prod_img_wrapper">
+                                        <img src="assets/img/product/order_img1.png" class="img-responsive" />						
+                                    </div>
+                                    <div class="prod_content_wrapper">
+                                        <p class="order_sub_name">Dry Fruits</p>
+                                        <p><span>Unit </span>500g</p>
+                                        <p><span>Price </span>AED 140</p>
+                                    </div>
+                                </div>
+                                <div class="prod_row_wrapper">
+                                    <div class="prod_img_wrapper">
+                                        <img src="assets/img/product/order_img1.png" class="img-responsive" />						
+                                    </div>
+                                    <div class="prod_content_wrapper">
+                                        <p class="order_sub_name">Dry Fruits</p>
+                                        <p><span>Unit </span>500g</p>
+                                        <p><span>Price </span>AED 140</p>
+                                    </div>
+                                </div>
+                                    <div class="submit-btn col-sm-6 col-xs-12 text-center">
+                                        <a href="#">Cancel</a>
+                                      </div>
+                            </div>
+                        </div>
+                       
                     </div>
-                    <div class="discount_rate"><span></span><span>Rs. {{x.price}}</span></div>
+                    <div class="dlvry_time_container mt-15">
+                        <div class="dlvry_address col-xs-12">
+                            <div class="dlvry_address_heading">
+                                
+                                
+                                <table class="mui-table">
+                                  <tbody>
+                                    <tr>
+                                      <td width="100px;">Payment</td>
+                                      <td width="20px;">:</td>
+                                      <td>COD</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Ordered On</td>
+                                      <td width="20px;">:</td>
+                                      <td>2:30PM, 11-2-2018</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Deliver To</td>
+                                      <td width="20px;">:</td>
+                                      <td>4 Clarke Street South, Abu Dubai</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Mobile No.</td>
+                                      <td width="20px;">:</td>
+                                      <td>9898999999</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view_prod">
+                        <p class="col-xs-6"><a href="view_cart.php">Total Amount</a></p>
+                        <p class="col-xs-6 text-right">AED {{detail.total_amount}}</p>
+                    </div>
+                    
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- 
-         <div class="my_order_details">
-             <div class="order_detail_img">
-                 <img src="assets/img/order_detail.png">
-             </div>
-             <div class="order_detail_desc">
-                <div class="product_name">
-                   <h3>Catch Big Cardamom Whole/Elaichi</h3>
-                </div>
-                <div class="product_rate" style="width:100%;">
-                    <div class="product_qty"><h3>2kg</h3></div>
-                    <div class="discount_rate"><span>Rs 600</span><span>Rs 500</span></div>
-                </div>
-             </div>
-         </div>
-         <div class="my_order_details">
-             <div class="order_detail_img">
-                 <img src="assets/img/order_detail.png">
-             </div>
-             <div class="order_detail_desc">
-                <div class="product_name">
-                   <h3>Catch Big Cardamom Whole/Elaichi</h3>
-                </div>
-                <div class="product_rate" style="width:100%;">
-                    <div class="product_qty"><h3>2kg</h3></div>
-                    <div class="discount_rate"><span>Rs 600</span><span>Rs 500</span></div>
-                </div>
-             </div>
-         </div>
-         
-          -->
-    <!--CHECKOUT  -->
-    <div class="">
-        <div class="price_details">
-            <div class="sub_total">
-                <h3 class="ml-15 mr-15 mt-10">Sub Total <span>Rs. {{myordersdetails.order_subtotal}}</span></h3>
             </div>
-            <div class="delivery_charge">
-                <h3 class="ml-15 mr-15">Shipping and Handling<span><span ng-if="ship_charge !='free'" style="float: none;">Rs.</span> {{myordersdetails.order_shippingcharge}}</span></h3>
-            </div>
-            <div class="discount">
-                <h3 class="ml-15 mr-15">Promo Discount<span>Rs. {{myordersdetails.promocode_amount}}</span></h3>
-            </div>
-            <div class="discount">
-                <h3 class="ml-15 mr-15">Wallet Used Amount<span>Rs. {{myordersdetails.wallet_used_amount}}</span></h3>
-            </div>
-            <div class="discount">
-                <h3 class="ml-15 mr-15">Order Payable Amount<span>Rs. {{payable_amt}}</span></h3>
-            </div>
-            <div class="total">
-                <h3 class="ml-15 mr-15"> Total Amount<span>Rs. {{myordersdetails.order_total}}</span></h3>
-            </div>
-            <!-- <div class="discount">
-                    <h3 class="ml-15 mr-15">You Saved<span>Rs. {{savings}}.00</span></h3>
-                </div> -->
-        </div>
-
-        <div class="sign-up-button checkout pt-5 pb-5 mb-10">
-
-            <button class="btn mb-0" ng-click="orderAgain(myordersdetails.order_no)">
-                Order Again
-            </button>
-
-        </div>
-    </div>
-
+        <!--  END Banner SLIDER -->
 </div>

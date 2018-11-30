@@ -1,8 +1,6 @@
-<div class="bg" ng-controller="login" id="containernew">
+<div ng-controller="login">  
 	<div style='display:none;' class="homes"></div>
 	<!-- END HEADER -->
-
-
 	<header class="container-fluid nav-down">
 		<div class="row">
 			<nav class="navbar navbar-inverse">
@@ -11,7 +9,7 @@
 
 						<li class="page_name">
 							<a href="javascript:void(0)" class="text-left text-center">
-								<p>Login</p>
+								<p>{{'Login' | translate}}</p>
 							</a>
 						</li>
 
@@ -29,31 +27,26 @@
 			<form method="post" name="loginform" novalidate>
 				<div class="form_container">
 					<div class="mui-textfield col-sm-6 col-xs-12">
-						<input type="number" id="email" name="mobileno" ng-model="mobileno" placeholder="Mobile No." required>
-						<label for="email">Mobile No</label>
+						<input type="number" id="email" name="mobileno" ng-model="mobileno" placeholder="{{'Mobile_Number' | translate}}" required>
+						<label for="email">{{'Mobile_Number' | translate}}</label>
 					</div>
 					<div class="mui-textfield col-sm-6 col-xs-12">
-						<input type="password" id="pass" name="userpassword" ng-model="userpassword" placeholder="Password" required>
-						<label for="pass">Password</label>
+						<input type="password" id="pass" name="userpassword" ng-model="userpassword" placeholder="{{'Password' | translate}}" required>
+						<label for="pass">{{'Password' | translate}}</label>
 					</div>
 				</div>
 
 				<div class="forgot_password">
-					<a href="javascript:void(0)" class="" ng-click="SentToforgot()">Forgot Password?</a>
+					<a href="javascript:void(0)" class="" ng-click="SentToforgot()">{{'Forgot_Password' | translate}} ?</a>
 				</div>
 
 				<div class="submit-btn col-sm-6 col-xs-12 text-center">
-					<a href="javascript:void(0)" ng-click="loginuser('loginform')">Submit</a>
+					<a href="javascript:void(0)" ng-click="loginuser('loginform')">{{'Submit' | translate}}</a>
 				</div>
 			</form>
 			<div class="exist-account" ng-click="signup()">
-				<p class="">Don't Have an account? <a href="javascript:void(0)" class="sign-in-link"> Sign Up </a></p>
+				<p class="">{{'Dont_Have_an_account' | translate}}? <a href="javascript:void(0)" class="sign-in-link"> {{'Sign_Up' | translate}} </a></p>
 			</div>
-
-
 		</div>
 	</div>
-
-
-
 </div>

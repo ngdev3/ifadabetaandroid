@@ -1,20 +1,33 @@
 app.controller('home', function ($scope, $http, $location, $cookieStore, $timeout, loading, model, $rootScope, $route) {
-    // if (!$cookieStore.get('userinfo')) {
-    //     $location.path('/login');
-    //     return false;
-    // }
+    
+    if (!$cookieStore.get('userinfo')) {
+        $scope.loggedin = false;
+       
+    }
 
-
+    if ($cookieStore.get('userinfo')) {
+        $scope.loggedin = true;
+        
+    }
+    
+    $scope.product_view = function(id){
+        $cookieStore.put('id',id);
+        $location.path('/product/view');
+    }
     // if (!$cookieStore.get('storeinfo')) {
     //     $location.path('/store');
     //     return false;
     // }
 
+    $scope.login = function(){
+        $location.path('/login');
+    }
+
     $scope.season_fetch =   function(){
         loading.active();
 
         var args = $.param({
-            'country_id': '2',
+            country_id: sessionStorage.country,
         });
         
         $http({
@@ -36,6 +49,50 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
                 $scope.best_picks_of_the_season = res.data.data.best_picks_of_the_season;
                 $scope.product_of_the_day = res.data.data.product_of_the_day;
                 $scope.best_picks_of_the_featured_products = res.data.data.best_picks_of_the_featured_products;
+                $scope.dairy_product = res.data.data.dairy_product;
+                $scope.slider = res.data.data.banner;
+                $scope.slickConfig0Loaded = true;
+                $scope.slickConfig0 = {
+                  method: {},
+                  dots: false,
+                  infinite: false,
+                  speed: 100,
+                   autoplay:true,
+                   autoplaySpeed:2500,
+                   arrows:false,
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                  responsive: [
+                    {
+                      breakpoint: 1024,
+                      settings: {
+                        slidesToShow: 1,
+                        infinite: true,
+                        dots: false,
+                      }
+                    },
+                    {
+                      breakpoint: 600,
+                      settings: {
+                        slidesToShow: 1,
+                      }
+                    },
+                    {
+                      breakpoint: 480,
+                      settings: {
+                        slidesToShow: 1,
+                      }
+                    },
+                    {
+                      breakpoint: 360,
+                      settings: {
+                        slidesToShow: 1,
+                      }
+                    }
+                  ]
+                };
+                console.log($scope.slider);
+                $scope.sliderCount =  $scope.slider.length;
            }else{
 
            }
@@ -65,6 +122,16 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
 
         $location.path('notification')
 
+    }
+
+    $scope.see_all = function(subcatid){
+        var subcategoryInfo = {
+            'subcatid': subcatid,
+            'from':'home'
+        }
+        $cookieStore.put('subcategoryInfo', subcategoryInfo);
+
+        $location.path('/subcategory');
     }
 
     $scope.signout = function () {
@@ -214,69 +281,123 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
           }
  */
 
+        
+        
+    //     $scope.searchBar = function () {
 
-    /**
-     * Funtion: searchbar on ng-keyup from home.html
-     * Name: Sajal Goyal
-     * Created-on: 17/10/2018 at 12:00pm 
-     * Get product on searching
-     */
-    $scope.searchbar = function () {
-        $scope.datanotfound = false;
-        $scope.resultstatus = false;
-        $scope.searchresult = '';
+    //     // $scope.datanotfound = false;
+    //     // $scope.resultstatus = false;
+    //     // $scope.searchresult = '';
+    //     // $scope.enableDiv = false;
+        
+    //    /*  if (($scope.search.length >= 1) && ($scope.search.length < 3)) {
+    //         $scope.resultstatus = true;
+    //         return false;
+    //     } else if ($scope.search.length == 0) {
 
-        if (($scope.search.length >= 1) && ($scope.search.length < 3)) {
-            $scope.resultstatus = true;
-            return false;
-        } else if ($scope.search.length == 0) {
+    //         $scope.resultstatus = false;
+    //         return false;
+    //     } */
 
-            $scope.resultstatus = false;
-            return false;
-        }
+    //     // console.log($scope.search.length)
+    //     loading.active();
 
-        // console.log($scope.search.length)
-        loading.active();
+    //     /* var args = $.param({
+    //         'search_key': $scope.search,
+    //         'uid': $cookieStore.get('userinfo').uid,
+    //         'mid': uuid
+    //     }) */
+    //     $http({
+    //         headers: {
+    //             //'token': '40d3dfd36e217abcade403b73789d732',
+    //             'Content-Type': 'application/x-www-form-urlencoded'
+    //         },
+    //         method: 'GET',
+    //         url: app_url + '/search/searchapi_result/?search_key=' + $scope.search+'&uid='+$cookieStore.get('userinfo').uid+'&mid='+uuid,
+    //         //data: args
 
-        var args = $.param({
-            'search_key': $scope.search,
-            'uid': $cookieStore.get('userinfo').uid,
-            'mid': uuid
-        })
-        $http({
-            headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: 'POST',
-            url: app_url + '/search/searchapi_result/?search_key=' + $scope.search,
-            data: args
+    //     }).then(function (response) {
 
-        }).then(function (response) {
+    //         res = response;
+    //         // console.log(res.data.data)
 
-            res = response;
+    //         if (res.data.total_record > 0) {
+    //             $scope.searchresult = res.data.data;
+    //             $scope.enableDiv = true;
+    //         } else {
+    //             // alert()
+    //             $scope.resultstatus = false;
+    //             $scope.searchresult = '';
+    //             $scope.datanotfound = true;
+    //         }
 
-            if (res.data.count > 0) {
-                //console.log(res.data.data)
-                $scope.searchresult = res.data.data;
-                $scope.enableDiv = true;
-            } else {
-                $scope.resultstatus = false;
-                $scope.searchresult = '';
-                $scope.datanotfound = true;
-            }
-
-        }).finally(function () {
-            loading.deactive();
-        });
-
+    //     }).finally(function () {
+    //         loading.deactive();
+    //     });
+    // }
 
 
-    }
 
-    $scope.product_view = function (pid) {
+   /*  $scope.product_view = function (pid) {
         $cookieStore.put('productviewID', pid);
         $location.path('/product/view')
+    } */
+
+
+    $scope.language = function(){
+        $location.path('/language');
+    }
+    $scope.myorder = function(){
+        $location.path('/order/myorder');
+    }
+    $scope.category = function(){
+        $location.path('/category');
+    }
+    $scope.profile = function(){
+        $location.path('/myaccount/profile');
+    }
+    $scope.cart = function(){
+        $location.path('/cart');
+    }
+    $scope.wishlist = function(){
+        $location.path('/wishlist');
+    }
+    $scope.valuedpack = function(){
+        $location.path('/value_packs');
+    }
+    $scope.manage_ticket = function(){
+        $location.path('/list_ticket');
+    }
+    $scope.switch_country = function(){
+        $location.path('/switch_country');
+    }
+    $scope.language = function(){
+        $location.path('/language');
+    }
+    $scope.change_password = function(){
+        $location.path('/changepassword');
+    }
+    $scope.contact_us = function(){
+        $location.path('/contactus');
+    }
+    $scope.logout = function(){
+        $cookieStore.remove('userinfo');
+        $cookieStore.remove('FullName');
+        $location.path('/login');
     }
 
+   /*  if($cookieStore.get("userinfo")){
+        $scope.fullName = $cookieStore.get("userinfo").fullName;
+        $scope.profileImage = $cookieStore.get("userinfo").profile_image;
+        
+    } */
+
+    if($cookieStore.get("FullName")){
+        $scope.fullName = $cookieStore.get("FullName").fullName;  
+    }else{  
+        if($cookieStore.get("userinfo")){
+            $scope.fullName = $cookieStore.get("userinfo").fullName; 
+        }      
+    }
+    //console.log($scope.profile);
 });

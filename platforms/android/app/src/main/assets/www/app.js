@@ -1,5 +1,5 @@
 var project_name = '/ifadabeta/webservices';
-var base_url = 'http://projects.tekshapers.org';
+var base_url = 'http://projects.tekshapers.in';
 var country = 'en';
 var WebUrl = base_url + project_name;
 var app_upload_url = base_url + project_name;
@@ -13,41 +13,8 @@ var device_type = 'Android';
 var lat;
 var lng;
 
-var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'ngSanitize', 'ngCookies', 'geolocation', 'ngCordovaOauth', 'ngCordova', 'kendo.directives','pascalprecht.translate']);
+var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel','ngSanitize', 'ngCookies', 'geolocation', 'ngCordovaOauth', 'ngCordova', 'kendo.directives','pascalprecht.translate']);
 
-//document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-//document.getElementById("networkInfo").addEventListener("onload", networkInfo);
-document.addEventListener("offline", onOffline, false);
-document.addEventListener("online", onOnline, false);
-
-function networkInfo() {
-    var networkState = navigator.connection.type;
-    var states = {};
-
-    states[Connection.UNKNOWN] = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI] = 'WiFi connection';
-    states[Connection.CELL_2G] = 'Cell 2G connection';
-    states[Connection.CELL_3G] = 'Cell 3G connection';
-    states[Connection.CELL_4G] = 'Cell 4G connection';
-    states[Connection.CELL] = 'Cell generic connection';
-    states[Connection.NONE] = 'No network connection';
-
-    alert('Connection type: ' + states[networkState]);
-};
-
-function onOffline() {
-    alert('You are now offline!');
-    setTimeout(function () {
-        navigator.app.exitApp();
-    }, 1000)
-    //window.location = 'no_internet.html';
-};
-
-function onOnline() {
-    //  navigator.app.exitApp();
-    // alert('You are now online!');
-}; 
 
 app.config(function ($routeProvider, $httpProvider) {
     $routeProvider
@@ -64,7 +31,7 @@ app.config(function ($routeProvider, $httpProvider) {
             templateUrl: "module/changepassword/changepassword.html"
         })
         .when("/register", {
-            templateUrl: "module/register/user_register.html"
+            templateUrl: "module/register/register.html"
         })
         .when("/address", {
             templateUrl: "module/address/address.html"
@@ -81,8 +48,8 @@ app.config(function ($routeProvider, $httpProvider) {
         .when("/category", {
             templateUrl: "module/category/category.html"
         })
-        .when("/about_us", {
-            templateUrl: "module/cms/about_us/about_us.html"
+        .when("/contactus", {
+            templateUrl: "module/cms/contactus/contactus.html"
         })
         .when("/policy", {
             templateUrl: "module/cms/privacy_policy/policy.html"
@@ -99,6 +66,9 @@ app.config(function ($routeProvider, $httpProvider) {
         .when("/myaccount/account", {
             templateUrl: "module/myaccount/myaccount.html"
         })
+        .when("/wishlist", {
+            templateUrl: "module/wishlist/wishlist.html"
+        })
         .when("/myaccount/profile", {
             templateUrl: "module/myaccount/myprofile.html"
         })
@@ -107,6 +77,9 @@ app.config(function ($routeProvider, $httpProvider) {
         })
         .when("/order/myorderdetails", {
             templateUrl: "module/order/my_orders_details/my_orders_details.html"
+        })
+        .when("/order/track_order", {
+            templateUrl: "module/order/track_order/track_order.html"
         })
         .when("/product/list", {
             templateUrl: "module/product/list/product_list.html"
@@ -164,6 +137,20 @@ app.config(function ($routeProvider, $httpProvider) {
             templateUrl: "module/switchlanguage/switchlanguage.html"
 
         })
+        .when("/switch_country", {
+            templateUrl: "module/switch_country/switch_country.html"
+
+        })
+        .when("/value_packs", {
+            templateUrl: "module/value_packs/value_packs.html"
+
+    }).when("/view_ticket", {
+            templateUrl: "module/ticket/view/view_ticket.html"
+
+        }).when("/list_ticket", {
+            templateUrl: "module/ticket/list/list_ticket.html"
+
+        })
 
 });
 
@@ -182,9 +169,15 @@ app.run(['$rootScope', '$location', '$routeParams', function ($rootScope, $locat
     });
 }]);
 
+app.filter('modulo', function(){
+    return function (arr, div, val) {
+        return arr.filter(function(item, index){
+            return index % div === (val || 0);
+        })
+    };
+  });
 
-
-app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $interval) {
+app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $location, $interval) {
 
 
 
@@ -540,11 +533,6 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
         }
     });
 
-    $rootScope.switchLanguage   =   function(){
-        sessionStorage.lang = 'ar';
-    }
-
-    $rootScope.switchLanguage();
 });
 
 

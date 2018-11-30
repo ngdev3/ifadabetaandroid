@@ -1,39 +1,47 @@
-<div class="bg" ng-controller="forgot">
- 
-	 
-	 
-       <!--  <div style = "height:50px;"></div> -->
-        
-        <div class="app_bg">	
-            <div class="cross_btn" ><img src="assets/img/header/cross.png" ng-click="backToLogin()"/></div>
-            <div class="sign-up-div mb-40 mt-50"><a href="javascript:void(0)" class="sign-up">Forgot Password</a></div>
-            <form method="post" name="forgot_pwd" novalidate>
-                <div class="input-container pr-20 pl-20">            
-                    <div class="sign-up-form" id="sign-in">
-                    <input type="number" id="mobile_no" name="mobile_no" ng-model="mobile_no"  value="" placeholder=" Enter Your Mobile Number" required>
-                    <img src="assets/img/phone.png">
+<div ng-controller="forgot">
+
+
+
+    <header class="container-fluid nav-down">
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+                <div class="container no-padding">
+                    <ul class="nav navbar-nav top_header text-center">
+
+                        <li class="page_name">
+                            <a href="javascript:void(0)" class="text-left text-center">
+                                <p>Forgot Password</p>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </nav>
+
+        </div>
+        <!-- MOBILE-MENU-AREA END -->
+    </header>
+    <!-- END HEADER -->
+    <form method="post" name="loginform" novalidate>
+
+        <div class="container">
+            <div class="login_form">
+                <div class="acnt-itext">
+                    <p class="">Please enter your registed mobile number. You will recive an OTP to reset your password.</a></p>
+                </div>
+
+                <div class="form_container">
+                    <div class="mui-textfield col-sm-6 col-xs-12">
+                        <input type="number" id="email" placeholder="" name="mobile_no" ng-model="mobile_no" required>
+                        <label class="text-center label-center" for="email"><strong>Enter Your Mobile No</strong></label>
                     </div>
                 </div>
-                
-            
-                <div class="sign-up-button mt-35">
-                    <a href="javascript:void(0)"><button class="btn" ng-click = "forgot_password('forgot_pwd')">
-                        Submit
-                    </button></a>
+
+                <div class="submit-btn col-sm-6 col-xs-12 text-center" ng-click="forgot_password('loginform')">
+                    <a href="javascript:void(0)">Submit</a>
                 </div>
-            </form>
+            </div>
         </div>
+    </form>
 </div>
-
-<script>
-    document.querySelector("#mobile_no").addEventListener("keypress", function (evt) {
-        if (evt.which != 13 && evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57)
-        {
-            evt.preventDefault();
-        }
-    });
-    
-    </script>
-
-
-

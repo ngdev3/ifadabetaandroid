@@ -1,145 +1,196 @@
 app.controller('sub_category', function ($scope, $http, $location, $interval, $cookieStore, model, $locale, loading, $rootScope) {
 
-    if (!$cookieStore.get('userinfo')) {
-        $location.path('/login');
-        return false;
-    }
+    // console.log($rootScope.best_picks_of_the_season);return;
 
-    $scope.my_account = function(){
-        $location.path('/myaccount/account');
-    }
 
-    $scope.opencart = function(){
+    $scope.cart = function () {
         $location.path('/cart');
     }
-    /**
-     * Funtion: subcatagory from subcatagory.html on ng-init
-     * Name: Sajal Goyal
-     * Created-on: 17/10/2018 at 12:45pm
-     * Get the sub catagory by sending the http request
-     */
 
-$scope.subcategories = function(){
-//    alert()
+    var ID;
+    $scope.fetch_product_list = function (id) {
+        // alert(id);
+        if (id) {
 
+            if (id !== 'all') {
+                ID = id;
+            }else{
+                ID = $cookieStore.get('subcategoryInfo').subcatid;
+            }
+
+
+        } else {
+            ID = $cookieStore.get('subcategoryInfo').subcatid;
+        }
+        // alert(ID);
         loading.active();
-    
+
+
+        var args = $.param({
+            category_id: ID,
+            country_id: sessionStorage.country,
+            language_code: sessionStorage.lang_code
+            //user_type : 4,
+            //user_id : 52,
+            //retailer_id : 47
+        });
+
+        // console.log(args);return;
+
         $http({
             headers: {
                 //'token': '40d3dfd36e217abcade403b73789d732',
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            method: 'GET',
-            url: app_url + '/subcategoryapi?catid='+$cookieStore.get('id')
-            //data: args 
+            method: 'POST',
+            url: app_url + '/product_list',
+            data: args
 
         }).then(function (response) {
 
             res = response;
+            // console.log(res.data);
+            // return;
 
-            if (res.data.status == 'success') {
-                
-                console.log(res);
-                //put cookie and redirect it    
-                //model.show('Alert', res.data.responseMessage);
-
-                $location.path('/subcategory');
-
-                if (res.data.data.length > 0) {
+            if (res.data.data.status == 'success') {
+                console.log(res.data.data);
+                $scope.categoryData = res.data.data.category_data[0];
+                //   alert(id);
+                if (!id) {
+                    
+                    if(id == 'all'){
+                        $scope.categorysubData = "";//res.data.data.category_data[0].sub;
+                    }else{
+                        $scope.categorysubData = res.data.data.category_data[0].sub;
+                    }
                    
-                    $scope.subcategory = res.data.data;
-                    //console.log($scope.subcategory);
+                    console.log("-------------------");
+                    if ($scope.categorysubData.length == 0) {
+                        $scope.categorysubData = "";
+                    }
+
+
                 }
-                else {
-                    alert('No Sub Categories');
+
+                $scope.slickConfig0Loaded = true;
+                $scope.slickConfig0 = {
+                    method: {},
+                    dots: false,
+                    infinite: false,
+                    speed: 100,
+                    autoplay: true,
+                    autoplaySpeed: 2500,
+                    arrows: false,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 4,
+                                infinite: true,
+                                dots: false,
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 3.5,
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 3,
+                            }
+                        },
+                        {
+                            breakpoint: 360,
+                            settings: {
+                                slidesToShow: 2,
+                            }
+                        }
+                    ]
+                };
+
+                /*  for(var i = 0; i< $scope.categorysubData.length; i++){
+                   $scope.categorysubSubData = $scope.categorysubData[i];
+                 } */
+                //   console.log($scope.categorysubData);
+                $scope.product = res.data.data.product.products;
+                //   console.log($scope.product);
+                for (var i = 0; i < $scope.product.length; i++) {
+                    $scope.productVarient = res.data.data.product.products[i].product_varient;
                 }
+                $location.path('/subcategory');
             } else {
 
-                //Throw error if not logged in
-                //model.show('Alert', res.data.responseMessage);
-                 alert(res.data.status);
+                alert(res.data.status);
             }
 
         }).finally(function () {
             loading.deactive();
         });
 
+    }
+
+
+    $scope.see_alls = function () {
+        loading.active();
+
+        var args = $.param({
+            product_type: $cookieStore.get('subcategoryInfo').subcatid,
+            country_id: sessionStorage.country,
+            language_code: sessionStorage.lang_code
+        });
+
+        // console.log(args);return;
+
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/get_pick_season_product',
+            data: args
+
+        }).then(function (response) {
+
+            res = response;
+            // console.log(res.data);
+            // return;
+
+            if (res.data.data.status == 'success') {
+                $scope.best_picks_of_the_season = res.data.data.view_all;
+                $location.path('/subcategory');
+            } else {
+
+                alert(res.data.status);
+            }
+
+        }).finally(function () {
+            loading.deactive();
+        });
 
     }
 
-/**
-     * Funtion: searchbar on ng-keyup from subcategory.html
-     * Name: Sajal Goyal
-     * Created-on: 23/10/2018 at 04:00pm 
-     * Get product on searching
-     */
-    $scope.searchbar = function(){
-        $scope.datanotfound = false; 
-        $scope.resultstatus = false;
-        $scope.searchresult =''; 
+    if ($cookieStore.get('subcategoryInfo').from == 'home') {
+        $scope.see_alls();
 
-        if(($scope.search.length >= 1) && ($scope.search.length < 3))
-        {   
-                $scope.resultstatus = true;
-                return false;
-        }else if($scope.search.length == 0){
-        
-        $scope.resultstatus = false;
-            return false;
-        } 
-
-        // console.log($scope.search.length)
-            loading.active();
-    
-            var args = $.param({
-                'search_key' : $scope.search,
-                'uid' : $cookieStore.get('userinfo').uid,
-                'mid' : uuid
-            })
-            $http({
-                headers: {
-                    //'token': '40d3dfd36e217abcade403b73789d732',
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                method: 'POST',
-                url: app_url + '/search/searchapi_result/?search_key='+$scope.search,
-                data: args 
-    
-            }).then(function (response) {
-    
-                res = response;
-    
-                if (res.data.count > 0) {
-                    //console.log(res.data.data)
-                    $scope.searchresult = res.data.data;
-                    $scope.enableDiv = true;
-                } else {
-                    $scope.resultstatus = false;
-                    $scope.searchresult ='';
-                    $scope.datanotfound = true;
-                }   
-    
-            }).finally(function () {
-                loading.deactive();
-            });
-    
-    
-       
+    } else {
+        $scope.fetch_product_list();
     }
 
-$scope.product_list = function (productListID, categoryName) {
 
-    var categoryInfo = {
-        'categoryName': categoryName,
-        'productListID': productListID
+    $scope.product_view = function (id) {
+        $cookieStore.put('id', id);
+        $location.path('/product/view');
     }
-    $cookieStore.put('categoryInfo', categoryInfo);
-    $location.path('/product/list');
-}
 
-$scope.product_view = function(pid){
-    $cookieStore.put('productviewID', pid);
-    $location.path('/product/view')
-  } 
+
+
+
+
 
 });

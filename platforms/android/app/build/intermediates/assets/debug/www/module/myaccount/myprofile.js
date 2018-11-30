@@ -1,21 +1,13 @@
 app.controller('myprofile', function ($scope, $http, $location, $interval, $cookieStore, model, $locale, loading, $route) {
 
 
+    // $scope.select_country = "INDIA";
+    // return;
     $scope.maxDate = new Date();
     $scope.monthSelectorOptions = {
         format: "dd-MM-yyyy"
     }
     
-    /**
-    * This will check if user is registered with app or not , if not user will be redirected to login screen
-    */
-    if (!$cookieStore.get('userinfo')) {
-        $location.path("/login");
-        return false;
-    }
-
-    var GlobalUID = $cookieStore.get('userinfo').uid;  //UID used for getting data from http request
-
 
     /* Upload adds link */
 
@@ -46,6 +38,11 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
     /* get Profile data for perticular user id  */
 
 
+    $scope.toAddress = function(){
+        $location.path("/address/add");
+    }
+
+
     //Function to fetch the User's Data
 
     $scope.myprofile_data = function () {
@@ -53,7 +50,9 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
         //console.log("Profile data initialize")
 
         var args = $.param({
-            'uid': GlobalUID
+            'user_id': $cookieStore.get("userinfo").uid,
+            'language_code' :sessionStorage.lang_code
+            // 'country_id' : sessionStorage.country
         });
 
         $http({
@@ -61,22 +60,31 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + 'profileapi',
+            url: app_url + '/basic_info',
             data: args //forms user object
 
         }).then(function (response) {
             loading.deactive();
             res = response;
-            // console.log(res);
-            if (res.data.status == 'success') {
-                console.log(response)
+            // console.log(res.data.data);return;
+            if (res.data.data.status == 'success') {
+                console.log(res);
                 //put cookie and redirect it    
-                $scope.fname = res.data.name;
-                $scope.email = res.data.email;
-                $scope.mobile = res.data.mobile;
-                $scope.dob = res.data.dob;
-                $scope.image = res.data.image;
-                $scope.gender = res.data.gender;
+                $scope.fname = res.data.data.basic_info.first_name;
+                $scope.lname = res.data.data.basic_info.last_name;
+                $scope.email = res.data.data.basic_info.email;
+                $scope.mobile = res.data.data.basic_info.mobile_number;
+                $scope.address = res.data.data.basic_info.address;
+                $scope.country = res.data.data.basic_info.COUNTRY_NAME;
+                $scope.countryID = res.data.data.address_details[0].country;
+                $scope.cityID = res.data.data.address_details[0].city;
+                $scope.countryName = res.data.data.address_details[0].COUNTRY_NAME;
+                $scope.cityName = res.data.data.address_details[0].CITY_NAME;
+                $scope.city = res.data.data.basic_info.CITY_NAME;
+                console.log($scope.countryID);
+                $scope.image = res.data.data.basic_info.image;
+
+               
             } else {
 
                 //Throw error if not logged in
@@ -88,28 +96,37 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
 
     /*Update user profile */
 
-    $scope.update_profile = function (form) {
+    $scope.updateUserProfile = function (form) {
         var error_str = '';
         
         if ($scope[form].$error) {
 
             if ($scope[form].fname.$error.required !== undefined) {
-                error_str += "Full Name, ";
+                error_str += "First Name, ";
+            }
+            
+            if ($scope[form].lname.$error.required !== undefined) {
+                error_str += "Last Name, ";
             }
 
-            if ($scope[form].email.$error.required !== undefined || $scope[form].email.$error.email) {
+           /*  if ($scope[form].email.$error.required !== undefined || $scope[form].email.$error.email) {
                 error_str += "Email Id, ";
             }
             if ($scope[form].mobile.$error.required !== undefined) {
                 error_str += "Mobile Number, ";
-            }
+            } */
 
-            if ($scope[form].dob.$error.required !== undefined) {
-                error_str += "Date of Birth, ";
+            if ($scope[form].address.$error.required !== undefined) {
+                error_str += "Address, ";
             }
             
-            if ($scope[form].gender.$error.required !== undefined) {
-                error_str += "Gender, ";
+            
+            if ($scope[form].select_country.$error.required !== undefined) {
+                error_str += "Country, ";
+            }
+
+            if ($scope[form].select_city.$error.required !== undefined) {
+                error_str += "City, ";
             }
         }
         setTimeout(function () {
@@ -122,31 +139,42 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
         }, 400);
         if (error_str == '') {
 
-            var reg1 = /[0-9]{2}[-|\/]{1}[0-9]{2}[-|\/]{1}[0-9]{4}/;
+            /* var reg1 = /[0-9]{2}[-|\/]{1}[0-9]{2}[-|\/]{1}[0-9]{4}/;
 
             if (reg1.test($scope.dob) == false) {
                 error_str = "Date Format Is Wrong";
                 // model.show('Alert', error_str);
                 alert(error_str);
                 return false;
-            }
+            } */
+            // console.log("-----------------aaaaaaaaaaa");
+            // console.log($scope.select_city);
             loading.active();
-            var args = $.param({
-                uid: GlobalUID,
-                email: $scope.email,
-                mobile: $scope.mobile,
-                dob: $scope.dob,
-                gender: $scope.gender,
-                name: $scope.fname,
 
+            if($scope.select_city == undefined){
+                model.show("Alert","<span style='font-weight:700;'>Following fields must have valid information:</span></br>City");
+                return false;
+            }
+            var args = $.param({
+                user_id: $cookieStore.get("userinfo").uid,
+                first_name: $scope.fname,
+                last_name: $scope.lname,
+                address: $scope.address,
+                country_id : $scope.select_country,
+                city_id : $scope.select_city,
+                language_code : sessionStorage.lang_code,
             });
+
+            
+
+            // alert(args);return;
 
             $http({
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: 'POST',
-                url: app_url + 'profileapi/updateProfile',
+                url: app_url + '/edit_account',
                 data: args //forms user object
 
             }).then(function (response) {
@@ -154,11 +182,20 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 res = response;
 
                 console.log("response from the server ");
-                console.log(response);
+                console.log(res);
 
-                if (res.data.status == 'success') {
+                if (res.data.data.status == 'success') {
                    
                     //console.log("Profile updated")
+                    var fname = response.data.data.user_account.first_name;
+                    var lname = response.data.data.user_account.last_name;
+    
+                    var fullName = fname+" "+lname;
+    
+                    var fullName = {
+                        'fullName' : fullName
+                    }
+                    $cookieStore.put("FullName",fullName);
                     model.show('Alert', 'Profile Updated Successfully');
                     $route.reload();
                     //$location.path('/dashboard/home');
@@ -176,21 +213,45 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
         }
     }
 
-  
-    $scope.profile_update = function(files){
-        
-      
-        //console.log(files)
-         this.files = event.target.files;
-         var profile_image = this.files[0].name;	
-        
-        console.log(profile_image)
+
+   
+
+
+    //defualt country
+    $scope.fetchcountry = function(){  
+        loading.active();      
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded' //'multipart/form-data' 
+            },
+            method: 'POST',
+            url: app_url + '/get_country',
+            //data: args
+        }).then(function (response) {  
+            loading.deactive();
+            console.log(response);
+            res = response;   
+            if (res.data.data.status == 'success') {
+                $scope.Countries = res.data.data.country;   
+                console.log($scope.Countries);             
+            } else {    
+                model.show('Alert', res.data.responseMessage);
+                $location.path('/dashboard/myprofile');
+            }
+        }).finally(function () {
+            loading.deactive();
+        })
+    }
+
+    //default city
+    $scope.fetchcity = function(){
+        // alert($scope.select_country);
         loading.active();
-        
-        // return false
+        // $scope.Cities = "";
         var args = $.param({
-            'uid': $cookieStore.get('userinfo').uid,
-            'file' : profile_image
+            'country_id': $scope.select_country
+           // 'file' : profile_image
         });
         
         $http({
@@ -199,12 +260,31 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 'Content-Type': 'application/x-www-form-urlencoded' //'multipart/form-data' 
             },
             method: 'POST',
-            url: app_url + '/profileapi/update_profile_image',
+            url: app_url + '/get_city',
             data: args
         }).then(function (response) {  
             loading.deactive();
-            console.log(response)    
+            // console.log(response);
+
+            res = response;   
+            if (res.data.data.status == 'success') {
+                // console.log(res.data.data.city);
+                if(!res.data.data.city){
+                    // console.log("in the false");return;
+                    model.show('Alert','No Cities Found!');
+                    $scope.Cities = "";
+                    console.log($scope.Cities);
+                    return false;
+                }else{
+                    $scope.Cities = res.data.data.city;   
+                    console.log($scope.Cities); 
+                }
+            } else {    
+                model.show('Alert', res.data.responseMessage);
+                $location.path('/dashboard/myprofile');
+            }
+        }).finally(function () {
+            loading.deactive();
         })
     }
 });
-

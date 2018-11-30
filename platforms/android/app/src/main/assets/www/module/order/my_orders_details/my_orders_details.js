@@ -1,19 +1,6 @@
 app.controller('orderdetails', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope, $cordovaFileTransfer) {
 
-    if (!$cookieStore.get('userinfo')) {
-        $location.path('/login');
-        return false;
-    }
-
-    var GlobalUID = $cookieStore.get('userinfo').uid; //Global Uid for get the response by sending the http request.
-
-    $rootScope.initOneSignal();
-    loading.deactive();
-
-    if (!$cookieStore.get('orderID')) {
-        $location.path('/login');
-    }
-
+    
     $scope.home = function () {
         //$location.path('/home');
         window.history.back();
@@ -28,42 +15,35 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
      */
 
 
+     $scope.trackOrder = function(){
+         $location.path('/order/track_order');
+     }
+
     $scope.ordersDetalisInit = function () {
         loading.active();
 
+        var args = $.param({
+        order_id: $cookieStore.get('orderID'),
+            user_id:$cookieStore.get("userinfo").uid,
+            country_id: sessionStorage.country,
+            language_code: sessionStorage.lang_code
+        });
+        loading.active();
         $http({
             headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            method: 'GET',
-            url: app_url + '/profileapi/getorderDetails?uid=' + GlobalUID + '&order_no=' + $cookieStore.get('orderID'),
+            method: 'POST',
+            url: app_url + '/order_summary',
+            data: args //forms user object
 
         }).then(function (response) {
 
             res = response;
 
-            if (res.data.status == 'success') {
-                //console.log(res.data);
-                //put cookie and redirect it    
-                //model.show('Alert', res.data.responseMessage);
-                $location.path('/order/myorderdetails');
-                $scope.myordersdetails = res.data;
-                $scope.ship_charge = res.data.order_shippingcharge;
-            //    console.log($scope.myordersdetails);
-               
-                if(res.data.is_wallet_used == 1){
-                    $scope.paymentmode = res.data.order_paymentmode+', wallet';
-                    // console.log($scope.paymentmode)
-                }else{
-                    $scope.paymentmode = res.data.order_paymentmode;
-                    // console.log($scope.paymentmode)
-                }
-                $scope.productdetails = res.data.products;
-                $scope.payable_amt = (res.data.order_total-res.data.wallet_used_amount);
-                console.log($scope.payable_amt);
-                $scope.savings = res.data.order_discount - res.data.promocode_amount ;
-                console.log($scope.myordersdetails);
+            console.log(res.data.data)
+            if (res.data.data.status == 'success') {
+                $scope.detail = res.data.data.basic_info;
 
             } else {
 
@@ -76,6 +56,7 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
             loading.deactive();
         });
     }
+
 
     $scope.downloadinvoice = function (invoicedatas, invoiceurl) {
 

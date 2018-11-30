@@ -1,88 +1,186 @@
-<div class="bg" ng-controller="sub_category" ng-init="subcategories()" style="overflow:hidden;">
-    <header class="container-fluid nav-down">
-        <div class="row">
-            <nav class="navbar navbar-inverse">
-                <div class="container-fluid no-padding">
+<div ng-controller="sub_category" >
+        <style type="text/css">
+            
+        .owl-carousel .owl-stage
+        {
+            width: 40000px !important;
+        }
+        .slick-slide {
+            display: none;
+            float: left;
+            height: auto;
+            min-height: 1px;
+            outline: 0;
+        }
+        </style>
+        <header class="container-fluid nav-down">
+            <div class="row">
+                <nav class="navbar navbar-inverse">
+                  <div class="container no-padding"> 
                     <ul class="nav navbar-nav top_header">
-                        <li class="menu_icon back_icon"><a href="javascript:void(0);"><img src="assets/img/header/back.png"
-                                    id="asdf" ng-click="back()" alt="menu icon" /></a></li>
-                        <li class="logo_name"><a class="text-left back">Sub Categories</a></li>
-                        <li class="cart_icon">
-                            <a href="javascript:void(0);"><img src="assets/img/header/user_icon.png" ng-click="my_account()"
-                                    alt="heart icon" /></a>
-                            <a href="javascript:void(0);"><img src="assets/img/header/cart_icon.png" ng-click="opencart()"
-                                    alt="cart icon" style="width: 15px;" /><span class="badge">{{activeCartValue}}</span></a>
-                            <a href="javascript:void(0);"><img src="assets/img/header/search_icon.png" alt="search icon" /></a>
+                      <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back()" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
+                        <li class="page_name left" ng-if="categoryData">
+                            <a href="javascript:void(0)" class="text-left ">
+                                <p>{{categoryData.name}}</p>
+                            </a>
                         </li>
+                        <li class="page_name left" ng-if="best_picks_of_the_season">
+                            <a href="javascript:void(0)" class="text-left ">
+                                <p>{{'best_picks_of_the_season' | translate}}</p>
+                            </a>
+                        </li>
+                      <li class="cart_icon">
+                          <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
+                            <!--<span class="badge">14</span>-->
+                          </a>
+                          <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
+                      </li>
                     </ul>
                     <ul class="nav navbar-nav bottom_header">
-                        <li class="menu_search_container"><a href="javascript:void(0);">
-                                <img src="assets/img/header/search_icon.png" alt="cart icon" />
-                                <input type="text" ng-keyup="searchbar()" ng-model="search" class="menu_search"
-                                    placeholder="Search products brands and more" />
-                            </a></li>
+                      <li class="menu_search_container"><a href="javascript:void(0)">
+                        <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
+                        <input type="text" class="menu_search" placeholder="Search products brands and more"/>
+                      </a></li>
                     </ul>
-                    <ul class="search_list">
-                        <li class="search_list_li" ng-repeat="x in searchresult" ng-click="product_view(x.pid)" ng-if="enableDiv">
-                            <div class="search_img">
-                                <img src="{{x.pimage}}">
-                            </div>
-                            <div class="search_name"><span>{{x.product_name |limitTo : 35}}{{x.product_name.length > 35
-                                    ? '...' : ''}}</span></div>
-                        </li>
-                        <li class="search_list_li" ng-if="resultstatus">
-                            <div class="search_name" style="width: 100%; padding-left: 5px;display: block;text-align: center"><span>Typing</span>
-                                <img src="img/loading21.gif" alt="" style="height: 6px;"></div>
-                        </li>
-                        <li class="search_list_li" ng-if="datanotfound">
-                            <div class="search_name" style="    width: 100%;padding-left: 5px; display: block; text-align: center"><span>Not
-                                    Found </span><br>
-                                <img src="img/notfoundemogi.gif" alt="" style="height: 25px;">
-                            </div>
-                        </li>
+                  </div>
+                </nav>
+            
+            </div>
+            <!-- MOBILE-MENU-AREA END -->
+        </header>
+        <!-- END HEADER -->
+        
+        <!--  [PULSES] Sub categories content -->
+            <div class="container-fluid mt-55">
+                <div class="row">
+                    <div class="">
+                        <!-- ** Buttons** -->
+                        <div class="pulses_buttons mb-20 mt-10" ng-if="categoryData">
+                            <div id="" class="owl-carousel owl2 owl-theme owl-loaded owl-drag">
+                                <!-- Buttons Items -->
+                                <div class="item">
+                                    <!-- <script type="text/ng-template" id="slider-top">
+                                        <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id)">                       
+                                    </script> -->
+                                    <slick class="slider" settings="slickConfig0" >
+                                        <div>
+                                            <input type="button" ng-if="categorysubData" class="btn btn-success all-sub-cat_buttons" id="all" name="" value="All" ng-click="fetch_product_list('all')">
+                                        </div>
+                                        <div ng-repeat="sub in categorysubData">
+                                            <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id)">                      
 
-                    </ul>
-                </div>
-            </nav>
-
-        </div>
-        <!-- MOBILE-MENU-AREA END -->
-    </header>
-
-    <!-- END HEADER -->
-
-
-    <div class="container-fluid mb-15 animatedParent animateOnce" id="category_list">
-        <div class="row">
-            <div class="col-xs-6 pl-5 pr-5 mt-5 mb-5" ng-if="subcategory.length > 0" ng-repeat="x in subcategory"
-                ng-click="product_list(x.id, x.name)">
-                <div class="animated fadeInLeft slow go">
-                    <a href="javascript:void(0);">
-                        <div class="offer-img">
-                            <img src="{{x.image}}" alt="" class="img-responsive">
-                            <div class="catg_overlay text-center">
-                                <p>{{x.name}}</p>
+                                        </div>
+                                    </slick>
+                                </div>
+                                <!-- <div class="item">
+                                    <input type="button" class="btn btn-success all-sub-cat_buttons" name="" value="Sub-Category 2">
+                                </div>
+                                <div class="item">
+                                    <input type="button" class="btn btn-success all-sub-cat_buttons" name="" value="Sub-Category 3">
+                                </div>
+                                <div class="item">
+                                    <input type="button" class="btn btn-success all-sub-cat_buttons" name="" value="Sub-Category 4">
+                                </div> -->
+                                <!-- !. Buttons Items -->
                             </div>
                         </div>
-                    </a>
+                        <!-- <div ng-if="!categoryData">
+                            <p>No Sub Categories</p >
+                        </div> -->
+                        <!-- ** !. Buttons ** -->
+                        <!-- ** Product Lists ** -->
+                        <div class="no-padding item_lists_main" ng-repeat="x in product" ng-if="categoryData"   ng-click="product_view(x.id)">
+                           
+                            <div class="prodcut_main_container">
+                                <div class="products_wrapper">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                        <a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="{{x.product_image}}"></a>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
+                                        <!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
+                                        <a href="javascript:void(0)"><p class="sub_produt_name">{{x.menu_name}}</p></a>
+                                        <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
+                                        <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->AED {{x.product_varient[0].price}}<!-- </span> --></p>
+                                    </div>
+                                        <div class="wislist_sub wishlist-container">
+                                          <i class="fa heart fa-heart-o"></i> 
+                                        </div>
+                                        <div class="sub_add_product">
+                                            <div class="add_item_container sub_add_btn">
+                                                <div class="add_item_button sub_add_btn" style="display: none;">
+                                                   <button class="add_item sub_add_btn"><span class="additem_span">+</span></button>
+                                                   <input type="text" value="1" disabled="">
+                                                  
+                                                    <button class="less_item sub_add_btn"><span class="additem_span">-</span></button>
+                                                </div>
+                                                <div class="add_cart_button sub_add_btn">
+                                                   <button class="">Add</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- {{product.length}} -->
+                        <div  class="no_data_wrapper" ng-if="product.length == '0'">
+                           <div class="">
+                               <img src="img/no_data_found.png">
+                           </div>
+                            
+                        </div>
+
+                        <div class="no-padding item_lists_main" ng-repeat="x in best_picks_of_the_season" ng-if="best_picks_of_the_season" ng-click="product_view(x.id)">
+                           
+                                <div class="prodcut_main_container">
+                                    <div class="products_wrapper">
+                                        <div class="col-md-3 col-sm-3 col-xs-3">
+                                            <a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="{{x.product_image}}"></a>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
+                                            <!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
+                                            <a href="javascript:void(0)"><p class="sub_produt_name">{{x.menu_name}}</p></a>
+<!--                                             <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
+ -->                                            <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->AED {{x.menu_varient_data.price}}<!-- </span> --></p>
+                                        </div>
+                                            <div class="wislist_sub wishlist-container">
+                                              <i class="fa heart fa-heart-o"></i> 
+                                            </div>
+                                            <div class="sub_add_product">
+                                                <div class="add_item_container sub_add_btn">
+                                                    <div class="add_item_button sub_add_btn" style="display: none;">
+                                                       <button class="add_item sub_add_btn"><span class="additem_span">+</span></button>
+                                                       <input type="text" value="1" disabled="">
+                                                      
+                                                        <button class="less_item sub_add_btn"><span class="additem_span">-</span></button>
+                                                    </div>
+                                                    <div class="add_cart_button sub_add_btn">
+                                                       <button class="">Add</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- ** !. Product Lists ** -->
+                    </div>
                 </div>
             </div>
-            <div ng-if="subcategory.length == 0">
-                <h3>No Sub Categories</h3>
-            </div>
-
-        </div>
-    </div>
+        <!--  !. [PULSES] Sub categories content -->
+            
+        
+            
+        <script>
+        
+            
+        $(document).ready(function(){
+            $(".cart_icon a:last-child").click(function(){
+                //alert();
+                $(".bottom_header").slideToggle();
+                //$("#banner_slider").toggleClass("search-container")
+            });	
+        });
+ /*    $("#all").focus();  */
+          
+            </script>	
+   
 </div>
-
-
-<script>
-    $(document).ready(function () {
-        $(".cart_icon a:last-child").click(function () {
-            $(".bottom_header").slideToggle();
-            //$("#banner_slider").toggleClass("search-container")
-        })
-
-
-    });
-</script>

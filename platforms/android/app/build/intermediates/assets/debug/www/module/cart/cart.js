@@ -1,15 +1,5 @@
 app.controller('cart', function ($rootScope, $scope, $http, $location, $interval, $cookieStore, model, loading, $filter, $route) {
 
-    $cookieStore.remove('promocodeData');
-
-    if (!$cookieStore.get('userinfo')) {
-        $location.path('/login');
-        return false;
-    }
-
-    if ($cookieStore.get('paymentStatus')) {
-        $cookieStore.remove('paymentStatus');
-    }
 
     $scope.homePage = function () {
         $location.path('/dashboard/home');

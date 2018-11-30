@@ -6,7 +6,7 @@ app.controller('terms', function ($scope, $http, $location, $cookieStore, model,
     
     var ID = 5; //global Id for Terms & condition
 
-    $rootScope.initOneSignal();
+    
     loading.deactive();
 
     $scope.home = function() {

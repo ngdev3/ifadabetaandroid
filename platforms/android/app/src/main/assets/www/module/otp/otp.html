@@ -1,6 +1,26 @@
 <div ng-controller="otp">
+    <header class="container-fluid nav-down">
+		<div class="row">
+			<nav class="navbar navbar-inverse">
+				<div class="container no-padding">
+					<ul class="nav navbar-nav top_header text-center">
 
+						<li class="page_name">
+							<a href="javascript:void(0)" class="text-left text-center">
+								<p>OTP Verification</p>
+							</a>
+						</li>
+
+					</ul>
+
+				</div>
+			</nav>
+
+		</div>
+		<!-- MOBILE-MENU-AREA END -->
+	</header>
     <div class="app_bg">
+       
         <form method="post" name="otpform" novalidate>
             <div class="otp_verify mt-50">
                 <div class="otp_send_msg">
@@ -8,35 +28,55 @@
                 </div>
             </div>
             <!-- {{first}} -->
-            <div class="container">
+            <!-- <div class="container">
                 <div id="otp">
                     <div class="digit">
-                        <!-- <div class="digit1">
+                        <div class="digit1">
                             <input type="number" name="first" ng-model="first" oninput="this.value=this.value.replace(/,1,/g,'');"
                                 placeholder="*" minlength="1" maxlength="1" required>
-                        </div> -->
+                        </div> 
 
-                        <!-- <div class="digit2">
+                         <div class="digit2">
                             <input type="number" ng-model="second" name="second" placeholder="*" autocomplete="on"
                                 required>
-                        </div> -->
+                        </div>
                         <div class="digit3s">
                             <input type="number" ng-model="third" name="third" placeholder="*" required>
                         </div>
-                        <!-- <div class="digit4">
+                        <div class="digit4">
                             <input type="number" ng-model="fourth" name="fourth" placeholder="*" autocomplete="on"
                                 required>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="sign-up-button">
+            </div> -->
+            <!-- <div class="sign-up-button">
                 <button class="otp-btn" ng-click="otpVerification('otpform')"> Submit </button>
             </div>
             <div class="resend_otp mt-15">
                 <a href="javascript:void(0)" class="mr-30" ng-click="resendOtps()"> Resend OTP</a>
+            </div> -->
+
+
+            <div class="form_container">
+                <div class="mui-textfield col-sm-6 col-xs-12">
+                        <!-- <input type="number" ng-model="third" name="third" placeholder="*" required> -->
+                    <input type="number" id="email" name="third" ng-model="third" placeholder="Enter OTP" required>
+                    <label for="email">OTP Number</label>
+                </div>
+               
             </div>
+            <div class="forgot_password">
+                <a href="javascript:void(0)" class="" ng-click="resendOtps()">Resend OTP</a>
+            </div>
+
+            <div class="submit-btn col-sm-6 col-xs-12 text-center">
+                <a href="javascript:void(0)" ng-click="otpVerification('otpform')">{{'Submit' | translate}}</a>
+            </div>
+
         </form>
+
+
     </div>
 
 </div>
