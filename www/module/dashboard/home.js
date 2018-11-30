@@ -283,58 +283,58 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
 
         
         
-    //     $scope.searchBar = function () {
-
-    //     // $scope.datanotfound = false;
-    //     // $scope.resultstatus = false;
-    //     // $scope.searchresult = '';
-    //     // $scope.enableDiv = false;
+        $scope.searchBar = function () {
+            alert("will work on it...soon");return;
+        // $scope.datanotfound = false;
+        // $scope.resultstatus = false;
+        // $scope.searchresult = '';
+        // $scope.enableDiv = false;
         
-    //    /*  if (($scope.search.length >= 1) && ($scope.search.length < 3)) {
-    //         $scope.resultstatus = true;
-    //         return false;
-    //     } else if ($scope.search.length == 0) {
+       /*  if (($scope.search.length >= 1) && ($scope.search.length < 3)) {
+            $scope.resultstatus = true;
+            return false;
+        } else if ($scope.search.length == 0) {
 
-    //         $scope.resultstatus = false;
-    //         return false;
-    //     } */
+            $scope.resultstatus = false;
+            return false;
+        } */
 
-    //     // console.log($scope.search.length)
-    //     loading.active();
+        // console.log($scope.search.length)
+        loading.active();
 
-    //     /* var args = $.param({
-    //         'search_key': $scope.search,
-    //         'uid': $cookieStore.get('userinfo').uid,
-    //         'mid': uuid
-    //     }) */
-    //     $http({
-    //         headers: {
-    //             //'token': '40d3dfd36e217abcade403b73789d732',
-    //             'Content-Type': 'application/x-www-form-urlencoded'
-    //         },
-    //         method: 'GET',
-    //         url: app_url + '/search/searchapi_result/?search_key=' + $scope.search+'&uid='+$cookieStore.get('userinfo').uid+'&mid='+uuid,
-    //         //data: args
+        var args = $.param({
+            'country_id': $scope.search,
+            'uid': $cookieStore.get('userinfo').uid,
+            'mid': uuid
+        })
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'GET',
+            url: app_url + '/product_list',
+            //data: args
 
-    //     }).then(function (response) {
+        }).then(function (response) {
 
-    //         res = response;
-    //         // console.log(res.data.data)
+            res = response;
+            // console.log(res.data.data)
 
-    //         if (res.data.total_record > 0) {
-    //             $scope.searchresult = res.data.data;
-    //             $scope.enableDiv = true;
-    //         } else {
-    //             // alert()
-    //             $scope.resultstatus = false;
-    //             $scope.searchresult = '';
-    //             $scope.datanotfound = true;
-    //         }
+            if (res.data.total_record > 0) {
+                $scope.searchresult = res.data.data;
+                $scope.enableDiv = true;
+            } else {
+                // alert()
+                $scope.resultstatus = false;
+                $scope.searchresult = '';
+                $scope.datanotfound = true;
+            }
 
-    //     }).finally(function () {
-    //         loading.deactive();
-    //     });
-    // }
+        }).finally(function () {
+            loading.deactive();
+        });
+    }
 
 
 
@@ -398,6 +398,10 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         if($cookieStore.get("userinfo")){
             $scope.fullName = $cookieStore.get("userinfo").fullName; 
         }      
+    }
+
+    if($cookieStore.get("userinfo")){
+        $scope.address = $cookieStore.get("userinfo").address;
     }
     //console.log($scope.profile);
 });

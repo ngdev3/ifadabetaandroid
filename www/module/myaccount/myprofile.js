@@ -147,8 +147,31 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 alert(error_str);
                 return false;
             } */
-            // console.log("-----------------aaaaaaaaaaa");
-            // console.log($scope.select_city);
+            if ($scope[form].$valid) { //if all field are filled then this will check pattern of input entered
+                // alert("Success");
+                var reg1 = /^[a-zA-Z ]+$/;
+                var reg2 = /^[a-zA-Z0-9- ]+$/;
+    
+             if (reg1.test($scope.fname) == false) {
+                    error_str = "First Name should contain Alphabets Only";
+                    model.show('Alert', error_str);
+                    // alert(error_str);
+                    return false;
+                }
+             if (reg1.test($scope.lname) == false) {
+                    error_str = "Last Name should contain Alphabets Only";
+                    model.show('Alert', error_str);
+                    // alert(error_str);
+                    return false;
+                }
+    
+                if (reg2.test($scope.address) == false) {
+                    error_str = "Zip Code should contain Numbers Only & Length should be 6";
+                    model.show('Alert', error_str);
+                    // alert(error_str);
+                    return false;
+                }
+
             loading.active();
 
             if($scope.select_city == undefined){
@@ -212,6 +235,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
             })
         }
     }
+}
 
 
    

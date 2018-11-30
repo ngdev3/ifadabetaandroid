@@ -10,10 +10,10 @@
     "cordova-plugin-device": {
       "PACKAGE_NAME": "com.tekshapers.ifadabeta"
     },
-    "cordova-plugin-network-information": {
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.tekshapers.ifadabeta"
     },
-    "cordova-plugin-whitelist": {
+    "cordova-plugin-network-information": {
       "PACKAGE_NAME": "com.tekshapers.ifadabeta"
     }
   },

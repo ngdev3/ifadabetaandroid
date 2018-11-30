@@ -94,6 +94,7 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                         'email_address': response.data.data.email,
                         'country_id': response.data.data.country_id,
                         'fullName' : fullName,
+                        'address' : response.data.data.address,
                         'profile_image' : response.data.data.profile_image
                     }
                     $cookieStore.put('userinfo', userinfo);

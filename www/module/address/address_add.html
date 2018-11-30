@@ -52,14 +52,12 @@
 					</div> -->
 					<div class="mui-select col-sm-6 col-xs-12">
 						<select id="country" name="country" ng-model="country" ng-change="fetchcity()" required>
-							<option>Select Country</option>
 							<option value="{{c.id}}" ng-repeat="c in Countries">{{c.name}}</option>
 						</select>
 						<label for="country">Country</label>
 					</div>
 				  <div class="mui-select col-sm-6 col-xs-12">
 					<select id="city" name="city" ng-model="city" required>
-					  <option>Select City</option>
 					  <option value="{{city.id}}" ng-repeat="city in Cities">{{city.name}}</option>
 					</select>
 					<label for="city">City</label>
