@@ -85,7 +85,17 @@
 }
     /** ! controls **/
 	
-
+.section-heading{
+    width: 80%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-height: 30px;
+    max-height: 30px;
+}
     </style>
 <div class="bg" ng-controller="home" id="containernew">
     <div style='display:none;' class="homes"></div>
