@@ -50,7 +50,7 @@ app.config(function ($translateProvider) {
 
   $translateProvider.translations('ar', {
     
-     -:'كود الإحالة',
+    Referral_Code :'كود الإحالة',
     Email:'البريد الإلكتروني',
     Mobile_Number:'رقم الهاتف المحمول',
     Last_Name:'الكنية',
