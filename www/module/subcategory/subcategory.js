@@ -183,7 +183,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         });
 
     }
-
+    
     if ($cookieStore.get('subcategoryInfo').from == 'home') {
         $scope.see_alls();
 

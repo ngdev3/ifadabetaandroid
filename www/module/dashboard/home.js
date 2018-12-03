@@ -324,7 +324,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
             // return;
 
             if (res.data.data.product.total_rows > 0) {
-                $rootScope.searchresult = res.data.data.products;
+                $rootScope.searchresult = res.data.data.product.products;
                 $location.path("/subcategory");
             } else {
                 // alert()

@@ -133,7 +133,7 @@
                             
                         </div>
 
-                        <div class="no-padding item_lists_main" ng-repeat="x in best_picks_of_the_season" ng-if="best_picks_of_the_season" ng-if="!searchresult" ng-click="product_view(x.id)">
+                        <div class="no-padding item_lists_main" ng-repeat="x in best_picks_of_the_season" ng-if="best_picks_of_the_season && !searchresult"  ng-click="product_view(x.id)">
                            
                                 <div class="prodcut_main_container">
                                     <div class="products_wrapper">
@@ -167,7 +167,7 @@
                             </div>
                         <!-- ** !. Product Lists ** -->
 
-                        <div class="no-padding item_lists_main" ng-repeat="s in searchresult" ng-if="searchresult"  ng-click="product_view(x.id)">
+                        <div class="no-padding item_lists_main" ng-repeat="s in searchresult" ng-if="searchresult"  ng-click="product_view(s.id)">
                            
                             <div class="prodcut_main_container">
                                 <div class="products_wrapper">
