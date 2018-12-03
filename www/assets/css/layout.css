@@ -1053,3 +1053,50 @@ li.progtrckr-todo.inprocessed span.pending_check i
 .btn_discounts{
 	display:  none !important;
 }
+
+
+/*address form*/
+.address h3{margin-top:0; padding-top:15px; font-size: 16px; color: #4f4f4f; font-weight: 500;}
+.address_logo {
+    width: 10%;
+    height: auto;
+    display: table-cell;
+    vertical-align: top;
+    padding-top: 21px;
+    padding-left: 10px;
+}
+.saved_address{
+	border-bottom: 1px solid #e6e4e4;
+}
+.address_details {
+    width: 70%;
+    display: table-cell;
+    text-align: left;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+.address{
+	padding-left: 15px;
+    border-bottom: 1px solid #ffffff;
+    box-shadow: 1px 2px 15px #f1f1f1;
+}
+.address_details h3, .delivery_add h3{
+	color: #7a7a7a;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 25px;
+	margin: 20px 5px 20px 5px;
+}
+.address_details a{
+	margin-right: 13px;
+    font-weight: 600;
+    font-size: 14px;
+	margin: 20px 5px 20px 5px;
+}
+.edit{
+	color: #006d07;
+}
+.delete{
+	color: #ff7272;
+}
+/*address Ends*/

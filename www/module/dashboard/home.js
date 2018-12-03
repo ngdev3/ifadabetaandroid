@@ -383,6 +383,9 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     $scope.contact_us = function(){
         $location.path('/contactus');
     }
+    $scope.my_address = function(){
+        $location.path('/address');
+    }
     $scope.logout = function(){
         $cookieStore.remove('userinfo');
         $cookieStore.remove('FullName');

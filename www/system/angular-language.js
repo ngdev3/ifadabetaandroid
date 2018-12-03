@@ -50,7 +50,8 @@ app.config(function ($translateProvider) {
     First_Name : 'First Name',
     Last_Name : 'Last Name',
     Buyer_Registration : 'Buyer Registration',
-    Delivery_Location : 'Delivery Location'
+    Delivery_Location : 'Delivery Location',
+    My_Addresses : 'My Addresses'
   });
 
 
@@ -112,6 +113,7 @@ app.config(function ($translateProvider) {
     Enter_OTP : 'أدخل OTP',
     Please_enter_your_registed_mobile_number_You_will_recive_an_OTP_to_reset_your_password : 'الرجاء إدخال رقم هاتفك المحمول. سوف تسترد كلمة مرور لمرة واحدة لإعادة تعيين كلمة المرور الخاصة بك.',
     feature_name : 'اسم الميزة',
+    My_Addresses : 'عناويني'
   });
 
 

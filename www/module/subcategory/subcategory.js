@@ -29,7 +29,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         var args = $.param({
             category_id: ID,
             country_id: sessionStorage.country,
-            language_code: sessionStorage.lang_code
+            language_code: 'en'
             //user_type : 4,
             //user_id : 52,
             //retailer_id : 47

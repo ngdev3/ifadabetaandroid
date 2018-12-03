@@ -100,6 +100,7 @@
                 <li><a href="javascript:void(0)"><img src="assets/img/icon/flag_icon.png" alt="" /> <span>{{country_name}}</span><img src="assets/img/icon/edit_icon.png" alt="" class="location_view"/> </a></li>
                 
                 <li ng-if="loggedin" ng-click="profile()"><a href="javascript:void(0)"><img src="assets/img/icon/profile.png" alt="" /> <span>{{'My_Profile' | translate}}</span></a></li>
+                <li ng-if="loggedin" ng-click="my_address()"><a href="javascript:void(0)"><img src="assets/img/icon/profile.png" alt="" /> <span>{{'My_Addresses' | translate}}</span></a></li>
                 <li ng-click="cart()"><a href="javascript:void(0)"><img src="assets/img/icon/cart_black.png" alt="" /> <span>{{'My_Cart' |translate}}</span></a></li>
                 
                 <li ng-if="loggedin" ng-click="myorder()"><a href="javascript:void(0)"><img src="assets/img/icon/orders.png" alt="" /> <span>{{'My_Orders' | translate}}</span></a></li>

@@ -1,94 +1,74 @@
 <div class="bg" ng-controller="address_edit" ng-init="address_edit_data()">
-    <header class="container-fluid nav-down">
-        <div class="row">
-            <nav class="navbar navbar-inverse">
-            <div class="container-fluid no-padding">
-                <ul class="nav navbar-nav top_header">
-                <li class="menu_icon back_icon" ><a href="javascript:void(0)" ng-click="backToAddress()" ><img src="assets/img/header/back.png" id="asdf" alt="menu icon"  /></a></li>
-                <li class="logo_name"><a class="text-left back">Edit Address</a></li>
-                <li class="cart_icon mr-5">
+        <header class="container-fluid nav-down">
+            <div class="row">
+                <nav class="navbar navbar-inverse">
+                  <div class="container no-padding">
+                    <ul class="nav navbar-nav top_header text-center">
+                      <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" ng-click="back()"/></a></li>
+                        <li class="page_name left">
+                            <a href="javascript:void(0)" class="text-left ">
+                                <p>Edit Address</p>
+                            </a>
+                        </li>
+                      
+                    </ul>
                     
-                    <a href="javascript:void(0)"></a>
-                </li>
-                </ul>
+                  </div>
+                </nav>
+            
             </div>
-            </nav>
-        
+            <!-- MOBILE-MENU-AREA END -->
+        </header>
+        <!-- END HEADER -->
+            
+        <div class="container">
+            <div class="login_form">
+                <div class="form_container pt-10">
+                    <form class="mui-form" name="editAddress" method="POST" novalidate>
+                        <div class="mui-select col-sm-6 col-xs-12">
+                            <select id="country" name="country" ng-model="country" ng-init="fetchcountry()" ng-change="fetchcity()" required>
+                                <option value="{{c.id}}" ng-repeat="c in Countries">{{c.name}}</option>
+                            </select>
+                            <label for="country">Country</label>
+                        </div>
+                        <div class="mui-select col-sm-6 col-xs-12">
+                        <select id="city" name="city" ng-model="city" required>
+                            <option value="{{city.id}}" ng-repeat="city in Cities">{{city.name}}</option>
+                        </select>
+                        <label for="city">City</label>
+                        </div>	
+                        <div class="mui-textfield col-sm-6 col-xs-12">
+                        <input type="text"  id="address" name="address" ng-model="address" placeholder="Address" required>
+                        <label for="hno">Address</label>
+                        </div>
+                        <!-- <div class="mui-textfield col-sm-6 col-xs-12">
+                        <input type="text"  id="street" name="hno" model="hno" placeholder="Street Name" required>
+                        <label for="street">Street</label> -->
+                        
+                        <div class="mui-textfield col-sm-6 col-xs-12">
+                        <input type="text"  id="landmark" name="landmark" ng-model="landmark" placeholder="Landmark" required>
+                        <label for="street">Landmark</label>
+                        </div>				  
+                        <div class="mui-textfield col-sm-6 col-xs-12">
+                        <input type="number"  id="zip" name="zip" ng-model="zip" placeholder="Zip Code" required>
+                        <label for="street">Zip Code</label>
+                        </div>
+                        <div class="mui-textfield col-sm-6 col-xs-12">
+                        <input type="text"  id="instruction" name="instruction" ng-model="instruction" placeholder="Delivery Instruction" required>
+                        <label for="street">Delivery Instruction</label>
+                        </div>
+                        <div class="mui-textfield col-sm-6 col-xs-12">
+                        <input type="text"  id="mobile" name="mobile" ng-model="mobile" placeholder="Mobile Number" required>
+                        <label for="street">Mobile Number</label>
+                        </div>
+                        <div class="submit-btn col-sm-6 col-xs-12 text-center">
+                        <a href="javascript:void(0)" ng-click="saveEditAddress('editAddress')">Save</a>
+                        </div>
+                    </form>
+                </div>        
+            </div>
         </div>
-        <!-- MOBILE-MENU-AREA END -->
-    </header>
-
-    <!-- END HEADER -->    
-        
-        
-        
-    <form method="post" name="edit_address_form" novalidate>	
-        <div class="input-container pr-20 pl-20 mt-70 address_fill" id="sign_up">
-            <!--  <h3>{{x.title}}</h3>
-            </div>  -->
-            <div class="sign-up-form mb-20 text-center" style="box-shadow: none;">                    
-                <div class="pretty p-icon p-round p-pulse">
-                    <input type="radio" ng-model="address_type" name="address_type" required value="home"/>
-                    <div class="state p-info-o">
-                    <i class="icon fa fa-check"></i>
-                    <label>Home</label>
-                    </div>
-                </div>
-                <div class="pretty p-icon p-round p-pulse">
-                    <input type="radio" ng-model="address_type"  name="address_type" required value="work"/>
-                    <div class="state p-info-o">
-                    <i class="icon fa fa-check"></i>
-                    <label>Work</label>
-                    </div>
-                </div>
-                <div class="pretty p-icon p-round p-pulse">
-                    <input type="radio" ng-model="address_type" name="address_type" required value="other"/>
-                    <div class="state p-info-o">
-                    <i class="icon fa fa-check"></i>
-                    <label>Other</label>
-                    </div>
-                </div>
-            </div>   
-          
-            <div class="sign-up-form mb-20">
-                <input type="text" id="full_name" value="" name="fname" ng-model="fname" placeholder="Full Name"  required>
-                <span><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
-            </div>
-            <div class="sign-up-form mb-20">
-                <input type="text" value="" id="house_no" name="house_no" ng-model="house_no" placeholder="House No." required>
-                <span><i class="fa fa-home" aria-hidden="true"></i></span>
-            </div>
-            <div class="sign-up-form mb-20">
-                <input type="text" value="" id="street" name="street" ng-model="street" placeholder="street" required>
-                <span><i class="fa fa-street-view" aria-hidden="true"></i></span>
-            </div>
-            <div class="sign-up-form mb-20">
-                <input type="text" id="city" value="" name="city" ng-model="city" placeholder="City" required disabled>
-                <span><i class="fa fa-globe" aria-hidden="true"></i></span>
-            </div>
-            <div class="sign-up-form mb-20">
-                <input type="text" id="landmark" value="" name="landmark" ng-model="landmark" placeholder="Landmark" required>
-                <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-            </div>
-            <div class="sign-up-form mb-20">
-                <input type="number" value="" id="pin_code" name="pincode" ng-model="pincode" placeholder="pincode" required>
-                <span><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
-            </div>      
-        </div>
-    
-        
-        <!-- TERMS AND CONDITION -->
-        
-
-        
-        <!-- SUBMIT BUTTON -->
-        <div class="sign-up-button mt-35 mb-35">
-            <a href="javascript:void(0)"><button class="btn" ng-click="edit_address('edit_address_form')">
-                Submit
-            </button></a>
-        </div>  
-    </form>
-</div>
+    </div>
 
 <script>
     document.querySelector("#pin_code").addEventListener("keypress", function (evt) {
