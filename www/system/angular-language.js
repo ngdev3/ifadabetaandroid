@@ -41,7 +41,7 @@ app.config(function ($translateProvider) {
 
   $translateProvider.translations('ar', {
     
-    Referal_Code:'كود الإحالة',
+     -:'كود الإحالة',
     Email:'البريد الإلكتروني',
     Mobile_Number:'رقم الهاتف المحمول',
     Last_Name:'الكنية',

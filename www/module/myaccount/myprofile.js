@@ -76,12 +76,12 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 $scope.mobile = res.data.data.basic_info.mobile_number;
                 $scope.address = res.data.data.basic_info.address;
                 $scope.country = res.data.data.basic_info.COUNTRY_NAME;
-                $scope.countryID = res.data.data.address_details[0].country;
+               /*  $scope.countryID = res.data.data.address_details[0].country;
                 $scope.cityID = res.data.data.address_details[0].city;
                 $scope.countryName = res.data.data.address_details[0].COUNTRY_NAME;
-                $scope.cityName = res.data.data.address_details[0].CITY_NAME;
+                $scope.cityName = res.data.data.address_details[0].CITY_NAME; */
                 $scope.city = res.data.data.basic_info.CITY_NAME;
-                console.log($scope.countryID);
+                // console.log($scope.countryID);
                 $scope.image = res.data.data.basic_info.image;
 
                
@@ -178,6 +178,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 model.show("Alert","<span style='font-weight:700;'>Following fields must have valid information:</span></br>City");
                 return false;
             }
+            // alert();
             var args = $.param({
                 user_id: $cookieStore.get("userinfo").uid,
                 first_name: $scope.fname,

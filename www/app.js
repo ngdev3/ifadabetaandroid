@@ -538,33 +538,33 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
 app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $interval) {
 
-    // window.alert = function (type, content) {
+    window.alert = function (type, content) {
 
-    //     if (content == '' || content == undefined) {
+        if (content == '' || content == undefined) {
 
-    //         if (typeof type === 'string') {
+            if (typeof type === 'string') {
 
-    //             var j = type.toLowerCase();
-    //             var a = j.indexOf("successfully");
-    //             var b = j.indexOf("successful");
-    //             var c = j.indexOf("success");
-    //             // //console.log(c)
-    //             if (a >= 0 || b >= 0 || c >= 0) {
-    //                 model.show('Info', type);
-    //             } else {
-    //                 model.show('Alert', type);
-    //             }
+                var j = type.toLowerCase();
+                var a = j.indexOf("successfully");
+                var b = j.indexOf("successful");
+                var c = j.indexOf("success");
+                // //console.log(c)
+                if (a >= 0 || b >= 0 || c >= 0) {
+                    model.show('Info', type);
+                } else {
+                    model.show('Alert', type);
+                }
 
-    //         } else {
+            } else {
 
-    //             //it will show when u passed the object
-    //             model.show('Info', JSON.stringify(type));
-    //         }
-    //     } else {
+                //it will show when u passed the object
+                model.show('Info', JSON.stringify(type));
+            }
+        } else {
 
-    //         model.show(type, content);
-    //     }
-    // }
+            model.show(type, content);
+        }
+    }
 
 
     $rootScope.back = function () {
