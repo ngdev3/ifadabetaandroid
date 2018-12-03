@@ -178,7 +178,7 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
 
                     if (response.data.data.status == "success") {
                         alert("Address Added  Successfully");
-                        $location.path("/dashboard/home");
+                        $location.path("/address");
                         // window.history.back();
                     } else {
                         alert("Something went wrong.");
