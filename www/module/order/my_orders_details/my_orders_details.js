@@ -15,44 +15,13 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
      */
 
 
-     $scope.trackOrder = function(id,m_id){
-    
-        loading.active();
-
-        var args = $.param({
-            'order_id': id,
-            'm_order_id': m_id,
-            'language_code':sessionStorage.lang_code
-        });
-
-        $http({
-            headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: 'POST',
-            url: app_url + '/track_order',
-            data: args
-
-        }).then(function (response) {
-            res = response;
-            
-            if (res.data.responseStatus == 'success') {
-                
-                $scope.trackorder = res.data.data.order_status;
-                $scope.trackorder_location = res.data.data.order_location;
-                $location.path('/order/track_order');
-
-            } else {
-                //Throw error if not logged in
-                //model.show('Alert', res.data.responseMessage);
-                alert(res.data.responseStatus);
-            }
-
-        }).finally(function () {
-            loading.deactive();
-        });
-        
+     $scope.trackOrder = function(m_id,id){
+    var ids = {
+        'order_id' : id,
+        'm_id' : m_id
+    }
+       $cookieStore.put('orderids',ids);
+       $location.path('/order/track_order') 
          
      }
 

@@ -51,13 +51,19 @@
                         <!-- ** bars ** -->
                         <div class="prodcut_main_container tracking_barss">
                             <div class="order_tacking_bar">
-                                <ol class="progtrckr" data-progtrckr-steps="5">
-                                      <li class="progtrckr-todo inprocessed">
+                                <!-- <ol class="progtrckr" data-progtrckr-steps="5" >
+                                      <li ng-if="x.id == trackhistory" class="progtrckr-todo inprocessed">
                                           <span class="span_date_tarck">27 Oct 2018</span>
                                           <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
-                                          <span class="span_text"><img class="bar_icons" src="assets/img/order_placed.png">Order Placed</span>
+                                          <span class="span_text"><img class="bar_icons" src="assets/img/order_placed.png">{{x.order_type}}</span>
                                       </li>
-                                      <li ng-if="trackorder_location.is_order_confirm == '1'" class="progtrckr-todo inprocessed" >
+                                      <li ng-if="x.id != trackhistory" class="progtrckr-todo">
+                                        <span class="span_date_tarck">27 Oct 2018</span>
+                                        <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                        <span class="span_text"><img class="bar_icons" src="assets/img/order_placed.png">{{x.order_type}}</span>
+                                    </li>
+                                      
+                                        <li ng-if="trackorder_location.is_order_confirm == '1'" class="progtrckr-todo inprocessed" >
                                           <span class="span_date_tarck">27 Oct 2018</span>
                                           <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
                                           <span class="span_text"><img class="bar_icons" src="assets/img/order_confirmed.png">Order Confirmed</span>
@@ -70,14 +76,66 @@
                                      <li class="progtrckr-todo">
                                          <span class="span_date_tarck">28 Oct 2018</span>
                                          <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
-                                         <span class="span_text"><img class="bar_icons" src="assets/img/order_processed.png">Order Processed</span>
+                                         <span class="span_text"><img class="bar_icons" src="assets/img/order_processed.png">Boy Assigned</span>
                                      </li>
                                     <li class="progtrckr-todo">
                                         <span class="span_date_tarck">29 Oct 2018</span>
                                         <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
                                         <span class="span_text"><img class="bar_icons" src="assets/img/out_for_delivery.png">Out for Delivery</span>
                                     </li>
-                                </ol>
+                                    <li class="progtrckr-todo">
+                                        <span class="span_date_tarck">29 Oct 2018</span>
+                                        <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                        <span class="span_text"><img class="bar_icons" src="assets/img/out_for_delivery.png">Delivered</span>
+                                    </li>  
+                                </ol> -->
+                                <ol class="progtrckr" data-progtrckr-steps="5">
+                                    <li class="progtrckr-todo inprocessed" >
+                                        <span class="span_date_tarck">27 Oct 2018</span>
+                                        <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                        <span class="span_text"><img class="bar_icons" src="assets/img/order_placed.png">Order Placed</span>
+                                    </li>
+                                     <li ng-if="trackorder_location.status == '2' || trackorder_location.status == '3' || trackorder_location.status == '4' || trackorder_location.status == '5'" class="progtrckr-todo inprocessed" >
+                                        <span class="span_date_tarck">27 Oct 2018</span>
+                                        <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                        <span class="span_text"><img class="bar_icons" src="assets/img/order_confirmed.png">Order Confirmed</span>
+                                    </li>
+                                    <li ng-if="trackorder_location.status != '2' && trackorder_location.status != '3' && trackorder_location.status != '4' && trackorder_location.status != '5'" class="progtrckr-todo " >
+                                      <span class="span_date_tarck">27 Oct 2018</span>
+                                      <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                      <span class="span_text"><img class="bar_icons" src="assets/img/order_confirmed.png">Order Confirmed</span>
+                                  </li>
+                                   <li ng-if ="trackorder_location.status == '3' || trackorder_location.status == '4' || trackorder_location.status == '5'" class="progtrckr-todo inprocessed">
+                                       <span class="span_date_tarck">28 Oct 2018</span>
+                                       <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                       <span class="span_text"><img class="bar_icons" src="assets/img/order_processed.png">Boy Assigned</span>
+                                   </li>
+                                   <li  ng-if ="trackorder_location.status != '3' && trackorder_location.status != '4' && trackorder_location.status != '5'" class="progtrckr-todo">
+                                      <span class="span_date_tarck">28 Oct 2018</span>
+                                      <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                      <span class="span_text"><img class="bar_icons" src="assets/img/order_processed.png">Boy Assigned</span>
+                                  </li>
+                                  <li  ng-if=" trackorder_location.status == '4' || trackorder_location.status == '5'"  class="progtrckr-todo inprocessed">
+                                      <span class="span_date_tarck">29 Oct 2018</span>
+                                      <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                      <span class="span_text"><img class="bar_icons" src="assets/img/out_for_delivery.png">Out for Delivery</span>
+                                  </li>
+                                  <li  ng-if=" trackorder_location.status != '4' && trackorder_location.status != '5'"  class="progtrckr-todo ">
+                                      <span class="span_date_tarck">29 Oct 2018</span>
+                                      <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                      <span class="span_text"><img class="bar_icons" src="assets/img/out_for_delivery.png">Out for Delivery</span>
+                                  </li>
+                                  <li ng-if="trackorder_location.status == '5'" class="progtrckr-todo inprocessed">
+                                      <span class="span_date_tarck">29 Oct 2018</span>
+                                      <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                      <span class="span_text"><img class="bar_icons" src="assets/img/out_for_delivery.png">Delivered</span>
+                                  </li>
+                                  <li ng-if="trackorder_location.status != '5'" class="progtrckr-todo ">
+                                      <span class="span_date_tarck">29 Oct 2018</span>
+                                      <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                      <span class="span_text"><img class="bar_icons" src="assets/img/out_for_delivery.png">Delivered</span>
+                                  </li>  
+                              </ol>
                             </div>
                         </div>
                         <!-- ** !. bars ** -->

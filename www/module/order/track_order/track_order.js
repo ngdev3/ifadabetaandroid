@@ -19,45 +19,45 @@ app.controller('track_order', function ($scope, $http, $location, $cookieStore, 
         loading.active();
 
         var args = $.param({
-            order_id: $cookieStore.get('orderID'),
-            user_id:$cookieStore.get("userinfo").uid,
-            country_id: sessionStorage.country,
-            language_code: sessionStorage.lang_code
+            'order_id': $cookieStore.get('orderids').order_id,
+            'm_order_id': $cookieStore.get('orderids').m_id,
+            'language_code':sessionStorage.lang_code
         });
-        loading.active();
+
         $http({
             headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/order_summary',
-            data: args //forms user object
+            url: app_url + '/track_order',
+            data: args
 
         }).then(function (response) {
-
             res = response;
-
-            console.log(res.data.data)
-            if (res.data.data.status == 'success') {
-                $scope.detail = res.data.data.basic_info;
-                $scope.delivery_address = res.data.data.delivery_address;
-                $scope.detail_distribution = res.data.data.basic_info.order_manufacturer_distribution;
-                $scope.item= [];
-                for(var i=0; i<$scope.detail_distribution.length;i++){
-                    $scope.item = res.data.data.basic_info.order_manufacturer_distribution[i].items;
-                    
+            
+            if (res.data.responseStatus == 'success') {
+                
+                $scope.trackorder = res.data.data.order_status;
+                $scope.orderhistory = res.data.data.orderHistory;
+                /* console.log($scope.orderhistory)
+                for(var i=0; i<$scope.orderhistory.length; i++){
+                    $scope.trackhistory = $scope.orderhistory[i].order_status;
                 }
-                console.log($scope.item)
-            } else {
+                console.log($scope.trackhistory) */
+                $scope.trackorder_location = res.data.data.order_location;
+                $location.path('/order/track_order');
 
+            } else {
                 //Throw error if not logged in
                 //model.show('Alert', res.data.responseMessage);
-                //alert(res.data.status);
+                alert(res.data.responseStatus);
             }
 
         }).finally(function () {
             loading.deactive();
         });
+       
     }
 
   $scope.orderinfo = $cookieStore.get('orderinfo');
