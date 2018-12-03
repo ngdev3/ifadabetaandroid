@@ -1025,10 +1025,7 @@ li.progtrckr-todo.inprocessed span.pending_check i
     margin: 0 auto;
     display: block;
 }
-.slick-slide{
-    width: auto !important;
-    margin-right: 5px !important;
-}
+
 .nav > li.page_name.left {
     float: left;
     text-align: center;

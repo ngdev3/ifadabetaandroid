@@ -287,8 +287,8 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         $scope.searchBar = function () {
             // alert("will work on it...soon");return;
         // $scope.datanotfound = false;
-        // $scope.resultstatus = false;
-        // $scope.searchresult = '';
+        // $rootScope.resultstatus = false;
+        $rootScope.searchresult = '';
         // $scope.enableDiv = false;
         
        /*  if (($scope.search.length >= 1) && ($scope.search.length < 3)) {
@@ -324,11 +324,13 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
             // return;
 
             if (res.data.data.product.total_rows > 0) {
-                $scope.searchresult = res.data.data.products;
+                $rootScope.searchresult = res.data.data.products;
+                $location.path("/subcategory");
             } else {
                 // alert()
                 // $scope.resultstatus = false;
-                $scope.searchresult = '';
+                $rootScope.searchresult = '';
+                $location.path("/subcategory");
                 // $scope.datanotfound = true;
             }
 
