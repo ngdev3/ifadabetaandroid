@@ -22,6 +22,10 @@
         .btn-success.active{
             background-color: #398439;
         }
+		.nav > li.cart_icon {
+			float: right;
+			width: 30%;
+		}
         </style>
         <header class="container-fluid nav-down">
             <div class="row">
@@ -40,6 +44,7 @@
                             </a>
                         </li>
                       <li class="cart_icon">
+						<a href="javascript:void(0);"><img src="assets/img/header/filter.png" alt="search icon" onclick="openFilter()"/></a>
                           <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
                             <!--<span class="badge">14</span>-->
                           </a>
@@ -59,7 +64,245 @@
             <!-- MOBILE-MENU-AREA END -->
         </header>
         <!-- END HEADER -->
-        
+		
+		
+        <!--Filter Start -->
+		<div id="mySidenav-right" class="sidenav-right">		
+	<header id="filter-header" class="container-fluid nav-down" style="top: 0 !important;">
+		<div class="row">
+			<nav class="navbar navbar-inverse">
+			  <div class="container-fluid no-padding">
+				<ul class="nav navbar-nav top_header">
+				  <li class="menu_icon"><a href="javascript:void(0)" ><img onclick="closeFilter()" src="assets/img/header/cross_icon.png" id="asdf" alt="menu icon" /></a></li>
+				  <li class="logo_name" style="width: 100%"><a class="text-center back">Filter</a></li>
+				  
+				</ul>
+			  </div>
+			</nav>
+		</div>
+	</header>
+	<div class="filter-body">
+		<div class="filter-container">
+			
+
+			<button class="accordion" id="accord_1" ng-click="init(1);">Sub-categories</button>
+			<div class="accordion-panel accordion-panel_1">
+			  <div class="accordion-container">
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="checkbox" name="">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Feeding Pillow</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="checkbox" name="">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Baby Sling</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="checkbox" name="">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Cutlery</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="checkbox" name="">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Grooming</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<button class="accordion" id="accord_2" ng-click="init(2);">Brand</button>
+			<div class="accordion-panel accordion-panel_2">
+			  <div class="accordion-container">
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="checkbox" name="">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> BB Royal</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="checkbox" name="">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> BB Combo</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="checkbox" name="">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> orgran</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="checkbox" name="">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Star Lion</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<button class="accordion" id="accord_3" ng-click="init(3);">Price</button>
+			<div class="accordion-panel accordion-panel_3">
+			  <div class="accordion-container">
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="radio" name="price_range">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Less than rs 20</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="radio" name="price_range">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Rs 21 to Rs 50</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="radio" name="price_range">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Rs 51 to Rs 100</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="radio" name="price_range">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Rs 101 to Rs 200</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="radio" name="price_range">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Rs 201 to Rs 500</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="radio" name="price_range">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> More than Rs 501</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<button class="accordion" id="accord_4" ng-click="init(4);">Sort By</button>
+			<div class="accordion-panel accordion-panel_4">
+			  <div class="accordion-container">
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="radio" name="sort">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Low to High</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input  type="radio" name="sort">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> High to Low</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="radio" name="sort">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Popularity</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="radio" name="sort">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Discount</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="radio" name="sort">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Relevance</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="radio" name="sort">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Newest</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+		</div>
+	</div>
+	<footer>
+		<div class="apply_btn_container">
+			<button> Cancel</button>
+			<button> Apply</button>
+		</div>
+	</footer>
+</div>
+		
+		<!--Filter End -->
+		
+		
         <!--  [PULSES] Sub categories content -->
             <div class="container-fluid mt-55">
                 <div class="row">

@@ -299,3 +299,38 @@ $(document).ready(function(){
 	});
 });
 
+//filter
+function openFilter() {
+	
+    document.getElementById("mySidenav-right").style.left = "0";
+    //document.getElementById("filter-header").style.left = "0";
+    document.getElementById("main").style.width = "100%";
+}
+
+function closeFilter() {
+	 document.getElementById("mySidenav-right").style.left = "100vw";
+}
+
+// Filter Accordian code
+
+$(document).ready(function() {
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+	
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].addEventListener("click", function() {
+		//$(this).siblings(acc).removeClass("selected");
+		//$(this).siblings(".accordion-panel").css("max-height", "0px");
+		this.classList.toggle("selected");
+		var panel = this.nextElementSibling;
+		var allPanel = $(this).siblings(".accordion-panel");
+		if (panel.style.maxHeight){
+		  
+		  panel.style.maxHeight = null;
+		} else {
+			//allPanel.style.maxHeight = null;
+		  panel.style.maxHeight = panel.scrollHeight + "px";
+		} 
+	  });
+	}
+});
