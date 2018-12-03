@@ -44,7 +44,13 @@ app.config(function ($translateProvider) {
     Resend_OTP : 'Resend OTP',
     Enter_OTP : 'Enter OTP',
     Please_enter_your_registed_mobile_number_You_will_recive_an_OTP_to_reset_your_password : 'Please enter your registed mobile number.You will recive an OTP to reset your password.',
-    feature_name : 'Feature Name'
+    feature_name : 'Feature Name',
+    Dont_Have_an_account : 'Dont Have an account',
+    Referral_Code : 'Referral Code',
+    First_Name : 'First Name',
+    Last_Name : 'Last Name',
+    Buyer_Registration : 'Buyer Registration',
+    Delivery_Location : 'Delivery Location'
   });
 
 

@@ -70,7 +70,7 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
             } 
 
             if ($scope[form].zip.$error.required !== undefined || $scope[form].zip.$error.number) {
-                error_str += "Pincode, ";
+                error_str += "Zip Code, ";
             }
 
             if ($scope[form].instruction.$error.required !== undefined) {
@@ -101,7 +101,7 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
         //     var reg4 = /^[a-zA-Z ]{3,20}$/;
 
          if (reg1.test($scope.landmark) == false) {
-                error_str = "Landmark hould contain Numbers & Alphabets Only";
+                error_str = "Landmark should contain Numbers & Alphabets Only";
                 model.show('Alert', error_str);
                 // alert(error_str);
                 return false;
@@ -115,7 +115,7 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
             }
 
             if (reg1.test($scope.instructions) == false) {
-                error_str = "Delivery Instruction should Numbers & Alphabets Only";
+                error_str = "Delivery Instruction should contain Numbers & Alphabets Only";
                 model.show('Alert', error_str);
                 // alert(error_str);
                 return false;
