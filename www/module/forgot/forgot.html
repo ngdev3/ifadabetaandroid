@@ -10,7 +10,7 @@
 
                         <li class="page_name">
                             <a href="javascript:void(0)" class="text-left text-center">
-                                <p>Forgot Password</p>
+                                <p>{{'Forgot_Password'| translate}}</p>
                             </a>
                         </li>
 
@@ -28,18 +28,18 @@
         <div class="container">
             <div class="login_form">
                 <div class="acnt-itext">
-                    <p class="">Please enter your registed mobile number. You will recive an OTP to reset your password.</a></p>
+                    <p class="">{{'Please_enter_your_registed_mobile_number_You_will_recive_an_OTP_to_reset_your_password' | translate}}</a></p>
                 </div>
 
                 <div class="form_container">
                     <div class="mui-textfield col-sm-6 col-xs-12">
                         <input type="number" id="email" placeholder="" name="mobile_no" ng-model="mobile_no" required>
-                        <label class="text-center label-center" for="email"><strong>Enter Your Mobile No</strong></label>
+                        <label class="text-center label-center" for="email"><strong>{{'Enter_Your_Mobile_No' | translate}}</strong></label>
                     </div>
                 </div>
 
                 <div class="submit-btn col-sm-6 col-xs-12 text-center" ng-click="forgot_password('loginform')">
-                    <a href="javascript:void(0)">Submit</a>
+                    <a href="javascript:void(0)">{{'Submit' | translate}}</a>
                 </div>
             </div>
         </div>
