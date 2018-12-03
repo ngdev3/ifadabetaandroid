@@ -37,6 +37,12 @@ app.config(function ($translateProvider) {
     Welcome : 'Welcome',
     Enter_Your_Mobile_No : 'Enter Your Mobile No',
     Forgot_Password : 'Forgot Password',
+    OTP_Verification : 'OTP Verification',
+    Please_type_the_verification_code_sent_to : 'Please type the verification code sent to',
+    OTP_Number : 'OTP Number',
+    Resend_OTP : 'Resend OTP',
+    Enter_OTP : 'Enter OTP',
+    Please_enter_your_registed_mobile_number_You_will_recive_an_OTP_to_reset_your_password : 'Please enter your registed mobile number.You will recive an OTP to reset your password.'
   });
 
 
@@ -91,6 +97,12 @@ app.config(function ($translateProvider) {
     Welcome : 'أهلا بك',
     Enter_Your_Mobile_No : 'أدخل رقم جوالك',
     Forgot_Password : 'هل نسيت كلمة المرور',
+    OTP_Verification : 'التحقق من مكتب المدعي العام',
+    Please_type_the_verification_code_sent_to : 'يرجى كتابة رمز التحقق المرسل إليه',
+    OTP_Number : 'رقم مكتب المدعي العام',
+    Resend_OTP : 'إعادة إرسال OTP',
+    Enter_OTP : 'أدخل OTP',
+    Please_enter_your_registed_mobile_number_You_will_recive_an_OTP_to_reset_your_password : 'الرجاء إدخال رقم هاتفك المحمول. سوف تسترد كلمة مرور لمرة واحدة لإعادة تعيين كلمة المرور الخاصة بك.'
   });
 
 
