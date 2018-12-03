@@ -43,7 +43,8 @@ app.config(function ($translateProvider) {
     OTP_Number : 'OTP Number',
     Resend_OTP : 'Resend OTP',
     Enter_OTP : 'Enter OTP',
-    Please_enter_your_registed_mobile_number_You_will_recive_an_OTP_to_reset_your_password : 'Please enter your registed mobile number.You will recive an OTP to reset your password.'
+    Please_enter_your_registed_mobile_number_You_will_recive_an_OTP_to_reset_your_password : 'Please enter your registed mobile number.You will recive an OTP to reset your password.',
+    feature_name : 'Feature Name'
   });
 
 
@@ -103,7 +104,8 @@ app.config(function ($translateProvider) {
     OTP_Number : 'رقم مكتب المدعي العام',
     Resend_OTP : 'إعادة إرسال OTP',
     Enter_OTP : 'أدخل OTP',
-    Please_enter_your_registed_mobile_number_You_will_recive_an_OTP_to_reset_your_password : 'الرجاء إدخال رقم هاتفك المحمول. سوف تسترد كلمة مرور لمرة واحدة لإعادة تعيين كلمة المرور الخاصة بك.'
+    Please_enter_your_registed_mobile_number_You_will_recive_an_OTP_to_reset_your_password : 'الرجاء إدخال رقم هاتفك المحمول. سوف تسترد كلمة مرور لمرة واحدة لإعادة تعيين كلمة المرور الخاصة بك.',
+    feature_name : 'اسم الميزة',
   });
 
 

@@ -95,7 +95,8 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                         'country_id': response.data.data.country_id,
                         'fullName' : fullName,
                         'address' : response.data.data.address,
-                        'profile_image' : response.data.data.profile_image
+                        'profile_image' : response.data.data.profile_image,
+                        'from'    : 'login'
                     }
                     $cookieStore.put('userinfo', userinfo);
                     $location.path('/splash');
