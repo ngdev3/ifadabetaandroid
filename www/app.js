@@ -256,16 +256,16 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     $rootScope.addToCart = function (weightid) {
         
         console.log(weightid.target.dataset);
-
+// return;
         varient_id = weightid.target.dataset.weightid;
         manufacture_id = weightid.target.dataset.user_id;
         //menu_id = weightid.target.dataset.weightid;
         menu_id = weightid.target.dataset.menuid;
 
         $rootScope.currentval = 0;
-        addToCartID = 'addToCart_' + weightid;
-        enableCartID = 'enableCart_' + weightid;
-        quantityID = 'quantity_' + weightid;
+        addToCartID = 'addToCart_' + varient_id;
+        enableCartID = 'enableCart_' + varient_id;
+        quantityID = 'quantity_' + varient_id;
 
 
         var args = $.param({
@@ -287,18 +287,18 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             data: args //forms user object
 
         }).then(function (response) {
-            //console.log(response)
+            console.log(response)
            // $rootScope.usercartvalue();
-            if (response.data.status == 'added') {
+            if (response.data.data.add_cart.allow_to_add_in_cart == 'yes') {
+                
                 $('#' + addToCartID).hide();
-                // alert();
-                $('#' + enableCartID).removeClass('ng-hide');
+                $('#' + enableCartID).removeClass('hide');
                 $('#' + quantityID).val('1');
 
-            } else if (response.data.status == 'exist') {
-                model.show('alert', 'Already Added');
+            } else if (response.data.data.add_cart.allow_to_add_in_cart == 'no') {
+                model.show('alert', 'Item is out of stock');
             }else if(response.data.status == 'outofstock'){
-                alert('Item is out of stock');
+                alert('Stock Problem');
             }
 
         })
@@ -383,12 +383,11 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
         // loading.active();
         var args = $.param({
-            weightid: weightid,
-            qnty: parseInt(new_qnty) + 1,
-            uid: $cookieStore.get('userinfo').uid,
-            mid: uuid,
-            device_type: device_type,
-            store_id: $cookieStore.get('storeinfo').store_id
+            rowid: weightid,
+            qty: parseInt(new_qnty) + 1,
+            language_code: sessionStorage.lang_code,
+            user_id:$cookieStore.get("userinfo").uid,
+            country_id: sessionStorage.country,
         });
 
         // Get the user info from Database
@@ -397,7 +396,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + 'itemcartapi/updateQnty',
+            url: app_url + 'cart/removeQtyCart',
             data: args //forms user object
 
         }).then(function (response) {

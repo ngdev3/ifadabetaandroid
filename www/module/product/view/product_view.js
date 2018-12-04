@@ -8,24 +8,31 @@ app.controller('view_product', function ($scope, $http, $location, $cookieStore,
     $scope.productpid = $cookieStore.get('id')
 console.log($cookieStore.get("userinfo"));
 
-    $scope.getvalueforOtherVarient = function (a, th) {
+    $scope.getvalueforOtherVarient = function (menu_id, id) {
       
 
       $( ".total" ).each(function( index ) {
        $('#enablequant_'+$( this ).attr('data-weight_id')).removeClass('marked')
       });
-      $("#enablequant_" + th + a ).addClass('marked')
+      $("#enablequant_" + id + menu_id ).addClass('marked')
 
-
-      console.log(a)
-     console.log(th);
       // return
-      weightID = $("#enablequant_" + th + a ).attr('data-weight_id');
-      // weightID = $("#disablequant_ " + a + th ).attr('data-weight_id');
-      // pid = $("#disablequant_" + a + " option:selected").attr('data-product_id');
-   // $rootScope.varientCheck(weightID, $cookieStore.get('storeinfo').store_id, pid);
-      console.log(weightID)
-      // console.log(pid)
+      weightID = $("#enablequant_" + id + menu_id ).attr('data-weight_id');
+      price = $("#enablequant_" + id + menu_id ).attr('data-price');
+      unit = $("#enablequant_" + id + menu_id ).attr('data-unit');
+      menu_id = $("#enablequant_" + id + menu_id ).attr('data-menu_id');
+
+      $('#sub_rrp').html('AED '+price)
+      $('#total_quantity').html(unit);
+        
+      $('#addCart_'+menu_id)
+      .attr('data-menuid', menu_id)
+      .attr('data-user_id', $scope.manufacture_id)
+      .attr('data-weightid', id)
+    //  .attr('id', 'addCart_'+id)
+      ;
+
+      // $rootScope.varientCheck(weightID, $cookieStore.get('storeinfo').store_id, pid);
 
   }
     
@@ -64,9 +71,11 @@ $scope.fetch_product_data = function () {
                 $scope.product_details_varients = response.data.data.product_details.menu_varient;
                 $scope.product_price = response.data.data.product_details.menu_varient[0].price;
                 $scope.DweightID = response.data.data.product_details.menu_varient[0].id;
+                $scope.rowid = response.data.data.product_details.menu_varient[0].cart_row_id;
                 $scope.menu_id = response.data.data.product_details.id;
-                $scope.addedQnty = response.data.data.product_details.menu_varient[0].quantity;
+                $scope.addedQnty = response.data.data.product_details.menu_varient[0].cart_quantity;
                 $scope.manufacture_id = response.data.data.product_details.user_id;
+
                 console.log($scope.product_price)
                 $scope.product_weight_value = response.data.data.product_details.menu_varient[0].unit_value;
                 $scope.product_weight_unit = +response.data.data.product_details.menu_varient[0].UNIT_NAME;

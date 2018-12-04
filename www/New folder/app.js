@@ -300,7 +300,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             data: args //forms user object
 
         }).then(function (response) {
-            //console.log(response)
+            console.log(response)
            // $rootScope.usercartvalue();
             if (response.data.status == 'added') {
                 $('#' + addToCartID).hide();

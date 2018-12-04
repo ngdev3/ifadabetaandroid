@@ -96,7 +96,7 @@
 								<!-- <select class="sub_product_qty" ng-model="z.price" name="z.price" id="product_{{pid}}" ng-change="getvalueforOtherVarient(productpid, $(this).val())" ng-init="z.price = product_price;">
 									<option ng-init="z.selectedOption.wd_price = z.price; z.selectedOption.weight = z.id;"		ng-repeat="z in product_details_varients"  data-weight_id="{{z.id}}" data-product_id="{{product_details.id}}" value="{{z.price}}">{{z.unit_value}}{{z.UNIT_NAME}}</option>
 								</select> -->
-								<p class="sub_product_qty">{{product_details.menu_varient[0].unit_value}} {{product_details.menu_varient[0].UNIT_NAME}}</p>	
+								<p class="sub_product_qty" id="total_quantity">{{product_details.menu_varient[0].unit_value}} {{product_details.menu_varient[0].UNIT_NAME}}</p>	
 								<p class="sub_prcing"><span id="sub_rrp">AED {{product_details.menu_varient[0].price}}</span></p>
 
 							</div>
@@ -107,7 +107,7 @@
 								<div class="sub_add_product">
 									<div class="add_item_container sub_add_btn" id="firstt_{{productpid}}" data-attr="{{DweightID}}">
 										
-										<div class="add_item_button sub_add_btn hide" id="enableCart_{{DweightID}}">
+										<div class="add_item_button sub_add_btn" data-rowid="{{rowid}}" id="enableCart_{{DweightID}}" ng-show="rowid">
 										    <button class="add_item sub_add_btn" data-weightid="{{DweightID}}" id="plus_{{DweightID}}"
 												ng-click="plusToCart($event)">
 													<span class="additem_span">+</span>
@@ -119,7 +119,7 @@
 													</button>
 										</div>
 										
-										<div class="add_cart_button sub_add_btn" id="addToCart_{{DweightID}}">
+										<div class="add_cart_button sub_add_btn" id="addToCart_{{DweightID}}" ng-show="!rowid">
 										   <button class="" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}" ng-click="addToCart($event)">Add</button>
 										</div>
 										
@@ -137,8 +137,8 @@
 				<div class="product_untis" >
 					<h5 class="unit_head">{{ 'Units' | translate}}</h5>
 					<div class="unit_container" ng-repeat="x in product_details_varients" ng-init="exact = product_details_varients[0].id" >
-						<input type="button" ng-if="x.id == exact"  data-weight_id="{{x.id}}{{x.menu_id}}" id="enablequant_{{x.id}}{{x.menu_id}}" class="total btn btn-default marked" ng-click="getvalueforOtherVarient(x.menu_id, x.id)" value="{{x.unit_value}}{{x.UNIT_NAME}}">
-						<input type="button" ng-if="x.id != exact" data-weight_id="{{x.id}}{{x.menu_id}}" id="enablequant_{{x.id}}{{x.menu_id}}" class="total btn btn-default" ng-click="getvalueforOtherVarient(x.menu_id, x.id)" value="{{x.unit_value}}{{x.UNIT_NAME}}">
+						<input type="button" ng-if="x.id == exact"  data-unit="{{x.unit_value}}{{x.UNIT_NAME}}" data-price="{{x.price}}" data-weight_id="{{x.id}}{{x.menu_id}}" data-menu_id="{{x.menu_id}}" id="enablequant_{{x.id}}{{x.menu_id}}" class="total btn btn-default marked" ng-click="getvalueforOtherVarient(x.menu_id, x.id)" value="{{x.unit_value}}{{x.UNIT_NAME}}">
+						<input type="button" ng-if="x.id != exact"  data-unit="{{x.unit_value}}{{x.UNIT_NAME}}" data-price="{{x.price}}" data-weight_id="{{x.id}}{{x.menu_id}}" data-menu_id="{{x.menu_id}}" id="enablequant_{{x.id}}{{x.menu_id}}" class="total btn btn-default" ng-click="getvalueforOtherVarient(x.menu_id, x.id)" value="{{x.unit_value}}{{x.UNIT_NAME}}">
 						<!-- <input type="button" class="btn btn-default" name="" value="1 Kg"> -->
 						<!-- {{exact}} -->
 					</div>
