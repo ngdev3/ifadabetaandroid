@@ -292,7 +292,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             if (response.data.data.add_cart.allow_to_add_in_cart == 'yes') {
                 
                 $('#' + addToCartID).hide();
-                $('#' + enableCartID).removeClass('hide');
+                $('#' + enableCartID).removeClass('hide').removeClass('ng-hide');
                 $('#' + quantityID).val('1');
 
             } else if (response.data.data.add_cart.allow_to_add_in_cart == 'no') {
@@ -322,12 +322,12 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         quantityID = 'quantity_' + weightid;
 
         var args = $.param({
-            user_type:$cookieStore.get("userinfo").left_data.user_type,
-            user_id:$cookieStore.get("userinfo").uid,
-            country_id: sessionStorage.country,
-            manufacture_id: manufacture_id,
             menu_id: menu_id,
-            menu_varient_id: varient_id
+            menu_varient_id: varient_id,
+            manufacture_id: manufacture_id,
+            country_id: sessionStorage.country,
+            user_id:$cookieStore.get("userinfo").uid,
+            // user_type:$cookieStore.get("userinfo").left_data.user_type,
         });
 
         // Get the user info from Database

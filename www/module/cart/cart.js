@@ -43,13 +43,13 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
     }
 
 
-    $scope.paymentsummary = function () {
+    $scope.cartdetails = function () {
         loading.active();
 
         var args = $.param({
-            'uid': $cookieStore.get('userinfo').uid,
-            'mid': uuid,
-            'distance': $cookieStore.get('storeinfo').store_distance
+            country_id: sessionStorage.country,
+            language_code: sessionStorage.lang_code ,   
+            user_id:$cookieStore.get("userinfo").uid,
         });
 
         $http({
@@ -58,21 +58,15 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/itemcartapi/usercheckout',
+            url: app_url + '/cart/cart_update_on_country_change',
             data: args
 
         }).then(function (response) {
             //alert();
             loading.deactive();
-            res = response.data;
-            $rootScope.shippingCartData = response.data;
-
-            if (res.paymoney > res.minamount) {
-                $cookieStore.put('paymentStatus', 'true')
-                $location.path('/payment');
-            } else {
-                alert('Minimum Amount Should Greater Than Rs. ' + res.minamount)
-            }
+            res = response.data.data.cart_data;
+            console.log(res)
+          $scope.cart_data = res;
 
         })
 

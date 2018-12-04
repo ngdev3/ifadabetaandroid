@@ -36,12 +36,12 @@
 <!--  [PULSES] Sub categories content -->
 	<div class="container-fluid mt-55">
 		<div class="row">
-			<div class="mt-10 mycart_itemslist">
+			<div class="mt-10 mycart_itemslist" ng-init="usercartvalue()">
 				
 				
 				<!-- ** Product Lists ** -->
 				
-				<div class="no-padding item_lists_main deleted_item">
+				<div class="no-padding item_lists_main deleted_item" 	ng-repeat="x in cart_data">
 					<div class="prodcut_main_container">
 						<div class="products_wrapper">
 							<div class="col-md-3 col-sm-3 col-xs-3 items_img_div">
@@ -72,6 +72,8 @@
 						</div>
 					</div>
 				</div>
+
+
 				<!-- ** !. Product Lists ** -->
 			</div>
 		</div>
