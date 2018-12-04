@@ -212,8 +212,12 @@ if($cookieStore.get('userinfo')){
     }
 
 
-    $scope.product_view = function (id) {
-        $cookieStore.put('id', id);
+    $scope.product_view = function (id,url) {
+        var productinfo = {
+            'id' : id,
+            'url' : url
+        }
+        $cookieStore.put('productinfo', productinfo);
         $location.path('/product/view');
     }
 
