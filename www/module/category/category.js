@@ -136,13 +136,16 @@ var currentid;
         $location.path('/product/view')
     }
 
-    $scope.showProducts = function(id){
+    $scope.showProducts = function(id,url){
+        
         var subcategoryInfo = {
             'subcatid': id,
+            'url': url,
             'from':'category'
         }
+        
         $cookieStore.put('subcategoryInfo', subcategoryInfo);
-
+        console.log( $cookieStore.get('subcategoryInfo').url);
         $location.path('/subcategory');
     }
 

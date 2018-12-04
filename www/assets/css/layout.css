@@ -1164,3 +1164,218 @@ li.progtrckr-todo.inprocessed span.pending_check i
    text-transform: uppercase;
    border-radius: 3px;
 }
+/*Thank YOU SCREEN*/
+.thank_you_main{
+	height: 89vh;
+}
+.tk_text{
+	height: 23vh;
+}
+.tk_icon{
+	width: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+}
+.tk_icon > img{
+	min-height: 60px;
+    max-height: 60px;
+    min-width: 60px;
+    max-width: 60px;
+}
+.text_div{
+	text-align:center;
+	padding-bottom: 20px;
+    padding-top: 20px;
+}
+.text_div > h3{
+	margin: 0px;
+    font-size: 28px;
+}
+.tk_bottom{
+	text-align: center;
+    height: 66vh;
+    background: #f7f7f7;
+    padding: 20px 0px;
+}
+.tk_bottom > .tk_img{
+	width: 22%;
+    display: inline-block;
+}
+.tk_bottom > .tk_img > img{
+	max-height:100px;
+	min-height:100px;
+}
+.tk_bottom > .tk_order{
+	width: 56%;
+    display: inline-block;
+    vertical-align: middle;
+    /* padding: 5px 0px; */
+}
+.tk_bottom > .tk_order > h5{
+	font-size: 14px;
+    line-height: 19px;
+    color: #98959b;
+    /* padding: 5px 0px; */
+}.tk_bottom > .tk_order > h5 > span{
+	color: #006d07;
+    font-weight: 900;
+}
+.tk_bg{
+	width: 70%;
+    margin: 20px auto;
+    padding: 30px;
+    background-image: url(../img/tk_bg.png);
+}
+.tk_bg > .tk_hungry > h5{
+	    color: #fff;
+}
+.tk_bg > .cont_shop{
+	 width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 8px;
+    border: 2px solid #f8cb00;
+    border-radius: 5px;
+}
+.tk_bg > .cont_shop > a{
+	color: #fff;
+    cursor: pointer;
+}
+.see_order{
+	    width: 70%;
+    margin: 10px auto;
+    padding: 8px;
+    border: 2px solid #026e09;
+    border-radius: 5px;
+    background: #b7d3b8;
+}
+/*Reward Css*/
+.reward_code p{
+	font-size: 18px;
+}
+.reward_code > p > span{
+	color: #006d07;
+    font-weight: bold;
+
+}
+.redeem_div{
+	text-align: center;
+    padding: 5px 15px;
+    margin-bottom: 20px;
+	margin-top: 15px;
+}
+.redeem_div > .redeem_main{
+	padding: 10px 5px;
+    border: 1px solid #fff;
+    box-shadow: 0px 3px 10px 1px #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+.redeem_div > .redeem_main > .redeem_text{
+	margin-top: 10px;
+    color: #4f4f4f;
+}
+.point_hist{
+	margin: 20px 15px 5px 15px;
+}
+.point_hist p{
+	font-size: 16px;
+    text-align: center;
+    border-top: 2px solid #006d07;
+    color: #4f4f4f;
+	text-transform:uppercase;
+}
+.redeem_table>thead>tr>td, .redeem_table>tbody>tr>td{
+	text-align:center !important;
+}
+.redeem_table>thead>tr{
+	background-color:#e0e0e0;
+}
+.redeem_table>tbody>tr{
+	background-color:#ffffff;
+}
+.redeem_table_div{
+	max-height: 223px;
+    min-height: auto;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+/*Wallet CSS*/
+.wallet_amt{
+    font-size: 14px;
+    font-weight: 600;
+    color: #4f4f4f;
+    text-transform: initial;    
+}
+.wallet{margin-top: 55px;}
+.wallet_bal{
+    padding: 10px 0 15px 0;
+}
+.bal_heading p{
+	display: inline-block;
+    vertical-align: top;
+	}
+.bal_heading p:last-child{
+	display: inline-block;
+    padding-top: 0;
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #333;
+    margin-left: 8px;
+	}
+.bal_heading img{width: 25px;}
+.bal_amt{
+	margin: 40px 0px;
+    text-align: center;
+}
+.bal_amt .bal_amt_wrapper{
+	width: 55%;
+    margin: 0 auto;
+    border: 1px dashed #006d07;
+    padding: 10px 20px;
+    background: #eaf6e8;
+}
+.bal_amt .bal_amt_wrapper p{
+    font-size: 20px;
+    color: #333;
+}
+.add-balance-money span{
+    font-size: 16px;
+    border-bottom: 2px solid #006d07;
+    padding-bottom: 7px;
+    text-transform: uppercase;
+    color: #333;
+    width: 100%;
+    display: inline-block;
+}
+.amount-input-wallet {
+	width: 100%;
+	position: relative;
+	clear:  both;
+}
+
+.amount-input-wallet input {
+	font-weight: 300;
+	padding: 15px 14px 15px 14px;
+	height: auto;
+}
+
+.amount-input-wallet button {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: #006d07;
+    color: #fff;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 3px;
+}
+.privacy_policy p {
+    text-align: justify;
+    font-family: Montserrat-light;
+    font-size: 13px;
+    letter-spacing: 0px;
+    line-height: 2.0em;
+    font-weight: 500;
+}

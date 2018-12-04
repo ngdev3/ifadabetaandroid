@@ -29,9 +29,11 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         var args = $.param({
             category_id: ID,
             country_id: sessionStorage.country,
-            language_code: 'en'
-            //user_type : 4,
-            //user_id : 52,
+            language_code: 'en',
+            user_type : $cookieStore.get('userinfo').user_type,
+            user_id : $cookieStore.get('userinfo').uid,
+            cat_url : $cookieStore.get('subcategoryInfo').url,
+            sort_by : $scope.sort,
             //retailer_id : 47
         });
 
@@ -49,14 +51,15 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         }).then(function (response) {
 
             res = response;
-            // console.log(res.data);
-            // return;
+             //console.log(res.data.responseStatus);    
+             //return;
 
-            if (res.data.data.status == 'success') {
-                console.log(res.data.data);
-                $scope.categoryData = res.data.data.category_data[0];
+            if (res.data.responseStatus == 'success') {
+                console.log(res.data.data.category_product.products);
+              //  $scope.categoryData = res.data.data.category_product.products;
+              $scope.categoryData = 'fdsfd';
                 //   alert(id);
-                if (!id) {
+                /* if (!id) {
                     
                     if(id == 'all'){
                         $scope.categorysubData = "";//res.data.data.category_data[0].sub;
@@ -70,7 +73,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                     }
 
 
-                }
+                } */
 
                 $scope.slickConfig0Loaded = true;
                 $scope.slickConfig0 = {
@@ -117,15 +120,11 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                    $scope.categorysubSubData = $scope.categorysubData[i];
                  } */
                 //   console.log($scope.categorysubData);
-                $scope.product = res.data.data.product.products;
-                //   console.log($scope.product);
-                for (var i = 0; i < $scope.product.length; i++) {
-                    $scope.productVarient = res.data.data.product.products[i].product_varient;
-                }
+                $scope.product = res.data.data.category_product.products;
                 $location.path('/subcategory');
             } else {
 
-                alert(res.data.status);
+                alert(res.data.data.responseStatus);
             }
 
         }).finally(function () {
@@ -209,8 +208,9 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
     }
 
  $scope.filter = function(form) {
-     console.log($scope.sort);  
-     console.log(form)
+     //console.log($scope.sort);  
+     $scope.fetch_product_list();
+     
  }
 
 

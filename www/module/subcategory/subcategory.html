@@ -180,7 +180,7 @@
 				</div>
 			</div>-->
 
-			<button class="accordion" id="accord_3" ng-click="init(3);">Price</button>
+			<button class="accordion" id="accord_3" ng-click="init(3);">Sort By</button>
 			<div class="accordion-panel accordion-panel_3">
 			  <div class="accordion-container">
 					<div class="accordion-options">
@@ -194,7 +194,7 @@
 						</div>
 						<div class="accordion-options">
 							<div class="pretty p-icon p-curve p-pulse">
-								<input  type="radio" ng-model="sort" name="sort" value="2">
+								<input  type="radio" ng-model="sort" name="sort" value="3">
 								<div class="state p-info-o">
 									<i class="icon fa fa-check"></i>
 									<label> Z to A</label>
@@ -203,7 +203,7 @@
 						</div>
 				<div class="accordion-options">
 					<div class="pretty p-icon p-curve p-pulse">
-						<input type="radio" ng-model="sort" name="sort" value="3">
+						<input type="radio" ng-model="sort" name="sort" value="4">
 						<div class="state p-info-o">
 							<i class="icon fa fa-check"></i>
 							<label> Low to High</label>
@@ -212,7 +212,7 @@
 				</div>
 				<div class="accordion-options">
 					<div class="pretty p-icon p-curve p-pulse">
-						<input type="radio" ng-model="sort" name="sort" value="4">
+						<input type="radio" ng-model="sort" name="sort" value="5">
 						<div class="state p-info-o">
 							<i class="icon fa fa-check"></i>
 							<label>High to Low</label>
@@ -227,7 +227,7 @@
 	<footer>
 		<div class="apply_btn_container">
 			<button> Cancel</button>
-			<button ng-click="filter('filter_form')"> Apply</button>
+			<button onclick="closeFilter()" ng-click="filter('filter_form')"> Apply</button>
 		</div>
 	</footer>
 	</form>

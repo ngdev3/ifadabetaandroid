@@ -1,39 +1,34 @@
 <div class="bg" ng-controller="thankyou" ng-init="thanks()">
-    <header class="container-fluid nav-down">
-        <div class="row">
-            <nav class="navbar navbar-inverse">
-                <div class="container-fluid no-padding">
-                    <ul class="nav navbar-nav top_header">
-                        <!-- <li class="menu_icon back_icon"><a href="javascript:void(0)"  ><img src="assets/img/header/back.png" id="asdf" alt="menu icon" /></a></li>
-                     -->
-                        <li class="logo_name"><a class="text-left back">Order Confirmed</a></li>
-
-                    </ul>
+        <div class="thank_you_main">	
+                <div class="tk_text mt-70"> 
+                     <div class="tk_icon"><img src="assets/img/thank_you_icon.png"></div>
+                     <div class="text_div">
+                         <h3>THANK YOU</h3>
+                         <P>For Shopping With Us</P>
+                     </div>
                 </div>
-            </nav>
-        </div>
-        <!-- MOBILE-MENU-AREA END -->
-    </header>
-
-    <!-- END HEADER -->
-    <div class="ty_main">
-
-        <div class="ty_logo text-center">
-            <img src="assets/img/thank_you.png">
-        </div>
-        <div class="order_cnfrm text-center">
-            <h3>Thank You For Shopping With Us</h3>
-            <h3>Your Order Has Been Placed</h3>
-            <h3>Order No : <span>CF0000{{orderid}}</span></h3>
-        </div>
-        <div class="back_links fixed_checkout">
-            <div class="home_back"><a href="javascript:void(0)" ng-click="goToHome()">
-                    <p>Go to home</p>
-                </a></div>
-            <div class="order_back mt-10"><a href="javascript:void(0)" ng-click="seeOrders()">
-                    <p>See Orders</p>
-                </a></div>
-        </div>
-    </div>
+                <div class="tk_bottom">
+                    <div class="tk_img"><img src="assets/img/thank_you.png"></div>
+                    <div class="tk_order">
+                        <h5>Your Order Has Been Confirmed</h5>
+                        <h5>Your Order No. <span>IF-201</span></h5>
+                    </div>
+                
+                    <div class="tk_bg">
+                        <div class="tk_hungry"><h5>Still Hungry For Shopping ?</h5></div>
+                        <div class="cont_shop"><a href="javascript:void(0)" class="">SHOP NOW</a></div>
+                    </div>
+                    <div class="see_order"><a href="javascript:void(0)">VIEW ORDER</a></div>
+                </div>
+            </div>
+            <script>
+            
+                $('.digit1 input').keyup(function(){
+                    if($(this).val().length==$(this).attr("maxlength")){
+                        $(this).next().focus();
+                    }
+                });
+            
+            </script>	
 
 </div>
