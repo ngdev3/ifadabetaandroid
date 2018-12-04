@@ -79,7 +79,11 @@ app.config(function ($translateProvider) {
     New_Password : 'New Password',
     Confirm_New_Password : 'Confirm New Password',
     Ticket_List : 'Ticket List',
-    Value_Packs : 'Value Packs',    
+    Value_Packs : 'Value Packs',
+    Complete_The_Order : 'Complete The Order',
+    Deliver_Here : 'Deliver Here',
+    Change_or_Add_Address : 'Change or Add Address',
+    Delivery_Address : 'Delivery Address'    
 
   });
 
@@ -170,7 +174,10 @@ app.config(function ($translateProvider) {
     New_Password : 'كلمة السر الجديدة',
     Confirm_New_Password : 'تأكيد كلمة المرور الجديدة',
     Ticket_List : 'قائمة التذاكر',
-    Value_Packs : 'حزم القيمة',    
-
+    Value_Packs : 'حزم القيمة',
+    Complete_The_Order : 'أكمل الطلب',
+    Deliver_Here : 'توصيل هنا',
+    Change_or_Add_Address : 'تغيير أو إضافة العنوان',
+    Delivery_Address : 'عنوان التسليم'
   });
 });
