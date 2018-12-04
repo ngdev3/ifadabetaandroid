@@ -74,11 +74,13 @@ $scope.fetch_product_data = function () {
                 $scope.rowid = response.data.data.product_details.menu_varient[0].cart_row_id;
                 $scope.menu_id = response.data.data.product_details.id;
                 $scope.addedQnty = response.data.data.product_details.menu_varient[0].cart_quantity;
+                $scope.is_in_stock = response.data.data.product_details.menu_varient[0].is_in_stock;
+                $scope.quantity = response.data.data.product_details.menu_varient[0].quantity;
                 $scope.manufacture_id = response.data.data.product_details.user_id;
-
-                console.log($scope.product_price)
                 $scope.product_weight_value = response.data.data.product_details.menu_varient[0].unit_value;
-                $scope.product_weight_unit = +response.data.data.product_details.menu_varient[0].UNIT_NAME;
+                $scope.product_weight_unit = + response.data.data.product_details.menu_varient[0].UNIT_NAME;
+                
+                console.log($scope.product_price)
                 $scope.product_images = response.data.data.product_details.gallery_image;
                 $scope.slickConfig0Loaded = true;
                   $scope.slickConfig0 = {

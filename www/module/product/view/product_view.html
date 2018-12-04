@@ -119,8 +119,11 @@
 													</button>
 										</div>
 										
-										<div class="add_cart_button sub_add_btn" id="addToCart_{{DweightID}}" ng-show="!rowid">
-										   <button class="" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}" ng-click="addToCart($event)">Add</button>
+										<div class="add_cart_button sub_add_btn" id="addToCart_{{DweightID}}" ng-show="!rowid && is_in_stock !== 'limited'" >
+										   <button class="" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}" ng-click="addToCart($event)">Adds</button>
+										</div>
+										<div class="add_cart_button sub_add_btn" id="addToCart_{{DweightID}}" ng-show="is_in_stock == 'limited' && quantity == 0 ">
+										   <button class="" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}" ng-click="addToCart($event)">Out Of Stocks</button>
 										</div>
 										
 									</div>
