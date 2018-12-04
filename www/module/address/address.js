@@ -29,7 +29,8 @@ app.controller('address', function ($scope, $http, $location, $cookieStore, mode
 
         var args = $.param({
             'user_id' : GlobalUID,
-            'language_code' : 'en'
+            // 'language_code' : 'en',
+            'country_id' : sessionStorage.country
         })
         //Get the Address List from LocalAPI    
 
@@ -39,14 +40,17 @@ app.controller('address', function ($scope, $http, $location, $cookieStore, mode
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/basic_info',
+            url: app_url + '/my_address',
             data : args   
         }).then(function (response) {
             //alert();
             loading.deactive();
             res = response;
-            $scope.address = res.data.data.address_details; 
-            res.data.data.address_details.map(function (x, key) {
+            if(res.data.data.my_address.length > 0){
+                $scope.address = res.data.data.my_address; 
+            }
+            // console.log($scope.address);return;
+            res.data.data.my_address.map(function (x, key) {
                 console.log(x);
                 $cookieStore.put(x.id, x);
             })           
