@@ -96,11 +96,10 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                         'fullName' : fullName,
                         'address' : response.data.data.address,
                         'profile_image' : response.data.data.profile_image,
-                        'from'    : 'login',
                         'left_data':response.data.data  
                     }
                     $cookieStore.put('userinfo', userinfo);
-                    $location.path('/splash');
+                    $location.path('/dashboard/home');
 
                 } else {
 

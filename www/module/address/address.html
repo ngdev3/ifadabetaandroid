@@ -28,7 +28,7 @@
     
     <!-- END HEADER -->    
          
-        <div class="" ng-if="address.length > '0'">
+        <div class="" ng-if="address">
             <div class="address mt-50">
                 <h3>Saved Address</h3>
             </div>
@@ -51,10 +51,10 @@
                  </div>
             </div>
         </div>
-    <div ng-if = "address.length == '0'">
-        <div class="">
-           <!--  <img src="img/no_data_found.png"> -->
-            <h3 class="text-center" style="margin-top:70px">No Address Found !!!</h3>
+    <div   class="no_data_wrapper" ng-if = "!address">
+        <div>
+            <img src="img/no_data_found.png">
+            <h3 class="text-center" >No Address Found !!!</h3>
         </div>
     </div>
 
