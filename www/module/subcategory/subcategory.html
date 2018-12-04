@@ -226,7 +226,7 @@
 	</div>
 	<footer>
 		<div class="apply_btn_container">
-			<button> Cancel</button>
+			<button onclick="closeFilter()"> Cancel</button>
 			<button onclick="closeFilter()" ng-click="filter('filter_form')"> Apply</button>
 		</div>
 	</footer>
@@ -253,7 +253,7 @@
                                             <input type="button" ng-if="categorysubData" class="btn btn-success all-sub-cat_buttons" id="all" name="" value="All" ng-click="fetch_product_list('all')">
                                         </div>
                                         <div ng-repeat="sub in categorysubData">
-                                            <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id)">                      
+                                            <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id,sub.url)">                      
 
                                         </div>
                                     </slick>
