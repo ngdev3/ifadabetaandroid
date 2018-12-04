@@ -39,6 +39,7 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
           console.log(res.data.data);
           if(res.data.data.status == 'success'){
             $scope.category_data = res.data.data.category; 
+            $location.path('/category');
             // console.log($scope.category_data);
           }
 

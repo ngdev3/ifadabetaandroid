@@ -226,7 +226,7 @@
 	</div>
 	<footer>
 		<div class="apply_btn_container">
-			<button> Cancel</button>
+			<button onclick="closeFilter()"> Cancel</button>
 			<button onclick="closeFilter()" ng-click="filter('filter_form')"> Apply</button>
 		</div>
 	</footer>
@@ -253,7 +253,7 @@
                                             <input type="button" ng-if="categorysubData" class="btn btn-success all-sub-cat_buttons" id="all" name="" value="All" ng-click="fetch_product_list('all')">
                                         </div>
                                         <div ng-repeat="sub in categorysubData">
-                                            <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id)">                      
+                                            <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id,sub.url)">                      
 
                                         </div>
                                     </slick>
@@ -275,12 +275,12 @@
                         </div> -->
                         <!-- ** !. Buttons ** -->
                         <!-- ** Product Lists ** -->
-                        <div class="no-padding item_lists_main" ng-repeat="x in product" ng-if="categoryData"   ng-click="product_view(x.id)">
+                        <div class="no-padding item_lists_main" ng-repeat="x in product" ng-if="categoryData"   ng-click="product_view(x.id,x.url)">
                            
                             <div class="prodcut_main_container">
                                 <div class="products_wrapper">
                                     <div class="col-md-3 col-sm-3 col-xs-3">
-                                        <a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="{{x.product_image}}"></a>
+                                        <a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="{{x.image}}"></a>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
                                         <!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->

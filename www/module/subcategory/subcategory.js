@@ -1,15 +1,27 @@
 app.controller('sub_category', function ($scope, $http, $location, $interval, $cookieStore, model, $locale, loading, $rootScope) {
 
     // console.log($rootScope.searchresult);return;
-
+if($cookieStore.get('userinfo')){
+    var user_type = $cookieStore.get('userinfo').user_type;
+    var uid = $cookieStore.get('userinfo').uid;
+}else{
+    var user_type = '';
+    var uid = '';
+}
 
     $scope.cart = function () {
         $location.path('/cart');
     }
 
     var ID;
-    $scope.fetch_product_list = function (id) {
+    $scope.fetch_product_list = function (id,url) {
         // alert(id);
+        var suburl;
+        if(url){
+            suburl = url ;
+        }else{
+            suburl = $cookieStore.get('subcategoryInfo').url
+        }
         if (id) {
 
             if (id !== 'all') {
@@ -30,9 +42,9 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             category_id: ID,
             country_id: sessionStorage.country,
             language_code: 'en',
-            user_type : $cookieStore.get('userinfo').user_type,
-            user_id : $cookieStore.get('userinfo').uid,
-            cat_url : $cookieStore.get('subcategoryInfo').url,
+            user_type : user_type,
+            user_id : uid,
+            cat_url : suburl,
             sort_by : $scope.sort,
             //retailer_id : 47
         });
@@ -56,10 +68,10 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
 
             if (res.data.responseStatus == 'success') {
                 console.log(res.data.data.category_product.products);
-              //  $scope.categoryData = res.data.data.category_product.products;
-              $scope.categoryData = 'fdsfd';
+                $scope.categoryData = res.data.data.category_data[0];
+             
                 //   alert(id);
-                /* if (!id) {
+                 if (!id) {
                     
                     if(id == 'all'){
                         $scope.categorysubData = "";//res.data.data.category_data[0].sub;
@@ -71,9 +83,6 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                     if ($scope.categorysubData.length == 0) {
                         $scope.categorysubData = "";
                     }
-
-
-                } */
 
                 $scope.slickConfig0Loaded = true;
                 $scope.slickConfig0 = {
@@ -115,6 +124,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                         }
                     ]
                 };
+            }
 
                 /*  for(var i = 0; i< $scope.categorysubData.length; i++){
                    $scope.categorysubSubData = $scope.categorysubData[i];
@@ -202,8 +212,12 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
     }
 
 
-    $scope.product_view = function (id) {
-        $cookieStore.put('id', id);
+    $scope.product_view = function (id,url) {
+        var productinfo = {
+            'id' : id,
+            'url' : url
+        }
+        $cookieStore.put('productinfo', productinfo);
         $location.path('/product/view');
     }
 
