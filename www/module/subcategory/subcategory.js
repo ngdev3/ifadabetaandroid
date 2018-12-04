@@ -1,7 +1,13 @@
 app.controller('sub_category', function ($scope, $http, $location, $interval, $cookieStore, model, $locale, loading, $rootScope) {
 
     // console.log($rootScope.searchresult);return;
-
+if($cookieStore.get('userinfo')){
+    var user_type = $cookieStore.get('userinfo').user_type;
+    var uid = $cookieStore.get('userinfo').uid;
+}else{
+    var user_type = '';
+    var uid = '';
+}
 
     $scope.cart = function () {
         $location.path('/cart');
@@ -36,8 +42,8 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             category_id: ID,
             country_id: sessionStorage.country,
             language_code: 'en',
-            user_type : $cookieStore.get('userinfo').user_type,
-            user_id : $cookieStore.get('userinfo').uid,
+            user_type : user_type,
+            user_id : uid,
             cat_url : suburl,
             sort_by : $scope.sort,
             //retailer_id : 47
