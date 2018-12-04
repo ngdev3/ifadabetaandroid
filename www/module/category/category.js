@@ -138,7 +138,7 @@ var currentid;
     }
 
     $scope.showProducts = function(id,url){
-        
+        console.log(url)
         var subcategoryInfo = {
             'subcatid': id,
             'url': url,
@@ -146,7 +146,7 @@ var currentid;
         }
         
         $cookieStore.put('subcategoryInfo', subcategoryInfo);
-        console.log( $cookieStore.get('subcategoryInfo').url);
+        //console.log( $cookieStore.get('subcategoryInfo').url);
         $location.path('/subcategory');
     }
 

@@ -22,6 +22,10 @@ app.controller('address_detail', function ($scope, $http, $location, $cookieStor
     $scope.toAddAddress = function () {
         $location.path("/address/add");
     }
+    $scope.paySummary = function () {
+        $location.path("/payment");
+    }
+    
 
     // /**
     //  * Funtion: all_address from address_detail.html on ng-init
