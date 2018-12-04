@@ -1,6 +1,11 @@
 app.controller('payment_summary', function ($scope, $http, $location, $cookieStore, model, loading, $cordovaDialogs, $cordovaGeolocation, $rootScope, $routeParams) {
 
-    alert(); return;
+
+
+    $scope.paymode= function(){
+        $location.path('/payment/mode');
+    } 
+    return;
     $rootScope.couponData = '';
     
     if (!$cookieStore.get('userinfo')) {

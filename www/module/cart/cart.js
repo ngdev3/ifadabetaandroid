@@ -122,4 +122,9 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
         })
 
     }
+
+    $scope.address_delivery = function() {
+    
+        $location.path('/addressdetail');
+    }
 });
