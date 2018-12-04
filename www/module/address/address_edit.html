@@ -7,7 +7,7 @@
                       <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" ng-click="back()"/></a></li>
                         <li class="page_name left">
                             <a href="javascript:void(0)" class="text-left ">
-                                <p>Edit Address</p>
+                                <p>{{'Edit_Address' | translate }}</p>
                             </a>
                         </li>
                       
@@ -29,17 +29,17 @@
                             <select id="country" name="country" ng-model="country" ng-init="fetchcountry()" ng-change="fetchcity()" required>
                                 <option value="{{c.id}}" ng-repeat="c in Countries">{{c.name}}</option>
                             </select>
-                            <label for="country">Country</label>
+                            <label for="country">{{'Country' | translate }}</label>
                         </div>
                         <div class="mui-select col-sm-6 col-xs-12">
                         <select id="city" name="city" ng-model="city" required>
                             <option value="{{city.id}}" ng-repeat="city in Cities">{{city.name}}</option>
                         </select>
-                        <label for="city">City</label>
+                        <label for="city">{{'City' | translate }}</label>
                         </div>	
                         <div class="mui-textfield col-sm-6 col-xs-12">
                         <input type="text"  id="address" name="address" ng-model="address" placeholder="Address" required>
-                        <label for="hno">Address</label>
+                        <label for="hno">{{'Address' | translate }}</label>
                         </div>
                         <!-- <div class="mui-textfield col-sm-6 col-xs-12">
                         <input type="text"  id="street" name="hno" model="hno" placeholder="Street Name" required>
@@ -47,22 +47,22 @@
                         
                         <div class="mui-textfield col-sm-6 col-xs-12">
                         <input type="text"  id="landmark" name="landmark" ng-model="landmark" placeholder="Landmark" required>
-                        <label for="street">Landmark</label>
+                        <label for="street">{{'Landmark' | translate }}</label>
                         </div>				  
                         <div class="mui-textfield col-sm-6 col-xs-12">
                         <input type="number"  id="zip" name="zip" ng-model="zip" placeholder="Zip Code" required>
-                        <label for="street">Zip Code</label>
+                        <label for="street">{{'Zip_Code' | translate }}</label>
                         </div>
                         <div class="mui-textfield col-sm-6 col-xs-12">
                         <input type="text"  id="instruction" name="instruction" ng-model="instruction" placeholder="Delivery Instruction" required>
-                        <label for="street">Delivery Instruction</label>
+                        <label for="street">{{'Delivery_Instructions' | translate }}</label>
                         </div>
                         <div class="mui-textfield col-sm-6 col-xs-12">
                         <input type="text"  id="mobile" name="mobile" ng-model="mobile" placeholder="Mobile Number" required>
-                        <label for="street">Mobile Number</label>
+                        <label for="street">{{'Mobile_Number' | translate }}</label>
                         </div>
                         <div class="submit-btn col-sm-6 col-xs-12 text-center">
-                        <a href="javascript:void(0)" ng-click="saveEditAddress('editAddress')">Save</a>
+                        <a href="javascript:void(0)" ng-click="saveEditAddress('editAddress')">{{'Save' | translate }}</a>
                         </div>
                     </form>
                 </div>        

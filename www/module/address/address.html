@@ -13,7 +13,7 @@
               <div class="container-fluid no-padding">
                 <ul class="nav navbar-nav top_header">
                   <li class="menu_icon back_icon"><a href="javascript:void(0)"  ><img style="width:13px;" src="assets/img/icon/back.png" id="asdf" alt="menu icon" ng-click="back()"/></a></li>
-                  <li class="logo_name"><a class="text-left back">My Address</a></li>
+                  <li class="logo_name"><a class="text-left back">{{'My_Addresses' | translate }}</a></li>
                   <li class="cart_icon mr-5">
                       
                       <a href="javascript:void(0)"><img src="assets/img/location.png" alt="search icon" ng-click="toAddAddress()"/></a>
@@ -30,7 +30,7 @@
          
         <div class="" ng-if="address">
             <div class="address mt-50">
-                <h3>Saved Address</h3>
+                <h3>{{'Saved_Address' | translate }}</h3>
             </div>
         </div>
         <div class="">
@@ -46,15 +46,15 @@
                         {{x.CITY_NAME + " , " + " " + x.COUNTRY_NAME}}<br />
                         {{x.zipcode}}
                     </h3>
-                <a class="edit" ng-click="toEditAddress(x.id)">Edit</a>
-                <a class="delete" ng-click="delete_address(x.id)">Delete</a>
+                <a class="edit" ng-click="toEditAddress(x.id)">{{'Edit' | translate }}</a>
+                <a class="delete" ng-click="delete_address(x.id)">{{'Delete' | translate }}</a>
                  </div>
             </div>
         </div>
     <div   class="no_data_wrapper" ng-if = "!address">
         <div>
             <img src="img/no_data_found.png">
-            <h3 class="text-center" >No Address Found !!!</h3>
+            <h3 class="text-center" >{{'No_Address_Found' | translate }} !!!</h3>
         </div>
     </div>
 

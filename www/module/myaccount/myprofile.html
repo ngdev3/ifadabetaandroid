@@ -7,7 +7,7 @@
 			  <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" ng-click="back()"/></a></li>
 				<li class="page_name left">
 					<a href="javascript:void(0)" class="text-left ">
-						<p>My info</p>
+						<p>{{'My_Info' | translate }}</p>
 					</a>
 				</li>
 				<li class="cart_icon">
@@ -30,10 +30,10 @@
 		<div class="login_form">
 			<div class="info-container"> 
 				<div class="info-btn col-xs-6 text-center pl-10 pr-10 active" ng-init="fetchcountry()">
-					<a href="javascript:void(0)" >Basic Info</a>
+					<a href="javascript:void(0)" >{{'Basic_Info' | translate }}</a>
 				</div>
 				<div class="info-btn col-xs-6 text-center pl-10 pr-10">
-					<a href="javascript:void(0)" ng-click="toAddress()">Address Detail</a>
+					<a href="javascript:void(0)" ng-click="toAddress()">{{'Address_Detail' | translate }}</a>
 				</div>
 			</div>
 			<div class="form_container pt-10">
@@ -41,20 +41,20 @@
 				
 				  <div class="mui-textfield col-sm-6 col-xs-12">
 					<input type="text"  id="fname" name="fname" ng-model="fname" readonly placeholder="Enter first name" required>
-					<label for="frst">First Name</label>
+					<label for="frst">{{'First_Name' | translate }}</label>
 				  </div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
 					<input type="text"  id="lname" name="lname" ng-model="lname" readonly placeholder="Enter last name" required>
-					<label for="lst">Last Name</label>
+					<label for="lst">{{'Last_Name' | translate }}</label>
 					</div>
 					<div id="onLoad">
 						<div class="mui-textfield col-sm-6 col-xs-12">
 						<input type="text"  id="input_country" name="country" ng-model="country" readonly placeholder="Enter Country" >
-						<label for="lst">Country</label>
+						<label for="lst">{{'Country' | translate }}</label>
 						</div>
 						<div class="mui-textfield col-sm-6 col-xs-12">
 						<input type="text"  id="input_city" name="city" ng-model="city" readonly placeholder="Enter City" >
-						<label for="lst">City</label>
+						<label for="lst">{{'City' | translate }}</label>
 						</div>
 					</div>
 					<div id="onEdit">
@@ -63,30 +63,30 @@
 								<!-- <option>Select Country</option> -->
 								<option ng-repeat="c in Countries" ng-value="{{c.id}}" >{{c.name}}</option>
 							</select>
-							<label for="country">Country</label>
+							<label for="country">{{'Country' | translate }}</label>
 						</div>
 						<div class="mui-select col-sm-6 col-xs-12">
 							<select id="city"  name="select_city" ng-model="select_city"  required>
 								<option ng-value="{{city.id}}" ng-repeat="city in Cities">{{city.name}}</option>
 							</select>
-							<label for="city">City</label>
+							<label for="city">{{'City' | translate }}</label>
 						</div>
 					</div>
 					
 					<div class="mui-textfield col-sm-6 col-xs-12">
 						<input type="text"  id="address" name="address" ng-model="address" readonly placeholder="Enter Address" ng-required="address">
-						<label for="email">Address</label>
+						<label for="email">{{'Address' | translate }}</label>
 					</div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
 					<input type="email"  id="email" name="email" ng-model="email" readonly placeholder="Enter email id" required>
-					<label for="email">Email ID</label>
+					<label for="email">{{'Email_ID' | translate }}</label>
 				  </div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
 					<input type="tel"  id="mbl_num"  name="mobile" ng-model="mobile" readonly placeholder="Mobile Number" pattern="[0-9]{10}" required>
-					<label for="mbl_num">Mobile Number</label>
+					<label for="mbl_num">{{'Mobile_Number' | translate }}</label>
 				  </div>
 				  <div class="submit-btn col-sm-6 col-xs-12 text-center hide" id="submitProfile">
-					<a href="javascript:void(0)" ng-click="updateUserProfile('updateProfile')">Submit</a>
+					<a href="javascript:void(0)" ng-click="updateUserProfile('updateProfile')">{{'Submit' | translate }}</a>
 				  </div>
 				</form>
 			</div>

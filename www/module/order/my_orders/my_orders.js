@@ -59,7 +59,7 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
             $scope.order_list = res.data.data.order_list;
            }else{
                $scope.order_list= '';
-            alert(res.data.responseMessage)
+            alert("Order Doesn't Exist");
            }
 
         }).finally(function () {
