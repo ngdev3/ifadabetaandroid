@@ -208,7 +208,10 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         $location.path('/product/view');
     }
 
-
+ $scope.filter = function(form) {
+     console.log($scope.sort);  
+     console.log(form)
+ }
 
 
 

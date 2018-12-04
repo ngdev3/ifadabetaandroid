@@ -78,7 +78,8 @@
 		
         <!--Filter Start -->
 		<div id="mySidenav-right" class="sidenav-right">		
-	<header id="filter-header" class="container-fluid nav-down" style="top: 0 !important;">
+	<form name="filter_form" nonvaldidate>
+			<header id="filter-header" class="container-fluid nav-down" style="top: 0 !important;">
 		<div class="row">
 			<nav class="navbar navbar-inverse">
 			  <div class="container-fluid no-padding">
@@ -95,7 +96,7 @@
 		<div class="filter-container">
 			
 
-			<button class="accordion" id="accord_1" ng-click="init(1);">Sub-categories</button>
+			<!-- <button class="accordion" id="accord_1" ng-click="init(1);">Sub-categories</button>
 			<div class="accordion-panel accordion-panel_1">
 			  <div class="accordion-container">
 					<div class="accordion-options">
@@ -135,7 +136,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> 
 
 			<button class="accordion" id="accord_2" ng-click="init(2);">Brand</button>
 			<div class="accordion-panel accordion-panel_2">
@@ -177,137 +178,59 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 
 			<button class="accordion" id="accord_3" ng-click="init(3);">Price</button>
 			<div class="accordion-panel accordion-panel_3">
 			  <div class="accordion-container">
 					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="price_range">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Less than rs 20</label>
+							<div class="pretty p-icon p-curve p-pulse">
+								<input type="radio" ng-model="sort" name="sort" value="1">
+								<div class="state p-info-o">
+									<i class="icon fa fa-check"></i>
+									<label> A to Z</label>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="price_range">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Rs 21 to Rs 50</label>
+						<div class="accordion-options">
+							<div class="pretty p-icon p-curve p-pulse">
+								<input  type="radio" ng-model="sort" name="sort" value="2">
+								<div class="state p-info-o">
+									<i class="icon fa fa-check"></i>
+									<label> Z to A</label>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="price_range">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Rs 51 to Rs 100</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="price_range">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Rs 101 to Rs 200</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="price_range">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Rs 201 to Rs 500</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="price_range">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> More than Rs 501</label>
-							</div>
+				<div class="accordion-options">
+					<div class="pretty p-icon p-curve p-pulse">
+						<input type="radio" ng-model="sort" name="sort" value="3">
+						<div class="state p-info-o">
+							<i class="icon fa fa-check"></i>
+							<label> Low to High</label>
 						</div>
 					</div>
 				</div>
-			</div>
-
-			<button class="accordion" id="accord_4" ng-click="init(4);">Sort By</button>
-			<div class="accordion-panel accordion-panel_4">
-			  <div class="accordion-container">
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="sort">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Low to High</label>
-							</div>
+				<div class="accordion-options">
+					<div class="pretty p-icon p-curve p-pulse">
+						<input type="radio" ng-model="sort" name="sort" value="4">
+						<div class="state p-info-o">
+							<i class="icon fa fa-check"></i>
+							<label>High to Low</label>
 						</div>
 					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input  type="radio" name="sort">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> High to Low</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="sort">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Popularity</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="sort">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Discount</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="sort">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Relevance</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="sort">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Newest</label>
-							</div>
-						</div>
-					</div>
+				</div>	
+				
 				</div>
-			</div>
-
-			
+			</div>			
 		</div>
 	</div>
 	<footer>
 		<div class="apply_btn_container">
 			<button> Cancel</button>
-			<button> Apply</button>
+			<button ng-click="filter('filter_form')"> Apply</button>
 		</div>
 	</footer>
+	</form>
 </div>
 		
 		<!--Filter End -->
