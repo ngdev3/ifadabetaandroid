@@ -57,6 +57,9 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                     'address': res.data.data.delivery_address.address,
                     'mobile_number': res.data.data.delivery_address.mobile_number,
                     'payment_type': res.data.data.basic_info.payment_type,
+                    'landmark' :  res.data.data.delivery_address.landmark,
+                    'location' :  res.data.data.delivery_address.location,
+                    'zipcode'  : res.data.data.delivery_address.zipcode,
                     
                 }
                 $cookieStore.put('orderinfo', orderinfo);
@@ -200,7 +203,7 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
     }
 
     //End of Function
-    $scope.deleteOrder = function (no) {
+    $scope.deleteOrder = function (m_id,id) {
 
         $.confirm({
             title: 'Cancel Order!',
@@ -228,9 +231,11 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                         var name = this.$content.find('.name').val(); //to get the prompt value
 
                         var args = $.param({
-                            'uid': GlobalUID,
-                            'order_no': no,
-                            'reason': name
+                           
+                            'order_id': id,
+                            'manufacturer_distribution_id': m_id,
+                            'cancel_reason' : name,
+                            'user_id' : $cookieStore.get('userinfo').uid
                         });
 
                         //alert(name);return false; 
@@ -241,23 +246,22 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                                     'Content-Type': 'application/x-www-form-urlencoded'
                                 },
                                 method: 'POST',
-                                url: app_url + '/profileapi/cancelOrder',
+                                url: app_url + '/cancel_order',
                                 data: args
                             }).then(function (response) {
                                 loading.deactive();
-                                // console.log(response);
-                                // return false;
+                                 
                                 // $.alert('Confirmed!');
-                                if (response.data.status == "success") {
+                                if (response.data.responseStatus == "success") {
                                     alert("Order Successfully Cancelled");
-                                    $scope.ordersInit();
+                                    $scope.ordersDetalisInit();
                                 } else {
-                                    alert("Something went wrong.");
+                                    alert(response.data.responseMessage);
                                 }
                             })
                         } else {
-                            alert("Please Provide the Reason");
-                            $scope.ordersInit();
+                            alert("Please Provide a Reason");
+                            $scope.ordersDetalisInit();
                         }
                     }
                 },

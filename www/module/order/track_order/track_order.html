@@ -89,7 +89,7 @@
                                         <span class="span_text"><img class="bar_icons" src="assets/img/out_for_delivery.png">Delivered</span>
                                     </li>  
                                 </ol> -->
-                                <ol class="progtrckr" data-progtrckr-steps="5">
+                                <ol class="progtrckr" data-progtrckr-steps="5" ng-if="trackorder_location.status != '6' && trackorder_location.status != '7'">
                                     <li class="progtrckr-todo inprocessed" >
                                         <span class="span_date_tarck">27 Oct 2018</span>
                                         <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
@@ -135,21 +135,39 @@
                                       <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
                                       <span class="span_text"><img class="bar_icons" src="assets/img/out_for_delivery.png">Delivered</span>
                                   </li>  
+                                  
                               </ol>
+                              <ol>
+                                <li ng-if="trackorder_location.status == '6'" class="progtrckr-todo inprocessed">
+                                    <span class="span_date_tarck">29 Oct 2018</span>
+                                    <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                    <span class="span_text"><img class="bar_icons" src="assets/img/out_for_delivery.png">Cancelled</span>
+                                </li>
+                              
+                              
+                                <li  ng-if="trackorder_location.status == '7'" class="progtrckr-todo inprocessed">
+                                    <span class="span_date_tarck">29 Oct 2018</span>
+                                    <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                    <span class="span_text"><img class="bar_icons" src="assets/img/out_for_delivery.png">Rejected</span>
+                                </li>
+                              </ol>
+
+
+
                             </div>
                         </div>
                         <!-- ** !. bars ** -->
                         <!-- ** more details ** -->
                         <div class="tracking_more_details">
-                            <div class="estimate_deliaver">
+                            <div ng-if="trackorder_location.delivery_date != '0000-00-00'" class="estimate_deliaver">
                                 <h5>Estimated Delivery Time</h5>
-                                <p>Tuesday, 28 Oct to 30 Oct</p>
+                                <p>{{trackorder_location.delivery_date}}</p>
                             </div>
                             <div class="estimate_deliaver">
                                 <h5>Billing Address</h5>
-                                <p>Kamla-Abha Road</p>
-                                <p>Al-Rajhi Buliding Flat no.22</p>
-                                <p>Near Kraba Building</p>
+                                <p>{{orderinfo.landmark}}</p>
+                                <p>{{orderinfo.location}}</p>
+                                <p>{{orderinfo.zipcode}}</p>
                             </div>
                             <div class="more_methods_opt">
                                 <div class="more_methods_opt_line">

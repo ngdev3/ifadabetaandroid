@@ -61,10 +61,14 @@
                                         <p><span>Price </span>AED 140</p>
                                     </div>
                                 </div> -->
-                                    <div class="submit-btn col-sm-6 col-xs-12 text-center">
-                                        <a href="javascript:void(0)" ng-click="deleteOrder()">Cancel</a>
-                                      </div>
+                                   
                             </div>
+                            <div ng-if="y.ORDER_STATUS != '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
+                                <a href="javascript:void(0)" ng-click="deleteOrder(y.id,detail.id)">Cancel</a>
+                              </div>
+                              <div ng-if="y.ORDER_STATUS == '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
+                                <a href="javascript:void(0)" style="background-color: #cd3b3b">Order Cancelled </a>
+                              </div>
                         </div>
                        
                     </div>
