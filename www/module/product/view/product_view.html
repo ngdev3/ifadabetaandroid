@@ -108,19 +108,17 @@
 									<div class="add_item_container sub_add_btn" id="firstt_{{productpid}}" data-attr="{{DweightID}}">
 										
 										<div class="add_item_button sub_add_btn" data-rowid="{{rowid}}" id="enableCart_{{DweightID}}" ng-show="rowid">
-										    <button class="add_item sub_add_btn" data-weightid="{{DweightID}}" id="plus_{{DweightID}}"
-												ng-click="plusToCart($event)">
-													<span class="additem_span">+</span>
+										    <button class="add_item sub_add_btn" data-menuid="{{menu_id}}" data-weightid="{{DweightID}}" data-weightid="{{DweightID}}" id="plus_{{DweightID}}" ng-click="plusToCart($event)">
+												+
 												</button>
 										  	<input type="text" id="quantity_{{DweightID}}" value="{{addedQnty}}" disabled="">
-										   	<button class="less_item sub_add_btn" data-weightid="{{DweightID}}" id="minus_{{DweightID}}"
-												 ng-click="minusToCart($event)">
-													 <span class="additem_span">-</span>
+										   	<button class="less_item sub_add_btn" data-menuid="{{menu_id}}" data-weightid="{{DweightID}}" id="minus_{{DweightID}}" ng-click="minusToCart($event)">
+													 -
 													</button>
 										</div>
 										
 										<div class="add_cart_button sub_add_btn" id="addToCart_{{DweightID}}" ng-show="!rowid && is_in_stock !== 'limited'" >
-										   <button class="" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}" ng-click="addToCart($event)">Adds</button>
+										   <button class="" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}" ng-click="addToCart($event)">Add</button>
 										</div>
 										<div class="add_cart_button sub_add_btn" id="addToCart_{{DweightID}}" ng-show="is_in_stock == 'limited' && quantity == 0 ">
 										   <button class="" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}" ng-click="addToCart($event)">Out Of Stocks</button>

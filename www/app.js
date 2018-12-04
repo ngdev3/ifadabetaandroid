@@ -322,11 +322,12 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         quantityID = 'quantity_' + weightid;
 
         var args = $.param({
-            weight_id: weightid,
-            store_id: $cookieStore.get('storeinfo').store_id,
-            product_id: product_id,
-            uid: $cookieStore.get('userinfo').uid,
-            mid: uuid,
+            user_type:$cookieStore.get("userinfo").left_data.user_type,
+            user_id:$cookieStore.get("userinfo").uid,
+            country_id: sessionStorage.country,
+            manufacture_id: manufacture_id,
+            menu_id: menu_id,
+            menu_varient_id: varient_id
         });
 
         // Get the user info from Database
@@ -335,7 +336,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + 'categoryapi/get_product_weight_data',
+            url: app_url + '/cart/select_another_varient',
             data: args //forms user object
 
         }).then(function (response) {
@@ -369,10 +370,9 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
     $rootScope.plusToCart = function (weightid) {
 
-        console.log(weightid.target);
-
-
+        
         weightid = weightid.target.dataset.weightid;
+        rowid = $('#enableCart_' + weightid).attr('data-rowid');
         addToCartID = 'addToCart_' + weightid;
         enableCartID = 'enableCart_' + weightid;
         quantityID = 'quantity_' + weightid;
@@ -383,7 +383,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
         // loading.active();
         var args = $.param({
-            rowid: weightid,
+            rowid: rowid,
             qty: parseInt(new_qnty) + 1,
             language_code: sessionStorage.lang_code,
             user_id:$cookieStore.get("userinfo").uid,
@@ -396,7 +396,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + 'cart/removeQtyCart',
+            url: app_url + '/cart/addQtyCart',
             data: args //forms user object
 
         }).then(function (response) {
@@ -415,9 +415,12 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     }
 
     $rootScope.minusToCart = function (weightid) {
-        // weightid = $(".less_item").attr('data-weightid');
-        // console.log(weightid);
+        // console.log(weightid.target.dataset);
         weightid = weightid.target.dataset.weightid;
+        rowid = $('#enableCart_' + weightid).attr('data-rowid');
+        
+        // weightid = weightid.target.dataset.rowid;
+        // return
         // console.log(weightid.target.dataset.weightid);
         // return false;
 
@@ -430,12 +433,11 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
         //loading.active();
         var args = $.param({
-            weightid: weightid,
-            qnty: $rootScope.currentval,
-            uid: $cookieStore.get('userinfo').uid,
-            mid: uuid,
-            device_type: device_type,
-            store_id: $cookieStore.get('storeinfo').store_id
+            rowid: rowid,
+            qty: $rootScope.currentval,
+            language_code: sessionStorage.lang_code,
+            user_id:$cookieStore.get("userinfo").uid,
+            country_id: sessionStorage.country,
         });
 
         // Get the user info from Database
@@ -444,7 +446,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + 'itemcartapi/updateQnty',
+            url: app_url + '/cart/removeQtyCart',
             data: args //forms user object
 
         }).then(function (response) {
