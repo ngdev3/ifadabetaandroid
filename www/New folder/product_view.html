@@ -11,10 +11,6 @@
     min-height: 1px;
     outline: 0;
 }
-.slide_image {
-    width: 70%;
-    margin: 0 auto;
-}
 
 </style>
 <header class="container-fluid nav-down">
@@ -25,7 +21,7 @@
 			  <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back()" alt="menu icon"style="width: 13px;" /></a></li>
 				<li class="page_name left">
 					<a href="javascript:void(0)" class="text-left ">
-						<p>{{product_details.menu_name}}</p>
+						<p>Pulses</p>
 					</a>
 				</li>
 			  <li class="cart_icon">
@@ -93,12 +89,11 @@
 							<div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
 								<input type="button" class="btn btn-default btn_discounts" name="" value="6% Off">
 								<p class="sub_produt_name">{{product_details.menu_name}}</p>
-								<!-- <select class="sub_product_qty" ng-model="z.price" name="z.price" id="product_{{pid}}" ng-change="getvalueforOtherVarient(productpid, $(this).val())" ng-init="z.price = product_price;">
+								<select class="sub_product_qty" ng-model="z.price" name="z.price" id="product_{{pid}}" ng-change="getvalueforOtherVarient(productpid, $(this).val())" ng-init="z.price = product_price;">
 									<option ng-init="z.selectedOption.wd_price = z.price; z.selectedOption.weight = z.id;"		ng-repeat="z in product_details_varients"  data-weight_id="{{z.id}}" data-product_id="{{product_details.id}}" value="{{z.price}}">{{z.unit_value}}{{z.UNIT_NAME}}</option>
-								</select> -->
-								<p class="sub_product_qty">{{product_details.menu_varient[0].unit_value}} {{product_details.menu_varient[0].UNIT_NAME}}</p>	
-								<p class="sub_prcing"><span id="sub_rrp">AED {{product_details.menu_varient[0].price}}</span></p>
-
+									<!-- ng-init="z.price = product_price; z.unit_value = product_weight_value; z.UNIT_NAME = product_weight_unit" -->
+								</select>
+								<p class="sub_prcing"><span id="sub_rrp">AED {{z.price}}</span></p>
 							</div>
 								<div class="wislist_sub wishlist-container">
 								  <i class="fa heart fa-heart-o"></i> 
@@ -130,17 +125,13 @@
 						</div>
 					</div>
 				</div>
-
-
 				<!-- ** !. Product Details Lists ** -->
 				<!-- ** Product Units ** -->
 				<div class="product_untis" >
 					<h5 class="unit_head">{{ 'Units' | translate}}</h5>
-					<div class="unit_container" ng-repeat="x in product_details_varients" ng-init="exact = product_details_varients[0].id" >
-						<input type="button" ng-if="x.id == exact"  data-weight_id="{{x.id}}{{x.menu_id}}" id="enablequant_{{x.id}}{{x.menu_id}}" class="total btn btn-default marked" ng-click="getvalueforOtherVarient(x.menu_id, x.id)" value="{{x.unit_value}}{{x.UNIT_NAME}}">
-						<input type="button" ng-if="x.id != exact" data-weight_id="{{x.id}}{{x.menu_id}}" id="enablequant_{{x.id}}{{x.menu_id}}" class="total btn btn-default" ng-click="getvalueforOtherVarient(x.menu_id, x.id)" value="{{x.unit_value}}{{x.UNIT_NAME}}">
+					<div class="unit_container" ng-repeat="x in product_details_varients">
+						<input type="button" class="btn btn-default marked" name="" value="{{x.unit_value}}{{x.UNIT_NAME}}">
 						<!-- <input type="button" class="btn btn-default" name="" value="1 Kg"> -->
-						<!-- {{exact}} -->
 					</div>
 				</div>
 				<!-- ** !. Product Units ** -->

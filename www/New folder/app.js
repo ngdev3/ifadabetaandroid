@@ -251,11 +251,24 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         })
     }
 
+    $rootScope.checkLoginStatus  = function(){
+
+        if (!$cookieStore.get('userinfo')) {
+            //$location.path('/login');
+            console.log('f');
+            return false;
+        }else{
+            return true;
+        }
+        // alert()
+
+
+
+    }
+
     
 
     $rootScope.addToCart = function (weightid) {
-        
-        console.log(weightid.target.dataset);
 
         varient_id = weightid.target.dataset.weightid;
         manufacture_id = weightid.target.dataset.user_id;
@@ -305,6 +318,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
     }
 
+   // $rootScope.addToCart();
 
     $rootScope.varientCheck = function (weightid, store_id, product_id) {
         $('#firstt_' + product_id).find('.add_item_button').attr('id', 'enableCart_' + weightid);
@@ -313,7 +327,6 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         $('#firstt_' + product_id).find('.add_item_button').find('.add_item').attr('data-weightid', weightid).attr('id', 'plus_' + weightid);
         $('#firstt_' + product_id).find('.add_cart_button').attr('id', 'addToCart_' + weightid);
         $('#firstt_' + product_id).find('.add_cart_button').find('.addcart_button').attr('data-weightid', weightid).attr('id', 'addCart_' + weightid);
-
         $('#Newdiscount_' + weightid).attr('data-weightid', weightid).attr('id', 'Newdiscount_' + weightid);
 
 
@@ -501,10 +514,9 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     $rootScope.activeCartValue = 0;
     $rootScope.usercartvalue = function () {
         var args = $.param({
-            uid: $cookieStore.get('userinfo').uid,
-            mid: uuid,
-            device_type: device_type,
-            store_id: $cookieStore.get('storeinfo').store_id
+            user_id:$cookieStore.get("userinfo").uid,
+            country_id: sessionStorage.country,
+           
         });
 
         // Get the user info from Database
@@ -513,7 +525,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + 'itemcartapi/usercart',
+            url: app_url + '/count_cart_item',
             data: args //forms user object
 
         }).then(function (response) {
@@ -527,6 +539,29 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 $rootScope.currentcartprice = '';
                 $rootScope.currentcartitems = '';
             }
+        })
+    }
+
+    // $rootScope.usercartvalue();
+    $rootScope.addWhishlist = function (menu_id) {
+        var args = $.param({
+            user_id:$cookieStore.get("userinfo").uid,
+            country_id: sessionStorage.country,
+            menu_varient_id: menu_id,
+        });
+
+        // Get the user info from Database
+        $http({
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/add_wishlist',
+            data: args //forms user object
+
+        }).then(function (response) {
+            console.log(response.data)
+           
         })
     }
     var currentUrl;
@@ -546,41 +581,37 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
 app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $interval) {
 
-    window.alert = function (type, content) {
+    // window.alert = function (type, content) {
 
-        if (content == '' || content == undefined) {
+    //     if (content == '' || content == undefined) {
 
-            if (typeof type === 'string') {
+    //         if (typeof type === 'string') {
 
-                var j = type.toLowerCase();
-                var a = j.indexOf("successfully");
-                var b = j.indexOf("successful");
-                var c = j.indexOf("success");
-                // //console.log(c)
-                if (a >= 0 || b >= 0 || c >= 0) {
-                    model.show('Info', type);
-                } else {
-                    model.show('Alert', type);
-                }
+    //             var j = type.toLowerCase();
+    //             var a = j.indexOf("successfully");
+    //             var b = j.indexOf("successful");
+    //             var c = j.indexOf("success");
+    //             // //console.log(c)
+    //             if (a >= 0 || b >= 0 || c >= 0) {
+    //                 model.show('Info', type);
+    //             } else {
+    //                 model.show('Alert', type);
+    //             }
 
-            } else {
+    //         } else {
 
-                //it will show when u passed the object
-                model.show('Info', JSON.stringify(type));
-            }
-        } else {
+    //             //it will show when u passed the object
+    //             model.show('Info', JSON.stringify(type));
+    //         }
+    //     } else {
 
-            model.show(type, content);
-        }
-    }
+    //         model.show(type, content);
+    //     }
+    // }
 
 
     $rootScope.back = function () {
         window.history.back();
-    }
-
-    $rootScope.cart = function(){
-        $location.path('/cart');
     }
 
     $rootScope.initOneSignal = function () {
