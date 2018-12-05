@@ -105,7 +105,32 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
 
     }
 
-    
+    var i = 1;
+    var j = 3;
+    var first_length = 3;
+    var second_length = 5;
+    setInterval(function(){
+
+        if(first_length > i){
+
+            $('#custom_slider').attr('src',$scope.offer[i].ad_big_image)
+            i++;
+        }else{
+            i = 0;
+        }
+
+        if(second_length > j){
+
+            $('#custom_second_slider').attr('src',$scope.offer[j].ad_big_image)
+            j++;
+        }else{
+            j = 3;
+        }
+
+    },3000);
+
+
+
     // return false;
     $scope.toLocationFetch = function () {
         $location.path('/store');
