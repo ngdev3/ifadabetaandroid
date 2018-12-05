@@ -417,6 +417,47 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     $scope.toswitchCountry = function(){
         $location.path("/switch_country");
     }
+
+    $scope.addToWishlist = function(id){
+        // alert(id);
+        if(!$cookieStore.get("userinfo")){
+            alert("Please Login First");
+            return false;
+        }else{
+            var userID = $cookieStore.get("userinfo").uid;
+        }
+        loading.active();
+        var args = $.param({
+            'country_id': sessionStorage.country,
+            'menu_varient_id' : id,
+            'user_id' : userID
+        });
+
+        // alert(args);return;
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/add_wishlist',
+            data: args
+
+        }).then(function (response) {
+
+            res = response;
+            // console.log("wwwwwwwwwwwwwwwwwww");
+            // console.log(res.data.data);
+            // return;
+            if (res.data.data.add_wishlist == 'success') {
+                model.show("Alert","Added To Wishlist Successfully");
+            } else {
+                model.show("Alert","Something went wrong");
+            }
+        }).finally(function () {
+            loading.deactive();
+        });
+    }
 });
 
 

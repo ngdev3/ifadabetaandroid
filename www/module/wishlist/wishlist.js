@@ -35,8 +35,35 @@ app.controller('wishlist', function ($scope, $http, $location, $cookieStore, mod
         }).finally(function () {
             loading.deactive();
         });
+    }
 
-        
+    $scope.removeWishlistItem = function(id){
+        loading.active();
 
+        var args = $.param({
+            wishlist_id : id,
+            user_id : $cookieStore.get("userinfo").uid
+        })
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/delete_wishlist',
+            data: args
+
+        }).then(function (response) {
+
+            res = response;
+
+          console.log(res.data.data);
+          if(res.data.data.status == 'success'){
+            alert("Wishlist Item Deleted Successfully");
+          }
+
+        }).finally(function () {
+            loading.deactive();
+        });
     }
 });

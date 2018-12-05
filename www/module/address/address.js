@@ -133,8 +133,11 @@ app.controller('address', function ($scope, $http, $location, $cookieStore, mode
     }
     // End of Delete Address Function
 
-    if($cookieStore.get("userinfo")){
-        $scope.fullName = $cookieStore.get("userinfo").fullName;
+    if($cookieStore.get("FullName")){
+        $scope.fullName = $cookieStore.get("FullName").fullName;  
+    }else{  
+        if($cookieStore.get("userinfo")){
+            $scope.fullName = $cookieStore.get("userinfo").fullName;
+        }      
     }
-
 });
