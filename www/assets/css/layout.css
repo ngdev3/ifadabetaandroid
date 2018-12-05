@@ -1379,3 +1379,14 @@ li.progtrckr-todo.inprocessed span.pending_check i
     line-height: 2.0em;
     font-weight: 500;
 }
+.sign-up-button button {
+    width: 80%;
+    background-color: #006d07;
+    color: #fff;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    font-family: Calibri-Regular;
+    font-weight: 400;
+    letter-spacing: 1px;
+}

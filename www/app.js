@@ -150,6 +150,10 @@ app.config(function ($routeProvider, $httpProvider) {
         }).when("/list_ticket", {
             templateUrl: "module/ticket/list/list_ticket.html"
 
+        }).when("/aboutus", {
+            templateUrl: "module/cms/about_us/about_us.html"
+        }).when("/rewards", {
+            templateUrl: "module/myreward/myreward.html"
         })
 
 });

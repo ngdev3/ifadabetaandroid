@@ -84,8 +84,17 @@ app.config(function ($translateProvider) {
     Deliver_Here : 'Deliver Here',
     Change_or_Add_Address : 'Change or Add Address',
     Delivery_Address : 'Delivery Address',
-    About_Us : 'About Us',    
-
+    About_Us : 'About Us',
+    My_Wallet : 'My Wallet',
+    Wallet_balance : 'Wallet balance',
+    Add_Money : 'Add Money',
+    Credit_or_Debit_Card : 'Credit or Debit Card',
+    ccAvenue : 'ccAvenue',
+    Your_Wallet_History : 'Your Wallet History',
+    Date :'Date',
+    Earn_By : 'Earn By',
+    Amount : 'Amount',
+     CR_DR  : 'CR/DR'
   });
 
 
@@ -181,5 +190,15 @@ app.config(function ($translateProvider) {
     Change_or_Add_Address : 'تغيير أو إضافة العنوان',
     Delivery_Address : 'عنوان التسليم',
     About_Us : 'معلومات عنا',
+    My_Wallet :  'محفظتى',
+    Wallet_balance :  'رصيد المحفظة',
+    Add_Money : 'إضافة المال',
+    Credit_or_Debit_Card : 'بطاقة الائتمان أو الخصم',
+    ccAvenue : 'جادة cc',
+    Your_Wallet_History : 'سجل المحفظة الخاص بك',
+    Date :'تاريخ',
+    Earn_By : 'اربح من قبل',
+    Amount : 'كمية',
+     CR_DR  : 'ائتمان/مدين'
   });
 });
