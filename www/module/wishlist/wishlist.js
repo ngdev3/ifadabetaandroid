@@ -20,7 +20,7 @@ app.controller('wishlist', function ($scope, $http, $location, $cookieStore, mod
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/wishlist',
+            url: app_url + '/wishlist', 
             data: args
 
         }).then(function (response) {
