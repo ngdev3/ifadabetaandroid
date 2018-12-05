@@ -29,7 +29,7 @@ app.controller('wishlist', function ($scope, $http, $location, $cookieStore, mod
 
           console.log(res.data.data);
           if(res.data.data.status == 'success'){
-              console.log(res.data.data.wishlist)
+              console.log(res.data.data.wishlist);
             $scope.whitelist_data = res.data.data.wishlist; 
           }
 
@@ -39,13 +39,14 @@ app.controller('wishlist', function ($scope, $http, $location, $cookieStore, mod
     }
 
     $scope.removeWishlistItem = function(id){
-        alert(id);return;
+        // alert(id);return;
         loading.active();
 
         var args = $.param({
-            wishlist_id : id,
-            user_id : $cookieStore.get("userinfo").uid
+            'wishlist_id' : id,
+            'user_id' : $cookieStore.get("userinfo").uid
         })
+        // alert(args);return;
         $http({
             headers: {
                 //'token': '40d3dfd36e217abcade403b73789d732',
@@ -60,8 +61,9 @@ app.controller('wishlist', function ($scope, $http, $location, $cookieStore, mod
             res = response;
 
           console.log(res.data.data);
-          if(res.data.data.status == 'success'){
+          if(res.data.data.delete_wishlist.status == 'success'){
             alert("Wishlist Item Deleted Successfully");
+            $route.reload();
           }
 
         }).finally(function () {

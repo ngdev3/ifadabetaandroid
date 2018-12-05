@@ -180,7 +180,7 @@ if($cookieStore.get('userinfo')){
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/get_pick_season_product',
+            url: app_url + '/home_page',
             data: args
 
         }).then(function (response) {
@@ -243,6 +243,7 @@ if($cookieStore.get('userinfo')){
             'country_id': sessionStorage.country,
             'menu_varient_id' : id,
             'user_id' : userID,
+            'is_for' : 'add'
         });
 
         // alert(args);return;
