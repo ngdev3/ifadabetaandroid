@@ -418,16 +418,10 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         // console.log(weightid.target.dataset);
         weightid = weightid.target.dataset.weightid;
         rowid = $('#enableCart_' + weightid).attr('data-rowid');
-        
-        // weightid = weightid.target.dataset.rowid;
-        // return
-        // console.log(weightid.target.dataset.weightid);
-        // return false;
-
         addToCartID = 'addToCart_' + weightid;
         enableCartID = 'enableCart_' + weightid;
         quantityID = 'quantity_' + weightid;
-        // alert();
+        // alert(addToCartID);
         $rootScope.currentval = $('#' + quantityID).val();
         $rootScope.currentval--
 
@@ -450,14 +444,12 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             data: args //forms user object
 
         }).then(function (response) {
-            //console.log(response)
-            if (response.data.status == "deleted") {
+            console.log(response.data.data.isEmpty)
+            if (response.data.data.isEmpty == 0) {
                 $rootScope.usercartvalue();
                 $('#' + addToCartID).removeClass('ng-hide').show();
-                // alert();
                 $('#' + enableCartID).addClass('ng-hide');
                 $('#' + quantityID).val('1');
-                // $rootScope.enableCartAction('inactive');
             } else {
                 $('#' + quantityID).val($rootScope.currentval)
                 $rootScope.usercartvalue();

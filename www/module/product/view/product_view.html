@@ -1,4 +1,4 @@
-<div ng-controller="view_product" ng-init="fetch_product_data()">
+<div ng-controller="view_product" ng-init="usercartvalue()">
 	<style type="text/css">
 		.sub_product_qty {
 			border: 1px solid #006d07;
@@ -18,7 +18,7 @@
 			margin: 0 auto;
 		}
 	</style>
-	<header class="container-fluid nav-down">
+	<header class="container-fluid nav-down" ng-init="fetch_product_data()">
 		<div class="row">
 			<nav class="navbar navbar-inverse">
 				<div class="container no-padding">
@@ -103,10 +103,10 @@
 								<p class="sub_prcing"><span id="sub_rrp">AED {{product_details.menu_varient[0].price}}</span></p>
 
 							</div>
-							{{is_in_wishlist}}
+							<!-- {{is_in_wishlist}} -->
 							<div class="wislist_sub wishlist-container">
-								<i class="fa heart fa-heart-o" ng-show="is_in_wishlist !== 0"></i>
-								<i class="fa heart fa-heart fill" ng-show="is_in_wishlist !== 0 "></i>
+								<i class="fa heart fa-heart-o" ng-show="is_in_wishlist == '0'"></i>
+								<i class="fa heart fa-heart fill" ng-show="is_in_wishlist != '0' "></i>
 							</div>
 
 							<div class="sub_add_product">
@@ -128,7 +128,7 @@
 										<button class="" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}"
 										 ng-click="addToCart($event)">Add</button>
 									</div>
-									<div class="add_cart_button sub_add_btn" id="addToCart_{{DweightID}}" ng-show="is_in_stock == 'limited' && quantity == 0 ">
+									<div class="add_cart_button sub_add_btn"  ng-show="is_in_stock == 'limited' && quantity == 0 ">
 										<button class="" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}"
 										 ng-click="addToCart($event)">Out Of Stocks</button>
 									</div>
