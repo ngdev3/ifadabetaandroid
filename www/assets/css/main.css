@@ -900,7 +900,45 @@ li.menu_search_container a input{
 }
 .fill{
 	color: #f26e71;
+    animation: explode .25s ease-out;
+    animation-fill-mode: forwards;
+    opacity: 1;
+    transition: all .05s ease-out;
+    transform: scale(1.5);
 }
+.un_fill{
+	color: #93989b;
+    animation: implode .25s ease-out;
+    animation-fill-mode: forward;
+    transition: all .25s ease-out;
+    transform: scale(1);
+    opacity: 1;
+}
+@keyframes explode {
+  0% {
+    transform: scale(0.3);
+  }
+  
+  80% {
+    transform: scale(1.2);
+  }
+  
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes implode {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  
+  100% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+}
+
 
 .category-img img{width: 100%;}
 

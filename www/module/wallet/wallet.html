@@ -1,4 +1,4 @@
-<div class="bg" ng-controller="wallet" ng-init="my_wallet_data()">
+
     <style>
         .ty_main .enter-user-name {
             margin-top: 80px;
@@ -135,15 +135,15 @@
         .form-control:focus {
         border-color: #006d07;}
     </style>
-    
+    <div class="bg" ng-controller="wallet" ng-init="my_wallet_data()">
     <header class="container-fluid nav-down">
         <div class="row">
             <nav class="navbar navbar-inverse">
               <div class="container no-padding">
                 <ul class="nav navbar-nav top_header">
                   
-                    <li class="menu_icon back_icon"><a href="#"  ><img style="width:13px;" src="assets/img/icon/back.png" id="asdf" alt="menu icon" /></a></li>
-                  <li class="logo_name"><a class="text-left back">My Wallet</a></li>
+                    <li class="menu_icon back_icon"><a href="javascript:void(0)"  ><img style="width:13px;" ng-click="back()" src="assets/img/icon/back.png" alt="menu icon" /></a></li>
+                  <li class="logo_name"><a class="text-left back">{{ 'My_Wallet' | translate }}</a></li>
                   
                 </ul>
                 
@@ -165,18 +165,18 @@
             <div class="wallet_bal">
                 <div class="bal_heading">
                     <p><img src="assets/img/icon/wallet.png"/></p>
-                    <p>Wallet balance</p>
+                    <p>{{ 'Wallet_balance' | translate}}</p>
                 </div>
                 <div class="bal_amt">
                     <div class="bal_amt_wrapper">
-                        <p>₹ 400</p>
+                        <p>{{wallet_amount}}</p>
                     </div>
                 </div>
             </div>
             
             
             
-            <div class="add-balance-money"><span>Add Money</span></div>
+            <div class="add-balance-money"><span>{{ 'Add_Money' | translate}}</span></div>
            
     
     
@@ -192,7 +192,7 @@
                                 aria-expanded="true" aria-controls="collapseOne">
                                     <h6 class="mb-0">
                                         <button class="btn btn-link" type="button" ><i class="fa fa-credit-card"
-                                                aria-hidden="true"></i>&nbsp;&nbsp;Credit or Debit Card</button>
+                                                aria-hidden="true"></i>&nbsp;&nbsp;{{ 'Credit_or_Debit_Card' | translate}}</button>
                                     </h6>
                                 </div>
     
@@ -204,7 +204,7 @@
                                                 <input type="checkbox" ng-model="creditpay" name="creditpay" required>
                                                 <div class="state p-info-o">
                                                     <i class="icon fa fa-check"></i>
-                                                    <label>ccAvenue</label>
+                                                    <label>{{'ccAvenue' | translate}}</label>
                                                 </div>
                                             </div>
     
@@ -220,7 +220,7 @@
                         <input type="number" class="form-control required" ng-model="amount" name="amount" required id="amount"
                             placeholder="Enter Amount" >
                         <span id="amount_id"></span>
-                        <button type="submit" class="add-round-pay-off" ng-click="update_profile('profileForm')">Add Money</button>
+                        <button class="add-round-pay-off" ng-click="update_profile('profileForm')">{{'Add_Money' | translate}}</button>
                     </div>
     
                     
@@ -229,20 +229,31 @@
                 </form>
             </div>
             <div class="point_hist" style="margin: 20px 0px 5px 0px;">
-            <p style="border-bottom: 2px solid #006d07;text-align:left;border-top:0px;">Your Wallet History</p>
+            <p style="border-bottom: 2px solid #006d07;text-align:left;border-top:0px;">{{'Your_Wallet_History' | translate}}</p>
         </div>
         <div class="redeem_table_div">
             <table class="table redeem_table">
                 <thead class="">
                     <tr>
-                        <td scope="col">Date</td>
-                        <td scope="col">Earn By</td>
-                        <td scope="col">Amount</td>
-                        <td scope="col">CR/DR</td>
+                        <td scope="col">{{'Date' | translate}}</td>
+                        <td scope="col">{{'Earn_By' | translate}}</td>
+                        <td scope="col">{{'Amount' | translate}}</td>
+                        <td scope="col">{{'CR_DR' | translate}}</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr ng-repeat="x in wallet_transaction">
+                      <th style="text-align:center;font-weight:400;">{{x.added_date.split(' ')[0]}}</th>
+                      <td ng-if="x.payment_by == '1'">By Add</td>
+                      <td ng-if="x.payment_by == '2'">By Cancel</td>
+                      <td ng-if="x.payment_by == '3'">By Return</td>
+                      <td ng-if="x.payment_by == '4'">Place Order</td>
+                      <td ng-if="x.payment_by == '5'">By loyalty point redeem</td>
+                      <td>{{x.amount}}</td>
+                      <td ng-if="x.transaction_type == '1'">CR</td>
+                      <td ng-if="x.transaction_type == '2'">DR</td>
+                    </tr>
+                    <!-- <tr>
                       <th style="text-align:center;font-weight:400;">12/12/2018</th>
                       <td>paytm</td>
                       <td>200</td>
@@ -253,13 +264,7 @@
                       <td>paytm</td>
                       <td>200</td>
                       <td>larry</td>
-                    </tr>
-                    <tr>
-                      <th style="text-align:center;font-weight:400;">12/12/2018</th>
-                      <td>paytm</td>
-                      <td>200</td>
-                      <td>larry</td>
-                    </tr>
+                    </tr> -->
                     
                 </tbody>
             </table>

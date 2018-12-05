@@ -274,6 +274,7 @@ $(document).ready(function(){
 		$(this).toggleClass("fa-heart-o");
 		$(this).toggleClass("fa-heart");
 		$(this).toggleClass("fill");
+		$(this).toggleClass("un_fill");
 		
 	});
 });
