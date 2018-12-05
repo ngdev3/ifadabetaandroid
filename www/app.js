@@ -343,16 +343,21 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             // console.log(response.data.s_price)
             if (response.data.data.allow_to_add_in_cart !== 'yes') {
                 // alert()
-                console.log('#outofstock_'+menu_id);
-                $('#outofstock_'+menu_id).removeClass('ng-hide')
-                $('#addToCart_'+menu_id).addClass('ng-hide')
+                console.log('#outofstock_' + menu_id);
+                $('#outofstock_' + menu_id).removeClass('ng-hide')
+                $('#addToCart_' + menu_id).addClass('ng-hide')
+
             } else if (response.data.data.is_in_cart == 'yes') {
+
                 alert('Already in Cart')
-            } else if(response.data.data.is_in_wishlist == 'yes'){
+
+            } else if (response.data.data.is_in_wishlist == 'yes') {
                 //heart icon
-            }else{
-                $('#outofstock_'+menu_id).addClass('ng-hide')
-                $('#addToCart_'+menu_id).removeClass('ng-hide')
+            } else {
+
+                $('#outofstock_' + menu_id).addClass('ng-hide')
+                $('#addToCart_' + menu_id).removeClass('ng-hide')
+
             }
             // return;
 
@@ -497,22 +502,32 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code,
             user_id: $cookieStore.get("userinfo").uid,
+
         });
 
+        // Get the user info from Database
         $http({
             headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/cart/cart_update_on_country_change',
-            data: args
+            url: app_url + '/cart/checkout',
+            data: args //forms user object
 
         }).then(function (response) {
-            console.log(response.data.data)
-            $rootScope.cart_data = response.data.data.cart_data
-            $rootScope.cart_count = response.data.data.cart_data_count
+            //alert();
+            // console.log(response.data)
+            loading.deactive();
+            res = response.data.data.cart_data;
+            console.log(response.data.responseCode)
+            if (response.data.responseCode !== '400') {
 
+                $rootScope.cart_data = res;
+                $rootScope.cart_values = response.data.data
+            } else {
+                $rootScope.cart_data = '';
+                $rootScope.cart_values = ''
+            }
         })
     }
     var currentUrl;

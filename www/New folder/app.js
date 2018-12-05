@@ -462,6 +462,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             data: args //forms user object
 
         }).then(function (response) {
+            $rootScope.usercartvalue();
             //console.log(response)
             if (response.data.status == "deleted") {
                 $rootScope.usercartvalue();
@@ -514,8 +515,9 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     $rootScope.activeCartValue = 0;
     $rootScope.usercartvalue = function () {
         var args = $.param({
-            user_id:$cookieStore.get("userinfo").uid,
             country_id: sessionStorage.country,
+            language_code: sessionStorage.lang_code ,   
+            user_id:$cookieStore.get("userinfo").uid,
            
         });
 
@@ -525,20 +527,17 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/count_cart_item',
+            url: app_url + '/cart/checkout',
             data: args //forms user object
 
         }).then(function (response) {
-            //console.log(response.data.products.length)
-            $rootScope.activeCartValue = response.data.totalitems;
-            if (response.data.products.length > 0) {
-                $rootScope.currentcartprice = response.data;
-                $rootScope.currentcartitems = response.data.products;
-                $rootScope.totalcartdata = response.data;
-            } else {
-                $rootScope.currentcartprice = '';
-                $rootScope.currentcartitems = '';
-            }
+           //alert();
+           console.log(response.data)
+           loading.deactive();
+           res = response.data.data.cart_data;
+           console.log(res)
+            $rootScope.cart_data = res;
+            $rootScope.cart_values = response.data.data
         })
     }
 

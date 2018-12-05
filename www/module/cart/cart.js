@@ -10,37 +10,7 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
     }
 
    
-    $scope.cartdetails = function () {
-        loading.active();
 
-        var args = $.param({
-            country_id: sessionStorage.country,
-            language_code: sessionStorage.lang_code ,   
-            user_id:$cookieStore.get("userinfo").uid,
-        });
-
-        $http({
-            headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: 'POST',
-            url: app_url + '/cart/checkout',
-            data: args
-
-        }).then(function (response) {
-            //alert();
-            console.log(response.data)
-            loading.deactive();
-            res = response.data.data.cart_data;
-            console.log(res)
-          $scope.cart_data = res;
-          $scope.cart_values = response.data.data
-
-        })
-
-
-    }
 
 
 
@@ -81,7 +51,7 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
 // console.log(res)
             if (res.data.status == 'success') {
                 alert(res.responseMessage)
-                $scope.cartdetails();
+               $rootScope.usercartvalue()
             } else {
                 alert('Error Occured')
             }
@@ -115,15 +85,10 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
             res = response.data;
             console.log(res);
             if(res.data.cart_count == 0){
-                $scope.cart_count();
+                $rootScope.usercartvalue();
                 alert('Product Deleted Successfully');
             }
-            // if (res.status == 'deleted') {
-            //     alert('Product Deleted Successfully')
-            //     $rootScope.usercartvalue();
-            // } else {
-            //     alert('Item Not Deleted ')
-            // }
+           
         })
 
     }
@@ -133,5 +98,9 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
     $scope.address_delivery = function() {
     
         $location.path('/addressdetail');
+    }
+
+    $scope.apply_promo = function(){
+        
     }
 });
