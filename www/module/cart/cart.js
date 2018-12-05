@@ -9,40 +9,7 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
         $location.path('/dashboard/home');
     }
 
-    $scope.singleDelete = function (weightID) {
-        loading.active();
-
-        var args = $.param({
-            'uid': $cookieStore.get('userinfo').uid,
-            'mid': uuid,
-            'weightid': weightID
-        });
-
-        $http({
-            headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: 'POST',
-            url: app_url + '/itemcartapi/deleteItem',
-            data: args
-
-        }).then(function (response) {
-            //alert();
-            loading.deactive();
-            res = response.data;
-            console.log(res);
-            if (res.status == 'deleted') {
-                alert('Product Deleted Successfully')
-                $rootScope.usercartvalue();
-            } else {
-                alert('Item Not Deleted ')
-            }
-        })
-
-    }
-
-
+   
     $scope.cartdetails = function () {
         loading.active();
 
@@ -58,20 +25,24 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/cart/cart_update_on_country_change',
+            url: app_url + '/cart/checkout',
             data: args
 
         }).then(function (response) {
             //alert();
+            console.log(response.data)
             loading.deactive();
             res = response.data.data.cart_data;
             console.log(res)
           $scope.cart_data = res;
+          $scope.cart_values = response.data.data
 
         })
 
 
     }
+
+
 
     /**
      * Funtion: empty_cart from cart.html on ng-click
@@ -82,16 +53,17 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
 
 
     $scope.empty_cart = function () {
-        if ($rootScope.currentcartitems.length == 0) {
+    console.log($scope.cart_data)
+        if ($scope.cart_data.length == 0) {
             model.show('Info', 'You Have No Items In Your Shopping Cart.')
             return false;
         }
         loading.active();
 
         var args = $.param({
-            'uid': $cookieStore.get('userinfo').uid,
-            'mid': uuid,
-            'device_type': device_type
+            country_id: sessionStorage.country,
+            language_code: sessionStorage.lang_code ,   
+            user_id:$cookieStore.get("userinfo").uid,
         });
 
         $http({
@@ -100,15 +72,16 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/itemcartapi/clearCart',
+            url: app_url + '/cart/empty_cart',
             data: args
 
         }).then(function (response) {
             loading.deactive();
             res = response.data;
-
-            if (res.error == false) {
-                $route.reload()
+// console.log(res)
+            if (res.data.status == 'success') {
+                alert(res.responseMessage)
+                $scope.cartdetails();
             } else {
                 alert('Error Occured')
             }
@@ -116,6 +89,46 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
         })
 
     }
+
+    $scope.deleteproduct = function (rowid) {
+        loading.active();
+
+        var args = $.param({
+            rowid: rowid,
+            language_code: sessionStorage.lang_code,
+            user_id: $cookieStore.get("userinfo").uid,
+            country_id: sessionStorage.country,
+        });
+
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/cart/removeItemCart',
+            data: args
+
+        }).then(function (response) {
+            //alert();
+            loading.deactive();
+            res = response.data;
+            console.log(res);
+            if(res.data.cart_count == 0){
+                $scope.cart_count();
+                alert('Product Deleted Successfully');
+            }
+            // if (res.status == 'deleted') {
+            //     alert('Product Deleted Successfully')
+            //     $rootScope.usercartvalue();
+            // } else {
+            //     alert('Item Not Deleted ')
+            // }
+        })
+
+    }
+
+
 
     $scope.address_delivery = function() {
     
