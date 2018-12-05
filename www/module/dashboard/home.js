@@ -36,7 +36,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/get_pick_season_product',
+            url: app_url + '/home_page',
             data: args 
 
         }).then(function (response) {
@@ -47,6 +47,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
 
            if(res.data.data.status == 'success'){
                 $scope.best_picks_of_the_season = res.data.data.best_picks_of_the_season;
+                $scope.offer = res.data.data.offer;
                 $scope.product_of_the_day = res.data.data.product_of_the_day;
                 $scope.best_picks_of_the_featured_products = res.data.data.best_picks_of_the_featured_products;
                 $scope.dairy_product = res.data.data.dairy_product;
@@ -103,6 +104,8 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         });
 
     }
+
+    
     // return false;
     $scope.toLocationFetch = function () {
         $location.path('/store');
