@@ -520,6 +520,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             loading.deactive();
             res = response.data.data.cart_data;
             console.log(response.data.responseCode)
+            $rootScope.cart_count  = response.data.data.cart_item_count
             if (response.data.responseCode !== '400') {
 
                 $rootScope.cart_data = res;
