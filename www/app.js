@@ -342,11 +342,17 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             console.log(response.data.data)
             // console.log(response.data.s_price)
             if (response.data.data.allow_to_add_in_cart !== 'yes') {
-
+                // alert()
+                console.log('#outofstock_'+menu_id);
+                $('#outofstock_'+menu_id).removeClass('ng-hide')
+                $('#addToCart_'+menu_id).addClass('ng-hide')
             } else if (response.data.data.is_in_cart == 'yes') {
                 alert('Already in Cart')
             } else if(response.data.data.is_in_wishlist == 'yes'){
                 //heart icon
+            }else{
+                $('#outofstock_'+menu_id).addClass('ng-hide')
+                $('#addToCart_'+menu_id).removeClass('ng-hide')
             }
             // return;
 

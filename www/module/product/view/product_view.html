@@ -98,7 +98,7 @@
 								<!-- <select class="sub_product_qty" ng-model="z.price" name="z.price" id="product_{{pid}}" ng-change="getvalueforOtherVarient(productpid, $(this).val())" ng-init="z.price = product_price;">
 									<option ng-init="z.selectedOption.wd_price = z.price; z.selectedOption.weight = z.id;"		ng-repeat="z in product_details_varients"  data-weight_id="{{z.id}}" data-product_id="{{product_details.id}}" value="{{z.price}}">{{z.unit_value}}{{z.UNIT_NAME}}</option>
 								</select> -->
-								<p class="sub_product_qty" id="total_quantity">{{product_details.menu_varient[0].unit_value}}
+								<p class="" id="total_quantity">{{product_details.menu_varient[0].unit_value}}
 									{{product_details.menu_varient[0].UNIT_NAME}}</p>
 								<p class="sub_prcing"><span id="sub_rrp">AED {{product_details.menu_varient[0].price}}</span></p>
 
@@ -130,7 +130,7 @@
 									</div>
 									<div class="add_cart_button sub_add_btn" id="outofstock_{{DweightID}}" ng-show="is_in_stock == 'limited' && quantity == 0 ">
 										<button class="" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}"
-										 ng-click="addToCart($event)">Out Of Stocks</button>
+										 >Out Of Stocks</button>
 									</div>
 
 								</div>
