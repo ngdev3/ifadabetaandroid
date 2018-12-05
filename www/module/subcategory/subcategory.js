@@ -242,7 +242,7 @@ if($cookieStore.get('userinfo')){
         var args = $.param({
             'country_id': sessionStorage.country,
             'menu_varient_id' : id,
-            'user_id' : userID
+            'user_id' : userID,
         });
 
         // alert(args);return;

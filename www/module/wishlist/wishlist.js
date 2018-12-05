@@ -29,6 +29,7 @@ app.controller('wishlist', function ($scope, $http, $location, $cookieStore, mod
 
           console.log(res.data.data);
           if(res.data.data.status == 'success'){
+              console.log(res.data.data.wishlist)
             $scope.whitelist_data = res.data.data.wishlist; 
           }
 
@@ -38,6 +39,7 @@ app.controller('wishlist', function ($scope, $http, $location, $cookieStore, mod
     }
 
     $scope.removeWishlistItem = function(id){
+        alert(id);return;
         loading.active();
 
         var args = $.param({
