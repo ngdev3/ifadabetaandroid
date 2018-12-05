@@ -32,7 +32,7 @@
 						</li>
 						<li class="cart_icon">
 							<a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon" />
-								<!--<span class="badge">14</span>-->
+								<span class="badge">{{cart_count}}</span>
 							</a>
 							<a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
 						</li>
@@ -103,8 +103,10 @@
 								<p class="sub_prcing"><span id="sub_rrp">AED {{product_details.menu_varient[0].price}}</span></p>
 
 							</div>
+							{{is_in_wishlist}}
 							<div class="wislist_sub wishlist-container">
-								<i class="fa heart fa-heart-o"></i>
+								<i class="fa heart fa-heart-o" ng-show="is_in_wishlist !== 0"></i>
+								<i class="fa heart fa-heart fill" ng-show="is_in_wishlist !== 0 "></i>
 							</div>
 
 							<div class="sub_add_product">

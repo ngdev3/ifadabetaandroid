@@ -288,7 +288,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
         }).then(function (response) {
             console.log(response)
-           // $rootScope.usercartvalue();
+           $rootScope.usercartvalue();
             if (response.data.data.add_cart.allow_to_add_in_cart == 'yes') {
                 
                 $('#' + addToCartID).hide();
@@ -304,7 +304,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         })
 
     }
-
+    // $rootScope.usercartvalue();
 
     $rootScope.varientCheck = function (weightid, store_id, product_id) {
         $('#firstt_' + product_id).find('.add_item_button').attr('id', 'enableCart_' + weightid);
@@ -502,32 +502,25 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     $rootScope.activeCartValue = 0;
     $rootScope.usercartvalue = function () {
         var args = $.param({
-            uid: $cookieStore.get('userinfo').uid,
-            mid: uuid,
-            device_type: device_type,
-            store_id: $cookieStore.get('storeinfo').store_id
+            country_id: sessionStorage.country,
+            language_code: sessionStorage.lang_code ,   
+            user_id:$cookieStore.get("userinfo").uid,
         });
 
-        // Get the user info from Database
         $http({
             headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + 'itemcartapi/usercart',
-            data: args //forms user object
+            url: app_url + '/cart/cart_update_on_country_change',
+            data: args
 
         }).then(function (response) {
-            //console.log(response.data.products.length)
-            $rootScope.activeCartValue = response.data.totalitems;
-            if (response.data.products.length > 0) {
-                $rootScope.currentcartprice = response.data;
-                $rootScope.currentcartitems = response.data.products;
-                $rootScope.totalcartdata = response.data;
-            } else {
-                $rootScope.currentcartprice = '';
-                $rootScope.currentcartitems = '';
-            }
+            console.log(response.data.data)
+            $rootScope.cart_data = response.data.data.cart_data
+            $rootScope.cart_count = response.data.data.cart_data_count
+           
         })
     }
     var currentUrl;

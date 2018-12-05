@@ -77,6 +77,10 @@ $scope.fetch_product_data = function () {
                 $scope.is_in_stock = response.data.data.product_details.menu_varient[0].is_in_stock;
                 $scope.quantity = response.data.data.product_details.menu_varient[0].quantity;
                 $scope.manufacture_id = response.data.data.product_details.user_id;
+                $scope.is_in_wishlist = response.data.data.product_details.menu_varient[0].is_in_wishlist;
+                
+
+                
                 $scope.product_weight_value = response.data.data.product_details.menu_varient[0].unit_value;
                 $scope.product_weight_unit = + response.data.data.product_details.menu_varient[0].UNIT_NAME;
                 
