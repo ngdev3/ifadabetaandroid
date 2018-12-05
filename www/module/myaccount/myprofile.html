@@ -84,7 +84,11 @@
 				  <div class="mui-textfield col-sm-6 col-xs-12">
 					<input type="tel"  id="mbl_num"  name="mobile" ng-model="mobile" readonly placeholder="Mobile Number" pattern="[0-9]{10}" required>
 					<label for="mbl_num">{{'Mobile_Number' | translate }}</label>
-				  </div>
+					</div>
+					<div class="mui-textfield col-sm-6 col-xs-12">
+							<input type="file"  id="profile" ng-change="myFunc()" ng-model="image" name="image" placeholder="Profile Image">
+							<label for="profile">Profile Image</label>
+							</div>	
 				  <div class="submit-btn col-sm-6 col-xs-12 text-center hide" id="submitProfile">
 					<a href="javascript:void(0)" ng-click="updateUserProfile('updateProfile')">{{'Submit' | translate }}</a>
 				  </div>

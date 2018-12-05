@@ -94,7 +94,7 @@
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
 								<input type="button" class="btn btn-default btn_discounts" name="" value="6% Off">
-								<p class="sub_produt_name">{{product_details.menu_name}}</p>
+								<p style="font-size:16px;color: #006d07;" class="sub_produt_name">{{product_details.menu_name}}</p>
 								<!-- <select class="sub_product_qty" ng-model="z.price" name="z.price" id="product_{{pid}}" ng-change="getvalueforOtherVarient(productpid, $(this).val())" ng-init="z.price = product_price;">
 									<option ng-init="z.selectedOption.wd_price = z.price; z.selectedOption.weight = z.id;"		ng-repeat="z in product_details_varients"  data-weight_id="{{z.id}}" data-product_id="{{product_details.id}}" value="{{z.price}}">{{z.unit_value}}{{z.UNIT_NAME}}</option>
 								</select> -->
@@ -129,7 +129,7 @@
 										 ng-click="addToCart($event)">Add</button>
 									</div>
 									<div class="add_cart_button sub_add_btn" id="outofstock_{{DweightID}}" ng-show="is_in_stock == 'limited' && quantity == 0 ">
-										<button class="" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}"
+										<button class="out_of_stock" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}"
 										 >Out Of Stocks</button>
 									</div>
 
