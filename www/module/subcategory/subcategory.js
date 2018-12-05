@@ -154,14 +154,19 @@ if($cookieStore.get('userinfo')){
 			   $(".accordion-panel_"+id).css('max-height', iScrollHeight+'px');
 		 }
 	}
-	
+	if($cookieStore.get("userinfo")){
+        var userID = $cookieStore.get("userinfo").uid;
+    }else{
+        var userID = '';
+    }
     $scope.see_alls = function () {
         loading.active();
         // alert($cookieStore.get('subcategoryInfo').subcatid);
         var args = $.param({
             product_type: $cookieStore.get('subcategoryInfo').subcatid,
             country_id: sessionStorage.country,
-            language_code: sessionStorage.lang_code
+            language_code: sessionStorage.lang_code,
+            user_id : userID
         });
 
         if($cookieStore.get('subcategoryInfo').subcatid == 1){
@@ -192,6 +197,7 @@ if($cookieStore.get('userinfo')){
 
             if (res.data.data.status == 'success') {
                 $scope.best_picks_of_the_season = res.data.data.view_all;
+                $rootScope.is_in_wishlist = res.data.data.view_all[0].menu_varient_data.is_in_wishlist;
                 $location.path('/subcategory');
             } else {
 
@@ -213,6 +219,7 @@ if($cookieStore.get('userinfo')){
 
 
     $scope.product_view = function (id,url) {
+        // alert(id);return;
         var productinfo = {
             'id' : id,
             'url' : url
@@ -228,49 +235,72 @@ if($cookieStore.get('userinfo')){
  }
 
 
+ //$rootScope.is_in_wishlist == 1;
 
- $scope.addToWishlist = function(id){     
-    // alert(id);return;
-        if(!$cookieStore.get("userinfo")){
-            alert("Please Login First");
-            return false;
-        }else{
-            var userID = $cookieStore.get("userinfo").uid;
-        }
+//  $scope.addToWishlist = function(id){     
+//     // alert(id);return;
+//         if(!$cookieStore.get("userinfo")){
+//             alert("Please Login First");
+//             return false;
+//         }else{
+//             var userID = $cookieStore.get("userinfo").uid;
+//         }
         
-        loading.active();
-        var args = $.param({
-            'country_id': sessionStorage.country,
-            'menu_varient_id' : id,
-            'user_id' : userID,
-            'is_for' : 'add'
-        });
+//         loading.active();
+//         if($rootScope.is_in_wishlist == 1){
+//             var args = $.param({
+//                 'country_id': sessionStorage.country,
+//                 'menu_varient_id' : id,
+//                 'user_id' : userID,
+//                 'is_for' : 'delete'
+//             });
+//         }else{
+//             var args = $.param({
+//                 'country_id': sessionStorage.country,
+//                 'menu_varient_id' : id,
+//                 'user_id' : userID,
+//                 'is_for' : 'add'
+//             });
+//         }
+        
 
-        // alert(args);return;
-        $http({
-            headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: 'POST',
-            url: app_url + '/add_wishlist',
-            data: args
+//         // alert(args);return;
+//         $http({
+//             headers: {
+//                 //'token': '40d3dfd36e217abcade403b73789d732',
+//                 'Content-Type': 'application/x-www-form-urlencoded'
+//             },
+//             method: 'POST',
+//             url: app_url + '/add_wishlist',
+//             data: args
 
-        }).then(function (response) {
+//         }).then(function (response) {
 
-            res = response;
-            // console.log("wwwwwwwwwwwwwwwwwww");
-            // console.log(res.data.data);
-            // return;
-            if (res.data.data.add_wishlist == 'success') {  
-                $("#unclicked"+id).removeClass("fa-heart-o").addClass("fa-heart fill");         
-                model.show("Alert","Added To Wishlist Successfully");
-            } else {
-                model.show("Alert","Something went wrong");
-            }
-        }).finally(function () {
-            loading.deactive();
-        });
-    }
+//             res = response;
+//             console.log("wwwwwwwwwwwwwwwwwww");
+//             console.log(res.data.data);
+//             // return;
+//             if($rootScope.is_in_wishlist == 1){
+//                 if (res.data.data.status == 'success') {  
+//                     // $("#unclicked"+id).removeClass("fa-heart-o").addClass("fa-heart fill");         
+//                     model.show("Alert","Removed From Wishlist Successfully");
+//                     $rootScope.is_in_wishlist = 0;
+//                 } else {
+//                     model.show("Alert","Something went wrong");
+//                 }
+//             }else{
+//                 if (res.data.data.status == 'success') {  
+//                     // $("#unclicked"+id).removeClass("fa-heart-o").addClass("fa-heart fill");         
+//                     model.show("Alert","Added To Wishlist Successfully");
+//                     $rootScope.is_in_wishlist = 1;
+//                 } else {
+//                     model.show("Alert","Something went wrong");
+//                 }
+//             }
+            
+//         }).finally(function () {
+//             loading.deactive();
+//         });
+//     }
     
 });

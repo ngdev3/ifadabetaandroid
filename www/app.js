@@ -757,6 +757,76 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
         });;
     }
 
+
+    $rootScope.addToWishlist = function(id){     
+        // alert(id);return;
+        // console.log("aaaaaaaaaaaaa----");
+        // console.log($rootScope.is_in_wishlist);
+        // return;
+            if(!$cookieStore.get("userinfo")){
+                alert("Please Login First");
+                return false;
+            }else{
+                var userID = $cookieStore.get("userinfo").uid;
+            }
+            
+            loading.active();
+            if($rootScope.is_in_wishlist == 1){
+                var args = $.param({
+                    'country_id': sessionStorage.country,
+                    'menu_varient_id' : id,
+                    'user_id' : userID,
+                    'is_for' : 'delete'
+                });
+            }else{
+                var args = $.param({
+                    'country_id': sessionStorage.country,
+                    'menu_varient_id' : id,
+                    'user_id' : userID,
+                    'is_for' : 'add'
+                });
+            }
+            
+    
+            // alert(args);return;
+            $http({
+                headers: {
+                    //'token': '40d3dfd36e217abcade403b73789d732',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                method: 'POST',
+                url: app_url + '/add_wishlist',
+                data: args
+    
+            }).then(function (response) {
+    
+                res = response;
+                console.log("wwwwwwwwwwwwwwwwwww");
+                console.log(res.data.data);
+                // return;
+                if($rootScope.is_in_wishlist == 1){
+                    if (res.data.data.status == 'success') {  
+                        // $("#unclicked"+id).removeClass("fa-heart-o").addClass("fa-heart fill");         
+                        model.show("Alert","Removed From Wishlist Successfully");
+                        $rootScope.is_in_wishlist = 0;
+                    } else {
+                        model.show("Alert","Something went wrong");
+                    }
+                }else{
+                    if (res.data.data.status == 'success') {  
+                        // $("#unclicked"+id).removeClass("fa-heart-o").addClass("fa-heart fill");         
+                        model.show("Alert","Added To Wishlist Successfully");
+                        $rootScope.is_in_wishlist = 1;
+                    } else {
+                        model.show("Alert","Something went wrong");
+                    }
+                }
+                
+            }).finally(function () {
+                loading.deactive();
+            });
+        }
+
     $rootScope.BackgroundColor();
 
     $rootScope.TimeOutConnection = function (status) {
