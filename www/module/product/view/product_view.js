@@ -21,6 +21,7 @@ console.log($cookieStore.get("userinfo"));
       price = $("#enablequant_" + id + menu_id ).attr('data-price');
       unit = $("#enablequant_" + id + menu_id ).attr('data-unit');
       menu_id = $("#enablequant_" + id + menu_id ).attr('data-menu_id');
+      $rootScope.varientCheck(weightID, menu_id, price, unit, $scope.manufacture_id, id);
 
       $('#sub_rrp').html('AED '+price)
       $('#total_quantity').html(unit);
@@ -29,10 +30,8 @@ console.log($cookieStore.get("userinfo"));
       .attr('data-menuid', menu_id)
       .attr('data-user_id', $scope.manufacture_id)
       .attr('data-weightid', id)
-    //  .attr('id', 'addCart_'+id)
       ;
 
-      // $rootScope.varientCheck(weightID, $cookieStore.get('storeinfo').store_id, pid);
 
   }
     

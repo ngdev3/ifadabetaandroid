@@ -13,7 +13,7 @@ var device_type = 'Android';
 var lat;
 var lng;
 
-var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel','ngSanitize', 'ngCookies', 'geolocation', 'ngCordovaOauth', 'ngCordova', 'kendo.directives','pascalprecht.translate']);
+var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngCordovaOauth', 'ngCordova', 'kendo.directives', 'pascalprecht.translate']);
 
 
 app.config(function ($routeProvider, $httpProvider) {
@@ -144,7 +144,7 @@ app.config(function ($routeProvider, $httpProvider) {
         .when("/value_packs", {
             templateUrl: "module/value_packs/value_packs.html"
 
-    }).when("/view_ticket", {
+        }).when("/view_ticket", {
             templateUrl: "module/ticket/view/view_ticket.html"
 
         }).when("/list_ticket", {
@@ -169,13 +169,13 @@ app.run(['$rootScope', '$location', '$routeParams', function ($rootScope, $locat
     });
 }]);
 
-app.filter('modulo', function(){
+app.filter('modulo', function () {
     return function (arr, div, val) {
-        return arr.filter(function(item, index){
+        return arr.filter(function (item, index) {
             return index % div === (val || 0);
         })
     };
-  });
+});
 
 app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $location, $interval) {
 
@@ -251,12 +251,12 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         })
     }
 
-    
+
 
     $rootScope.addToCart = function (weightid) {
-        
+
         console.log(weightid.target.dataset);
-// return;
+        // return;
         varient_id = weightid.target.dataset.weightid;
         manufacture_id = weightid.target.dataset.user_id;
         //menu_id = weightid.target.dataset.weightid;
@@ -269,8 +269,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
 
         var args = $.param({
-            user_type:$cookieStore.get("userinfo").left_data.user_type,
-            user_id:$cookieStore.get("userinfo").uid,
+            user_type: $cookieStore.get("userinfo").left_data.user_type,
+            user_id: $cookieStore.get("userinfo").uid,
             country_id: sessionStorage.country,
             manufacture_id: manufacture_id,
             menu_id: menu_id,
@@ -288,16 +288,16 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
         }).then(function (response) {
             console.log(response)
-           $rootScope.usercartvalue();
+            $rootScope.usercartvalue();
             if (response.data.data.add_cart.allow_to_add_in_cart == 'yes') {
-                
+
                 $('#' + addToCartID).hide();
                 $('#' + enableCartID).removeClass('hide').removeClass('ng-hide');
                 $('#' + quantityID).val('1');
 
             } else if (response.data.data.add_cart.allow_to_add_in_cart == 'no') {
                 model.show('alert', 'Item is out of stock');
-            }else if(response.data.status == 'outofstock'){
+            } else if (response.data.status == 'outofstock') {
                 alert('Stock Problem');
             }
 
@@ -306,15 +306,15 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     }
     // $rootScope.usercartvalue();
 
-    $rootScope.varientCheck = function (weightid, store_id, product_id) {
-        $('#firstt_' + product_id).find('.add_item_button').attr('id', 'enableCart_' + weightid);
-        $('#firstt_' + product_id).find('.add_item_button').find('input[type="text"]').attr('id', 'quantity_' + weightid);
-        $('#firstt_' + product_id).find('.add_item_button').find('.less_item').attr('data-weightid', weightid).attr('id', 'minus_' + weightid);;
-        $('#firstt_' + product_id).find('.add_item_button').find('.add_item').attr('data-weightid', weightid).attr('id', 'plus_' + weightid);
-        $('#firstt_' + product_id).find('.add_cart_button').attr('id', 'addToCart_' + weightid);
-        $('#firstt_' + product_id).find('.add_cart_button').find('.addcart_button').attr('data-weightid', weightid).attr('id', 'addCart_' + weightid);
+    $rootScope.varientCheck = function (weightid, menu_id, price, unit, manufacture_id, varient_id) {
+        // $('#firstt_' + product_id).find('.add_item_button').attr('id', 'enableCart_' + weightid);
+        // $('#firstt_' + product_id).find('.add_item_button').find('input[type="text"]').attr('id', 'quantity_' + weightid);
+        // $('#firstt_' + product_id).find('.add_item_button').find('.less_item').attr('data-weightid', weightid).attr('id', 'minus_' + weightid);;
+        // $('#firstt_' + product_id).find('.add_item_button').find('.add_item').attr('data-weightid', weightid).attr('id', 'plus_' + weightid);
+        // $('#firstt_' + product_id).find('.add_cart_button').attr('id', 'addToCart_' + weightid);
+        // $('#firstt_' + product_id).find('.add_cart_button').find('.addcart_button').attr('data-weightid', weightid).attr('id', 'addCart_' + weightid);
 
-        $('#Newdiscount_' + weightid).attr('data-weightid', weightid).attr('id', 'Newdiscount_' + weightid);
+        // $('#Newdiscount_' + weightid).attr('data-weightid', weightid).attr('id', 'Newdiscount_' + weightid);
 
 
         addToCartID = 'addToCart_' + weightid;
@@ -326,8 +326,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             menu_varient_id: varient_id,
             manufacture_id: manufacture_id,
             country_id: sessionStorage.country,
-            user_id:$cookieStore.get("userinfo").uid,
-            // user_type:$cookieStore.get("userinfo").left_data.user_type,
+            user_id: $cookieStore.get("userinfo").uid,
         });
 
         // Get the user info from Database
@@ -340,21 +339,16 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             data: args //forms user object
 
         }).then(function (response) {
-            console.log(response)
-            console.log(response.data.s_price)
-            $rootScope.newprice = response.data.s_price;
-            $rootScope.newmoreprice = response.data.price;
-            if (response.data.status == 'success' && response.data.in_cart_quantity == 0) {
+            console.log(response.data.data)
+            // console.log(response.data.s_price)
+            if (response.data.data.allow_to_add_in_cart !== 'yes') {
 
-                $('#Newdiscount_' + weightid).find('.disc_badge').find('.activeCartValue').html(response.data.discount)
-                $('#' + enableCartID).addClass('ng-hide')
-                $('#' + addToCartID).removeClass('ng-hide').show();
-
-            } else if (response.data.in_cart_quantity !== 0) {
-                $('#' + enableCartID).removeClass('ng-hide')
-                $('#' + addToCartID).addClass('ng-hide')
-                $('#' + quantityID).val(response.data.in_cart_quantity)
+            } else if (response.data.data.is_in_cart == 'yes') {
+                alert('Already in Cart')
+            } else if(response.data.data.is_in_wishlist == 'yes'){
+                //heart icon
             }
+            // return;
 
         })
         return false;
@@ -370,7 +364,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
     $rootScope.plusToCart = function (weightid) {
 
-        
+
         weightid = weightid.target.dataset.weightid;
         rowid = $('#enableCart_' + weightid).attr('data-rowid');
         addToCartID = 'addToCart_' + weightid;
@@ -386,7 +380,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             rowid: rowid,
             qty: parseInt(new_qnty) + 1,
             language_code: sessionStorage.lang_code,
-            user_id:$cookieStore.get("userinfo").uid,
+            user_id: $cookieStore.get("userinfo").uid,
             country_id: sessionStorage.country,
         });
 
@@ -430,7 +424,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             rowid: rowid,
             qty: $rootScope.currentval,
             language_code: sessionStorage.lang_code,
-            user_id:$cookieStore.get("userinfo").uid,
+            user_id: $cookieStore.get("userinfo").uid,
             country_id: sessionStorage.country,
         });
 
@@ -495,8 +489,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     $rootScope.usercartvalue = function () {
         var args = $.param({
             country_id: sessionStorage.country,
-            language_code: sessionStorage.lang_code ,   
-            user_id:$cookieStore.get("userinfo").uid,
+            language_code: sessionStorage.lang_code,
+            user_id: $cookieStore.get("userinfo").uid,
         });
 
         $http({
@@ -512,7 +506,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             console.log(response.data.data)
             $rootScope.cart_data = response.data.data.cart_data
             $rootScope.cart_count = response.data.data.cart_data_count
-           
+
         })
     }
     var currentUrl;
@@ -565,7 +559,7 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
         window.history.back();
     }
 
-    $rootScope.cart = function(){
+    $rootScope.cart = function () {
         $location.path('/cart');
     }
 
@@ -1262,7 +1256,7 @@ app.directive('googleplace', function () {
                 function () {
                     // console.log(scope.gPlace)
                     var place = scope.gPlace.getPlace();
-                        console.log(place);
+                    console.log(place);
 
                     var components = place.formatted_address; // from Google API place object   
                     lat = place.geometry.location.lat();
@@ -1357,4 +1351,3 @@ app.directive("mwInputRestrict", [
  * 
  */
 
-    
