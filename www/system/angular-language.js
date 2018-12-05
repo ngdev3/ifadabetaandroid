@@ -83,7 +83,8 @@ app.config(function ($translateProvider) {
     Complete_The_Order : 'Complete The Order',
     Deliver_Here : 'Deliver Here',
     Change_or_Add_Address : 'Change or Add Address',
-    Delivery_Address : 'Delivery Address'    
+    Delivery_Address : 'Delivery Address',
+    About_Us : 'About Us',    
 
   });
 
@@ -178,6 +179,7 @@ app.config(function ($translateProvider) {
     Complete_The_Order : 'أكمل الطلب',
     Deliver_Here : 'توصيل هنا',
     Change_or_Add_Address : 'تغيير أو إضافة العنوان',
-    Delivery_Address : 'عنوان التسليم'
+    Delivery_Address : 'عنوان التسليم',
+    About_Us : 'معلومات عنا',
   });
 });
