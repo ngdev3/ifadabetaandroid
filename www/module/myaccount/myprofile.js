@@ -187,6 +187,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 country_id : $scope.select_country,
                 city_id : $scope.select_city,
                 language_code : sessionStorage.lang_code,
+                image : $scope.image,
             });
 
             
@@ -312,4 +313,10 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
             loading.deactive();
         })
     }
+
+     $scope.myFunc = function() {  
+      alert();
+      console.log($scope.image)
+      $scope.img =Base64.encode($scope.image);
+    } 
 });
