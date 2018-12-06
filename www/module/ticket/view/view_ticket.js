@@ -12,6 +12,7 @@ app.controller('view_ticket', function ($scope, $http, $location, $cookieStore, 
         $location.path('/list_ticket');
         return false;
     }
+    $scope.user_ids = $cookieStore.get("userinfo").uid;
 
     $scope.ticket_logs = function () {
         loading.active();

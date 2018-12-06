@@ -120,13 +120,13 @@
                                 <ul class="chat_start">
                                     <span ng-repeat="x in ticket_logs_details">
 
-                                        <li class="chat_thread by_support" ng-if="x.sender != 52">
+                                        <li class="chat_thread by_support" ng-if="x.sender != user_ids">
                                             <h5>{{x.SENDER_NAME | ucwords}}</h5>
                                             <p class="chat_desc">{{x.content | ucwords}}</p>
                                             <small class="chat_time">{{x.created_date}}</small>
 
                                         </li>
-                                        <li class="chat_thread by_user" ng-if="x.sender == 52">
+                                        <li class="chat_thread by_user" ng-if="x.sender == user_ids">
                                             <h5>{{x.SENDER_NAME | ucwords}}</h5>
                                             <p class="chat_desc">{{x.content | ucwords}}</p>
                                             <small class="chat_time">{{x.created_date}}</small>

@@ -100,7 +100,7 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
         $location.path('/addressdetail');
     }
 
-    $scope.apply_promo = function(){
+    $scope.apply_promo = function(form){
         
     }
 });
