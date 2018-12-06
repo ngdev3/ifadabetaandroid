@@ -44,6 +44,15 @@ $scope.val_packs = function(){
         });
 }
 
+$scope.searchproducts = function(){
+    var search_key = {
+        'search' : $scope.searchProduct
+    }
+    $cookieStore.put('search',search_key);
+    $rootScope.searchProduct = $scope.searchProduct;
+    $rootScope.searchBar();
+}
+
 $scope.product_list = function(id){
 var packs = {
     'subcatid': id

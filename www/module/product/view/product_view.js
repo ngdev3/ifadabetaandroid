@@ -35,6 +35,14 @@ console.log($cookieStore.get("userinfo"));
 
   }
     
+  $scope.searchproducts = function(){
+    var search_key = {
+        'search' : $scope.searchProduct
+    }
+    $cookieStore.put('search',search_key);
+    $rootScope.searchProduct = $scope.searchProduct;
+    $rootScope.searchBar();
+}
 
 $scope.product_details = '';
 $scope.fetch_product_data = function () {
