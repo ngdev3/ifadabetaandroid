@@ -37,7 +37,7 @@
 				</div>
 			</div>
 			<div class="form_container pt-10">
-				<form class="mui-form" name="updateProfile" method="POST" novalidate>
+				<form class="mui-form" name="updateProfile" method="POST" novalidate enctype="multipart/form-data">
 				
 				  <div class="mui-textfield col-sm-6 col-xs-12">
 					<input type="text"  id="fname" name="fname" ng-model="fname" readonly placeholder="Enter first name" required>
@@ -86,8 +86,8 @@
 					<label for="mbl_num">{{'Mobile_Number' | translate }}</label>
 					</div>
 					<div class="mui-textfield col-sm-6 col-xs-12">
-							<input type="file"  id="profile" ng-change="myFunc()" ng-model="image" name="image" placeholder="Profile Image">
-							<label for="profile">Profile Image</label>
+							<input type="file"  id="image-preview" onchange="angular.element(this).scope().fileNameChanged()" ng-model="image" name="image" placeholder="Profile Image">
+							<label for="image-preview">Profile Image</label>
 							</div>	
 				  <div class="submit-btn col-sm-6 col-xs-12 text-center hide" id="submitProfile">
 					<a href="javascript:void(0)" ng-click="updateUserProfile('updateProfile')">{{'Submit' | translate }}</a>
