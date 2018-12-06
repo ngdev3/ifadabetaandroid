@@ -127,6 +127,12 @@
                 <li ng-if="loggedin" ng-click="wishlist()"><a href="javascript:void(0)"><img src="assets/img/icon/wishlist.png"
                             alt="" /> <span>{{'Wishlist' | translate}}</span></a></li>
 
+                <li ng-if="loggedin" ng-click="wallet()"><a href="javascript:void(0)"><img src="assets/img/icon/valued.png" alt="" />
+                        <span>{{'My_Wallet' | translate}}</span></a></li> 
+                                
+                <li ng-if="loggedin" ng-click="rewards()"><a href="javascript:void(0)"><img src="assets/img/icon/valued.png" alt="" />
+                        <span>{{'My_Rewards' | translate}}</span></a></li>
+
                 <li ng-click="valuedpack()"><a href="javascript:void(0)"><img src="assets/img/icon/valued.png" alt="" />
                         <span>{{'Valued_Pack' | translate}}</span></a></li>
 
@@ -297,9 +303,10 @@
                                     </div>
                                 </div>
                             </a>
-                            <div class="wishlist-container" ng-click="addToWishlist(y.id)">
-                                <i class="fa fa-heart-o heart"></i>
-                            </div>
+                            <div class="wislist_sub wishlist-container" ng-click="taptowish(y.menu_varient_data.id, y.menu_varient_data.is_in_wishlist)">
+                                <i id="blank_{{y.menu_varient_data.id}}" class="fa heart fa-heart-o" ng-show="y.menu_varient_data.is_in_wishlist == '0'"></i>
+                                <i id="filler_{{y.menu_varient_data.id}}" class="fa heart fa-heart fill" ng-show="y.menu_varient_data.is_in_wishlist == '1'"></i>
+                              </div>
                         </div>
                     </div>
 
@@ -348,9 +355,10 @@
                                     </div>
                                 </div>
                             </a>
-                            <div class="wishlist-container" ng-click="addToWishlist(x.id)">
-                                <i class="fa fa-heart-o heart"></i>
-                            </div>
+                            <div class="wislist_sub wishlist-container" ng-click="taptowish(x.menu_varient_data.id, x.menu_varient_data.is_in_wishlist)">
+                                <i id="blank_{{x.menu_varient_data.id}}" class="fa heart fa-heart-o" ng-show="x.menu_varient_data.is_in_wishlist == '0'"></i>
+                                <i id="filler_{{x.menu_varient_data.id}}" class="fa heart fa-heart fill" ng-show="x.menu_varient_data.is_in_wishlist == '1'"></i>
+                              </div>
                         </div>
                     </div>
 
@@ -381,9 +389,10 @@
                                     </div>
                                 </div>
                             </a>
-                            <div class="wishlist-container" ng-click="addToWishlist(x.id)">
-                                <i class="fa fa-heart-o heart"></i>
-                            </div>
+                            <div class="wislist_sub wishlist-container" ng-click="taptowish(x.menu_varient_data.id, x.menu_varient_data.is_in_wishlist)">
+                                <i id="blank_{{x.menu_varient_data.id}}" class="fa heart fa-heart-o" ng-show="x.menu_varient_data.is_in_wishlist == '0'"></i>
+                                <i id="filler_{{x.menu_varient_data.id}}" class="fa heart fa-heart fill" ng-show="x.menu_varient_data.is_in_wishlist == '1'"></i>
+                              </div>
                         </div>
                     </div>
 

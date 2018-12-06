@@ -24,10 +24,16 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     }
 
     $scope.season_fetch =   function(){
-        loading.active();
+        // loading.active();
+        if(!$cookieStore.get("userinfo")){
+            var userID = '';
+        }else{
+            var userID = $cookieStore.get("userinfo").uid;
+        }
 
         var args = $.param({
             country_id: sessionStorage.country,
+            user_id : userID
         });
         
         $http({
@@ -390,6 +396,12 @@ $http({
     $scope.switch_country = function(){
         $location.path('/switch_country');
     }
+    $scope.wallet = function(){
+        $location.path('/wallet');
+    }
+    $scope.rewards = function(){
+        $location.path('/rewards');
+    }
     $scope.language = function(){
         $location.path('/language');
     }
@@ -478,9 +490,9 @@ $http({
     $scope.taptowish = function(id, wishlist_status){
         // alert(id+ " "+wishlist_status);return;
         $rootScope.addToWishlist(id, wishlist_status);
-       /*  setTimeout(function(){
+       /* setTimeout(function(){
            $scope.season_fetch();
-        }, 1000) */
+        }, 1000)  */
   }
 
 });
