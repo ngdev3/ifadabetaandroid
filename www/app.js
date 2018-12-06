@@ -758,7 +758,7 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
     }
 
 
-    $rootScope.addToWishlist = function(id){     
+    $rootScope.addToWishlist = function(id, wishlist_status){     
         // alert(id);return;
         // console.log("aaaaaaaaaaaaa----");
         // console.log($rootScope.is_in_wishlist);
@@ -770,8 +770,8 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
                 var userID = $cookieStore.get("userinfo").uid;
             }
             
-            loading.active();
-            if($rootScope.is_in_wishlist == 1){
+          //  loading.active();
+            if(wishlist_status == 1){
                 var args = $.param({
                     'country_id': sessionStorage.country,
                     'menu_varient_id' : id,
@@ -804,19 +804,25 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
                 console.log("wwwwwwwwwwwwwwwwwww");
                 console.log(res.data.data);
                 // return;
-                if($rootScope.is_in_wishlist == 1){
-                    if (res.data.data.status == 'success') {  
+                if(wishlist_status == 1){
+                    if (res.data.data.status == 'success') { 
+                        $('#filler_'+id).addClass('ng-hide')
+                        $('#blank_'+id).removeClass('ng-hide')
                         // $("#unclicked"+id).removeClass("fa-heart-o").addClass("fa-heart fill");         
-                        model.show("Alert","Removed From Wishlist Successfully");
-                        $rootScope.is_in_wishlist = 0;
+                      //  model.show("Alert","Removed From Wishlist Successfully");
+                        //$rootScope.is_in_wishlist = 0;
+                       // $route.reload();
                     } else {
                         model.show("Alert","Something went wrong");
                     }
                 }else{
                     if (res.data.data.status == 'success') {  
+                        $('#blank_'+id).addClass('ng-hide')
+                        $('#filler_'+id).removeClass('ng-hide')
                         // $("#unclicked"+id).removeClass("fa-heart-o").addClass("fa-heart fill");         
-                        model.show("Alert","Added To Wishlist Successfully");
-                        $rootScope.is_in_wishlist = 1;
+                     //   model.show("Alert","Added To Wishlist Successfully");
+                       // $rootScope.is_in_wishlist = 1;
+//$route.reload();
                     } else {
                         model.show("Alert","Something went wrong");
                     }

@@ -246,9 +246,10 @@
                                     </div>
                                 </div>
                             </a>
-                            <div class="wishlist-container" ng-click="addToWishlist(x.id)">
-                                <i class="fa fa-heart-o heart"></i>
-                            </div>
+                            <div class="wislist_sub wishlist-container" ng-click="taptowish(x.menu_varient_data.id, x.menu_varient_data.is_in_wishlist)">
+                                <i id="blank_{{x.menu_varient_data.id}}" class="fa heart fa-heart-o" ng-show="x.menu_varient_data.is_in_wishlist == '0'"></i>
+                                <i id="filler_{{x.menu_varient_data.id}}" class="fa heart fa-heart fill" ng-show="x.menu_varient_data.is_in_wishlist == '1'"></i>
+                              </div>
                         </div>
                     </div>
 
