@@ -6,8 +6,8 @@ app.controller('list_ticket', function ($scope, $http, $location, $cookieStore, 
         return false;
     }
 
-    $scope.cart = function(){
-        $location.path('/cart');
+    $scope.raise_ticket = function(){
+        $location.path('/add_ticket');
     }
 
     $scope.ticketlistData = function () {
