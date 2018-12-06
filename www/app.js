@@ -227,7 +227,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     }
 
     
-
+    $rootScope.sort = ''
     $rootScope.searchBar = function () {
 
   
