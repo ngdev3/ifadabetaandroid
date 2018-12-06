@@ -109,7 +109,8 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     var j = 3;
     var first_length = 3;
     var second_length = 5;
-    setInterval(function(){
+    setInterval(function(){ 
+        
 
         if(first_length > i){
 
