@@ -288,8 +288,11 @@
                                         <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
                                         <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->AED {{x.product_varient[0].price}}<!-- </span> --></p>
                                     </div>
-                                        <div class="wislist_sub wishlist-container">
-                                          <i class="fa heart fa-heart-o"></i> 
+                                        <div class="wislist_sub wishlist-container" ng-click="taptowish(x.product_varient.id, x.product_varient.is_in_wishlist)">
+                                            <!-- <i class="fa heart fa-heart-o"></i>  -->
+                                            <!-- <i class="fa fa-heart fill hide" id="clicked"></i>  -->
+                                            <i id="blank_{{x.product_varient.id}}" class="fa heart fa-heart-o" ng-show="x.product_varient.is_in_wishlist == '0'"></i>
+                                            <i id="filler_{{x.product_varient.id}}" class="fa heart fa-heart fill" ng-show="x.product_varient.is_in_wishlist == '1'"></i>
                                         </div>
                                         <div class="sub_add_product">
                                             <div class="add_item_container sub_add_btn">

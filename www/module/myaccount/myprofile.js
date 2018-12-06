@@ -62,7 +62,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
             method: 'POST',
             url: app_url + '/basic_info',
             data: args //forms user object
-
+ 
         }).then(function (response) {
             loading.deactive();
             res = response;

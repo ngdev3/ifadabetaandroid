@@ -235,6 +235,7 @@ if($cookieStore.get('userinfo')){
  }
 
  $scope.taptowish = function(id, wishlist_status){
+    //  alert(id+ " "+ wishlist_status);
      $rootScope.addToWishlist(id, wishlist_status);
      setTimeout(function(){
         $scope.see_alls();
