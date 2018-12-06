@@ -59,8 +59,9 @@
 						<ul class="nav navbar-nav bottom_header">
 						  <li class="menu_search_container"><a href="javascript:void(0)">
 							<!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
-							<input type="text" class="menu_search" placeholder="Search products brands and more"/>
-						  </a></li>
+							<input type="text" class="menu_search" ng-model="searchProduct" name="searchProduct" placeholder="Search products brands and more"/>
+							<button class="search_bar_span" ng-click="searchproducts()" ><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+						</a></li>
 						</ul>
 					  </div>
 					</nav>
@@ -69,7 +70,78 @@
 				<!-- MOBILE-MENU-AREA END -->
 			</header>
 			<!-- END HEADER -->
-			
+	        <!--Filter Start -->
+			<div id="mySidenav-right" class="sidenav-right">		
+				<form name="filter_form" nonvaldidate>
+						<header id="filter-header" class="container-fluid nav-down" style="top: 0 !important;">
+					<div class="row">
+						<nav class="navbar navbar-inverse">
+						  <div class="container-fluid no-padding">
+							<ul class="nav navbar-nav top_header">
+							  <li class="menu_icon"><a href="javascript:void(0)" ><img onclick="closeFilter()" src="assets/img/header/cross_icon.png" id="asdf" alt="menu icon" /></a></li>
+							  <li class="logo_name" style="width: 100%"><a class="text-center back">Filter</a></li>
+							  
+							</ul>
+						  </div>
+						</nav>
+					</div>
+				</header>
+				<div class="filter-body">
+					<div class="filter-container">
+						<button class="accordion" id="accord_3" ng-click="init(3);">Sort By</button>
+						<div class="accordion-panel accordion-panel_3">
+						  <div class="accordion-container">
+								<div class="accordion-options">
+										<div class="pretty p-icon p-curve p-pulse">
+											<input type="radio" ng-model="sort" name="sort" value="1">
+											<div class="state p-info-o">
+												<i class="icon fa fa-check"></i>
+												<label> A to Z</label>
+											</div>
+										</div>
+									</div>
+									<div class="accordion-options">
+										<div class="pretty p-icon p-curve p-pulse">
+											<input  type="radio" ng-model="sort" name="sort" value="3">
+											<div class="state p-info-o">
+												<i class="icon fa fa-check"></i>
+												<label> Z to A</label>
+											</div>
+										</div>
+									</div>
+							<div class="accordion-options">
+								<div class="pretty p-icon p-curve p-pulse">
+									<input type="radio" ng-model="sort" name="sort" value="4">
+									<div class="state p-info-o">
+										<i class="icon fa fa-check"></i>
+										<label> Low to High</label>
+									</div>
+								</div>
+							</div>
+							<div class="accordion-options">
+								<div class="pretty p-icon p-curve p-pulse">
+									<input type="radio" ng-model="sort" name="sort" value="5">
+									<div class="state p-info-o">
+										<i class="icon fa fa-check"></i>
+										<label>High to Low</label>
+									</div>
+								</div>
+							</div>	
+							
+							</div>
+						</div>			
+					</div>
+				</div>
+				<footer>
+					<div class="apply_btn_container">
+						<button onclick="closeFilter()"> Cancel</button>
+						<button onclick="closeFilter()" ng-click="filter('filter_form')"> Apply</button>
+					</div>
+				</footer>
+				</form>
+			</div>
+					
+		<!--Filter End -->		
 		<!-- search -->
 		<div class="mt-50">
 		<div class="no-padding item_lists_main" ng-repeat="x in searchresult" ng-if="searchresult"  >
@@ -115,3 +187,14 @@
 	</div>
 	</div>
 </div>
+<script>
+
+
+	$(document).ready(function () {
+		$(".cart_icon a:last-child, .search_bar_span").click(function () {
+			//alert();
+			$(".bottom_header").slideToggle();
+			//$("#banner_slider").toggleClass("search-container")
+		});
+	});
+</script>
