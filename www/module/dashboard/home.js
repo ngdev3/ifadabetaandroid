@@ -490,9 +490,7 @@ $http({
     $scope.taptowish = function(id, wishlist_status){
         // alert(id+ " "+wishlist_status);return;
         $rootScope.addToWishlist(id, wishlist_status);
-       /* setTimeout(function(){
-           $scope.season_fetch();
-        }, 1000)  */
+        $route.reload();
   }
 
 });
