@@ -238,11 +238,11 @@ input.btn.btn-success.all-sub-cat_buttons:focus
     align-content: center;
     display: flex;
 }
-.wislist_sub.wishlist-container
+/* .wislist_sub.wishlist-container
 {
      right: 15px;
     top: 15px;
-}
+} */
 .sub_add_product
 {
     position: absolute;
@@ -1408,3 +1408,21 @@ li.progtrckr-todo.inprocessed span.pending_check i
     right: -3px;
     top: -42px;
 }
+/*Search bar Icon*/
+.search_bar_span{
+	position: absolute;
+    right: 15px;
+    height: 26px;
+    width: 32px;
+    top: 5px;
+    text-align: center;
+    /* vertical-align: middle; */
+    background-color: #006d07;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+	border:0px;
+}
+.search_bar_span > i{
+	color: #fffdf2;
+    font-size: 14px;
+}	

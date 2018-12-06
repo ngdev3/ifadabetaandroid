@@ -1,179 +1,117 @@
-<div class="bg" ng-controller="productlist" ng-init="getProductList()">
-	<header class="container-fluid nav-down">
-		<div class="row">
-			<nav class="navbar navbar-inverse">
-				<div class="container-fluid no-padding">
-					<ul class="nav navbar-nav top_header">
-						<li class="menu_icon back_icon"><a href="javascript:void(0);"><img src="assets/img/header/back.png" id="asdf"
-								 ng-click="back()" alt="menu icon" /></a></li>
-						<li class="logo_name"><a class="text-left back">{{catName}}</a></li>
-						<li class="cart_icon mr-5">
-							<a href="javascript:void(0);" ng-click="opencart()"><img src="assets/img/header/cart_icon.png" alt="cart icon"
-								 style="width: 16px;" /><span class="badge">{{activeCartValue}}</span></a>
-								 <a href="javascript:void(0);"><img src="assets/img/header/filter.png" alt="search icon" onclick="openFilter()" /></a>
-								</li>
-							</ul>
-				</div>
-			</nav>
-
-		</div>
-		<!-- MOBILE-MENU-AREA END -->
-	</header>
-	<!-- END HEADER -->
-	<div id="mySidenav-right" class="sidenav-right">
-		<form method="post" name="filter_form" nonvalidate>
-		<header id="filter-header" class="container-fluid nav-down">
-			<div class="row">
-				<nav class="navbar navbar-inverse">
-					<div class="container-fluid no-padding">
+<div class="bg" ng-controller="productlist">
+	<style type="text/css">
+            
+        .owl-carousel .owl-stage
+        {
+            width: 40000px !important;
+        }
+        .slick-slide {
+            display: none;
+            float: left;
+            height: auto;
+            min-height: 1px;
+            outline: 0;
+        }
+        .slick-slide{
+           width: auto !important;
+           margin-right: 5px !important;
+        }
+     /*    .btn-success.active:focus{
+            background-color: #398439;
+        } */
+        .btn-success.active{
+            background-color: #398439;
+        }
+		.nav > li.cart_icon {
+			float: right;
+			width: 35%;
+		}
+		.nav > li.page_name.left{
+			width: 55% !important;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 1;
+			line-height: 30px;
+			max-height: 30px;
+		}
+        </style>
+               <header class="container-fluid nav-down">
+				<div class="row">
+					<nav class="navbar navbar-inverse">
+					  <div class="container no-padding"> 
 						<ul class="nav navbar-nav top_header">
-							<li class="menu_icon"><a href="javascript:void(0);"><img onclick="closeFilter()" src="assets/img/header/cross_icon.png"
-									 id="asdf" alt="menu icon" /></a></li>
-							<li class="logo_name" style="width: 100%"><a class="text-center back">Filter</a></li>
-
+						  <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back()" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
+							<li class="page_name left" ng-if="searchresult">
+								<a href="javascript:void(0)" class="text-left ">
+									<p>{{Search_result | translate}}</p>
+								</a>
+							</li>
+						  <li class="cart_icon">
+							<a href="javascript:void(0);"><img src="assets/img/header/filter.png" alt="search icon" onclick="openFilter()"/></a>
+							  <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
+								<!--<span class="badge">14</span>-->
+							  </a>
+							  <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
+						  </li>
 						</ul>
-					</div>
-				</nav>
-			</div>
-		</header>
-		<div class="filter-body">
-			<div class="filter-container">
-				<button class="accordion">Categories</button>
-				<div class="accordion-panel">
-					<div class="accordion-container">
-						<div class="accordion-options" ng-repeat="x in get_category_with_product_count" >
-							<div class="pretty p-icon p-curve p-pulse">
-								<input type="checkbox" value="{{x.id}}" ng-model="category" name="category" id="cat_{{x.id}}" ng-click="Filtering(x.id)">
-								<div class="state p-info-o">
-									<i class="icon fa fa-check"></i>
-									<label>{{x.name}} ({{x.products}})</label>
-								</div>
-							</div>
-						</div>
-
-					</div>
+						<ul class="nav navbar-nav bottom_header">
+						  <li class="menu_search_container"><a href="javascript:void(0)">
+							<!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
+							<input type="text" class="menu_search" placeholder="Search products brands and more"/>
+						  </a></li>
+						</ul>
+					  </div>
+					</nav>
+				
 				</div>
-
-				<button class="accordion">Brand</button>
-				<div class="accordion-panel">
-					<div class="accordion-container">
-						<div class="accordion-options" ng-repeat="x in get_brands_with_product_count"  >
-							<div class="pretty p-icon p-curve p-pulse">
-								<input type="checkbox" value="{{x.brand_id}}" ng-model="brands" name="brands" id="brand_{{x.brand_id}}" ng-click="Filtering(x.brand_id)">
-								<div class="state p-info-o">
-									<i class="icon fa fa-check"></i>
-									<label>{{x.name}} ({{x.products}})</label>
-								</div>
-							</div>
-						</div>
-
+				<!-- MOBILE-MENU-AREA END -->
+			</header>
+			<!-- END HEADER -->
+			
+		<!-- search -->
+		<div class="mt-50">
+		<div class="no-padding item_lists_main" ng-repeat="x in searchresult" ng-if="searchresult"  >
+                           
+			<div class="prodcut_main_container">
+				<div class="products_wrapper">
+					<div class="col-md-3 col-sm-3 col-xs-3" ng-click="product_view(x.id)">
+						<a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="{{search_product.image_path}}{{x.image}}"></a>
 					</div>
-				</div>
-
-				<button class="accordion">Price</button>
-				<div class="accordion-panel">
-					<div class="accordion-container">
-						<div class="accordion-options">
-							<div class="pretty p-icon p-curve p-pulse">
-								<input type="checkbox" value="lowhigh" ng-model="form.price" name="form.price">
-								<div class="state p-info-o">
-									<i class="icon fa fa-check"></i>
-									<label> Price (Low to High)</label>
-								</div>
-							</div>
-						</div>
-						<div class="accordion-options">
-							<div class="pretty p-icon p-curve p-pulse">
-								<input type="checkbox" value="highlow" name="price">
-								<div class="state p-info-o">
-									<i class="icon fa fa-check"></i>
-									<label>Price (High to Low)</label>
-								</div>
-							</div>
-						</div>
+					<div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc" ng-click="product_view(x.id)" >
+						<!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
+						<a href="javascript:void(0)"><p class="sub_produt_name">{{x.menu_name}}</p></a>
+<!--                                             <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
+-->                                            <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->AED {{x.menu_varient_data.price}}<!-- </span> --></p>
 					</div>
+						<div class="wislist_sub wishlist-container" ng-click="addToWishlist(x.menu_varient_data.id)">
+						  <!-- <i class="fa heart fa-heart-o"></i>  -->
+						  <!-- <i class="fa fa-heart fill hide" id="clicked"></i>  -->
+						  <i class="fa heart fa-heart-o" ng-show="is_in_wishlist == '0'"></i>
+						  <i class="fa heart fa-heart fill" ng-show="is_in_wishlist == '1'"></i>
+						</div>
+						<div class="sub_add_product">
+							<div class="add_item_container sub_add_btn">
+								<div class="add_item_button sub_add_btn" style="display: none;">
+								   <button class="add_item sub_add_btn"><span class="additem_span">+</span></button>
+								   <input type="text" value="1" disabled="">
+								  
+									<button class="less_item sub_add_btn"><span class="additem_span">-</span></button>
+								</div>
+								<div class="add_cart_button sub_add_btn">
+								   <button class="">Add</button>
+								</div>
+							</div>
+						</div>
 				</div>
 			</div>
 		</div>
-		<footer>
-			<div class="apply_btn_container">
-				<button onclick="closeFilter()"> Cancel</button>
-				<button class="btn" onclick="closeFilter()" ng-click="getFilteredData('filter_form')" > Apply</button>
-			</div>
-		</footer>
-	</form>
+		<div  style="margin-top: 120;" class="no_data_wrapper" ng-if="search_product && !searchresult">
+			<div class="">
+				<img src="img/no_data_found.png">
+				<h3 class="text-center">No Products Found..</h3>
+		</div>
 	</div>
-
-
-	<!--  START listing Section -->
-
-	<div id="listing_section" class="container-fluid animatedParent animateOnce">
-
-		<div class="row">
-			<!-- {{productlist}} -->
-			<div class="col-sm-4 col-xs-6 pl-5 pr-5 animated fadeInLeft slow" ng-repeat="product in productlist" ng-if="productlist">
-				<div class="product_container mt-10">
-					<div class="prod_img_container">
-						<img src="{{product.pimage}}" alt="product image 1" class="img-responsive" ng-click="product_view(product.pid)" />
-					</div>
-					<div class="prod_content">
-
-						<h2 class="mb-15" ng-click="product_view(product.pid)">{{product.product_name}}</h2>
-						<div class="product_wgt">
-							<input type="hidden" name="product" ng-model="product.selectedOption.weight" ng-click="update($event)">
-							<select ng-model="product.selectedOption.price" id="product_{{product.pid}}" name="product.selectedOption.price"
-							 ng-change="getvalueforOtherVarient(product.pid, $(this).val())" class="select_weight" ng-init="product.selectedOption.weight = product.weight_data[0].weight_id; product.selectedOption.price = (product.weight_data[0].discount !== 0) ? product.weight_data[0].s_price : product.weight_data[0].p_price; product.selectedOption.added = product.weight_data[0].added; product.selectedOption.addedQnty = product.weight_data[0].addedQnty; product.selectedOption.stock_type = product.weight_data[0].stock_type; product.selectedOption.stock_value = product.weight_data[0].stock_value; ">
-								<option ng-repeat="weight in product.weight_data" ng-selected="{{product.selectedOption.weight == weight.weight_id}}"
-								 ng-value="weight.discount !== 0 ? weight.s_price : weight.p_price" data-weight_id="{{weight.weight_id}}"
-								 data-added="{{weight.added}}" data-addedQnty="{{weight.addedQnty}}" data-stock_value="{{weight.stock_value}}"
-								 data-stock_type="{{weight.stock_type}}" data-p_price="{{weight.p_price}}" data-product_id="{{product.pid}}">{{weight.p_weight}}
-								</option>
-							</select>
-
-						</div>
-						<p class="prod_price">
-							Rs. {{product.selectedOption.price}}
-
-						</p>
-						<div class="add_item_container" id="firstt_{{product.pid}}" data-attr="{{product.selectedOption.weight}}">
-
-							<div class=" add_item_button" id="enableCart_{{product.selectedOption.weight}}" ng-show="product.weight_data[0].added != 'no'">
-								<button class="less_item" data-weightid="{{product.selectedOption.weight}}" id="minus_{{product.selectedOption.weight}}"
-								 ng-click="minusToCart($event)">-</button>
-								<input type="text" id="quantity_{{product.selectedOption.weight}}" value="{{product.weight_data[0].addedQnty}}"
-								 disabled="">
-								<button class="add_item" data-weightid="{{product.selectedOption.weight}}" id="plus_{{product.selectedOption.weight}}"
-								 ng-click="plusToCart($event)">+</button>
-							</div>
-
-							<input type="hidden" value="{{currentval}}" name="cartcurrentquant">
-
-							<div class="add_cart_button" id="addToCart_{{product.selectedOption.weight}}" ng-show="product.weight_data[0].added != 'yes'">
-								<button class="addcart_button" data-weightid="{{product.selectedOption.weight}}" id="addCart_{{product.selectedOption.weight}}"
-								 ng-click="addToCart($event);">Add
-									to cart</button>
-							</div>
-
-						</div>
-					</div>
-					<div class="prod_discount" ng-if="product.discount !== '0'">
-						<div class="disc_badge">
-							<span>{{product.discount}}%</span>
-						</div>
-					</div>
-				</div>
-
-
-			</div>
-
-			<div ng-if="productlist.length == 0" class="no_data_found">
-				<div class="no_data_main">
-					<img src="img/no_data_found.png">
-					<p>SORRY</p>
-					<p>{{contentfornodata}}</p>
-				</div>
-
-			</div>
-		</div>
 	</div>
 </div>
