@@ -227,7 +227,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     }
 
     
-    
+
     $rootScope.searchBar = function () {
 
   
@@ -257,7 +257,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             if (res.data.data.category_product.total_rows > 0) {
                 $rootScope.searchresult = res.data.data.category_product.products;
                 $rootScope.search_product = res.data.data.category_product;
-                
+                $rootScope.searchProduct = '';
                 $location.path("/product/list");
             } else {
                 // alert()

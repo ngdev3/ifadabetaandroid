@@ -13,6 +13,16 @@ if($cookieStore.get('userinfo')){
         $location.path('/cart');
     }
 
+    
+    $scope.searchproducts = function(){
+        var search_key = {
+            'search' : $scope.searchProduct
+        }
+        $cookieStore.put('search',search_key);
+        $rootScope.searchProduct = $scope.searchProduct;
+        $rootScope.searchBar();
+    }
+
     var ID;
     $scope.fetch_product_list = function (id,url) {
         // alert(id);

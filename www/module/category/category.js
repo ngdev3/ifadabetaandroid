@@ -16,6 +16,10 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
     }
 
     $scope.searchproducts = function(){
+        var search_key = {
+            'search' : $scope.searchProduct
+        }
+        $cookieStore.put('search',search_key);
         $rootScope.searchProduct = $scope.searchProduct;
         $rootScope.searchBar();
     }

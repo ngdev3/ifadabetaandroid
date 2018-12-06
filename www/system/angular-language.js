@@ -95,7 +95,8 @@ app.config(function ($translateProvider) {
     Earn_By : 'Earn By',
     Amount : 'Amount',
      CR_DR  : 'CR/DR',
-     My_Rewards : 'My Rewards'
+     My_Rewards : 'My Rewards',
+     Search_result : 'Search Result'
   });
 
 
@@ -201,6 +202,7 @@ app.config(function ($translateProvider) {
     Earn_By : 'اربح من قبل',
     Amount : 'كمية',
      CR_DR  : 'ائتمان/مدين',
-     My_Rewards : 'مكافآتي'
+     My_Rewards : 'مكافآتي',
+     Search_result : 'نتيجة البحث'
   });
 });

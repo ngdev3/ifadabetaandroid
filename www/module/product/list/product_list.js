@@ -14,12 +14,29 @@ $scope.product_view = function (id,url) {
 }
 
 $scope.searchproducts = function(){
+    var search_key = {
+        'search' : $scope.searchProduct
+    }
+    $cookieStore.put('search',search_key);
     $rootScope.searchProduct = $scope.searchProduct;
     $rootScope.searchBar();
 }
 
+$scope.init =function(id){
+    var max_heightss = $(".accordion-panel_"+id).css("maxHeight");
+ var iScrollHeight = $(".accordion-panel_"+id).prop("scrollHeight");
+ if(max_heightss!="0px"){
+     $("#accord_"+id).removeClass("selected");
+      $(".accordion-panel_"+id).css('max-height', '0');
+ }else{
+     $("#accord_"+id).addClass("selected");
+       $(".accordion-panel_"+id).css('max-height', iScrollHeight+'px');
+ }
+}
+ 
 $scope.filter = function(form) {
     //console.log($scope.sort); 
+    $rootScope.searchProduct = $cookieStore.get('search').search;
     $rootScope.sort = $scope.sort;
     $rootScope.searchBar();
     

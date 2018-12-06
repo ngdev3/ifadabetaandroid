@@ -462,7 +462,7 @@ input.btn.btn-success.all-sub-cat_buttons:focus
 /** View Cart **/
 .mycart_itemslist
 {
-    padding-bottom: 100px;
+    padding-bottom: 176px;
 }
 .cart_remove i
 {
@@ -473,7 +473,7 @@ input.btn.btn-success.all-sub-cat_buttons:focus
     position: absolute;
     bottom: 0;
     background-color: #d4d4d4;
-    height: 100px;
+    height: 176px;
     position: fixed;
     width: 100%
 }
@@ -536,7 +536,7 @@ input.btn.btn-success.all-sub-cat_buttons:focus
 .checkout_container p.text-right
 {
     float: right;
-    padding-right: inherit;
+    
 }
 /** !. View Cart **/
 
@@ -1426,3 +1426,20 @@ li.progtrckr-todo.inprocessed span.pending_check i
 	color: #fffdf2;
     font-size: 14px;
 }	
+/*Cart Changes*/
+.after_coupon{
+	background: #fff;
+}
+.after_coupon .after_cart, .after_coupon .after_discount{
+	padding: 10px 15px 10px 15px;
+    font-size: 16px;
+    color: #333;
+}
+.after_coupon .after_discount{
+	border-top: 1px solid #d4d4d4;
+}
+.after_coupon .after_cart span, .after_coupon .after_discount span{
+	float: right;
+    font-weight: bold;
+    font-size: 17px;
+}

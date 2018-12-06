@@ -317,16 +317,15 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
           }
  */
 
-        
-        
-$scope.searchresults = function () {
-
+    
+$scope.searchresults = function(){
+    var search_key = {
+        'search' : $scope.searchProduct
+    }
+    $cookieStore.put('search',search_key);
     $rootScope.searchProduct = $scope.searchProduct;
     $rootScope.searchBar();
 }
-
-
-
 
    /*  $scope.product_view = function (pid) {
         $cookieStore.put('productviewID', pid);
