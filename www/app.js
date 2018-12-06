@@ -154,7 +154,11 @@ app.config(function ($routeProvider, $httpProvider) {
             templateUrl: "module/cms/about_us/about_us.html"
         }).when("/rewards", {
             templateUrl: "module/myreward/myreward.html"
+        }).when("/add_ticket", {
+            templateUrl: "module/ticket/add/add_ticket.html"
+
         })
+        
 
 });
 
@@ -225,35 +229,35 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
     $rootScope.currentval = 0;
 
-    // $rootScope.getProductList = function () {
-    //     loading.active()
-    //     $rootScope.productlist = '';
-    //     $http({
-    //         headers: {
-    //             'Content-Type': 'application/x-www-form-urlencoded'
-    //         },
-    //         method: 'GET',
-    //         url: app_url + 'productapi?catid=' + $cookieStore.get('categoryInfo').productListID + '&uid=' + $cookieStore.get('userinfo').uid + '&store_id=' + $cookieStore.get('storeinfo').store_id + '&mid=' + uuid,
-    //     }).then(function (response) {
-    //         res = response;
-    //         console.log(response.data);
-    //         if (res.status == '200') {
-    //             if (res.data.data.length > 0) {
-    //                 $rootScope.productlist = res.data.data;
-    //                 $rootScope.get_brands_with_product_count = res.data.get_brands_with_product_count;
-    //                 $rootScope.get_category_with_product_count = res.data.get_category_with_product_count;
-    //             } else {
-    //                 $rootScope.productlist = '';
-    //             }
-    //         } else {
-    //             //Throw error if not logged in
-    //             model.show('Alert', res.data.responseMessage);
-    //             $location.path('/register');
-    //         }
-    //     }).finally(function () {
-    //         loading.deactive();
-    //     })
-    // }
+    $rootScope.getProductList = function () {
+        loading.active()
+        $rootScope.productlist = '';
+        $http({
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'GET',
+            url: app_url + 'productapi?catid=' + $cookieStore.get('categoryInfo').productListID + '&uid=' + $cookieStore.get('userinfo').uid + '&store_id=' + $cookieStore.get('storeinfo').store_id + '&mid=' + uuid,
+        }).then(function (response) {
+            res = response;
+            console.log(response.data);
+            if (res.status == '200') {
+                if (res.data.data.length > 0) {
+                    $rootScope.productlist = res.data.data;
+                    $rootScope.get_brands_with_product_count = res.data.get_brands_with_product_count;
+                    $rootScope.get_category_with_product_count = res.data.get_category_with_product_count;
+                } else {
+                    $rootScope.productlist = '';
+                }
+            } else {
+                //Throw error if not logged in
+                model.show('Alert', res.data.responseMessage);
+                $location.path('/register');
+            }
+        }).finally(function () {
+            loading.deactive();
+        })
+    }
 
 
 
