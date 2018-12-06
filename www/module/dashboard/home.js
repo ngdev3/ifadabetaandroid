@@ -319,7 +319,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
 
         
         
-$scope.searchProduct = function () {
+$scope.searchresults = function () {
 
     $rootScope.searchProduct = $scope.searchProduct;
     $rootScope.searchBar();

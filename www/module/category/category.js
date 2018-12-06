@@ -15,6 +15,11 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
         $location.path('/subcategory');
     }
 
+    $scope.searchproducts = function(){
+        $rootScope.searchProduct = $scope.searchProduct;
+        $rootScope.searchBar();
+    }
+
     $scope.category_data = function () {
 
         loading.active();
