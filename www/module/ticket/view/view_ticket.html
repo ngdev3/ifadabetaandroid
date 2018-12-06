@@ -10,19 +10,19 @@
             <nav class="navbar navbar-inverse">
                 <div class="container no-padding">
                     <ul class="nav navbar-nav top_header">
-                        <li class="menu_icon "><a href="javascript:void(0)"><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"
-                                    style="width: 13px;" /></a></li>
+                        <li class="menu_icon "><a href="javascript:void(0)"><img ng-click="back()" src="assets/img/icon/back.png"
+                                    id="asdf" alt="menu icon" style="width: 13px;" /></a></li>
                         <li class="page_name left">
                             <a href="javascript:void(0)" class="text-left ">
                                 <p>View Ticket</p>
                             </a>
                         </li>
-                        <li class="cart_icon">
+                        <!-- <li class="cart_icon">
                             <a href="javascript:void(0)"><img src="assets/img/icon/cart_icon.png" alt="cart icon" />
-                                <!--<span class="badge">14</span>-->
+                                <span class="badge">14</span>
                             </a>
                             <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
-                        </li>
+                        </li> -->
                     </ul>
                     <ul class="nav navbar-nav bottom_header">
                         <li class="menu_search_container"><a href="javascript:void(0)">
@@ -39,7 +39,7 @@
     <!-- END HEADER -->
 
     <!--  [PULSES] Sub categories content -->
-    <div class="container-fluid mt-55">
+    <div class="container-fluid mt-55" ng-init="ticket_logs()">
         <div class="row">
             <div class="">
 
@@ -58,8 +58,10 @@
                                         <h5>CMP{{view_ticket.id}}</h5>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-3 no-padding">
-                                        <input type="button" ng-if="view_ticket.status == 0" class="btn btn-default btn_discounts ticket_process_btns ticket_in_process" name="" value="In Process">
-                                        <input type="button" ng-if="view_ticket.status == 1" class="btn btn-default btn_discounts ticket_process_btns ticket_resolved" name="" value="Resolved">
+                                        <input type="button" ng-if="view_ticket.status == 0" class="btn btn-default btn_discounts ticket_process_btns ticket_in_process"
+                                            name="" value="In Process">
+                                        <input type="button" ng-if="view_ticket.status == 1" class="btn btn-default btn_discounts ticket_process_btns ticket_resolved"
+                                            name="" value="Resolved">
                                     </div>
                                 </div>
                                 <div class="row padding_ticket">
@@ -107,45 +109,45 @@
                 <!-- ** !. Ticket Lists In process ** -->
 
                 <!-- TICKETS Q/A -->
-                <div class="row padding products_wrapper ticket_wrapper">
+                <div class="row padding products_wrapper ticket_wrapper" ng-show="ticket_logs_details">
 
                     <div class="col-md-12 col-sm-12 col-xs-12 padding_container">
-                        <h4 class="ticket_logs_heading">Ticket Logs</h4>
+                        <h4 class="ticket_logs_heading">Ticket Logs <i ng-click="ticket_logs()" class="fa fa-refresh" aria-hidden="true"></i></h4>
                     </div>
                     <div class="row padding_container">
                         <div class="col-md-12 col-xs-12 col-sm-12 ticket_wrapper chat_window">
                             <div class="chat_window_start">
                                 <ul class="chat_start">
-                                    <li class="chat_thread by_support">
-                                        <h5>Support Team</h5>
-                                        <p class="chat_desc">Lorem Ipsum Dummy Test?</p>
-                                        <small class="chat_time">23 OCT 2018, 10:30</small>
+                                    <span ng-repeat="x in ticket_logs_details">
 
-                                    </li>
-                                    <li class="chat_thread by_user">
-                                        <h5>Adam Zampa</h5>
-                                        <p class="chat_desc">Thankyou for Lorem</p>
-                                        <small class="chat_time">23 OCT 2018, 13:19</small>
+                                        <li class="chat_thread by_support" ng-if="x.sender != 52">
+                                            <h5>{{x.SENDER_NAME | ucwords}}</h5>
+                                            <p class="chat_desc">{{x.content | ucwords}}</p>
+                                            <small class="chat_time">{{x.created_date}}</small>
 
-                                    </li>
-                                    <li class="chat_thread by_user">
-                                        <h5>Adam Zampa</h5>
-                                        <p class="chat_desc">When i will get the Lorems??</p>
-                                        <small class="chat_time">23 OCT 2018, 15:45</small>
+                                        </li>
+                                        <li class="chat_thread by_user" ng-if="x.sender == 52">
+                                            <h5>{{x.SENDER_NAME | ucwords}}</h5>
+                                            <p class="chat_desc">{{x.content | ucwords}}</p>
+                                            <small class="chat_time">{{x.created_date}}</small>
 
-                                    </li>
-                                    <li class="chat_thread by_support">
-                                        <h5>Support Team</h5>
-                                        <p class="chat_desc">You will get Sooon. Delivery boy will reach soon.</p>
-                                        <small class="chat_time">23 OCT 2018, 16:05</small>
+                                        </li>
 
-                                    </li>
+
+                                    </span>
+
                                 </ul>
-                                <div class="send_box">
-                                    <input type="text" class="reply_input" name="" placeholder="Reply....">
-                                    <button class="sned_chat_btn"><i class="fa fa-paper-plane send_chect_icon"
-                                            aria-hidden="true"></i></button>
-                                </div>
+                                <form method="post"  name="loginform" novalidate>
+
+                                    <div class="send_box">
+                                        <input type="text" name="customer_reps" ng-model="customer_rep" class="reply_input"
+                                            placeholder="Reply....">
+                                        <button class="sned_chat_btn" ng-click="replyaatticket('loginform')">
+                                            <i class="fa fa-paper-plane send_chect_icon"
+                                                aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -159,52 +161,7 @@
     <!--  !. [PULSES] Sub categories content -->
 
 
-    <script>
-
-
-        $(document).ready(function () {
-            $(".cart_icon a:last-child").click(function () {
-                //alert();
-                $(".bottom_header").slideToggle();
-                //$("#banner_slider").toggleClass("search-container")
-            });
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".send_chect_icon").click(function () {
-                var date1 = new Date();
-
-                var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL",
-                    "AUG", "SEP", "OCT", "NOV", "DEC"];
-                var valdate = date1.getDate() + " " + months[date1.getMonth()] + " " + date1.getFullYear();
-
-                var currentdate = new Date();
-                var datetime = valdate + ", " + currentdate.getHours() + ":" + currentdate.getMinutes();
-                var chatval = $(".reply_input").val();
-                $(".chat_start").append("<li class='chat_thread by_user'><h5>Adam Zampa</h5><p class='chat_desc'>" + chatval + "</p><small class='chat_time'>" + datetime + "</small></li>");
-                $(".reply_input").val("");
-
-            });
-
-            $('.reply_input').keypress(function (event) {
-                var keycode = (event.keyCode ? event.keyCode : event.which);
-                if (keycode == '13') {
-                    var date1 = new Date();
-
-                    var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL",
-                        "AUG", "SEP", "OCT", "NOV", "DEC"];
-                    var valdate = date1.getDate() + " " + months[date1.getMonth()] + " " + date1.getFullYear();
-
-                    var currentdate = new Date();
-                    var datetime = valdate + ", " + currentdate.getHours() + ":" + currentdate.getMinutes();
-                    var chatval = $(".reply_input").val();
-                    $(".chat_start").append("<li class='chat_thread by_user'><h5>Adam Zampa</h5><p class='chat_desc'>" + chatval + "</p><small class='chat_time'>" + datetime + "</small></li>");
-                    $(".reply_input").val("");
-                }
-            });
-        });
-    </script>
+   
 
 
 </div>
