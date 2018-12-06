@@ -320,5 +320,16 @@ if($cookieStore.get('userinfo')){
 //             loading.deactive();
 //         });
 //     }
+
+
+$scope.taptowishlist = function(id, wishlist_status){
+    //  alert(id+ " "+ wishlist_status);return;
+    $rootScope.addToWishlist(id, wishlist_status);
+    //  $route.reload();
+    setTimeout(function(){
+        $scope.fetch_product_list();
+    }, 1000)
+}
+
     
 });
