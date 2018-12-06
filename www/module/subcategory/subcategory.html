@@ -52,12 +52,7 @@
                             <a href="javascript:void(0)" class="text-left ">
                                 <p>{{feature_name | translate}}</p>
                             </a>
-                        </li>
-                        <li ng-if="searchresult" class="page_name left" >
-                            <a href="javascript:void(0)" class="text-left ">
-                                <p>Search Result</p>
-                            </a>
-                        </li>
+                        </li>                      
                       <li class="cart_icon">
 						<a href="javascript:void(0);"><img src="assets/img/header/filter.png" alt="search icon" onclick="openFilter()"/></a>
                           <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
@@ -357,53 +352,7 @@
                                     </div>
                                 </div>
                             </div>
-                        <!-- ** !. Product Lists ** -->  
-                        
-                        <!-- search -->
-                        <div class="no-padding item_lists_main" ng-repeat="x in searchresult" ng-if="searchresult"  >
-                           
-                            <div class="prodcut_main_container">
-                                <div class="products_wrapper">
-                                    <div class="col-md-3 col-sm-3 col-xs-3" ng-click="product_view(x.id)">
-                                        <a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="{{search_product.image_path}}{{x.image}}"></a>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc" ng-click="product_view(x.id)" >
-                                        <!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
-                                        <a href="javascript:void(0)"><p class="sub_produt_name">{{x.menu_name}}</p></a>
-<!--                                             <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
--->                                            <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->AED {{x.menu_varient_data.price}}<!-- </span> --></p>
-                                    </div>
-                                        <div class="wislist_sub wishlist-container" ng-click="addToWishlist(x.menu_varient_data.id)">
-                                          <!-- <i class="fa heart fa-heart-o"></i>  -->
-                                          <!-- <i class="fa fa-heart fill hide" id="clicked"></i>  -->
-                                          <i class="fa heart fa-heart-o" ng-show="is_in_wishlist == '0'"></i>
-                                          <i class="fa heart fa-heart fill" ng-show="is_in_wishlist == '1'"></i>
-                                        </div>
-                                        <div class="sub_add_product">
-                                            <div class="add_item_container sub_add_btn">
-                                                <div class="add_item_button sub_add_btn" style="display: none;">
-                                                   <button class="add_item sub_add_btn"><span class="additem_span">+</span></button>
-                                                   <input type="text" value="1" disabled="">
-                                                  
-                                                    <button class="less_item sub_add_btn"><span class="additem_span">-</span></button>
-                                                </div>
-                                                <div class="add_cart_button sub_add_btn">
-                                                   <button class="">Add</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
-
-
-
-
+                        <!-- ** !. Product Lists ** --> 
                     </div>
                 </div>
             </div>

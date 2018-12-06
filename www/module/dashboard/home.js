@@ -320,46 +320,47 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         
         
 $scope.searchBar = function () {
-   
-$rootScope.searchresult = '';
 
-loading.active();
-
-var args = $.param({
-    'country_id': sessionStorage.country,
-    'language_code': sessionStorage.lang_code,
-    'search_product': $scope.searchProduct
-})
-$http({
-    headers: {
-        //'token': '40d3dfd36e217abcade403b73789d732',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    method: 'POST',
-    url: app_url + '/product_list',
-    data: args
-
-}).then(function (response) {
-
-    res = response;
-    
-    if (res.data.data.category_product.total_rows > 0) {
-        $rootScope.searchresult = res.data.data.category_product.products;
-        $rootScope.search_product = res.data.data.category_product;
-        $cookieStore.put('search','search');
-        $location.path("/subcategory");
-    } else {
-        // alert()
-        // $scope.resultstatus = false;
+  
         $rootScope.searchresult = '';
-        $location.path("/subcategory");
-        // $scope.datanotfound = true;
+        
+        loading.active();
+        
+        var args = $.param({
+            'country_id': sessionStorage.country,
+            'language_code': sessionStorage.lang_code,
+            'search_product': $scope.searchProduct
+        })
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/product_list',
+            data: args
+        
+        }).then(function (response) {
+        
+            res = response;
+            
+            if (res.data.data.category_product.total_rows > 0) {
+                $rootScope.searchresult = res.data.data.category_product.products;
+                $rootScope.search_product = res.data.data.category_product;
+                
+                $location.path("/product/list");
+            } else {
+                // alert()
+                // $scope.resultstatus = false;
+                $rootScope.searchresult = '';
+                $location.path("/product/list");
+                // $scope.datanotfound = true;
+            }
+    
+        }).finally(function () {
+            loading.deactive();
+        });
     }
-
-}).finally(function () {
-    loading.deactive();
-});
-}
 
 
 
