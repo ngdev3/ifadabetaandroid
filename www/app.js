@@ -598,7 +598,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     }
 
     $rootScope.apply_promo = function(type){
-      
+      console.log($rootScope.promocode)
         if(type == 'remove'){
             $('#inputpromo').removeAttr('disabled','disabled');
             $('#apply').removeClass('ng-hide')
@@ -618,7 +618,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
      
             //  alert("Error");
             var error_str = '';
-            if ($rootScope.promocode == '' ||$rootScope.promocode == undefined ) {
+            if ($rootScope.promocode == '' || $rootScope.promocode == undefined ) {
                 error_str += "Promo Code";
             }
            
@@ -668,6 +668,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                     $('#inputpromo').attr('disabled','disabled');
                     $('#apply').addClass('ng-hide')
                     $('#applied').removeClass('ng-hide').show();
+                }else{
+                    model.show('Alert','Promo Code Invalid')
                 }
             }).finally(function () {
                 loading.deactive();

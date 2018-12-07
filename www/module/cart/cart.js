@@ -102,6 +102,7 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
 
     // $scope.promocode = 'COP223229';
     
+ //   $rootScope.promocode = $scope.promocode 
 
     $scope.initpomo = function(){
         if ($cookieStore.get('promocode')) {
