@@ -100,7 +100,56 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
         $location.path('/addressdetail');
     }
 
-    $scope.apply_promo = function(form){
+    $scope.apply_promo = function(form, type){
+      
         
+        if ($scope[form].$error) {
+            //  alert("Error");
+            var error_str = '';
+            if ($scope[form].promocode.$error.required !== undefined ) {
+                error_str += "Promo Code";
+            }
+           
+            if (error_str !== '') {
+                error_str = "<span style='font-weight:700;'> Following field must have valid information:</span><br/>" + error_str;
+               alert(error_str);
+                // model.show('Alert', error_str);
+            }
+        };
+        if ($scope[form].$valid) {
+            loading.active();
+
+            var args = $.param({
+                
+                promo_code: $scope.promocode,
+                country_id: sessionStorage.country,
+                user_id: $cookieStore.get("userinfo").uid,
+                language_code: sessionStorage.lang_code,
+                user_type:$cookieStore.get("userinfo").left_data.user_type,
+
+            });
+
+            $http({
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                method: 'POST',
+                url: app_url + '/cart/apply_promo_code',
+                data: args //forms user object
+
+            }).then(function (response) {
+                console.log("---------------");
+                console.log(response.data.data.subTotalAfterDiscount);
+                // $rootScope.usercartvalue();$
+                $rootScope.subTotalAfterDiscount = response.data.data.subTotalAfterDiscount
+            //    $scope.$apply(function(){
+
+            //    })
+               
+            }).finally(function () {
+                loading.deactive();
+            });
+
+        }
     }
 });

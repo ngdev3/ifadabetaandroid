@@ -100,22 +100,22 @@
 						<h5><i class="fa fa-tags" aria-hidden="true"></i>&nbsp;Enter Promocode</h5>
 					</div>
 					<div class="coupon_input text-right">
-						<input type="text" name="promocode" ng-model="promocode" class="couponcode" >
-						<input type="button" class="btn coupon_apply" name="" id="apply" value="Apply" ng-click="apply_promo('loginform')">
-						<input style="background-color: #006d07;" type="button" id="applied" class="btn coupon_apply applied hide" name="" value="Applied">
+						<input type="text" name="promocode" ng-model="promocode" class="couponcode" required>
+						<input ng-show="cart_values.is_coupon_applied == 0" type="button" class="btn coupon_apply" name="" id="apply" value="Apply" ng-click="apply_promo('loginform','apply')">
+						<input ng-show="cart_values.is_coupon_applied != 0" style="background-color: #006d07;" type="button" id="applied" class="btn coupon_apply applied " ng-click="apply_promo('loginform','remove')" value="Applied">
 					</div>
 				</form>
 			</div>
 
 			<div class="after_coupon">
-				<div class="after_discount">Discount Price <span>AED {{cart_values.subtotalafterdiscount}}</span></div>
-				<div class="after_cart">Tax Amount<span>AED {{cart_values.tax_amount}}</span></div>
+				<div class="after_discount">Discount Price <span>AED {{subtotalafterdiscount}}</span></div>
+				<div class="after_cart">Tax Amount<span>AED {{tax_amount}}</span></div>
 			</div>
 			<!-- {{cart_data}} -->
 			<a href="javascript:void(0)" ng-click="address_delivery()">
 				<div class="checkout_container">
 					<p>Proceed To checkout</p>
-					<p class="text-right">AED {{cart_values.finalTotal}}</p>
+					<p class="text-right">AED {{finalTotal}}</p>
 				</div>
 			</a>
 

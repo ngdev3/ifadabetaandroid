@@ -571,12 +571,16 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             // console.log(response.data)
             loading.deactive();
             res = response.data.data.cart_data;
-            console.log(response.data.responseCode)
+            console.log(response.data.data.subtotalafterdiscount)
             $rootScope.cart_count  = response.data.data.cart_item_count
             if (response.data.responseCode !== '400') {
 
                 $rootScope.cart_data = res;
-                $rootScope.cart_values = response.data.data
+                $rootScope.cart_values = response.data.data;
+                $rootScope.subtotalafterdiscount = response.data.data.subtotalafterdiscount;
+                $rootScope.tax_amount = response.data.data.tax_amount;
+                $rootScope.finalTotal = response.data.data.finalTotal;
+
             } else {
                 $rootScope.cart_data = '';
                 $rootScope.cart_values = ''
