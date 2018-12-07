@@ -100,7 +100,7 @@
 						<h5><i class="fa fa-tags" aria-hidden="true"></i>&nbsp;Enter Promocode</h5>
 					</div>
 					<div class="coupon_input text-right">
-						<input type="text" name="promocode" id="inputpromo" ng-model="promocode" class="couponcode" required>
+						<input type="text" name="promocode" id="inputpromo" ng-model="$root.promocode" class="couponcode" required>
 						<input ng-show="cart_values.is_coupon_applied == 0" type="button" class="btn coupon_apply" name="" id="apply" value="Apply" ng-click="apply_promo('apply')">
 						<input ng-show="cart_values.is_coupon_applied != 0" style="background-color: #006d07;" type="button" id="applied" class="btn coupon_apply applied " ng-click="apply_promo('remove')" value="Applied">
 					</div>
