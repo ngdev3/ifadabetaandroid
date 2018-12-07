@@ -17,7 +17,7 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
 
     $scope.searchproducts = function(){
 
-        if($scope.searchProduct == undefined){
+        if($scope.searchProduct == undefined || $scope.searchProduct == ""){
             model.show("Alert","Please Provide the Search Value");
             return false;
         }

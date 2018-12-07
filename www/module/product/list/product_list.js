@@ -15,7 +15,7 @@ $scope.product_view = function (id,url) {
 
 $scope.searchproducts = function(){
 
-    if($scope.searchProduct == undefined){
+    if($scope.searchProduct == undefined || $scope.searchProduct == ""){
         model.show("Alert","Please Provide the Search Value");
         return false;
     }

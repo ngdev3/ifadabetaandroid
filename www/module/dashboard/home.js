@@ -322,7 +322,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     
 $scope.searchresults = function(){
     // alert($scope.searchProduct);return;
-    if($scope.searchProduct == undefined){
+    if($scope.searchProduct == undefined || $scope.searchProduct == ""){
         model.show("Alert","Please Provide the Search Value");
         return false;
     }

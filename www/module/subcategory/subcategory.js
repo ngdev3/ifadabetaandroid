@@ -232,7 +232,7 @@ if($cookieStore.get('userinfo')){
 
     $scope.searchproducts = function(){
         // alert($scope.searchProduct);
-        if($scope.searchProduct == undefined){
+        if($scope.searchProduct == undefined || $scope.searchProduct == ""){
             model.show("Alert","Please Provide the Search Value");
             return false;
         }

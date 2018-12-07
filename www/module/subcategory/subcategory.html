@@ -64,7 +64,7 @@
                     <ul class="nav navbar-nav bottom_header">
                       <li class="menu_search_container"><a href="javascript:void(0)">
                         <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
-                        <input type="text" class="menu_search" ng-model="searchProduct" name="searchProduct" placeholder="Search products brands and more" required/>
+                        <input type="text" class="menu_search" ng-model="searchProduct" name="searchProduct" placeholder="{{'Search_Products_Brands_and_More' | translate}}" required/>
 							<button class="search_bar_span" ng-click="searchproducts()" ><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 					</a></li>
                     </ul>
@@ -312,12 +312,11 @@
                             </div>
                         </div>
                         <!-- {{product.length}} -->
-                        <div  class="no_data_wrapper" ng-if="!product">
+                        <div  class="no_data_wrapper" ng-if="!product && !best_picks_of_the_season">
                            <div class="">
 							   <img src="img/no_data_found.png">
 							   <h3 class="text-center">No Product Found !!!</h3>
-                           </div>
-                            
+                           </div>                            
                         </div>
 
                         <div class="no-padding item_lists_main" ng-repeat="x in best_picks_of_the_season" ng-if="best_picks_of_the_season"  >
@@ -362,7 +361,7 @@
             </div>
         <!--  !. [PULSES] Sub categories content -->
             
-        <div  style="margin-top: 60;" class="no_data_wrapper" ng-if="categorysubData.length == '0'">
+        <div  style="margin-top: 60;" class="no_data_wrapper" ng-if="categorysubData.length == '0' && !product">
 			<div class="">
 				<img src="img/no_data_found.png">
 				<h3 class="text-center">No Products Found..</h3>
