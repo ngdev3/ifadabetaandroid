@@ -321,6 +321,12 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
 
     
 $scope.searchresults = function(){
+    // alert($scope.searchProduct);return;
+    if($scope.searchProduct == undefined){
+        model.show("Alert","Please Provide the Search Value");
+        return false;
+    }
+
     var search_key = {
         'search' : $scope.searchProduct
     }

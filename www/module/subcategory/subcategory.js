@@ -11,18 +11,8 @@ if($cookieStore.get('userinfo')){
 
     $scope.cart = function () {
         $location.path('/cart');
-    }
-
+    }    
     
-    $scope.searchproducts = function(){
-        var search_key = {
-            'search' : $scope.searchProduct
-        }
-        $cookieStore.put('search',search_key);
-        $rootScope.searchProduct = $scope.searchProduct;
-        $rootScope.searchBar();
-    }
-
     var ID;
     $scope.fetch_product_list = function (id,url) {
         // alert(id);
@@ -100,8 +90,8 @@ if($cookieStore.get('userinfo')){
                     dots: false,
                     infinite: false,
                     speed: 100,
-                    autoplay: true,
-                    autoplaySpeed: 2500,
+                    autoplay: false,
+                   // autoplaySpeed: 2500,
                     arrows: false,
                     slidesToShow: 1,
                     slidesToScroll: 1,
@@ -230,6 +220,7 @@ if($cookieStore.get('userinfo')){
 
     $scope.product_view = function (id,url) {
         // alert(id);return;
+        
         var productinfo = {
             'id' : id,
             'url' : url
@@ -238,98 +229,46 @@ if($cookieStore.get('userinfo')){
         $location.path('/product/view');
     }
 
- $scope.filter = function(form) {
-     //console.log($scope.sort);  
-     $scope.fetch_product_list();
-     
- }
 
- $scope.taptowish = function(id, wishlist_status){
-    //  alert(id+ " "+ wishlist_status);
-     $rootScope.addToWishlist(id, wishlist_status);
-     setTimeout(function(){
-        $scope.see_alls();
-     }, 1000)
- }
-
-
- //$rootScope.is_in_wishlist == 1;
-
-//  $scope.addToWishlist = function(id){     
-//     // alert(id);return;
-//         if(!$cookieStore.get("userinfo")){
-//             alert("Please Login First");
-//             return false;
-//         }else{
-//             var userID = $cookieStore.get("userinfo").uid;
-//         }
+    $scope.searchproducts = function(){
+        // alert($scope.searchProduct);
+        if($scope.searchProduct == undefined){
+            model.show("Alert","Please Provide the Search Value");
+            return false;
+        }
         
-//         loading.active();
-//         if($rootScope.is_in_wishlist == 1){
-//             var args = $.param({
-//                 'country_id': sessionStorage.country,
-//                 'menu_varient_id' : id,
-//                 'user_id' : userID,
-//                 'is_for' : 'delete'
-//             });
-//         }else{
-//             var args = $.param({
-//                 'country_id': sessionStorage.country,
-//                 'menu_varient_id' : id,
-//                 'user_id' : userID,
-//                 'is_for' : 'add'
-//             });
-//         }
-        
-
-//         // alert(args);return;
-//         $http({
-//             headers: {
-//                 //'token': '40d3dfd36e217abcade403b73789d732',
-//                 'Content-Type': 'application/x-www-form-urlencoded'
-//             },
-//             method: 'POST',
-//             url: app_url + '/add_wishlist',
-//             data: args
-
-//         }).then(function (response) {
-
-//             res = response;
-//             console.log("wwwwwwwwwwwwwwwwwww");
-//             console.log(res.data.data);
-//             // return;
-//             if($rootScope.is_in_wishlist == 1){
-//                 if (res.data.data.status == 'success') {  
-//                     // $("#unclicked"+id).removeClass("fa-heart-o").addClass("fa-heart fill");         
-//                     model.show("Alert","Removed From Wishlist Successfully");
-//                     $rootScope.is_in_wishlist = 0;
-//                 } else {
-//                     model.show("Alert","Something went wrong");
-//                 }
-//             }else{
-//                 if (res.data.data.status == 'success') {  
-//                     // $("#unclicked"+id).removeClass("fa-heart-o").addClass("fa-heart fill");         
-//                     model.show("Alert","Added To Wishlist Successfully");
-//                     $rootScope.is_in_wishlist = 1;
-//                 } else {
-//                     model.show("Alert","Something went wrong");
-//                 }
-//             }
-            
-//         }).finally(function () {
-//             loading.deactive();
-//         });
-//     }
+        var search_key = {
+            'search' : $scope.searchProduct
+        }
+        $cookieStore.put('search',search_key);
+        $rootScope.searchProduct = $scope.searchProduct;
+        $rootScope.searchBar();
+    }
 
 
-$scope.taptowishlist = function(id, wishlist_status){
-    //  alert(id+ " "+ wishlist_status);return;
-    $rootScope.addToWishlist(id, wishlist_status);
-    //  $route.reload();
-    setTimeout(function(){
+    $scope.filter = function(form) {
+        //console.log($scope.sort);  
         $scope.fetch_product_list();
-    }, 1000)
-}
+        
+    }
+
+    $scope.taptowish = function(id, wishlist_status){
+        //  alert(id+ " "+ wishlist_status);
+        $rootScope.addToWishlist(id, wishlist_status);
+        setTimeout(function(){
+            $scope.see_alls();
+        }, 1000)
+    }
+
+
+    $scope.taptowishlist = function(id, wishlist_status){
+        //  alert(id+ " "+ wishlist_status);return;
+        $rootScope.addToWishlist(id, wishlist_status);
+        //  $route.reload();
+        setTimeout(function(){
+            $scope.fetch_product_list();
+        }, 1000)
+    }
 
     
 });

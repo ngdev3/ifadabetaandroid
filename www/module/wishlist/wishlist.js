@@ -70,4 +70,19 @@ app.controller('wishlist', function ($scope, $http, $location, $cookieStore, mod
             loading.deactive();
         });
     }
+
+    $scope.searchproducts = function(){
+
+        if($scope.searchProduct == undefined){
+            model.show("Alert","Please Provide the Search Value");
+            return false;
+        }
+        var search_key = {
+            'search' : $scope.searchProduct
+        }
+        $cookieStore.put('search',search_key);
+        $rootScope.searchProduct = $scope.searchProduct;
+        $rootScope.searchBar();
+    }
+
 });
