@@ -23,15 +23,15 @@
                             <a href="javascript:void(0)"><img src="assets/img/icon/cart_icon.png" alt="cart icon" />
                                 <!--<span class="badge">14</span>-->
                             </a>
-                            <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
+                           <!--  <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a> -->
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav bottom_header">
+                    <!-- <ul class="nav navbar-nav bottom_header">
                         <li class="menu_search_container"><a href="javascript:void(0)">
-                                <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
+                                
                                 <input type="text" class="menu_search" placeholder="Search products brands and more" />
                             </a></li>
-                    </ul>
+                    </ul> -->
                 </div>
                 
             </nav>
@@ -77,9 +77,11 @@
                         </div>
                     </a>
                 </div>
-                <div ng-if="order_list == ''">
-                    <h4>{{'No Order Found' | translate}}</h4>
-                </div>
+                <div  class="no_data_wrapper" ng-if="order_list == ''">
+                    <div class="">
+                        <img src="img/no_data_found.png">
+                        <h3 class="text-center">{{'No Order Found' | translate}}!!!</h3>
+                    </div>
                 <!-- ** !. My Order List ** -->
             </div>
         </div>
