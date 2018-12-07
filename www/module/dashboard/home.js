@@ -115,6 +115,8 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     var j = 3;
     var first_length = 3;
     var second_length = 5;
+    // $scope.offer[1].ad_big_image = 'assets/img/advert_1.png';
+    // $scope.offer[3].ad_big_image = 'assets/img/advert_1.png';
     setInterval(function(){ 
         
 
