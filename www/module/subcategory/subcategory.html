@@ -276,7 +276,8 @@
                         </div> -->
                         <!-- ** !. Buttons ** -->
                         <!-- ** Product Lists ** -->
-                        <div class="no-padding item_lists_main" ng-repeat="x in product" ng-if="categoryData" >
+                       
+                        <div class="no-padding item_lists_main" ng-repeat="x in product" ng-if="categorysubData" >
                            
                             <div class="prodcut_main_container">
                                 <div class="products_wrapper">
@@ -285,7 +286,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc"   ng-click="product_view(x.id,x.url)">
                                         <!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
-                                        <a href="javascript:void(0)"><p class="sub_produt_name">{{x.menu_name}}</p></a>
+                                        <a href="javascript:void(0)"><p class="sub_produt_name">{{x.menu_name}}888</p></a>
                                         <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
                                         <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->AED {{x.product_varient[0].price}}<!-- </span> --></p>
                                     </div>
@@ -311,6 +312,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="!product && !best_picks_of_the_season">
+                            <div class="">
+                                <img src="img/no_data_found.png">
+                                <h3 class="text-center">{{'No_Product_Found' | translate}}!!!</h3>
+                            </div>
+                        </div>
                         <!-- {{product.length}} -->
                         
 
@@ -323,7 +330,7 @@
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc" ng-click="product_view(x.id)">
                                             <!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
-                                            <a href="javascript:void(0)"><p class="sub_produt_name">{{x.menu_name}}</p></a>
+                                            <a href="javascript:void(0)"><p class="sub_produt_name">{{x.menu_name}}9999</p></a>
 <!--                                             <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
  -->                                            <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->AED {{x.menu_varient_data.price}}<!-- </span> --></p>
                                         </div>
@@ -351,17 +358,24 @@
                                 </div>
                             </div>
                         <!-- ** !. Product Lists ** --> 
+                        <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="categorysubData.length == '0'">
+                            <div class="">
+                                <img src="img/no_data_found.png">
+                                <h3 class="text-center">{{'No_Product_Found' | translate}}!!!</h3>
+                            </div>
+                        </div>
+                       <!--  <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="!product && categorysubData.length == '0'">
+                            <div class="">
+                                <img src="img/no_data_found.png">
+                                <h3 class="text-center">{{'No_Product_Found' | translate}}!!!</h3>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         <!--  !. [PULSES] Sub categories content -->
             
-        <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="categorysubData.length == '0' && !product || !best_picks_of_the_season">
-			<div class="">
-				<img src="img/no_data_found.png">
-				<h3 class="text-center">{{'No_Product_Found' | translate}}!!!</h3>
-            </div>
-        </div>
+       
 
         <script>
         
