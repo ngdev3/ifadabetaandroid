@@ -27,8 +27,8 @@ app.controller('address_edit', function ($scope, $http, $location, $cookieStore,
     $scope.addressEdit = $cookieStore.get(paramid[1]);
     // console.log(address);return;
     // $scope.form.country = $scope.addressEdit.COUNTRY_NAME;
-    $scope.country = $scope.addressEdit.country;
-    $scope.city = $scope.addressEdit.city;
+    // $scope.country = $scope.addressEdit.country;
+    // $scope.city = $scope.addressEdit.city;
     $scope.address = $scope.addressEdit.address;
     $scope.landmark = $scope.addressEdit.landmark;
     $scope.zip = parseInt($scope.addressEdit.zipcode);
