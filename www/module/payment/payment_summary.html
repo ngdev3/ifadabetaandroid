@@ -35,39 +35,42 @@
                                     <a href="javascript:void(0)"><img src="assets/img/icon/edit_fill.png" /></a>
                                 </div>
                                 <div class="dlvry_address_content">
-                                    <h5>Home</h5>
-                                    <p>B-88</p>
-                                    <p>Tekshapers</p>
-                                    <p>Sector-65, Noida</p>
+                                   <h5>
+                                        <span class="name">{{fullName}}</span><br>
+                                        {{delivery_address.landmark + " , " + delivery_address.address}}<br />
+                                        {{delivery_address.CITY_NAME + " , " + " " + delivery_address.COUNTRY_NAME}}<br />
+                                        {{delivery_address.zipcode}}<br />
+                                        <span>Mobile : {{delivery_address.mobile_number}}</span>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
                         <div class="dlvry_time_container mt-15">
                             <div class="dlvry_address col-xs-12">
                                 <div class="dlvry_address_heading">
-                                    <div class="mui-checkbox">
+                                    <!-- <div class="mui-checkbox">
                                         <label>
                                           <input type="checkbox" value="" checked>
                                           Use Loyality Points
                                         </label>
-                                    </div>
+                                    </div> -->
                                     <table class="mui-table">
                                       <tbody>
                                         <tr>
-                                          <td>Bag Total</td>
-                                          <td align="right">AED 70</td>
+                                          <td>Sub Total</td>
+                                          <td align="right">AED {{subtotalafterdiscount}}</td>
+                                        </tr>
+                                        <tr ng-if="is_coupon_applied == '0'">
+                                          <td>Coupon Discount</td>
+                                          <td align="right">AED 0.00</td>
                                         </tr>
                                         <tr>
-                                          <td>Discount</td>
-                                          <td align="right">AED 10</td>
+                                          <td>VAT</td>
+                                          <td align="right">AED {{tax_amount}}</td>
                                         </tr>
                                         <tr>
-                                          <td>Loyalty Points Discounts</td>
-                                          <td align="right">AED 06</td>
-                                        </tr>
-                                        <tr>
-                                          <td>Total Payments Payable</td>
-                                          <td align="right">AED 54</td>
+                                          <td>Total</td>
+                                          <td align="right">AED {{finalTotal}}</td>
                                         </tr>
                                       </tbody>
                                     </table>
@@ -76,7 +79,7 @@
                         </div>
                         <div class="view_prod">
                             <p class="col-xs-6"><a href="javascript:void(0)">View Items</a></p>
-                            <p class="col-xs-6 text-right"><span class="prod_qty">2</span> products in Cart</p>
+                            <p class="col-xs-6 text-right"><span class="prod_qty">{{cart_count}}</span> products in Cart</p>
                         </div>
                         <div class="submit-btn col-sm-6 col-xs-12 text-center mt-25">
                             <a href="javascript:void(0)" ng-click="paymode()">{{'Proceed_To_Payment' | translate}}</a>

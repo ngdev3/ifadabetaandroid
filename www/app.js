@@ -608,6 +608,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                     $rootScope.subtotalafterdiscount = response.data.data.subtotalafterdiscount;
                     $rootScope.tax_amount = response.data.data.tax_amount;
                     $rootScope.finalTotal = response.data.data.finalTotal;
+                    $rootScope.is_coupon_applied = response.data.data.is_coupon_applied;
                    // return
                 }
             } else {

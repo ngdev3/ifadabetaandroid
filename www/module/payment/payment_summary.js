@@ -6,7 +6,7 @@ app.controller('payment_summary', function ($scope, $http, $location, $cookieSto
         $location.path('/payment/mode');
     } 
    
-
+    $scope.fullName = $cookieStore.get("userinfo").fullName;
     /**
      * Funtion: Payment Summary from payment_summary.html on ng-init
      * Name: Sajal Goyal
@@ -38,8 +38,8 @@ app.controller('payment_summary', function ($scope, $http, $location, $cookieSto
             res = response;
             console.log(res.data.data);
 
-            if(res.data.data.status){
-
+            if(res.data.data.status == 'success'){
+               $scope.delivery_address =  res.data.data.address;
             }
            
 
