@@ -59,7 +59,7 @@
 						<ul class="nav navbar-nav bottom_header">
 						  <li class="menu_search_container"><a href="javascript:void(0)">
 							<!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
-							<input type="text" class="menu_search" ng-model="searchProduct" name="searchProduct" placeholder="Search products brands and more"/>
+							<input type="text" class="menu_search" ng-model="searchProduct" name="searchProduct" placeholder="{{'Search_Products_Brands_and_More' | translate}}"/>
 							<button class="search_bar_span" ng-click="searchproducts()" ><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 						</a></li>
 						</ul>
@@ -154,15 +154,15 @@
 					<div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc" ng-click="product_view(x.id)" >
 						<!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
 						<a href="javascript:void(0)"><p class="sub_produt_name">{{x.menu_name}}</p></a>
-<!--                                             <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
--->                                            <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->AED {{x.menu_varient_data.price}}<!-- </span> --></p>
+                                            <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
+                                            <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->AED {{x.product_varient[0].price}}<!-- </span> --></p>
 					</div>
-						<div class="wislist_sub wishlist-container" ng-click="addToWishlist(x.menu_varient_data.id)">
-						  <!-- <i class="fa heart fa-heart-o"></i>  -->
-						  <!-- <i class="fa fa-heart fill hide" id="clicked"></i>  -->
-						  <i class="fa heart fa-heart-o" ng-show="is_in_wishlist == '0'"></i>
-						  <i class="fa heart fa-heart fill" ng-show="is_in_wishlist == '1'"></i>
-						</div>
+					<div class="wislist_sub wishlist-container" ng-click="taptowishlist(x.product_varient[0].id, x.product_varient[0].is_in_wishlist)">
+						<!-- <i class="fa heart fa-heart-o"></i>  -->
+						<!-- <i class="fa fa-heart fill hide" id="clicked"></i>  -->
+						<i id="blank_{{x.product_varient[0].id}}" class="fa heart fa-heart-o" ng-show="x.product_varient[0].is_in_wishlist == '0'"></i>
+						<i id="filler_{{x.product_varient[0].id}}" class="fa heart fa-heart fill" ng-show="x.product_varient[0].is_in_wishlist == '1'"></i>
+				</div>
 						<div class="sub_add_product">
 							<div class="add_item_container sub_add_btn">
 								<div class="add_item_button sub_add_btn" style="display: none;">

@@ -39,7 +39,7 @@
 			<div class="mt-10 mycart_itemslist">
 				<!-- ** Product Lists ** -->
 
-				<div class="no-padding item_lists_main deleted_item" ng-repeat="x in whitelist_data" >
+				<div class="no-padding item_lists_main deleted_item" ng-repeat="x in whitelist_data" ng-if="whitelist_data">
 					<div class="prodcut_main_container">
 						<div class="products_wrapper">
 							<div class="col-md-3 col-sm-3 col-xs-3 items_img_div">
@@ -76,7 +76,11 @@
 					</div>
 				</div>
 				<!-- ** !. Product Lists ** -->
-
+				<div  style="margin-top: 120;" class="no_data_wrapper" ng-if="!whitelist_data">
+					<div class="">
+						<img src="img/no_data_found.png">
+						<h3 class="text-center">No Products Found..</h3>
+				</div>
 			</div>
 		</div>
 	</div>

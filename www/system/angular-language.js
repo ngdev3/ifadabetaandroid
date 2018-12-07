@@ -96,7 +96,29 @@ app.config(function ($translateProvider) {
     Amount : 'Amount',
      CR_DR  : 'CR/DR',
      My_Rewards : 'My Rewards',
-     Search_result : 'Search Result'
+     Search_result : 'Search Result',
+     Search_Products_Brands_and_More : 'Search Product Brands and More',
+     Profile_Image : 'Profile Image',
+     You_can_edit_your_profile_now : 'You can edit your profile now',
+     Cart_is_Empty : 'Cart is Empty',
+     you_have_no_items_in_your_shopping_cart : 'you have no item in your shopping cart',
+     Shop_Now : 'Shop Now',
+     Order_Does_not_Exist : 'Order Does not Exist',
+     Reedem_Points : 'Reedem Points',
+     Raise_Ticket : 'Raise Ticket',
+     Add : 'Add',
+     Payment_Summary : 'Payment Summary',
+     Payment_Options : 'Payment Options',
+     Cash_On_Delivery : 'Cash On Delivery',
+     Payment_Gateway : 'Payment Gateway',
+     Wallet : 'Wallet',
+     Coming_Soon : 'Coming Soon',
+     Proceed_To_Payment : 'Proceed To Payment',
+     Thank_You : 'Thank_You',
+     
+
+
+
   });
 
 
@@ -203,6 +225,16 @@ app.config(function ($translateProvider) {
     Amount : 'كمية',
      CR_DR  : 'ائتمان/مدين',
      My_Rewards : 'مكافآتي',
-     Search_result : 'نتيجة البحث'
+     Search_result : 'نتيجة البحث',
+     Search_Products_Brands_and_More : 'البحث عن المنتجات العلامات التجارية وأكثر',
+     Profile_Image : 'صورة الملف الشخصي',
+     You_can_edit_your_profile_now : 'يمكنك تحرير ملف التعريف الخاص بك الآن',
+     Cart_is_Empty : 'السلة فارغة',
+     you_have_no_items_in_your_shopping_cart : 'لا يوجد لديك بند في سلة التسوق الخاصة بك',
+     Shop_Now : 'تسوق الآن',
+     Order_Does_not_Exist : 'النظام لا يوجد',
+     Reedem_Points : 'استبدال النقاط',
+     Raise_Ticket : 'رفع التذكرة',
+     Add : 'إضافة'
   });
 });

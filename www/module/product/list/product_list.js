@@ -41,4 +41,18 @@ $scope.filter = function(form) {
     $rootScope.searchBar();
     
 }
+
+
+$scope.taptowishlist = function(id, wishlist_status){
+    //  alert(id+ " "+ wishlist_status);return;
+    $rootScope.addToWishlist(id, wishlist_status);
+    //  $route.reload();
+    setTimeout(function(){
+        $scope.searchproducts();
+    }, 1000)
+}
+
+
 });
+
+
