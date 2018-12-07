@@ -312,10 +312,10 @@
                             </div>
                         </div>
                         <!-- {{product.length}} -->
-                        <div  class="no_data_wrapper" ng-if="product.length == '0'">
+                        <div  class="no_data_wrapper" ng-if="!product">
                            <div class="">
 							   <img src="img/no_data_found.png">
-							   <h3 class="text-center">No Data Found !!!</h3>
+							   <h3 class="text-center">No Product Found !!!</h3>
                            </div>
                             
                         </div>
@@ -362,7 +362,11 @@
             </div>
         <!--  !. [PULSES] Sub categories content -->
             
-        
+        <div  style="margin-top: 60;" class="no_data_wrapper" ng-if="categorysubData.length == '0'">
+			<div class="">
+				<img src="img/no_data_found.png">
+				<h3 class="text-center">No Products Found..</h3>
+		</div>
             
         <script>
         
