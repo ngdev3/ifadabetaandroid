@@ -684,8 +684,9 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         currentUrl = currentUrl.split('/')[1];
         console.log(currentUrl)
         // $rootScope.ChangeRoute = currentUrl.split('/')[1];
-        if (currentUrl !== "login" && currentUrl !== "forgot" && currentUrl !== "splash") {
-
+        if (currentUrl !== "cart" && currentUrl !== "addressdetail" && currentUrl !== "payment"  && currentUrl !== "payment/mode" ) {
+            $rootScope.promocode = '';
+            $cookieStore.remove("promocode")
             //$rootScope.usercartvalue()
         }
     });
