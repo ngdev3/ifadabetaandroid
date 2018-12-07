@@ -6,6 +6,9 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
     $scope.toBasic = function(){
         $location.path("/myaccount/profile");
     }
+
+
+    $scope.country = sessionStorage.country;
     // return;
     // console.log($cookieStore.get('storeinfo'))
 
@@ -259,4 +262,6 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
             loading.deactive();
         })
     }
+
+    $scope.fetchcity();
 });

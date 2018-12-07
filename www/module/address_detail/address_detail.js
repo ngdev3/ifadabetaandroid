@@ -58,13 +58,16 @@ app.controller('address_detail', function ($scope, $http, $location, $cookieStor
             //alert();
             loading.deactive();
             res = response;
-            if(res.data.data.my_address.length > 0){
-                $scope.address = res.data.data.my_address; 
-            } 
-            res.data.data.my_address.map(function (x, key) {
-                // console.log(x);
-                $cookieStore.put(x.id, x);
-            })     
+            if(res.data.responseCode != 400){
+                if(res.data.data.my_address.length > 0){
+                    $scope.address = res.data.data.my_address; 
+                } 
+                res.data.data.my_address.map(function (x, key) {
+                    // console.log(x);
+                    $cookieStore.put(x.id, x);
+                })
+            }
+                
         })
 
     }
