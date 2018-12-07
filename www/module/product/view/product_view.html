@@ -106,8 +106,8 @@
 							</div>
 							<!-- {{is_in_wishlist}} -->
 							<div class="wislist_sub wishlist-container">
-								<i class="fa heart fa-heart-o" ng-show="is_in_wishlist == '0'"></i>
-								<i class="fa heart fa-heart fill" ng-show="is_in_wishlist != '0' "></i>
+								<i class="fa heart fa-heart-o unfill" id="heart_{{DweightID}}" ng-show="is_in_wishlist == '0'"></i>
+								<i class="fa heart fa-heart fill" id="heart_fill_{{DweightID}}" ng-show="is_in_wishlist != '0' "></i>
 							</div>
 
 							<div class="sub_add_product">
@@ -126,10 +126,10 @@
 									</div>
 
 									<div class="add_cart_button sub_add_btn" id="addToCart_{{DweightID}}" ng-show="!rowid && is_in_stock !== 'limited'">
-										<button class="" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}"
+										<button class="addcart_button" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}"
 										 ng-click="addToCart($event)">Add</button>
 									</div>
-									<div class="add_cart_button sub_add_btn" id="outofstock_{{DweightID}}" ng-show="is_in_stock == 'limited' && quantity == 0 ">
+									<div class="add_cart_button div_in_stock sub_add_btn" id="outofstock_{{DweightID}}" ng-show="is_in_stock == 'limited' && quantity == 0 ">
 										<button class="out_of_stock" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}"
 										 >Out Of Stocks</button>
 									</div>
@@ -148,9 +148,11 @@
 				<div class="product_untis">
 					<h5 class="unit_head">{{ 'Units' | translate}}</h5>
 					<div class="unit_container" ng-repeat="x in product_details_varients" ng-init="exact = product_details_varients[0].id">
+						
 						<input type="button" ng-if="x.id == exact" data-unit="{{x.unit_value}}{{x.UNIT_NAME}}" data-price="{{x.price}}"
 						 data-weight_id="{{x.id}}{{x.menu_id}}" data-menu_id="{{x.menu_id}}" id="enablequant_{{x.id}}{{x.menu_id}}" class="total btn btn-default marked"
 						 ng-click="getvalueforOtherVarient(x.menu_id, x.id)" value="{{x.unit_value}}{{x.UNIT_NAME}}">
+
 						<input type="button" ng-if="x.id != exact" data-unit="{{x.unit_value}}{{x.UNIT_NAME}}" data-price="{{x.price}}"
 						 data-weight_id="{{x.id}}{{x.menu_id}}" data-menu_id="{{x.menu_id}}" id="enablequant_{{x.id}}{{x.menu_id}}" class="total btn btn-default"
 						 ng-click="getvalueforOtherVarient(x.menu_id, x.id)" value="{{x.unit_value}}{{x.UNIT_NAME}}">

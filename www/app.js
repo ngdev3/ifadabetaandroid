@@ -359,14 +359,19 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     // $rootScope.usercartvalue();
 
     $rootScope.varientCheck = function (weightid, menu_id, price, unit, manufacture_id, varient_id) {
-        // $('#firstt_' + product_id).find('.add_item_button').attr('id', 'enableCart_' + weightid);
-        // $('#firstt_' + product_id).find('.add_item_button').find('input[type="text"]').attr('id', 'quantity_' + weightid);
-        // $('#firstt_' + product_id).find('.add_item_button').find('.less_item').attr('data-weightid', weightid).attr('id', 'minus_' + weightid);;
-        // $('#firstt_' + product_id).find('.add_item_button').find('.add_item').attr('data-weightid', weightid).attr('id', 'plus_' + weightid);
-        // $('#firstt_' + product_id).find('.add_cart_button').attr('id', 'addToCart_' + weightid);
-        // $('#firstt_' + product_id).find('.add_cart_button').find('.addcart_button').attr('data-weightid', weightid).attr('id', 'addCart_' + weightid);
-
-        // $('#Newdiscount_' + weightid).attr('data-weightid', weightid).attr('id', 'Newdiscount_' + weightid);
+        
+        $('#firstt_' + menu_id).find('.add_item_button').attr('id', 'enableCart_' + varient_id);
+        $('#firstt_' + menu_id).find('.add_item_button').find('.add_item').attr('id', 'plus_' + varient_id).attr('data-weightid',varient_id);
+        $('#firstt_' + menu_id).find('.add_item_button').find('input[type="text"]').attr('id', 'quantity_' + varient_id);;
+        $('#firstt_' + menu_id).find('.less_item').attr('data-weightid', varient_id).attr('id', 'minus_' + varient_id);
+        $('#firstt_' + menu_id).find('.add_cart_button').attr('id', 'addToCart_' + varient_id);
+        $('#firstt_' + menu_id).find('.div_in_stock').attr('id', 'outofstock_' + varient_id);
+        $('#firstt_' + menu_id).find('.div_in_stock').find('.out_of_stock').attr('data-weightid', varient_id).attr('id', 'addCart_' + varient_id);
+        $('#firstt_' + menu_id).find('.add_cart_button').find('.addcart_button').attr('data-weightid', varient_id).attr('id', 'addCart_' + varient_id);
+        $('#firstt_' + menu_id).attr('data-attr', varient_id);
+        
+        $('.unfill').attr('id', 'heart_' + varient_id);
+        $('.fill').attr('id', 'heart_fill_' + varient_id);
 
 
         addToCartID = 'addToCart_' + weightid;
@@ -393,7 +398,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         }).then(function (response) {
             console.log(response.data.data)
             // console.log(response.data.s_price)
-            if (response.data.data.allow_to_add_in_cart !== 'yes') {
+            if (response.data.data.allow_to_add_in_cart == 'no') {
                 // alert()
                 console.log('#outofstock_' + menu_id);
                 $('#outofstock_' + menu_id).removeClass('ng-hide')
@@ -401,14 +406,32 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
             } else if (response.data.data.is_in_cart == 'yes') {
 
-                alert('Already in Cart')
+               // $('#enableCart_' + varient_id).addClass('ng-hide')
+                $('#quantity_' + varient_id).val(13);
+                $('#outofstock_' + varient_id).addClass('ng-hide')
+                $('#addToCart_' + varient_id).addClass('ng-hide')
+
+               console.log('**********************************')
+               console.log(menu_id)
+               console.log(varient_id)
 
             } else if (response.data.data.is_in_wishlist == 'yes') {
                 //heart icon
-            } else {
+                $('#heart_' + varient_id).addClass('ng-hide')
+                $('#heart_fill_' + varient_id).removeClass('ng-hide')
 
-                $('#outofstock_' + menu_id).addClass('ng-hide')
-                $('#addToCart_' + menu_id).removeClass('ng-hide')
+            } else if (response.data.data.allow_to_add_in_cart == 'yes'){
+
+                // alert('d')
+                $('#enableCart_' + varient_id).addClass('ng-hide')
+                $('#outofstock_' + varient_id).addClass('ng-hide')
+                $('#addToCart_' + varient_id).removeClass('ng-hide').show()
+
+            }else {
+                alert()
+
+                // $('#outofstock_' + menu_id).addClass('ng-hide')
+                // $('#addToCart_' + menu_id).removeClass('ng-hide')
 
             }
             // return;
@@ -582,14 +605,11 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 $rootScope.cart_data = res;
                 $rootScope.cart_values = response.data.data;
                 if(!$cookieStore.get("promocode")){
-
                     $rootScope.subtotalafterdiscount = response.data.data.subtotalafterdiscount;
                     $rootScope.tax_amount = response.data.data.tax_amount;
                     $rootScope.finalTotal = response.data.data.finalTotal;
                    // return
                 }
-                
-
             } else {
                 $rootScope.cart_data = '';
                 $rootScope.cart_values = ''
