@@ -97,7 +97,7 @@ app.controller('address_edit', function ($scope, $http, $location, $cookieStore,
 
         if ($scope[form].$valid) { //if all field are filled then this will check pattern of input entered
             // alert("Success");
-            var reg1 = /^[a-zA-Z0-9- ]+$/;
+            var reg1 = /^([a-zA-Z0-9 ]{6,})$/; 
             var reg2 = /^[0-9]{6}$/;
             var reg3 = /^[0-9]{10}$/;
         //     var reg5 = /^[a-zA-Z ]+$/;
@@ -105,7 +105,7 @@ app.controller('address_edit', function ($scope, $http, $location, $cookieStore,
         //     var reg4 = /^[a-zA-Z ]{3,20}$/;
 
          if (reg1.test($scope.landmark) == false) {
-                error_str = "Landmark should contain Numbers & Alphabets Only";
+                error_str = "Landmark should contain Numbers & Alphabets Only & Length should be 6 Minimum";
                 model.show('Alert', error_str);
                 // alert(error_str);
                 return false;
