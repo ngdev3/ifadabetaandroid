@@ -53,9 +53,10 @@ $scope.searchproducts = function(){
     $rootScope.searchBar();
 }
 
-$scope.product_list = function(id){
+$scope.product_list = function(id,url){
 var packs = {
-    'subcatid': id
+    'subcatid': id,
+    'url' : url
 }
    $cookieStore.put('subcategoryInfo',packs);
    $location.path('/subcategory');
