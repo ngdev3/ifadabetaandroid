@@ -24,8 +24,7 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
         var args = $.param({
             user_id : $cookieStore.get('userinfo').uid,
             country_id : sessionStorage.country,
-            is_wallet_apply : '1',
-            payment_mod : '1',
+            payment_mod : 1,
             address : $cookieStore.get('aid')
         });
         

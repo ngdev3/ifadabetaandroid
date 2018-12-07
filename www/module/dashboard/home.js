@@ -24,7 +24,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     }
 
     $scope.season_fetch =   function(){
-        // loading.active();
+         loading.active();
         if(!$cookieStore.get("userinfo")){
             var userID = '';
         }else{
