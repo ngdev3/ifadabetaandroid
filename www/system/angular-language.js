@@ -121,7 +121,8 @@ app.config(function ($translateProvider) {
      Still_Hungry_For_Shopping : 'Still Hungry For Shopping',
      Shop_Now : 'Shop Now',
      View_Order : 'View Order',
-     Your_Address : 'Your Address'
+     Your_Address : 'Your Address',
+     No_Product_Found : 'No Product Found'
 
   });
 
@@ -254,7 +255,8 @@ app.config(function ($translateProvider) {
     Still_Hungry_For_Shopping : 'لا تزال جائع للتسوق',
     Shop_Now : 'تسوق الآن',
     View_Order : 'مشاهدة الطلب',
-    Your_Address : 'عنوانك'
+    Your_Address : 'عنوانك',
+    No_Product_Found : 'لا يوجد منتج'
 
   });
 });

@@ -312,12 +312,7 @@
                             </div>
                         </div>
                         <!-- {{product.length}} -->
-                        <div  class="no_data_wrapper" ng-if="!product && !best_picks_of_the_season">
-                           <div class="">
-							   <img src="img/no_data_found.png">
-							   <h3 class="text-center">No Product Found !!!</h3>
-                           </div>                            
-                        </div>
+                        
 
                         <div class="no-padding item_lists_main" ng-repeat="x in best_picks_of_the_season" ng-if="best_picks_of_the_season"  >
                            
@@ -361,12 +356,13 @@
             </div>
         <!--  !. [PULSES] Sub categories content -->
             
-        <div  style="margin-top: 60;" class="no_data_wrapper" ng-if="categorysubData.length == '0' && !product">
+        <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="categorysubData.length == '0' && !product || !best_picks_of_the_season">
 			<div class="">
 				<img src="img/no_data_found.png">
-				<h3 class="text-center">No Products Found..</h3>
-		</div>
-            
+				<h3 class="text-center">{{'No_Product_Found' | translate}}!!!</h3>
+            </div>
+        </div>
+
         <script>
         
             
