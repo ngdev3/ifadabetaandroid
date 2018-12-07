@@ -114,10 +114,14 @@ app.config(function ($translateProvider) {
      Wallet : 'Wallet',
      Coming_Soon : 'Coming Soon',
      Proceed_To_Payment : 'Proceed To Payment',
-     Thank_You : 'Thank_You',
-     
-
-
+     Thank_You : 'Thank You',
+     For_Shooping_With_Us : 'For Shopping With Us',
+     Your_Order_has_been_confirmed : 'Your Order Has Been Confirmed',
+     Your_Order_No : 'Your Order No',
+     Still_Hungry_For_Shopping : 'Still Hungry For Shopping',
+     Shop_Now : 'Shop Now',
+     View_Order : 'View Order',
+     Your_Address : 'Your Address'
 
   });
 
@@ -235,6 +239,22 @@ app.config(function ($translateProvider) {
      Order_Does_not_Exist : 'النظام لا يوجد',
      Reedem_Points : 'استبدال النقاط',
      Raise_Ticket : 'رفع التذكرة',
-     Add : 'إضافة'
+     Add : 'إضافة',
+     Payment_Summary : 'ملخص الدفع',
+     Payment_Options : 'خيارات الدفع',
+     Cash_On_Delivery : 'الدفع عن الاستلام',
+     Payment_Gateway : 'بوابة الدفع',
+     Wallet : 'محفظة نقود',
+     Coming_Soon : 'قريبا',
+     Proceed_To_Payment : 'الشروع في دفع',
+     Thank_You : 'شكرا جزيلا',
+     For_Shooping_With_Us : 'للتسوق معنا',
+     Your_Order_has_been_confirmed : 'تم تأكيد طلبك',
+     Your_Order_No : 'طلبك لا',
+     Still_Hungry_For_Shopping : 'لا تزال جائع للتسوق',
+     Shop_Now : 'تسوق الآن',
+     View_Order : 'مشاهدة الطلب',
+     Your_Address : 'عنوانك'
+
   });
 });

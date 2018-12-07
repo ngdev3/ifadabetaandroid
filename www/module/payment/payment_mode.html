@@ -8,7 +8,7 @@
               <li class="menu_icon "><a href="javascript:void(0)"  ><img ng-click="back()" src="assets/img/icon/back.png" alt="menu icon"style="width: 13px;" /></a></li>
               <li class="page_name left">
                 <a href="javascript:void(0)" class="text-left ">
-                  <p>Payment Option</p>
+                  <p>{{'Payment_Options' | translate}}</p>
                 </a>
               </li>
               
@@ -31,21 +31,21 @@
                 <div class="">
                     <div class="radio mb-20 mt-10">
                     <input id="radio-1" ng-model="payby" name="payby" type="radio" value="COD" required>
-                    <label for="radio-1" class="radio-label">Cash On Delivery</label>
+                    <label for="radio-1" class="radio-label">{{'Cash_On_Delivery' | translate}}</label>
                     </div>
                     <div class="radio mb-20">
                     <input id="radio-2" ng-model="payby" name="payby" type="radio" value="Card" required>
-                    <label for="radio-2" class="radio-label">Payment Gateway <span>(Coming Soon)</span></label>
+                    <label for="radio-2" class="radio-label">{{'Payment_Gateway' | translate}} <span>({{'Coming_Soon' | translate}})</span></label>
                     </div>
                     <div class="radio mb-20">
                         <input id="radio-3" ng-model="payby" name="payby" type="radio" value="Wallet" required>
-                        <label for="radio-3" class="radio-label">Wallet</label>
+                        <label for="radio-3" class="radio-label">{{'Wallet' | translate}}</label>
                         </div>
                   </div>
                 </div>
                 
                 <div class="submit-btn col-xs-12 text-center">
-                <a href="javascript:void(0)" ng-click="payment('paymentoption')">Proceed To Payment</a>
+                <a href="javascript:void(0)" ng-click="payment('paymentoption')">{{'Proceed_To_Payment' | translate}}</a>
                 </div>
                 
               </form>
