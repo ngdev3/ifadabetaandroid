@@ -465,7 +465,9 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 alert('This Item is out of stock ')
             }
             $rootScope.usercartvalue();
+
             $('#' + quantityID).val($rootScope.currentval)
+            $rootScope.apply_promo('add')
         }).finally(function () {
             loading.deactive();
         });
@@ -511,6 +513,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 $('#' + quantityID).val($rootScope.currentval)
                 $rootScope.usercartvalue();
             }
+
+            $rootScope.apply_promo('add')
 
         }).finally(function () {
             loading.deactive();
@@ -577,9 +581,14 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
                 $rootScope.cart_data = res;
                 $rootScope.cart_values = response.data.data;
-                $rootScope.subtotalafterdiscount = response.data.data.subtotalafterdiscount;
-                $rootScope.tax_amount = response.data.data.tax_amount;
-                $rootScope.finalTotal = response.data.data.finalTotal;
+                if(!$cookieStore.get("promocode")){
+
+                    $rootScope.subtotalafterdiscount = response.data.data.subtotalafterdiscount;
+                    $rootScope.tax_amount = response.data.data.tax_amount;
+                    $rootScope.finalTotal = response.data.data.finalTotal;
+                   // return
+                }
+                
 
             } else {
                 $rootScope.cart_data = '';
@@ -587,6 +596,86 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             }
         })
     }
+
+    $rootScope.apply_promo = function(type){
+      
+        if(type == 'remove'){
+            $('#inputpromo').removeAttr('disabled','disabled');
+            $('#apply').removeClass('ng-hide')
+            $('#applied').addClass('ng-hide')
+            $cookieStore.remove("promocode")
+            $rootScope.usercartvalue();
+            return;
+        };
+
+        if(type == 'add'){
+
+            if(!$cookieStore.get("promocode")){
+
+                return
+            }
+        }
+     
+            //  alert("Error");
+            var error_str = '';
+            if ($rootScope.promocode == '' ||$rootScope.promocode == undefined ) {
+                error_str += "Promo Code";
+            }
+           
+            if (error_str !== '') {
+                error_str = "<span style='font-weight:700;'> Following field must have valid information:</span><br/>" + error_str;
+               alert(error_str);
+               return
+                // model.show('Alert', error_str);
+            }
+      
+        if ($rootScope.promocode != '' ||$rootScope.promocode != undefined ) {
+            loading.active();
+
+            var args = $.param({
+                
+                promo_code: $rootScope.promocode,
+                country_id: sessionStorage.country,
+                user_id: $cookieStore.get("userinfo").uid,
+                language_code: sessionStorage.lang_code,
+                user_type:$cookieStore.get("userinfo").left_data.user_type,
+
+            });
+
+            $http({
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                method: 'POST',
+                url: app_url + '/cart/apply_promo_code',
+                data: args //forms user object
+
+            }).then(function (response) {
+                res = response;
+                console.log(res.data.data.status);
+                if(res.data.data.status != 'error'){
+
+                    console.log(response.data.data.subTotalAfterDiscount);
+                    $rootScope.subtotalafterdiscount = response.data.data.subTotalAfterDiscount;
+                    $rootScope.tax_amount = response.data.data.vat;
+                    $rootScope.finalTotal = response.data.data.finalTotal;
+                    
+                    var promocode = {
+                        codename:$rootScope.promocode
+                    }
+                    $cookieStore.put("promocode",promocode);
+
+                    $('#inputpromo').attr('disabled','disabled');
+                    $('#apply').addClass('ng-hide')
+                    $('#applied').removeClass('ng-hide').show();
+                }
+            }).finally(function () {
+                loading.deactive();
+            });
+
+        }
+    }
+
     var currentUrl;
     $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
         currentUrl = $location.path();
@@ -747,7 +836,7 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
                 } else {
                     load.css('background-color', '#000');
                 }
-                //$cookieStore.put('bgcolor',$scope.bg_color);                              
+                //$cookieStore.put('bgcolor',$rootScope.bg_color);                              
                 /*  set values in the scope for display */
 
             } else {
@@ -796,7 +885,7 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
 
             if (res.data.responseCode == '200') {
                 //put cookie and redirect it    
-                // $scope.uploadsconfig = res.data.data;
+                // $rootScope.uploadsconfig = res.data.data;
                 $location.path('/upload_ads');
             } else {
                 //Throw error if not logged in 
