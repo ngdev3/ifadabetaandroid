@@ -22,7 +22,8 @@ app.controller('address_detail', function ($scope, $http, $location, $cookieStor
     $scope.toAddAddress = function () {
         $location.path("/address/add");
     }
-    $scope.paySummary = function () {
+    $scope.paySummary = function (id) {
+        $cookieStore.put('aid', id);
         $location.path("/payment");
     }
     

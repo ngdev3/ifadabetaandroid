@@ -26,7 +26,7 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
             country_id : sessionStorage.country,
             is_wallet_apply : '1',
             payment_mod : '1',
-            address : '48'
+            address : $cookieStore.get('aid')
         });
         
         $http({
