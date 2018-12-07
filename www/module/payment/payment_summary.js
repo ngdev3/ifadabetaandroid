@@ -5,30 +5,7 @@ app.controller('payment_summary', function ($scope, $http, $location, $cookieSto
     $scope.paymode= function(){
         $location.path('/payment/mode');
     } 
-    return;
-    $rootScope.couponData = '';
-    
-    if (!$cookieStore.get('userinfo')) {
-        $location.path('/login');
-        return false;
-    }
-    if (!$cookieStore.get('paymentStatus')) {
-        $location.path('/cart');
-        return false;
-    }
-    // console.log($rootScope.shippingCartData);
-    if ($rootScope.shippingCartData == undefined || $rootScope.shippingCartData == '') {
-        alert('There is Some Problem in Payment Summary');
-        $location.path('/cart');
-        return false;
-    }
-    $scope.toAddressDetail = function () {
-        $location.path("/addressdetail");
-    }
-
-    $scope.toCart = function () {
-        $location.path("/cart");
-    }
+   
 
     /**
      * Funtion: Payment Summary from payment_summary.html on ng-init
@@ -37,12 +14,13 @@ app.controller('payment_summary', function ($scope, $http, $location, $cookieSto
      * Get the Payment Summary by sending the http request
      */
 
-    $scope.pay_summery = function () {
+    $scope.address_get = function () {
 
         loading.active();
 
         var args = $.param({
-            'uid': $cookieStore.get('userinfo').uid,
+            address_id: $cookieStore.get('aid'),
+            language_code: sessionStorage.lang_code
 
         })
         $http({
@@ -52,23 +30,18 @@ app.controller('payment_summary', function ($scope, $http, $location, $cookieSto
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/itemcartapi/userCartpayu',
+            url: app_url + '/get_address_by_id',
             data: args
 
         }).then(function (response) {
 
             res = response;
-            // console.log(res.data);
-            if (res.data.status == 'success') {
+            console.log(res.data.data);
 
-                //console.log($scope.item)
-                $location.path('/payment');
+            if(res.data.data.status){
 
-            } else {
-                $scope.payment = res.data;
-                alert('No Item in cart');
-                $location.path('/payment');
             }
+           
 
         }).finally(function () {
             loading.deactive();
