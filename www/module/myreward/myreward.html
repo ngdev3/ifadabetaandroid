@@ -32,7 +32,8 @@
                 <h3 class="redeem_text">Redeem Your Points</h3>
                 
                 <div class="redeem_point">
-                    <h3 style="color:#006d07; margin-top:10px;"><span>{{redeemdata.loyalty_point_data}}</span> Points</h3>
+                    <h3 style="color:#006d07; margin-top:10px;"><span ng-if="redeemdata.loyalty_point_data != ''">{{redeemdata.loyalty_point_data}}</span> 
+                        <span ng-if="redeemdata.loyalty_point_data == ''">0</span> Points</h3>
                 </div>
                 <p>Note: To redeem minimum point should be {{redeemdata.redeem_limit}}</p>
             </div>
