@@ -77,7 +77,7 @@ if($cookieStore.get('userinfo')){
              //return;
 
             if (res.data.responseStatus == 'success') {
-                // console.log(res.data.data.category_product.products);
+                console.log(res.data.data.category_product.products);
                 $scope.categoryData = res.data.data.category_data[0];
              
                 //   alert(id);
@@ -89,7 +89,7 @@ if($cookieStore.get('userinfo')){
                         $scope.categorysubData = res.data.data.category_data[0].sub;
                     }
                    
-                    // console.log("-------------------");
+                    console.log("-------------------");
                     if ($scope.categorysubData.length == 0) {
                         $scope.categorysubData = "";
                     }
