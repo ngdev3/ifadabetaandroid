@@ -151,13 +151,21 @@ app.config(function ($translateProvider) {
      Sub_Total : 'Sub Total',
      Coupon_Discount : 'Coupon Discount',
      VAT : 'VAT',
-     Product_in_cart : 'Product in Cart',
+     products_in_cart : 'Product in Cart',
      View_Items : 'View Items',
      Order_on : 'Order on',
      Price : 'Price',
      Order_Cancelled : 'Order Cancelled',
      COD : 'COD',
      Online : 'Online',
+     Select_Order_ID : 'Select Order ID',
+     Select_Complaint_Type : 'Select Complaint Type',
+     Normal : 'Normal',
+     Major : 'Major',
+     Description : 'Description',
+     Send : 'Send',
+     Enter_Description : 'Enter Description'
+     
      
 
   });
@@ -321,12 +329,19 @@ app.config(function ($translateProvider) {
     Sub_Total : 'المجموع الفرعي',
     Coupon_Discount : 'خصم القسيمة',
     VAT : 'ضريبة',
-    Product_in_cart : 'المنتج في السلة',
+    products_in_cart : 'المنتج في السلة',
     View_Items : 'عرض العناصر',
     Order_on : 'الطلب على',
     Price : 'السعر',
     Order_Cancelled : 'تم الغاء الأمر او الطلب',
     COD : 'سمك القد',
-    Online : 'عبر الانترنت',
+    Online : 'عبر الانترنت',    
+    Select_Order_ID : 'اختر معرف الطلب',
+    Select_Complaint_Type : 'حدد نوع الشكوى',
+    Normal : 'عادي',
+    Major : 'رائد',
+    Description : 'وصف',
+    Send : 'إرسال',
+    Enter_Description : 'أدخل الوصف'
   });
 });

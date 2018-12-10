@@ -8,7 +8,7 @@
 
                         <li class="page_name">
                             <a href="javascript:void(0)" class="text-left text-center">
-                                <p>Raise Ticket</p>
+                                <p>{{'Raise_Ticket' | translate}}</p>
                             </a>
                         </li>
 
@@ -29,29 +29,29 @@
                 <form method="post" class="mui-form" name="loginform" novalidate>
                     <div class="mui-select col-sm-6 col-xs-12">
                         <select name="getorder" ng-model="getorder" id="order" required>
-                            <option value="">Select Order Id</option>
+                            <option value="">{{'Select_Order_ID' | translate}}</option>
                             <option ng-repeat="x in getorders" value="{{x.ORDER_IDS}}">{{x.ORDER_IDS}}</option>
                         </select>
-                        <label for="order">Order Id*</label>
+                        <label for="order">{{'Order_ID' | translate}}*</label>
                     </div>
                     <div class="mui-select  col-sm-6 col-xs-12">
                         <select name="getcomplainttype" ng-model="getcomplainttype" id="order" required>
-                            <option value="">Select Complaint Type</option>
-                            <option value="1">Normal</option>
-                            <option value="2">Major</option>
+                            <option value="">{{'Select_Complaint_Type' | translate}}</option>
+                            <option value="1">{{'Normal' | translate}}</option>
+                            <option value="2">{{'Major' | translate}}</option>
                         </select>
-                        <label for="complaint">Complaint Type*</label>
+                        <label for="complaint">{{'Complaint_Type' | translate}}*</label>
                     </div>
                     <div class="mui-textfield contactmessage  col-sm-6 col-xs-12">
-                        <textarea name="des" ng-model="des" rows="2" placeholder="Enter description" required></textarea>
-                        <label>Description*</label>
+                        <textarea name="des" ng-model="des" rows="2" placeholder="{{'Enter_Description'}}" required></textarea>
+                        <label>{{'Description' | translate}}*</label>
                     </div>
 
                     <div class="submit_2btn col-xs-6 text-center" ng-click="addticket('loginform')">
-                        <a href="javascript:void(0)" >Send</a>
+                        <a href="javascript:void(0)" >{{'Send' | translate}}</a>
                     </div>
-                    <div class="submit_2btn col-xs-6 text-center" ng-click="cancel()">
-                        <a href="javascript:void(0)">Cancel</a>
+                    <div class="submit_2btn col-xs-6 text-center" ng-click="back()">
+                        <a href="javascript:void(0)">{{'Cancel' | translate}}</a>
                     </div>
 
 

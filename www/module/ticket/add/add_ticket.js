@@ -108,4 +108,8 @@ app.controller('add_ticket', function ($scope, $http, $location, $cookieStore, m
 
         $location.path('/view_ticket');
     }
+
+   /*  $scope.cancel = function(){
+        $location.path("/list_ticket");
+    } */
 });

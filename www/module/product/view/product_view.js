@@ -37,6 +37,12 @@ console.log($cookieStore.get("userinfo"));
   }
     
   $scope.searchproducts = function(){
+
+    if($scope.searchProduct == undefined || $scope.searchProduct == ""){
+      model.show("Alert","Please Provide the Search Value");
+      return false;
+    }
+
     var search_key = {
         'search' : $scope.searchProduct
     }

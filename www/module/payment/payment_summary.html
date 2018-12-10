@@ -57,20 +57,20 @@
                                     <table class="mui-table">
                                       <tbody>
                                         <tr>
-                                          <td>Sub Total</td>
-                                          <td align="right">AED {{subtotalafterdiscount}}</td>
+                                          <td>{{'Sub_Total' | translate}}</td>
+                                          <td align="right">{{'AED' | translate}} {{subtotalafterdiscount}}</td>
                                         </tr>
                                         <tr ng-if="is_coupon_applied == '0'">
-                                          <td>Coupon Discount</td>
-                                          <td align="right">AED 0.00</td>
+                                          <td>{{'Coupon_Discount' | translate}}</td>
+                                          <td align="right">{{'AED' | translate}} 0.00</td>
                                         </tr>
                                         <tr>
-                                          <td>VAT</td>
-                                          <td align="right">AED {{tax_amount}}</td>
+                                          <td>{{'VAT' | translate}}</td>
+                                          <td align="right">{{'AED' | translate}} {{tax_amount}}</td>
                                         </tr>
                                         <tr>
-                                          <td>Total</td>
-                                          <td align="right">AED {{finalTotal}}</td>
+                                          <td>{{'Total' | translate}}</td>
+                                          <td align="right">{{'AED' | translate}} {{finalTotal}}</td>
                                         </tr>
                                       </tbody>
                                     </table>
@@ -78,8 +78,8 @@
                             </div>
                         </div>
                         <div class="view_prod">
-                            <p class="col-xs-6"><a href="javascript:void(0)">View Items</a></p>
-                            <p class="col-xs-6 text-right"><span class="prod_qty">{{cart_count}}</span> products in Cart</p>
+                            <p class="col-xs-6"><a href="javascript:void(0)">{{'View_Items' | translate}}</a></p>
+                            <p class="col-xs-6 text-right"><span class="prod_qty">{{cart_count}}</span>{{'products_in_cart' | translate}}</p>
                         </div>
                         <div class="submit-btn col-sm-6 col-xs-12 text-center mt-25">
                             <a href="javascript:void(0)" ng-click="paymode()">{{'Proceed_To_Payment' | translate}}</a>
