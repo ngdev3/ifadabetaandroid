@@ -6,6 +6,12 @@ app.controller('thankyou', function ($scope, $http, $location, $cookieStore, mod
         return false;
     }
 
+    if(!$cookieStore.get('cart')){
+        alert('Some Problem in Cart');
+        $location.path('/cart');
+        return false;
+    }
+
     $scope.orders = function(){
         $location.path('order/myorder');
     }
@@ -15,8 +21,11 @@ app.controller('thankyou', function ($scope, $http, $location, $cookieStore, mod
     }
     
     $scope.thanks = function(){
-
-        //alert();
+        $scope.order_id= $cookieStore.get('order_id');
+        $cookieStore.remove('order_id');
+        $cookieStore.remove('cart');
+        $cookieStore.remove('aid');
+        $cookieStore.remove('id');
     }
 
 });

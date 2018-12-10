@@ -1,10 +1,20 @@
 app.controller('payment_mode', function ($scope, $http, $location, $cookieStore, model, loading, $cordovaDialogs, $cordovaGeolocation, $rootScope, $routeParams) {
 
+    
     if (!$cookieStore.get('userinfo')) {
         $location.path("/login");
         return false;
     }
 
+    if(!$cookieStore.get('cart')){
+        alert('Some Problem in Cart');
+        $location.path('/cart');
+        return false;
+    }
+
+    if($rootScope.wallet_amount == 0 || $rootScope.wallet_amount == 0.00){
+        $("#checkbox1").attr("disabled", true);
+    }
     // On ng-change of wallet checkbox for check that wallet have enough amount or not
     $scope.selectwallet = function(){
         if($('#checkbox1').prop('checked') == true){
@@ -70,10 +80,12 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
         }).then(function (response) {
 
             res = response;
-           if(res.data.data.status == 'success'){
-               console.log(res);
-               $location.path('/thankyou');
-           }else{
+           if(res.data.data.status == 'success')
+           {
+                $cookieStore.put('order_id',res.data.data.order_id);
+                $location.path('/thankyou');
+           }
+           else{
                alert("Some Problem in Payment Check Your Cart Again");
                 $location.path('/cart');
            }

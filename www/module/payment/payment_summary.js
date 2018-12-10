@@ -1,6 +1,15 @@
 app.controller('payment_summary', function ($scope, $http, $location, $cookieStore, model, loading, $cordovaDialogs, $cordovaGeolocation, $rootScope, $routeParams) {
 
+    if (!$cookieStore.get('userinfo')) {
+        $location.path('/login');
+        return false;
+    }
 
+    if(!$cookieStore.get('cart')){
+        alert('Some Problem in Cart');
+        $location.path('/cart');
+        return false;
+    }
 
     $scope.paymode= function(){
         $location.path('/payment/mode');
