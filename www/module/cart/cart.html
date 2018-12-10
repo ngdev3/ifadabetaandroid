@@ -67,15 +67,15 @@
 							</div>
 
 							<div class="sub_add_product">
-								<div class="add_item_container sub_add_btn" id="firstt_{{productpid}}" data-attr="{{DweightID}}">
+								<div class="add_item_container sub_add_btn" id="firstt_{{x.menu_id}}" data-attr="{{x.id}}">
 
-									<div class="add_item_button sub_add_btn" data-rowid="{{x.rowid}}" id="enableCart_{{DweightID}}" ng-show="x.rowid">
-										<button class="add_item sub_add_btn" data-menuid="{{menu_id}}" data-weightid="{{DweightID}}" data-weightid="{{DweightID}}"
-										 id="plus_{{DweightID}}" ng-click="plusToCart($event)">
+									<div class="add_item_button sub_add_btn" data-rowid="{{x.rowid}}" id="enableCart_{{x.id}}" ng-show="x.rowid">
+										<button class="add_item sub_add_btn" data-menuid="{{menu_id}}" data-weightid="{{x.id}}" data-weightid="{{x.id}}"
+										 id="plus_{{x.id}}" ng-click="plusToCart($event)">
 											+
 										</button>
-										<input type="text" id="quantity_{{DweightID}}" value="{{x.qty}}" disabled="">
-										<button class="less_item sub_add_btn" data-menuid="{{menu_id}}" data-weightid="{{DweightID}}" id="minus_{{DweightID}}"
+										<input type="text" id="quantity_{{x.id}}" value="{{x.qty}}" disabled="">
+										<button class="less_item sub_add_btn" data-menuid="{{menu_id}}" data-weightid="{{x.id}}" id="minus_{{x.id}}"
 										 ng-click="minusToCart($event)">
 											-
 										</button>
