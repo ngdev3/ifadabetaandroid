@@ -10,8 +10,9 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         
     }
     
-    $scope.product_view = function(id){
+    $scope.product_view = function(id, manu_id){
         $cookieStore.put('id',id);
+        $cookieStore.put('manu_id',id);
         $location.path('/product/view');
     }
     // if (!$cookieStore.get('storeinfo')) {

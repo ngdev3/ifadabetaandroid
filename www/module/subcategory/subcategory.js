@@ -70,6 +70,24 @@ if($cookieStore.get('userinfo')){
                 console.log(res.data.data.category_product.products);
                 $scope.categoryData = res.data.data.category_data[0];
              
+                
+                // $scope.product_price = response.data.data.category_product.menu_varient[0].price;
+                // $scope.DweightID = response.data.data.category_product.menu_varient[0].id;
+                // $scope.rowid = response.data.data.category_product.menu_varient[0].cart_row_id;
+                // $scope.menu_id = response.data.data.category_product.id;
+                // $scope.addedQnty = response.data.data.category_product.menu_varient[0].cart_quantity;
+                // $scope.is_in_stock = response.data.data.category_product.menu_varient[0].is_in_stock;
+                // $scope.quantity = response.data.data.category_product.menu_varient[0].quantity;
+                // $scope.manufacture_id = response.data.data.category_product.user_id;
+                // $scope.is_in_wishlist = response.data.data.category_product.menu_varient[0].is_in_wishlist;
+                
+
+                
+                // $scope.product_weight_value = response.data.data.category_product.menu_varient[0].unit_value;
+                // $scope.product_weight_unit = + response.data.data.category_product.menu_varient[0].UNIT_NAME;
+                
+
+
                 //   alert(id);
                  if (!id) {
                     
@@ -248,7 +266,7 @@ if($cookieStore.get('userinfo')){
 
     $scope.filter = function(form) {
         //console.log($scope.sort);  
-        $scope.fetch_product_list();
+        $scope.fetch_product_list('all');
         
     }
 
@@ -264,10 +282,10 @@ if($cookieStore.get('userinfo')){
     $scope.taptowishlist = function(id, wishlist_status){
         //  alert(id+ " "+ wishlist_status);return;
         $rootScope.addToWishlist(id, wishlist_status);
-        //  $route.reload();
-        setTimeout(function(){
-            $scope.fetch_product_list();
-        }, 1000)
+        // //  $route.reload();
+        // setTimeout(function(){
+        //     $scope.fetch_product_list('all');
+        // }, 1000)
     }
 
     

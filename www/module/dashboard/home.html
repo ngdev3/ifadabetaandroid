@@ -296,7 +296,7 @@
                     <div class="col-xs-4 mt-15 mb-10 no-padding pl-5 pr-5" ng-repeat="y in product_of_the_day | limitTo:3:0">
                         <div class="catg_product_container">
                             <a href="javascript:void(0)">
-                                <div class="offer-img" ng-click="product_view(y.id)">
+                                <div class="offer-img" ng-click="product_view(y.id, y.MANUFACTURER_ID)">
                                     <img src="{{y.product_image}}" alt="" class="img-responsive" />
                                     <div class="catg_overlay text-center">
                                         <p>{{y.menu_name}}</p>

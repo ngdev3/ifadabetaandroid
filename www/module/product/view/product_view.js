@@ -53,7 +53,7 @@ $scope.fetch_product_data = function () {
         $scope.pid = $cookieStore.get('id')
         var args = $.param({
             'product_id': $cookieStore.get('id'),
-            'manufacture_id': '20',
+            'manufacture_id':  $cookieStore.put('manu_id'),
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code ,   
             user_id:$cookieStore.get("userinfo").uid,
