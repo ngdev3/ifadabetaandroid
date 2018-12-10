@@ -66,9 +66,9 @@ $scope.reddempoints = function(){
         res = response;
         console.log(res)
         //  alert("response from the server ");
-        if (res.data.status == 'success') {
+        if (res.data.data.status == 'success') {
             alert('Points Redeem Successfully');
-            $location.path('/rewards');
+            $scope.myrewards();
         } else {
             alert('Error..Points not Redeem');
         }
