@@ -122,7 +122,12 @@ app.config(function ($translateProvider) {
      Shop_Now : 'Shop Now',
      View_Order : 'View Order',
      Your_Address : 'Your Address',
-     No_Product_Found : 'No Product Found'
+     No_Product_Found : 'No Product Found',
+     Enter_Promocode : 'Enter Promocode',
+     Discount_Price : 'Discount Price',
+     Tax_Amount : 'Tax Amount',
+     Proceed_To_Checkout : 'Proceed To Checkout',
+     AED : 'AED'
 
   });
 
@@ -256,7 +261,12 @@ app.config(function ($translateProvider) {
     Shop_Now : 'تسوق الآن',
     View_Order : 'مشاهدة الطلب',
     Your_Address : 'عنوانك',
-    No_Product_Found : 'لا يوجد منتج'
+    No_Product_Found : 'لا يوجد منتج',
+    Enter_Promocode : 'إدخال الرمز الترويجي',
+    Discount_Price : 'سعر الخصم',
+    Tax_Amount : 'قيمة الضريبة',
+    Proceed_To_Checkout : 'باشرالخروج من الفندق',
+    AED : 'درهم إماراتي'
 
   });
 });

@@ -10,7 +10,7 @@
 								 alt="menu icon" style="width: 13px;" /></a></li>
 						<li class="page_name left">
 							<a href="javascript:void(0)" class="text-left ">
-								<p>{{'My Cart' | translate}}</p>
+								<p>{{'My_Cart' | translate}}</p>
 							</a>
 						</li>
 						<li style="float: right"><button ng-click="empty_cart()" style="float: right; margin-top: 5px; margin-right: 10px;border: none;
@@ -20,15 +20,15 @@
 							<a href="javascript:void(0)"><img src="assets/img/icon/cart_icon.png" alt="cart icon" />
 								<span class="badge">{{cart_count}}</span>
 							</a>
-							<a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
+							<!-- <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a> -->
 						</li>
 					</ul>
-					<ul class="nav navbar-nav bottom_header">
+				<!-- 	<ul class="nav navbar-nav bottom_header">
 						<li class="menu_search_container"><a href="javascript:void(0)">
-								<!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
-								<input type="text" class="menu_search" placeholder="Search products brands and more" />
+								<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
+					<!-- 			<input type="text" class="menu_search" placeholder="Search products brands and more" />
 							</a></li>
-					</ul>
+					</ul>  -->
 				</div>
 			</nav>
 
@@ -97,7 +97,7 @@
 			<div class="coupon_container" ng-hide="cart_values.manufacturer_count > 1" ng-init="initpomo()">
 				<form method="post" name="loginform" novalidate>
 					<div class="counpontext">
-						<h5><i class="fa fa-tags" aria-hidden="true"></i>&nbsp;Enter Promocode</h5>
+						<h5><i class="fa fa-tags" aria-hidden="true"></i>&nbsp;{{'Enter_Promocode' | translate}}</h5>
 					</div>
 					<div class="coupon_input text-right">
 						<input type="text" name="promocode" id="inputpromo" ng-model="$root.promocode" class="couponcode" required>
@@ -108,14 +108,14 @@
 			</div>
 
 			<div class="after_coupon">
-				<div class="after_discount">Discount Price <span>AED {{subtotalafterdiscount}}</span></div>
-				<div class="after_cart">Tax Amount<span>AED {{tax_amount}}</span></div>
+				<div class="after_discount">{{'Discount_Price' | translate}} <span>AED {{subtotalafterdiscount}}</span></div>
+				<div class="after_cart">{{'Tax_Amount' | translate}}<span>{{'AED' | translate}} {{tax_amount}}</span></div>
 			</div>
 			<!-- {{cart_data}} -->
 			<a href="javascript:void(0)" ng-click="address_delivery()">
 				<div class="checkout_container">
-					<p>Proceed To checkout</p>
-					<p class="text-right">AED {{finalTotal}}</p>
+					<p>{{'Proceed_To_checkout' | translate}}</p>
+					<p class="text-right">{{'AED' |translate}} {{finalTotal}}</p>
 				</div>
 			</a>
 
@@ -123,9 +123,9 @@
 		<div class="empty_cart_main" id="view_cart mt-50" ng-if="!cart_data">
 			<div class="empty_cart">
 				<img src="img/emptycart_icon.png" alt="" />
-				<h3>Cart is empty</h3>
-				<p>you have no items in your shopping cart.</p>
-				<div class="shop_now text-center mt-20"><a href="javascript:void(0)" ng-click="homePage()">Shop Now</a></div>
+				<h3>{{'Cart_is_Empty' | translate}}</h3>
+				<p>{{'you_have_no_items_in_your_shopping_cart' | translate}}</p>
+				<div class="shop_now text-center mt-20"><a href="javascript:void(0)" ng-click="homePage()">{{'Shop_Now' | translate}}</a></div>
 			</div>
 		</div>
 	</div>
