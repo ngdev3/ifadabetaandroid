@@ -83,6 +83,7 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
            if(res.data.data.status == 'success')
            {
                 $cookieStore.put('order_id',res.data.data.order_id);
+                $rootScope.usercartvalue();
                 $location.path('/thankyou');
            }
            else{
