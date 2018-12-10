@@ -110,7 +110,7 @@
                 <li ng-if="!loggedin"><a href="javascript:void(0)"><span><img src="{{assets/img/icon/user_icon.png}}"
                                 alt="" /> </span><span>{{'Welcome' | translate}}</span></a></li>
                 <li><a href="javascript:void(0)"><img src="assets/img/icon/flag_icon.png" alt="" /> <span>{{country_name}}</span><img
-                            src="assets/img/icon/edit_icon.png" alt="" class="location_view" /> </a></li>
+                            src="assets/img/icon/edit_icon.png" alt="" class="location_view" ng-click="toswitchCountry()"/> </a></li>
 
                 <li ng-if="loggedin" ng-click="profile()"><a href="javascript:void(0)"><img src="assets/img/icon/profile.png"
                             alt="" /> <span>{{'My_Profile' | translate}}</span></a></li>

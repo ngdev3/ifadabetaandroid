@@ -74,6 +74,14 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                 alert(error_str);
                 return false;
             }
+
+
+            if($('#retailer').prop('checked') == true){
+                alert("checked");
+                return;
+              }else{
+                  
+              }
             
         }
 

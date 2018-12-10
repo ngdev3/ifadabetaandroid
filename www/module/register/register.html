@@ -53,10 +53,19 @@
             <input type="text" id="cnf_pass" ng-model="referal_code" name="referal_code" placeholder="{{'Referral_Code' | translate}}">
             <label for="cnf_pass">{{'Referral_Code' | translate}}</label>
           </div>
+          <div class="terms">
+              <div class="pretty p-icon p-curve p-pulse">
+                <input type="checkbox" id="retailer" name="retailer" ng-model="retailer" >
+                <div class="state p-info-o">
+                    <i class="icon  fa fa-check"></i>
+                    <label>I'm Retailer</label> 
+                </div>
+              </div>
+          </div>
           <div class="submit-btn col-sm-6 col-xs-12 text-center" ng-click="user_registers('loginform')">
             <a href="javascript:void(0)">{{'Sign_Up' | translate}}</a>
           </div>
-
+          
         </form>
       </div>
     </div>
