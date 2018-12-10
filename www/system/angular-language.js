@@ -344,4 +344,4 @@ app.config(function ($translateProvider) {
     Send : 'إرسال',
     Enter_Description : 'أدخل الوصف'
   });
-});
+}); 
