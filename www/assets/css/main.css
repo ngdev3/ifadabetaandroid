@@ -824,8 +824,10 @@ li.menu_search_container a input{
     width: 60%;
     background: #006d07;
     color: #fff;
+    font-weight: 600;
     padding: 10px 10px;
     display: block;
+    text-transform: uppercase;
     margin: 0 auto;
     border-radius: 50px;
 }
@@ -991,8 +993,9 @@ li.menu_search_container a input{
     margin-bottom: 10px;
 }
 .forgot_password > a{
-	color: #939393;
-    font-size: 15px;
+	font-size: 15px;
+    color: #006d07;
+    font-weight: 600;
 }
 .exist-account{
 	clear: both;

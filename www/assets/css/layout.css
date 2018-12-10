@@ -1443,3 +1443,29 @@ li.progtrckr-todo.inprocessed span.pending_check i
     font-weight: bold;
     font-size: 17px;
 }
+.otp_send_msg{
+    width: 90%;
+    margin: 70px auto 30px;
+    text-align: center;
+}
+.otp_send_msg > p{
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+.mui-textfield>input, .mui-textfield>textarea {
+    
+    border-bottom: 1px solid #006d07;
+    
+}
+.otp_input{
+    padding: 25px 0 15px 0px !important;
+}
+.terms {
+    text-align: left;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    display: table;
+    margin-bottom: 20px;    
+    padding: 0px 13px;
+}
