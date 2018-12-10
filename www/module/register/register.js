@@ -46,6 +46,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
             var reg2 = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/;
             var reg3 = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
             var reg4 = /^[a-zA-Z ]+$/;
+            var reg5 = /^[^0][0-9]{9}$/;
 
             if (reg4.test($scope.fname) == false) {
                 error_str = "First Name should contain Alphabets Only";
@@ -75,12 +76,19 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                 return false;
             }
 
+            if (reg5.test($scope.mob_number) == false) {
+                error_str = "Mobile Number should contain Numbers Only & Length should be 10";
+                model.show('Alert', error_str);
+                // alert(error_str);
+                return false;
+            }
+
 
             if($('#retailer').prop('checked') == true){
                 // alert();return;
-                $scope.retailer = ''
+                $scope.retailer = 'on';
             }else{
-                $scope.retailer = ''
+                $scope.retailer = '';
               }
             
         }
@@ -96,7 +104,8 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                 mobile_number: $scope.mob_number,
                 password: $scope.password,
                 language_code: sessionStorage.lang_code,
-                referal_code: $scope.referal_code
+                referal_code: $scope.referal_code,
+                i_am_retailer : $scope.retailer
             });
             
             $http({
