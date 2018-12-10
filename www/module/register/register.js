@@ -86,7 +86,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
 
             if($('#retailer').prop('checked') == true){
                 // alert();return;
-                $scope.retailer = '1';
+                $scope.retailer = 'on';
             }else{
                 $scope.retailer = '';
               }
@@ -104,8 +104,8 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                 mobile_number: $scope.mob_number,
                 password: $scope.password,
                 language_code: sessionStorage.lang_code,
-                referal_code: $scope.referal_code
-               // is_retailer : $scope.retailer
+                referal_code: $scope.referal_code,
+                i_am_retailer : $scope.retailer
             });
             
             $http({
