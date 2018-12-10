@@ -30,11 +30,11 @@
                 <!--<div class="addr_heading">-->
                 <div class="" ng-if="paybywallet !== '1'">
                     <div class="radio mb-20 mt-10">
-                    <input id="radio-1" ng-model="payby" name="payby" type="radio" value="1" required>
+                    <input id="radio-1" ng-model="form.payby" name="payby" type="radio" value="1" required>
                     <label for="radio-1" class="radio-label">{{'Cash_On_Delivery' | translate}}</label>
                     </div>
                     <div class="radio mb-20">
-                    <input id="radio-2" ng-model="payby" name="payby" type="radio" value="2" required>
+                    <input id="radio-2" ng-model="form.payby" name="payby" type="radio" value="2" required>
                     <label for="radio-2" class="radio-label">{{'Payment_Gateway' | translate}} <span>({{'Coming_Soon' | translate}})</span></label>
                     </div>
                   </div>

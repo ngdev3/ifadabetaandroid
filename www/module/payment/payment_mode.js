@@ -27,6 +27,7 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
        
     }
 
+    $scope.form ={}
     $scope.payment = function(form){
         console.log($scope.is_wallet_apply)
         if($scope.is_wallet_apply != 1){
@@ -42,17 +43,17 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
                 }
         }
     }
-        if($scope.payby == '2'){
+        if($scope.form.payby == '2'){
             alert('Online Payment');
             return false;
         }
-        console.log($scope.payby)
+        console.log($scope.form.payby)
         loading.active();
 
         var args = $.param({
             user_id : $cookieStore.get('userinfo').uid,
             country_id : sessionStorage.country,
-            payment_mod : $scope.payby,
+            payment_mod : $scope.form.payby,
             is_wallet_apply : $scope.is_wallet_apply,
             address : $cookieStore.get('aid')
         });
