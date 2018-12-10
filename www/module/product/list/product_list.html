@@ -163,19 +163,37 @@
 						<i id="blank_{{x.product_varient[0].id}}" class="fa heart fa-heart-o" ng-show="x.product_varient[0].is_in_wishlist == '0'"></i>
 						<i id="filler_{{x.product_varient[0].id}}" class="fa heart fa-heart fill" ng-show="x.product_varient[0].is_in_wishlist == '1'"></i>
 				</div>
-						<div class="sub_add_product">
-							<div class="add_item_container sub_add_btn">
-								<div class="add_item_button sub_add_btn" style="display: none;">
-								   <button class="add_item sub_add_btn"><span class="additem_span">+</span></button>
-								   <input type="text" value="1" disabled="">
-								  
-									<button class="less_item sub_add_btn"><span class="additem_span">-</span></button>
-								</div>
-								<div class="add_cart_button sub_add_btn">
-								   <button class="">Add</button>
-								</div>
+						
+
+				<div class="sub_add_product">
+					<div class="add_item_container sub_add_btn" id="firstt_{{x.id}}" data-attr="{{x.product_varient[0].id}}">
+
+							<div class="add_item_button sub_add_btn" data-rowid="{{x.product_varient[0].cart_row_id}}" id="enableCart_{{x.product_varient[0].id}}" ng-show="x.product_varient[0].cart_row_id">
+									<button class="add_item sub_add_btn" data-menuid="{{x.product_varient[0].id}}" data-weightid="{{x.product_varient[0].id}}" data-weightid="{{x.product_varient[0].id}}"
+									 id="plus_{{x.product_varient[0].id}}" ng-click="plusToCart($event)">
+											+
+									</button>
+									<input type="text" id="quantity_{{x.product_varient[0].id}}" value="{{x.product_varient[0].cart_quantity}}" disabled="">
+									<button class="less_item sub_add_btn" data-menuid="{{x.product_varient[0].id}}" data-weightid="{{x.product_varient[0].id}}" id="minus_{{x.product_varient[0].id}}"
+									 ng-click="minusToCart($event)">
+											-
+									</button>
 							</div>
-						</div>
+
+							<div class="add_cart_button sub_add_btn" id="addToCart_{{x.product_varient[0].id}}" ng-show="x.product_varient[0].cart_row_id == '' || (x.product_varient[0].is_in_stock == 'unlimited' || x.product_varient[0].quantity > '0') && (x.product_varient[0].is_in_stock == 'limited' && x.product_varient[0].quantity > '0')">
+							<!-- <div class="add_cart_button sub_add_btn" id="addToCart_{{x.product_varient[0].id}}" ng-show="x.product_varient[0].is_in_stock == 'unlimited' || x.product_varient[0].quantity > '0'"> -->
+									<button class="addcart_button" data-menuid="{{x.product_varient[0].id}}" data-user_id="{{x.user_id}}" data-weightid="{{x.product_varient[0].id}}" id="addCart_{{x.product_varient[0].id}}"
+									 ng-click="addToCart($event)">Add</button>
+							</div>
+							<div class="add_cart_button div_in_stock sub_add_btn" id="outofstock_{{x.product_varient[0].id}}" ng-show="x.product_varient[0].is_in_stock == 'limited' && x.product_varient[0].quantity == '0'">
+									<button class="out_of_stock" data-menuid="{{x.product_varient[0].id}}" data-user_id="{{x.user_id}}" data-weightid="{{x.product_varient[0].id}}" id="addCart_{{x.product_varient[0].id}}"
+									 >Out Of Stocks</button>
+							</div>
+
+					</div>
+			</div>
+
+			
 				</div>
 			</div>
 		</div>
