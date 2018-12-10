@@ -24,7 +24,17 @@
         }
 		.nav > li.cart_icon {
 			float: right;
-			width: 30%;
+			width: 35%;
+		}
+		.nav > li.page_name.left{
+			width: 55% !important;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 1;
+			line-height: 30px;
+			max-height: 30px;
 		}
         </style>
         <header class="container-fluid nav-down">
@@ -42,7 +52,7 @@
                             <a href="javascript:void(0)" class="text-left ">
                                 <p>{{feature_name | translate}}</p>
                             </a>
-                        </li>
+                        </li>                      
                       <li class="cart_icon">
 						<a href="javascript:void(0);"><img src="assets/img/header/filter.png" alt="search icon" onclick="openFilter()"/></a>
                           <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
@@ -54,8 +64,9 @@
                     <ul class="nav navbar-nav bottom_header">
                       <li class="menu_search_container"><a href="javascript:void(0)">
                         <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
-                        <input type="text" class="menu_search" placeholder="Search products brands and more"/>
-                      </a></li>
+                        <input type="text" class="menu_search" ng-model="searchProduct" name="searchProduct" placeholder="{{'Search_Products_Brands_and_More' | translate}}" required/>
+							<button class="search_bar_span" ng-click="searchproducts()" ><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+					</a></li>
                     </ul>
                   </div>
                 </nav>
@@ -68,7 +79,8 @@
 		
         <!--Filter Start -->
 		<div id="mySidenav-right" class="sidenav-right">		
-	<header id="filter-header" class="container-fluid nav-down" style="top: 0 !important;">
+	<form name="filter_form" nonvaldidate>
+			<header id="filter-header" class="container-fluid nav-down" style="top: 0 !important;">
 		<div class="row">
 			<nav class="navbar navbar-inverse">
 			  <div class="container-fluid no-padding">
@@ -85,7 +97,7 @@
 		<div class="filter-container">
 			
 
-			<button class="accordion" id="accord_1" ng-click="init(1);">Sub-categories</button>
+			<!-- <button class="accordion" id="accord_1" ng-click="init(1);">Sub-categories</button>
 			<div class="accordion-panel accordion-panel_1">
 			  <div class="accordion-container">
 					<div class="accordion-options">
@@ -125,7 +137,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> 
 
 			<button class="accordion" id="accord_2" ng-click="init(2);">Brand</button>
 			<div class="accordion-panel accordion-panel_2">
@@ -167,137 +179,59 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 
-			<button class="accordion" id="accord_3" ng-click="init(3);">Price</button>
+			<button class="accordion" id="accord_3" ng-click="init(3);">Sort By</button>
 			<div class="accordion-panel accordion-panel_3">
 			  <div class="accordion-container">
 					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="price_range">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Less than rs 20</label>
+							<div class="pretty p-icon p-curve p-pulse">
+								<input type="radio" ng-model="sort" name="sort" value="1">
+								<div class="state p-info-o">
+									<i class="icon fa fa-check"></i>
+									<label> A to Z</label>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="price_range">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Rs 21 to Rs 50</label>
+						<div class="accordion-options">
+							<div class="pretty p-icon p-curve p-pulse">
+								<input  type="radio" ng-model="sort" name="sort" value="3">
+								<div class="state p-info-o">
+									<i class="icon fa fa-check"></i>
+									<label> Z to A</label>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="price_range">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Rs 51 to Rs 100</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="price_range">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Rs 101 to Rs 200</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="price_range">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Rs 201 to Rs 500</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="price_range">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> More than Rs 501</label>
-							</div>
+				<div class="accordion-options">
+					<div class="pretty p-icon p-curve p-pulse">
+						<input type="radio" ng-model="sort" name="sort" value="4">
+						<div class="state p-info-o">
+							<i class="icon fa fa-check"></i>
+							<label> Low to High</label>
 						</div>
 					</div>
 				</div>
-			</div>
-
-			<button class="accordion" id="accord_4" ng-click="init(4);">Sort By</button>
-			<div class="accordion-panel accordion-panel_4">
-			  <div class="accordion-container">
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="sort">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Low to High</label>
-							</div>
+				<div class="accordion-options">
+					<div class="pretty p-icon p-curve p-pulse">
+						<input type="radio" ng-model="sort" name="sort" value="5">
+						<div class="state p-info-o">
+							<i class="icon fa fa-check"></i>
+							<label>High to Low</label>
 						</div>
 					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input  type="radio" name="sort">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> High to Low</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="sort">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Popularity</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="sort">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Discount</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="sort">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Relevance</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" name="sort">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label> Newest</label>
-							</div>
-						</div>
-					</div>
+				</div>	
+				
 				</div>
-			</div>
-
-			
+			</div>			
 		</div>
 	</div>
 	<footer>
 		<div class="apply_btn_container">
-			<button> Cancel</button>
-			<button> Apply</button>
+			<button onclick="closeFilter()"> Cancel</button>
+			<button onclick="closeFilter()" ng-click="filter('filter_form')"> Apply</button>
 		</div>
 	</footer>
+	</form>
 </div>
 		
 		<!--Filter End -->
@@ -320,7 +254,7 @@
                                             <input type="button" ng-if="categorysubData" class="btn btn-success all-sub-cat_buttons" id="all" name="" value="All" ng-click="fetch_product_list('all')">
                                         </div>
                                         <div ng-repeat="sub in categorysubData">
-                                            <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id)">                      
+                                            <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id,sub.url)">                      
 
                                         </div>
                                     </slick>
@@ -342,21 +276,25 @@
                         </div> -->
                         <!-- ** !. Buttons ** -->
                         <!-- ** Product Lists ** -->
-                        <div class="no-padding item_lists_main" ng-repeat="x in product" ng-if="categoryData"   ng-click="product_view(x.id)">
+                       
+                        <div class="no-padding item_lists_main" ng-repeat="x in product" ng-if="categorysubData" >
                            
                             <div class="prodcut_main_container">
                                 <div class="products_wrapper">
-                                    <div class="col-md-3 col-sm-3 col-xs-3">
-                                        <a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="{{x.product_image}}"></a>
+                                    <div class="col-md-3 col-sm-3 col-xs-3"   ng-click="product_view(x.id,x.url)">
+                                        <a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="http://projects.tekshapers.in/ifadabeta//uploads/menu_image/{{x.image}}"></a>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc"   ng-click="product_view(x.id,x.url)">
                                         <!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
                                         <a href="javascript:void(0)"><p class="sub_produt_name">{{x.menu_name}}</p></a>
                                         <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
                                         <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->AED {{x.product_varient[0].price}}<!-- </span> --></p>
                                     </div>
-                                        <div class="wislist_sub wishlist-container">
-                                          <i class="fa heart fa-heart-o"></i> 
+                                        <div class="wislist_sub wishlist-container" ng-click="taptowishlist(x.product_varient[0].id, x.product_varient[0].is_in_wishlist)">
+                                            <!-- <i class="fa heart fa-heart-o"></i>  -->
+                                            <!-- <i class="fa fa-heart fill hide" id="clicked"></i>  -->
+                                            <i id="blank_{{x.product_varient[0].id}}" class="fa heart fa-heart-o" ng-show="x.product_varient[0].is_in_wishlist == '0'"></i>
+                                            <i id="filler_{{x.product_varient[0].id}}" class="fa heart fa-heart fill" ng-show="x.product_varient[0].is_in_wishlist == '1'"></i>
                                         </div>
                                         <div class="sub_add_product">
                                             <div class="add_item_container sub_add_btn">
@@ -374,30 +312,35 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- {{product.length}} -->
-                        <div  class="no_data_wrapper" ng-if="product.length == '0'">
-                           <div class="">
-                               <img src="img/no_data_found.png">
-                           </div>
-                            
+                        <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="!product && !best_picks_of_the_season">
+                            <div class="">
+                                <img src="img/no_data_found.png">
+                                <h3 class="text-center">{{'No_Product_Found' | translate}}!!!</h3>
+                            </div>
                         </div>
+                        <!-- {{product.length}} -->
+                        
 
-                        <div class="no-padding item_lists_main" ng-repeat="x in best_picks_of_the_season" ng-if="best_picks_of_the_season && !searchresult"  ng-click="product_view(x.id)">
+                        <div class="no-padding item_lists_main" ng-repeat="x in best_picks_of_the_season" ng-if="best_picks_of_the_season"  >
                            
                                 <div class="prodcut_main_container">
                                     <div class="products_wrapper">
-                                        <div class="col-md-3 col-sm-3 col-xs-3">
+                                        <div class="col-md-3 col-sm-3 col-xs-3" ng-click="product_view(x.id)">
                                             <a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="{{x.product_image}}"></a>
                                         </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
+                                        <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc" ng-click="product_view(x.id)">
                                             <!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
                                             <a href="javascript:void(0)"><p class="sub_produt_name">{{x.menu_name}}</p></a>
 <!--                                             <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
  -->                                            <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->AED {{x.menu_varient_data.price}}<!-- </span> --></p>
                                         </div>
-                                            <div class="wislist_sub wishlist-container">
-                                              <i class="fa heart fa-heart-o"></i> 
-                                            </div>
+                                        <div class="wislist_sub wishlist-container" ng-click="taptowish(x.menu_varient_data.id, x.menu_varient_data.is_in_wishlist)">
+                                            <!-- <i class="fa heart fa-heart-o"></i>  -->
+                                            <!-- <i class="fa fa-heart fill hide" id="clicked"></i>  -->
+                                            <i id="blank_{{x.menu_varient_data.id}}" class="fa heart fa-heart-o" ng-show="x.menu_varient_data.is_in_wishlist == '0'"></i>
+                                            <i id="filler_{{x.menu_varient_data.id}}" class="fa heart fa-heart fill" ng-show="x.menu_varient_data.is_in_wishlist == '1'"></i>
+                                          </div>
+
                                             <div class="sub_add_product">
                                                 <div class="add_item_container sub_add_btn">
                                                     <div class="add_item_button sub_add_btn" style="display: none;">
@@ -414,14 +357,26 @@
                                     </div>
                                 </div>
                             </div>
-                        <!-- ** !. Product Lists ** -->                       
+                        <!-- ** !. Product Lists ** --> 
+                        <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="categorysubData.length == '0'">
+                            <div class="">
+                                <img src="img/no_data_found.png">
+                                <h3 class="text-center">{{'No_Product_Found' | translate}}!!!</h3>
+                            </div>
+                        </div>
+                       <!--  <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="!product && categorysubData.length == '0'">
+                            <div class="">
+                                <img src="img/no_data_found.png">
+                                <h3 class="text-center">{{'No_Product_Found' | translate}}!!!</h3>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         <!--  !. [PULSES] Sub categories content -->
             
-        
-            
+       
+
         <script>
         
             
@@ -433,11 +388,14 @@
             });	
         });
 
-        /* $(document).ready(function(){
-        $('#sub_cat').click(function(){
-            $('#all').removeClass('.btn-success.active');
-            });
-        }) */
+    /*  wishlist icon
+        $(".wishlist-container .heart").click(function(){
+            alert();
+            $(this).toggleClass("fa-heart-o");
+            $(this).toggleClass("fa-heart");
+            $(this).toggleClass("fill");	 
+
+        });   */
         </script>	
    
 </div>

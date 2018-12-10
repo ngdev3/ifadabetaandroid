@@ -15,15 +15,13 @@
                                     style="width: 13px;" /></a></li>
                         <li class="page_name left">
                             <a href="javascript:void(0)" class="text-left ">
-                                <p>Ticket List</p>
+                                <p>{{'Ticket_List' | translate}}</p>
                             </a>
                         </li>
                         <li class="cart_icon">
-                            <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon" />
-                                <!--<span class="badge">14</span>-->
-                            </a>
-                            <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
-                        </li>
+                                <div class="view_tkt_btn" ng-click="raise_ticket()">
+                                        <a href="javascript:void(0)"><input type="button" class="btn btn-success" value="Raise Ticket"></a>
+                                    </div> </li>
                     </ul>
                     <ul class="nav navbar-nav bottom_header">
                         <li class="menu_search_container"><a href="javascript:void(0)">

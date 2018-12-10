@@ -1,15 +1,27 @@
 app.controller('sub_category', function ($scope, $http, $location, $interval, $cookieStore, model, $locale, loading, $rootScope) {
 
     // console.log($rootScope.searchresult);return;
-
+if($cookieStore.get('userinfo')){
+    var user_type = $cookieStore.get('userinfo').user_type;
+    var uid = $cookieStore.get('userinfo').uid;
+}else{
+    var user_type = '';
+    var uid = '';
+}
 
     $scope.cart = function () {
         $location.path('/cart');
-    }
-
+    }    
+    
     var ID;
-    $scope.fetch_product_list = function (id) {
+    $scope.fetch_product_list = function (id,url) {
         // alert(id);
+        var suburl;
+        if(url){
+            suburl = url ;
+        }else{
+            suburl = $cookieStore.get('subcategoryInfo').url
+        }
         if (id) {
 
             if (id !== 'all') {
@@ -29,9 +41,11 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         var args = $.param({
             category_id: ID,
             country_id: sessionStorage.country,
-            language_code: sessionStorage.lang_code
-            //user_type : 4,
-            //user_id : 52,
+            language_code: 'en',
+            user_type : user_type,
+            user_id : uid,
+            cat_url : suburl,
+            sort_by : $scope.sort,
             //retailer_id : 47
         });
 
@@ -49,14 +63,15 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         }).then(function (response) {
 
             res = response;
-            // console.log(res.data);
-            // return;
+             //console.log(res.data.responseStatus);    
+             //return;
 
-            if (res.data.data.status == 'success') {
-                console.log(res.data.data);
+            if (res.data.responseStatus == 'success') {
+                console.log(res.data.data.category_product.products);
                 $scope.categoryData = res.data.data.category_data[0];
+             
                 //   alert(id);
-                if (!id) {
+                 if (!id) {
                     
                     if(id == 'all'){
                         $scope.categorysubData = "";//res.data.data.category_data[0].sub;
@@ -68,18 +83,15 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                     if ($scope.categorysubData.length == 0) {
                         $scope.categorysubData = "";
                     }
-
-
-                }
-
+                
                 $scope.slickConfig0Loaded = true;
                 $scope.slickConfig0 = {
                     method: {},
                     dots: false,
                     infinite: false,
                     speed: 100,
-                    autoplay: true,
-                    autoplaySpeed: 2500,
+                    autoplay: false,
+                   // autoplaySpeed: 2500,
                     arrows: false,
                     slidesToShow: 1,
                     slidesToScroll: 1,
@@ -112,20 +124,17 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                         }
                     ]
                 };
+            }
 
                 /*  for(var i = 0; i< $scope.categorysubData.length; i++){
                    $scope.categorysubSubData = $scope.categorysubData[i];
                  } */
                 //   console.log($scope.categorysubData);
-                $scope.product = res.data.data.product.products;
-                //   console.log($scope.product);
-                for (var i = 0; i < $scope.product.length; i++) {
-                    $scope.productVarient = res.data.data.product.products[i].product_varient;
-                }
+                $scope.product = res.data.data.category_product.products;
                 $location.path('/subcategory');
             } else {
 
-                alert(res.data.status);
+                alert(res.data.data.responseStatus);
             }
 
         }).finally(function () {
@@ -145,14 +154,19 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
 			   $(".accordion-panel_"+id).css('max-height', iScrollHeight+'px');
 		 }
 	}
-	
+	if($cookieStore.get("userinfo")){
+        var userID = $cookieStore.get("userinfo").uid;
+    }else{
+        var userID = '';
+    }
     $scope.see_alls = function () {
-        loading.active();
+       // loading.active();
         // alert($cookieStore.get('subcategoryInfo').subcatid);
         var args = $.param({
             product_type: $cookieStore.get('subcategoryInfo').subcatid,
             country_id: sessionStorage.country,
-            language_code: sessionStorage.lang_code
+            language_code: sessionStorage.lang_code,
+            user_id : userID
         });
 
         if($cookieStore.get('subcategoryInfo').subcatid == 1){
@@ -171,7 +185,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/get_pick_season_product',
+            url: app_url + '/home_page',
             data: args
 
         }).then(function (response) {
@@ -183,6 +197,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
 
             if (res.data.data.status == 'success') {
                 $scope.best_picks_of_the_season = res.data.data.view_all;
+                $rootScope.is_in_wishlist = res.data.data.view_all[0].menu_varient_data.is_in_wishlist;
                 $location.path('/subcategory');
             } else {
 
@@ -203,14 +218,57 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
     }
 
 
-    $scope.product_view = function (id) {
-        $cookieStore.put('id', id);
+    $scope.product_view = function (id,url) {
+        // alert(id);return;
+        
+        var productinfo = {
+            'id' : id,
+            'url' : url
+        }
+        $cookieStore.put('productinfo', productinfo);
         $location.path('/product/view');
     }
 
 
+    $scope.searchproducts = function(){
+        // alert($scope.searchProduct);
+        if($scope.searchProduct == undefined || $scope.searchProduct == ""){
+            model.show("Alert","Please Provide the Search Value");
+            return false;
+        }
+        
+        var search_key = {
+            'search' : $scope.searchProduct
+        }
+        $cookieStore.put('search',search_key);
+        $rootScope.searchProduct = $scope.searchProduct;
+        $rootScope.searchBar();
+    }
 
 
+    $scope.filter = function(form) {
+        //console.log($scope.sort);  
+        $scope.fetch_product_list();
+        
+    }
+
+    $scope.taptowish = function(id, wishlist_status){
+        //  alert(id+ " "+ wishlist_status);
+        $rootScope.addToWishlist(id, wishlist_status);
+        setTimeout(function(){
+            $scope.see_alls();
+        }, 1000)
+    }
 
 
+    $scope.taptowishlist = function(id, wishlist_status){
+        //  alert(id+ " "+ wishlist_status);return;
+        $rootScope.addToWishlist(id, wishlist_status);
+        //  $route.reload();
+        setTimeout(function(){
+            $scope.fetch_product_list();
+        }, 1000)
+    }
+
+    
 });

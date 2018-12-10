@@ -1,0 +1,66 @@
+<div ng-controller="add_ticket" >
+
+    <header class="container-fluid nav-down">
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+                <div class="container no-padding">
+                    <ul class="nav navbar-nav top_header text-center">
+
+                        <li class="page_name">
+                            <a href="javascript:void(0)" class="text-left text-center">
+                                <p>Raise Ticket</p>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </nav>
+
+        </div>
+        <!-- MOBILE-MENU-AREA END -->
+    </header>
+    <!-- END HEADER -->
+
+
+    <div class="container" ng-init="get_all_order()">
+        <div class="login_form">
+            <div class="form_container">
+                <form method="post" class="mui-form" name="loginform" novalidate>
+                    <div class="mui-select col-sm-6 col-xs-12">
+                        <select name="getorder" ng-model="getorder" id="order" required>
+                            <option value="">Select Order Id</option>
+                            <option ng-repeat="x in getorders" value="{{x.ORDER_IDS}}">{{x.ORDER_IDS}}</option>
+                        </select>
+                        <label for="order">Order Id*</label>
+                    </div>
+                    <div class="mui-select  col-sm-6 col-xs-12">
+                        <select name="getcomplainttype" ng-model="getcomplainttype" id="order" required>
+                            <option value="">Select Complaint Type</option>
+                            <option value="1">Normal</option>
+                            <option value="2">Major</option>
+                        </select>
+                        <label for="complaint">Complaint Type*</label>
+                    </div>
+                    <div class="mui-textfield contactmessage  col-sm-6 col-xs-12">
+                        <textarea name="des" ng-model="des" rows="2" placeholder="Enter description" required></textarea>
+                        <label>Description*</label>
+                    </div>
+
+                    <div class="submit_2btn col-xs-6 text-center" ng-click="addticket('loginform')">
+                        <a href="javascript:void(0)" >Send</a>
+                    </div>
+                    <div class="submit_2btn col-xs-6 text-center" ng-click="cancel()">
+                        <a href="javascript:void(0)">Cancel</a>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--  END Banner SLIDER -->
+
+
+
+</div>

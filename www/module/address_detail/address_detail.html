@@ -1,63 +1,66 @@
+<style>
+
+    .addr_edit{
+        padding: 10px 17px;
+    width: 16%;
+    display: table-cell;    
+    }
+    .addr_edit > a{
+    background-color: #f8cb00;
+    padding: 6px 10px;
+    color: #fff;
+    }
+    span.name{
+        font-weight: bold;
+        font-size: 15px;
+    }
+</style>
 <div ng-controller="address_detail" ng-init="all_address()">
     <header class="container-fluid nav-down">
         <div class="row">
             <nav class="navbar navbar-inverse">
-                <div class="container-fluid no-padding">
-                    <ul class="nav navbar-nav top_header">
-                        <li class="menu_icon back_icon"><a href="javascript:void(0)"><img src="assets/img/header/back.png"
-                                    alt="menu icon" ng-click="toPaymentSummary()" /></a></li>
-                        <li class="logo_name"><a class="text-left back">Delivery Address</a></li>
-
-                    </ul>
-                </div>
+              <div class="container-fluid no-padding">
+                <ul class="nav navbar-nav top_header">
+                  <li class="menu_icon back_icon"><a href="javascript:void(0)"  ><img style="width:13px;" src="assets/img/icon/back.png" id="asdf" alt="menu icon" ng-click="back()"/></a></li>
+                  <li class="logo_name"><a class="text-left back">{{'Delivery_Address' | translate}}</a></li>
+                   <!-- <li class="cart_icon mr-5">                      
+                      <a href="javascript:void(0)"><img src="assets/img/location.png" alt="search icon"/></a>
+                  </li>  -->
+                </ul>
+              </div>
             </nav>
-
+        
         </div>
         <!-- MOBILE-MENU-AREA END -->
     </header>
-
-    <!-- END HEADER -->
-
-    <!-- Add Address-->
-    <div class="address mt-50" ng-if="alladdress">
-        <h3>Saved Address</h3>
-    </div>
-    <div class="saved_address pb-40" ng-repeat="x in alladdress" ng-if="alladdress">
-
-        <div class="delivery_add">
-            <h3>
-                <b  style="color:black;">{{x.title}}</b><br>
-                {{x.plot_no + ", " +x.locality}}<br />
-                {{x.landmark + " " + x.city}}<br />
-                {{x.state + " " + " " + x.pincode}}
-            </h3>
-            <a class="edit" ng-click="toEditAddress(x.ad_id)">Edit</a>
-            <a class="delete" style="margin-left:10px" ng-click="delete_address(x.ad_id)">Delete</a>
-        </div>
-        <!-- {{x.address_status}} -->
-        <div class="checked_add" ng-if="x.address_status !== 'invalid'">
-
-            <a href="javascript:void(0)">
-                <div class="select_add" ng-click="toDeliveryTime(x.ad_id)">
-                    <p>Select</p>
-                </div>
-
-            </a>
-        </div>
-        <div class="checked_add" ng-if="x.address_status == 'invalid'">
-
-            <a href="javascript:void(0)" style="color:red">
+    
+    <!-- END HEADER -->    
+         
+        <div class="" ng-if="address">
+            <div class="address mt-50">
+                <h3>{{'Saved_Address' | translate}}</h3>
+            </div>
+        </div>       
+            <div class="saved_address pb-20" ng-repeat="x in address" ng-if = "address">
+                 <div class="address_details pl-10 pr-10">
+                        <h3>
+                            <span class="name">{{fullName}}</span><br>
+                            {{x.landmark + " , " + x.address}}<br />
+                            {{x.CITY_NAME + " , " + " " + x.COUNTRY_NAME}}<br />
+                            {{x.zipcode}}<br />
+                            <span>Mobile : {{x.mobile_number}}</span>
+                        </h3>
+                 </div>
+                 <div class="addr_edit"><a class="edit" ng-click="toEditAddress(x.id)">{{'Edit' | translate }}</a></div>
+                 <div class="checked_add text-center">
+                    <a href="javascript:void(0)"><div class="select_add"  ng-click="paySummary(x.id)"><p>{{'Deliver_Here' | translate}}</p></div></a>
+                 </div>
+            </div>
+            <div   class="no_data_wrapper" ng-if = "!address">
                 <div>
-                    <p>This order cannot be Delivered here
-                    </p>
+                    <img src="img/no_data_found.png">
+                    <h3 class="text-center" >{{'No_Address_Found' | translate }} !!!</h3>
                 </div>
-
-            </a>
-        </div>
-
-    </div>
-    <div class="no_data" ng-if="!alladdress">
-        <h5>No Address Found!!</h5>
-    </div>
-    <div class="chng_add text-center mt-30"><a href="javascript:void(0)" ng-click="toAddAddress()">Add New Address</a></div>
+            </div>
+        <div class="chng_add text-center mt-30"><a href="javascript:void(0)" ng-click="toAddAddress()">{{'Add_New_Address' | translate}}</a></div>
 </div>

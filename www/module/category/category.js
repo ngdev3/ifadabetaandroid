@@ -15,6 +15,21 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
         $location.path('/subcategory');
     }
 
+    $scope.searchproducts = function(){
+
+        if($scope.searchProduct == undefined || $scope.searchProduct == ""){
+            model.show("Alert","Please Provide the Search Value");
+            return false;
+        }
+        
+        var search_key = {
+            'search' : $scope.searchProduct
+        }
+        $cookieStore.put('search',search_key);
+        $rootScope.searchProduct = $scope.searchProduct;
+        $rootScope.searchBar();
+    }
+
     $scope.category_data = function () {
 
         loading.active();
@@ -39,6 +54,7 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
           console.log(res.data.data);
           if(res.data.data.status == 'success'){
             $scope.category_data = res.data.data.category; 
+            $location.path('/category');
             // console.log($scope.category_data);
           }
 
@@ -136,13 +152,16 @@ var currentid;
         $location.path('/product/view')
     }
 
-    $scope.showProducts = function(id){
+    $scope.showProducts = function(id,url){
+        console.log(url)
         var subcategoryInfo = {
             'subcatid': id,
+            'url': url,
             'from':'category'
         }
+        
         $cookieStore.put('subcategoryInfo', subcategoryInfo);
-
+        //console.log( $cookieStore.get('subcategoryInfo').url);
         $location.path('/subcategory');
     }
 

@@ -9,11 +9,11 @@
 								 style="width: 13px;" /></a></li>
 						<li class="page_name left">
 							<a href="javascript:void(0)" class="text-left ">
-								<p>Wishlist</p>
+								<p>{{'Wishlist' | translate}}</p>
 							</a>
 						</li>
 						<li class="cart_icon">
-							<a href="./view_cart.php"><img src="assets/img/icon/cart_icon.png" alt="cart icon" />
+							<a href="javascript:void(0)"><img src="assets/img/icon/cart_icon.png" alt="cart icon" />
 								<!--<span class="badge">14</span>-->
 							</a>
 							<a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
@@ -21,10 +21,11 @@
 					</ul>
 					<ul class="nav navbar-nav bottom_header">
 						<li class="menu_search_container"><a href="javascript:void(0)">
-								<!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
-								<input type="text" class="menu_search" placeholder="Search products brands and more" />
-							</a></li>
-					</ul>
+						  <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
+						  <input type="text" class="menu_search" ng-model="searchProduct" name="searchProduct" placeholder="{{'Search_Products_Brands_and_More' | translate}}" required/>
+						  <button class="search_bar_span" ng-click="searchproducts()" ><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+					  </a></li>
+					  </ul>
 				</div>
 			</nav>
 
@@ -39,23 +40,23 @@
 			<div class="mt-10 mycart_itemslist">
 				<!-- ** Product Lists ** -->
 
-				<div class="no-padding item_lists_main deleted_item" ng-repeat="x in whitelist_data" >
+				<div class="no-padding item_lists_main deleted_item" ng-repeat="x in whitelist_data" ng-if="whitelist_data">
 					<div class="prodcut_main_container">
 						<div class="products_wrapper">
 							<div class="col-md-3 col-sm-3 col-xs-3 items_img_div">
-								<a href="product_detail.php"><img class="img-responsive sub_cat_product_img" src="assets/img/all_category/title_product.png"></a>
+								<a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="assets/img/all_category/title_product.png"></a>
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
 								<!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
-								<a href="product_detail.php">
+								<a href="javascript:void(0)">
 									<p class="sub_produt_name">{{x.MENU_NAME}}</p>
 								</a>
 								<p class="sub_product_qty">1 Kg</p>
-								<p class="sub_prcing">
+								<p class="sub_prcing"> 
 									<!-- <strike>AED 190</strike> -->
 									<span id="sub_rrp">AED {{x.PRICE}}</span></p>
 							</div>
-							<div class="wislist_sub wishlist-container cart_remove">
+							<div class="wislist_sub wishlist-container cart_remove" ng-click="removeWishlistItem(x.id)">
 								<i class="fa heart fa-trash delete_item"></i>
 							</div>
 							<div class="sub_add_product">
@@ -76,7 +77,11 @@
 					</div>
 				</div>
 				<!-- ** !. Product Lists ** -->
-
+				<div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="!whitelist_data">
+					<div class="">
+						<img src="img/no_data_found.png">
+						<h3 class="text-center">{{'No_Product_Found' | translate}}!!!</h3>
+				</div>
 			</div>
 		</div>
 	</div>

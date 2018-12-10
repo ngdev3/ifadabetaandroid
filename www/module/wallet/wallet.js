@@ -8,38 +8,39 @@ app.controller('wallet', function ($scope, $http, $location, $cookieStore, model
         return false;
     }
 
-    var GlobalUID = $cookieStore.get('userinfo').uid; //UID used for getting data from http request
-    $scope.usedata = $cookieStore.get('userinfo');
-    console.log($scope.usedata);
-
-    $scope.my_wallet_data = function () {
-        
+    $scope.my_wallet_data = function(){
         loading.active();
         var args = $.param({
-            'uid': GlobalUID,
+            user_id: $cookieStore.get('userinfo').uid,
+            page : '0'
+
         });
 
         $http({
             headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + 'itemcartapi/my_wallet_data',
-            data: args
+            url: app_url + '/cart/wallet_list',
+            data: args //forms user object
+
         }).then(function (response) {
-            //alert();
             loading.deactive();
             res = response;
-            console.log(res.data)
-            if (res.data.status == 'success') {
-                $scope.getdata = res.data;
-                
+            
+            //  alert("response from the server ");
+            if (res.data.responseStatus == 'success') {
+                $scope.wallet_amount = res.data.data.wallet_data.wallet_total_amount - res.data.data.wallet_data.wallet_used_amount;
+                $scope.wallet_transaction = res.data.data.wallet_transaction;
+                   console.log($scope.wallet_transaction)
             } else {
-                //  alert("Sorry..No Address Found!");
+                alert(res.data.responseStatus);
             }
-        })
+            // console.log(response);
 
+        }).finally(function () {
+            //loading.deactive();
+        })
     }
 
 
@@ -52,6 +53,10 @@ app.controller('wallet', function ($scope, $http, $location, $cookieStore, model
                 error_str += "Enter Amount, ";
             }
 
+            if ($scope[form].creditpay.$error.required !== undefined) { 
+                alert('Please Select Payment Method')
+            }
+            
             if (error_str !== '') {
                 error_str = " <span style='font-weight:700;'>Following fields must have valid information:</span></br>" + error_str;
                 model.show('Alert', error_str);
@@ -66,13 +71,13 @@ app.controller('wallet', function ($scope, $http, $location, $cookieStore, model
                 alert(error_str);
                 return false;
             }
-
+        
         if (error_str == '') {
             loading.active();
             var args = $.param({
-                uid: GlobalUID,
-                payment_mode: 'ccAvenue',
-                amount: $scope.amount,
+                user_id: $cookieStore.get('userinfo').uid,
+                language_code: sessionStorage.lang_code,
+                wallet_amount: $scope.amount,
 
             });
 
@@ -81,19 +86,22 @@ app.controller('wallet', function ($scope, $http, $location, $cookieStore, model
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: 'POST',
-                url: app_url + 'itemcartapi/makepayment',
+                url: app_url + '/cart/add_wallet',
                 data: args //forms user object
 
             }).then(function (response) {
                 loading.deactive();
                 res = response;
-                console.log(res)
+                //console.log(res)
                 //  alert("response from the server ");
-                if (res.data.status == 'fail') {
-                    alert(res.data.error_msg);
-                } else {
+                if (res.data.responseStatus == 'success') {
                     alert('Amount Successfully Added Into Wallet')
                     $scope.my_wallet_data();
+                    $scope.amount="";
+                    $scope.creditpay= "";
+                    
+                } else {
+                    alert(res.data.responseStatus);
                 }
                 // console.log(response);
 
@@ -103,5 +111,4 @@ app.controller('wallet', function ($scope, $http, $location, $cookieStore, model
         }
     }
     }
-
 });

@@ -51,7 +51,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
 
         var args = $.param({
             'user_id': $cookieStore.get("userinfo").uid,
-            'language_code' :sessionStorage.lang_code
+            'language_code' : 'en'
             // 'country_id' : sessionStorage.country
         });
 
@@ -62,7 +62,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
             method: 'POST',
             url: app_url + '/basic_info',
             data: args //forms user object
-
+ 
         }).then(function (response) {
             loading.deactive();
             res = response;
@@ -187,6 +187,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 country_id : $scope.select_country,
                 city_id : $scope.select_city,
                 language_code : sessionStorage.lang_code,
+                image : $scope.image,
             });
 
             
@@ -312,4 +313,39 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
             loading.deactive();
         })
     }
+
+    $scope.fileNameChanged = function() {
+        
+         navigator.camera.fileNameChanged(onSuccess, onFail, { quality: 75, targetWidth: 320,
+        targetHeight: 320, destinationType: 0 }); 
+        //destination type was a base64 encoding
+        function onSuccess(imageData) {
+            //preview image on img tag
+            $('#image-preview').attr('src', "data:image/jpeg;base64,"+imageData);
+            //setting scope.lastPhoto 
+            $scope.lastPhoto = dataURItoBlob("data:image/jpeg;base64,"+imageData);
+            console.log($scope.lastPhoto)
+        }
+        function onFail(message) {
+            alert('Failed because: ' + message);
+        }
+    } 
+    function dataURItoBlob(dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+     var byteString = atob(dataURI.split(',')[1]);
+     var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+    
+     var ab = new ArrayBuffer(byteString.length);
+     var ia = new Uint8Array(ab);
+     for (var i = 0; i < byteString.length; i++)
+     {
+        ia[i] = byteString.charCodeAt(i);
+     }
+    
+     var bb = new Blob([ab], { "type": mimeString });
+     return bb; 
+    }
+
+    /* var imagedata= formData.append('photo', $scope.lastPhoto, $scope.publish.name+'.jpg')
+    console.log(imagedata) */
 });

@@ -9,75 +9,10 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
         $location.path('/dashboard/home');
     }
 
-    $scope.singleDelete = function (weightID) {
-        loading.active();
-
-        var args = $.param({
-            'uid': $cookieStore.get('userinfo').uid,
-            'mid': uuid,
-            'weightid': weightID
-        });
-
-        $http({
-            headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: 'POST',
-            url: app_url + '/itemcartapi/deleteItem',
-            data: args
-
-        }).then(function (response) {
-            //alert();
-            loading.deactive();
-            res = response.data;
-            console.log(res);
-            if (res.status == 'deleted') {
-                alert('Product Deleted Successfully')
-                $rootScope.usercartvalue();
-            } else {
-                alert('Item Not Deleted ')
-            }
-        })
-
-    }
+   
 
 
-    $scope.paymentsummary = function () {
-        loading.active();
 
-        var args = $.param({
-            'uid': $cookieStore.get('userinfo').uid,
-            'mid': uuid,
-            'distance': $cookieStore.get('storeinfo').store_distance
-        });
-
-        $http({
-            headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: 'POST',
-            url: app_url + '/itemcartapi/usercheckout',
-            data: args
-
-        }).then(function (response) {
-            //alert();
-            loading.deactive();
-            res = response.data;
-            $rootScope.shippingCartData = response.data;
-
-            if (res.paymoney > res.minamount) {
-                $cookieStore.put('paymentStatus', 'true')
-                $location.path('/payment');
-            } else {
-                alert('Minimum Amount Should Greater Than Rs. ' + res.minamount)
-            }
-
-        })
-
-
-    }
 
     /**
      * Funtion: empty_cart from cart.html on ng-click
@@ -88,16 +23,17 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
 
 
     $scope.empty_cart = function () {
-        if ($rootScope.currentcartitems.length == 0) {
+    console.log($scope.cart_data)
+        if ($scope.cart_data.length == 0) {
             model.show('Info', 'You Have No Items In Your Shopping Cart.')
             return false;
         }
         loading.active();
 
         var args = $.param({
-            'uid': $cookieStore.get('userinfo').uid,
-            'mid': uuid,
-            'device_type': device_type
+            country_id: sessionStorage.country,
+            language_code: sessionStorage.lang_code ,   
+            user_id:$cookieStore.get("userinfo").uid,
         });
 
         $http({
@@ -106,15 +42,16 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/itemcartapi/clearCart',
+            url: app_url + '/cart/empty_cart',
             data: args
 
         }).then(function (response) {
             loading.deactive();
             res = response.data;
-
-            if (res.error == false) {
-                $route.reload()
+// console.log(res)
+            if (res.data.status == 'success') {
+                alert(res.responseMessage)
+               $rootScope.usercartvalue()
             } else {
                 alert('Error Occured')
             }
@@ -122,4 +59,58 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
         })
 
     }
+
+    $scope.deleteproduct = function (rowid) {
+        loading.active();
+
+        var args = $.param({
+            rowid: rowid,
+            language_code: sessionStorage.lang_code,
+            user_id: $cookieStore.get("userinfo").uid,
+            country_id: sessionStorage.country,
+        });
+
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/cart/removeItemCart',
+            data: args
+
+        }).then(function (response) {
+            //alert();
+            loading.deactive();
+            res = response.data;
+            console.log(res);
+            if(res.data.cart_count == 0){
+                $rootScope.usercartvalue();
+                alert('Product Deleted Successfully');
+            }
+           
+        })
+
+    }
+
+
+
+    $scope.address_delivery = function() {
+    
+        $location.path('/addressdetail');
+    }
+
+    // $scope.promocode = 'COP223229';
+    
+ //   $rootScope.promocode = $scope.promocode 
+
+    $scope.initpomo = function(){
+        if ($cookieStore.get('promocode')) {
+
+            $rootScope.promocode = $cookieStore.get("promocode").codename
+            $rootScope.apply_promo('apply');
+            //$location.path('/dashboard/home')
+        }
+    }
+    
 });

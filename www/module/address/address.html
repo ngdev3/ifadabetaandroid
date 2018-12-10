@@ -1,50 +1,61 @@
+<style>
+.name {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+</style>
 <div class="bg" ng-controller="address" ng-init="address_init()">
 
-        <header class="container-fluid nav-down">
-                <div class="row">
-                    <nav class="navbar navbar-inverse">
-                      <div class="container-fluid no-padding">
-                        <ul class="nav navbar-nav top_header">
-                          <li class="menu_icon back_icon"><a href="javascript:void(0)"  ><img ng-click="my_account()"src="assets/img/header/back.png" id="asdf" alt="menu icon" /></a></li>
-                          <li class="logo_name"><a class="text-left back">Address</a></li>
-                          <li class="cart_icon mr-5">
-                              
-                              <a href="javascript:void(0)"><img src="assets/img/add_address.png" alt="search icon" ng-click="toAddAddress()"/></a>
-                          </li>
-                        </ul>
-                      </div>
-                    </nav>
-                
-                </div>
-                <!-- MOBILE-MENU-AREA END -->
-        </header>
-            
+    <header class="container-fluid nav-down">
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+              <div class="container-fluid no-padding">
+                <ul class="nav navbar-nav top_header">
+                  <li class="menu_icon back_icon"><a href="javascript:void(0)"  ><img style="width:13px;" src="assets/img/icon/back.png" id="asdf" alt="menu icon" ng-click="back()"/></a></li>
+                  <li class="logo_name"><a class="text-left back">{{'My_Addresses' | translate }}</a></li>
+                  <li class="cart_icon mr-5">
+                      
+                      <a href="javascript:void(0)"><img src="assets/img/location.png" alt="search icon" ng-click="toAddAddress()"/></a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+        
+        </div>
+        <!-- MOBILE-MENU-AREA END -->
+    </header>
+    
     <!-- END HEADER -->    
-            
-    <div class="address mt-50"><h3>Saved Address</h3></div>
-    <div class="saved_address pb-40"  ng-repeat="x in address" ng-if = "address"> 
-            <div class="address_logo">
-                <img src="assets/img/address_logo.png">
+         
+        <div class="" ng-if="address">
+            <div class="address mt-50">
+                <h3>{{'Saved_Address' | translate }}</h3>
             </div>
-            <div class="address_details">
-                <!-- <h3>50, New Satguru Nanik Ind Est, 
-                    Western Express Highway, 
-                    Jaycoach, Goregaon( East),   
-                    Mumbai,  Maharashtra, 
-                    400063, India
-                </h3> -->
-                <h3>
-                        <b style="color:black;">{{x.title}}</b><br>
-                        {{x.plot_no + ", " +x.locality}}<br />
-                        {{x.landmark + " " + x.city}}<br />
-                        {{x.state + " " + " " + x.pincode}}
+        </div>
+        <div class="">
+            <div class="saved_address pt-20 pb-20" ng-repeat="x in address" ng-if = "address"> 
+                 <div class="address_logo">
+                     <img src="assets/img/address_logo.png">
+                 </div>
+                 <div class="address_details">
+                    <h3>
+                        <span class="name">{{fullName}}</span><br>
+                        <span class="name">Mobile : {{x.mobile_number}}</span><br />
+                        {{x.landmark + " , " + x.address}}<br />
+                        {{x.CITY_NAME + " , " + " " + x.COUNTRY_NAME}}<br />
+                        {{x.zipcode}}
                     </h3>
-                <a class="edit" ng-click="toEditAddress(x.ad_id)">Edit</a>
-                <a class="delete" ng-click="delete_address(x.ad_id)">Delete</a>
+                <a class="edit" ng-click="toEditAddress(x.id)">{{'Edit' | translate }}</a>
+                <a class="delete" ng-click="delete_address(x.id)">{{'Delete' | translate }}</a>
+                 </div>
             </div>
-    </div>
-    <div ng-if = "!address">
-        <h5>No Address Found!!</h5>
+        </div>
+    <div   class="no_data_wrapper" ng-if = "!address">
+        <div>
+            <img src="img/no_data_found.png">
+            <h3 class="text-center" >{{'No_Address_Found' | translate }} !!!</h3>
+        </div>
     </div>
 
 </div>

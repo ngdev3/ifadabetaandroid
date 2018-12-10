@@ -1,0 +1,99 @@
+<div ng-controller="rewards" ng-init="myrewards()">
+<header class="container-fluid nav-down">
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+              <div class="container no-padding">
+                <ul class="nav navbar-nav top_header">
+                  
+                    <li class="menu_icon back_icon"><a href="javascript:void(0)"  ><img style="width:13px;" ng-click="back()" src="assets/img/icon/back.png" alt="menu icon" /></a></li>
+                  <li class="logo_name"><a class="text-left back">{{'My_Rewards' | translate }}</a></li>
+                  
+                </ul>
+                
+              </div>
+            </nav>
+        
+        </div>
+        <!-- MOBILE-MENU-AREA END -->
+    </header>
+    <!-- END HEADER -->
+    <div class="">	
+        <div class="mt-70"> 
+             <div class="reward_code text-center">
+                 <p>{{'Referral_Code' | translate}}: 
+                     <span ng-if="redeemdata.referal_code != ''">{{redeemdata.referal_code}}</span>
+                     <span ng-if="redeemdata.referal_code == ''">---/---</span>
+                    </p>
+             </div>
+        </div>
+        
+        <div class="redeem_div">
+            <div class="redeem_main">
+                <h3 class="redeem_text">{{'Redeem_Your_Points' | translate}}</h3>
+                
+                <div class="redeem_point">
+                    <h3 style="color:#006d07; margin-top:10px;"><span ng-if="redeemdata.loyalty_point_data != ''">{{redeemdata.loyalty_point_data}}</span> 
+                        <span ng-if="redeemdata.loyalty_point_data == ''">0</span> {{'Points' | translate}}</h3>
+                </div>
+                <p>{{'Note' | translate}}: {{'To_redeem_minimum_point_should_be' | translate }} {{redeemdata.redeem_limit}}</p>
+            </div>
+        </div>
+        
+    
+        <div class="sign-up-button text-center" ng-if="redeemdata.loyalty_point_data >= redeemdata.redeem_limit">
+            <button ng-click="reddempoints()" class="" style="width:50%">
+                {{'Reedem_Points' | translate}}
+            </button>
+        </div>
+        <div class="sign-up-button text-center" ng-if=" redeemdata.redeem_limit > redeemdata.loyalty_point_data">
+                <button ng-click="lesspoints()" class="" style="width:50%; background-color:#ca8b8b ">
+                    {{'Not_Enough_Points' | translate}}
+                </button>
+            </div>
+        <div class="point_hist">
+            <p class="pt-15">{{'Your_Points_History' | translate}}</p>
+        </div>
+        <div class="redeem_table_div">
+            <table class="table redeem_table">
+                <thead class="">
+                    <tr>
+                        <td scope="col">{{'Date' | translate}}</td>
+                        <td scope="col">{{'Earn_By' | translate}}</td>
+                        <td scope="col">{{'Amount' | translate}}</td>
+                        <td scope="col">{{CR_DR}}</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in redeemhistory">
+                      <th style="text-align:center;font-weight:400;">{{x.updated_date.split(' ')[0]}}</th>
+                      <td>{{x.loyalty_by}}</td>
+                      <td>{{x.loyalty_point}}</td>
+                      <td>{{x.type}}</td>
+                    </tr>
+                    <!-- <tr>
+                      <th style="text-align:center;font-weight:400;">12/12/2018</th>
+                      <td>paytm</td>
+                      <td>200</td>
+                      <td>larry</td>
+                    </tr>
+                    <tr>
+                      <th style="text-align:center;font-weight:400;">12/12/2018</th>
+                      <td>paytm</td>
+                      <td>200</td>
+                      <td>larry</td>
+                    </tr> -->
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    <script>
+    
+        $('.digit1 input').keyup(function(){
+            if($(this).val().length==$(this).attr("maxlength")){
+                $(this).next().focus();
+            }
+        });
+    
+    </script>	

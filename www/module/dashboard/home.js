@@ -24,10 +24,16 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     }
 
     $scope.season_fetch =   function(){
-        loading.active();
+         loading.active();
+        if(!$cookieStore.get("userinfo")){
+            var userID = '';
+        }else{
+            var userID = $cookieStore.get("userinfo").uid;
+        }
 
         var args = $.param({
             country_id: sessionStorage.country,
+            user_id : userID
         });
         
         $http({
@@ -36,7 +42,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/get_pick_season_product',
+            url: app_url + '/home_page',
             data: args 
 
         }).then(function (response) {
@@ -47,6 +53,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
 
            if(res.data.data.status == 'success'){
                 $scope.best_picks_of_the_season = res.data.data.best_picks_of_the_season;
+                $scope.offer = res.data.data.offer;
                 $scope.product_of_the_day = res.data.data.product_of_the_day;
                 $scope.best_picks_of_the_featured_products = res.data.data.best_picks_of_the_featured_products;
                 $scope.dairy_product = res.data.data.dairy_product;
@@ -103,6 +110,36 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         });
 
     }
+
+    var i = 1;
+    var j = 3;
+    var first_length = 3;
+    var second_length = 5;
+    // $scope.offer[1].ad_big_image = 'assets/img/advert_1.png';
+    // $scope.offer[3].ad_big_image = 'assets/img/advert_1.png';
+    setInterval(function(){ 
+        
+
+        if(first_length > i){
+
+            $('#custom_slider').attr('src',$scope.offer[i].ad_big_image)
+            i++;
+        }else{
+            i = 0;
+        }
+
+        if(second_length > j){
+
+            $('#custom_second_slider').attr('src',$scope.offer[j].ad_big_image)
+            j++;
+        }else{
+            j = 3;
+        }
+
+    },3000);
+
+
+
     // return false;
     $scope.toLocationFetch = function () {
         $location.path('/store');
@@ -282,64 +319,21 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
           }
  */
 
-        
-        
-        $scope.searchBar = function () {
-            // alert("will work on it...soon");return;
-        // $scope.datanotfound = false;
-        // $rootScope.resultstatus = false;
-        $rootScope.searchresult = '';
-        // $scope.enableDiv = false;
-        
-       /*  if (($scope.search.length >= 1) && ($scope.search.length < 3)) {
-            $scope.resultstatus = true;
-            return false;
-        } else if ($scope.search.length == 0) {
-
-            $scope.resultstatus = false;
-            return false;
-        } */
-
-        // console.log($scope.search.length)
-        loading.active();
-
-        var args = $.param({
-            'country_id': sessionStorage.country,
-            'language_code': sessionStorage.lang_code,
-            'search_product': $scope.searchProduct
-        })
-        $http({
-            headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: 'POST',
-            url: app_url + '/product_list',
-            data: args
-
-        }).then(function (response) {
-
-            res = response;
-            console.log(res.data.data);
-            // return;
-
-            if (res.data.data.product.total_rows > 0) {
-                $rootScope.searchresult = res.data.data.product.products;
-                $location.path("/subcategory");
-            } else {
-                // alert()
-                // $scope.resultstatus = false;
-                $rootScope.searchresult = '';
-                $location.path("/subcategory");
-                // $scope.datanotfound = true;
-            }
-
-        }).finally(function () {
-            loading.deactive();
-        });
+    
+$scope.searchresults = function(){
+    // alert($scope.searchProduct);return;
+    if($scope.searchProduct == undefined || $scope.searchProduct == ""){
+        model.show("Alert","Please Provide the Search Value");
+        return false;
     }
 
-
+    var search_key = {
+        'search' : $scope.searchProduct
+    }
+    $cookieStore.put('search',search_key);
+    $rootScope.searchProduct = $scope.searchProduct;
+    $rootScope.searchBar();
+}
 
    /*  $scope.product_view = function (pid) {
         $cookieStore.put('productviewID', pid);
@@ -374,6 +368,12 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     $scope.switch_country = function(){
         $location.path('/switch_country');
     }
+    $scope.wallet = function(){
+        $location.path('/wallet');
+    }
+    $scope.rewards = function(){
+        $location.path('/rewards');
+    }
     $scope.language = function(){
         $location.path('/language');
     }
@@ -382,6 +382,9 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     }
     $scope.contact_us = function(){
         $location.path('/contactus');
+    }
+    $scope.my_address = function(){
+        $location.path('/address');
     }
     $scope.logout = function(){
         $cookieStore.remove('userinfo');
@@ -414,6 +417,54 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     $scope.toswitchCountry = function(){
         $location.path("/switch_country");
     }
+
+    $scope.addToWishlist = function(id){
+        // alert(id);
+        if(!$cookieStore.get("userinfo")){
+            alert("Please Login First");
+            return false;
+        }else{
+            var userID = $cookieStore.get("userinfo").uid;
+        }
+        loading.active();
+        var args = $.param({
+            'country_id': sessionStorage.country,
+            'menu_varient_id' : id,
+            'user_id' : userID
+        });
+
+        // alert(args);return;
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/add_wishlist',
+            data: args
+
+        }).then(function (response) {
+
+            res = response;
+            // console.log("wwwwwwwwwwwwwwwwwww");
+            // console.log(res.data.data);
+            // return;
+            if (res.data.data.add_wishlist == 'success') {
+                model.show("Alert","Added To Wishlist Successfully");
+            } else {
+                model.show("Alert","Something went wrong");
+            }
+        }).finally(function () {
+            loading.deactive();
+        });
+    }
+
+    $scope.taptowish = function(id, wishlist_status){
+        // alert(id+ " "+wishlist_status);return;
+        $rootScope.addToWishlist(id, wishlist_status);
+        $route.reload();
+  }
+
 });
 
 

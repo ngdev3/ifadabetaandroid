@@ -44,9 +44,25 @@ $scope.val_packs = function(){
         });
 }
 
-$scope.product_list = function(id){
+$scope.searchproducts = function(){
+
+    if($scope.searchProduct == undefined || $scope.searchProduct == ""){
+        model.show("Alert","Please Provide the Search Value");
+        return false;
+    }
+    
+    var search_key = {
+        'search' : $scope.searchProduct
+    }
+    $cookieStore.put('search',search_key);
+    $rootScope.searchProduct = $scope.searchProduct;
+    $rootScope.searchBar();
+}
+
+$scope.product_list = function(id,url){
 var packs = {
-    'subcatid': id
+    'subcatid': id,
+    'url' : url
 }
    $cookieStore.put('subcategoryInfo',packs);
    $location.path('/subcategory');

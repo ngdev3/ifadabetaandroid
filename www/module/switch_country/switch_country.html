@@ -7,7 +7,7 @@
 			  <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back()" alt="menu icon"style="width: 13px;" /></a></li>
 				<li class="page_name left">
 					<a href="javascript:void(0)" class="text-left ">
-						<p>Switch Country</p>
+						<p>{{ 'Switch_Country' | translate}}</p>
 					</a>
 				</li>
 			  
@@ -28,7 +28,7 @@
 				  <div class="col-xs-12">
 					<!--<div class="addr_heading">-->
 					<div class="">
-						<div class="sec_title"><p>Select Countrys</p></div>
+						<div class="sec_title"><p>{{ 'Select_Countries' | translate }}</p></div>
 						  <div class="radio mb-20 mt-10" ng-repeat="x in countries">
 							<input id="radio_{{x.id}}" name="country" ng-model="form.country" type="radio" value="{{x.id}}"  required>
 							<label class="radio-label" for="radio_{{x.id}}"><img src="assets/img/icon/flag_3.png" alt="" class="flag_img"/> <span>{{x.address}}</span></label>
@@ -45,7 +45,7 @@
 				  </div>
 				  
 				  <div class="submit-btn col-xs-12 text-center">
-					<a href="javascript:void(0);"><button style="background-color: #006d07;" class="btn" ng-click="country('cntry_form')">OK</button></a>
+					<a href="javascript:void(0);"><button style="background-color: #006d07;" class="btn" ng-click="country('cntry_form')">{{ 'OK' | translate }}</button></a>
 				  </div>
 					
 				</form>

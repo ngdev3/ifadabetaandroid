@@ -15,15 +15,11 @@ app.controller('address', function ($scope, $http, $location, $cookieStore, mode
     $scope.toAddAddress = function(){
         $location.path("/address/add");
     }
-
-    // function for back button on my account page created by sajal
-    $scope.my_account = function(){
-        $location.path("/myaccount/account");
-    }
+    
     
     /**
      * Created By Nitin Kumar
-     * Dated on 05/10/2018
+     * Dated on 03/12/2018
      * Start of Function
      * function name : address_init
      * work on initialization and get the address list
@@ -31,9 +27,11 @@ app.controller('address', function ($scope, $http, $location, $cookieStore, mode
     $scope.address_init = function () {
         loading.active();
 
-       /*  var args = $.param({
-            'uid' : $scope.user_id
-        }) */
+        var args = $.param({
+            'user_id' : GlobalUID,
+            // 'language_code' : 'en',
+            'country_id' : sessionStorage.country
+        })
         //Get the Address List from LocalAPI    
 
         $http({
@@ -41,24 +39,21 @@ app.controller('address', function ($scope, $http, $location, $cookieStore, mode
                 //'token': '40d3dfd36e217abcade403b73789d732',
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            method: 'GET',
-            url: app_url + 'itemcartapi/getAddress?uid=' +GlobalUID,
-            //data : args   
+            method: 'POST',
+            url: app_url + '/my_address',
+            data : args   
         }).then(function (response) {
             //alert();
             loading.deactive();
-            res = response;           
-        //   console.log(res);
-            if (res.data.address.length > 0) {
-
-                $scope.address = res.data.address;
-                res.data.address.map(function (x, key) {
-                    // console.log(x);
-                    $cookieStore.put(x.ad_id, x);
-                })
-            } else {
-                //alert("Sorry..No Data Found!");
+            res = response;
+            if(res.data.data.my_address.length > 0){
+                $scope.address = res.data.data.my_address; 
             }
+            // console.log($scope.address);return;
+            res.data.data.my_address.map(function (x, key) {
+                console.log(x);
+                $cookieStore.put(x.id, x);
+            })           
         })
     }
 
@@ -68,14 +63,15 @@ app.controller('address', function ($scope, $http, $location, $cookieStore, mode
 
     /**
      * created by Nitin
-     * created on 08/10/2018
+     * created on 03/12/2018
      * Function Name : edit_address
      * this function will show us the Edit Address Page
      */
 
-    $scope.toEditAddress = function (ad_id) {
-        $cookieStore.put('aid',ad_id);
-        $location.path("/address/edit/:id=" + ad_id);
+    $scope.toEditAddress = function (id) {
+        // alert(id);return;
+        $cookieStore.put('aid',id);
+        $location.path("/address/edit/:id=" + id);
         // console.log(ad_id);
     }
 
@@ -85,18 +81,20 @@ app.controller('address', function ($scope, $http, $location, $cookieStore, mode
 
     /**
      * created by Nitin
-     * created on 08/10/2018
+     * created on 03/12/2018
      * Function Name : delete_address
      * this function will delete the address according to the id
      */
 
-    $scope.delete_address = function (ad_id) {
+    $scope.delete_address = function (id) {
         
-        // alert(ad_id);
+        // alert(id);return;
 
         var args = $.param({
-            'uid': GlobalUID,
-            'aid': ad_id
+            'user_id': GlobalUID,
+            'address_id': id,
+            'language_code' : 'en',
+            'country_id' : sessionStorage.country
         });
         //var isConfirmed = confirm("Are you sure to delete this record ?");
 
@@ -112,12 +110,12 @@ app.controller('address', function ($scope, $http, $location, $cookieStore, mode
                             'Content-Type': 'application/x-www-form-urlencoded'
                         },
                         method: 'POST',
-                        url: app_url + 'itemcartapi/deleteAddress',
+                        url: app_url + '/delete_address',
                         data: args
                     }).then(function (response) {
                         loading.deactive();
                         // console.log(response);
-                        if (response.data.status == "success") {
+                        if (response.data.data.status == "success") {
                             alert("Address Successfully Deleted");
                             $route.reload();
                         } else {
@@ -135,4 +133,11 @@ app.controller('address', function ($scope, $http, $location, $cookieStore, mode
     }
     // End of Delete Address Function
 
+    if($cookieStore.get("FullName")){
+        $scope.fullName = $cookieStore.get("FullName").fullName;  
+    }else{  
+        if($cookieStore.get("userinfo")){
+            $scope.fullName = $cookieStore.get("userinfo").fullName;
+        }      
+    }
 });

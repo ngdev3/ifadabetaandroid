@@ -15,44 +15,13 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
      */
 
 
-     $scope.trackOrder = function(id,m_id){
-    
-        loading.active();
-
-        var args = $.param({
-            'order_id': id,
-            'm_order_id': m_id,
-            'language_code':sessionStorage.lang_code
-        });
-
-        $http({
-            headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: 'POST',
-            url: app_url + '/track_order',
-            data: args
-
-        }).then(function (response) {
-            res = response;
-            
-            if (res.data.responseStatus == 'success') {
-                
-                $scope.trackorder = res.data.data.order_status;
-                $scope.trackorder_location = res.data.data.order_location;
-                $location.path('/order/track_order');
-
-            } else {
-                //Throw error if not logged in
-                //model.show('Alert', res.data.responseMessage);
-                alert(res.data.responseStatus);
-            }
-
-        }).finally(function () {
-            loading.deactive();
-        });
-        
+     $scope.trackOrder = function(m_id,id){
+    var ids = {
+        'order_id' : id,
+        'm_id' : m_id
+    }
+       $cookieStore.put('orderids',ids);
+       $location.path('/order/track_order') 
          
      }
 
@@ -88,6 +57,9 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                     'address': res.data.data.delivery_address.address,
                     'mobile_number': res.data.data.delivery_address.mobile_number,
                     'payment_type': res.data.data.basic_info.payment_type,
+                    'landmark' :  res.data.data.delivery_address.landmark,
+                    'location' :  res.data.data.delivery_address.location,
+                    'zipcode'  : res.data.data.delivery_address.zipcode,
                     
                 }
                 $cookieStore.put('orderinfo', orderinfo);
@@ -231,7 +203,7 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
     }
 
     //End of Function
-    $scope.deleteOrder = function (no) {
+    $scope.deleteOrder = function (m_id,id) {
 
         $.confirm({
             title: 'Cancel Order!',
@@ -259,9 +231,11 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                         var name = this.$content.find('.name').val(); //to get the prompt value
 
                         var args = $.param({
-                            'uid': GlobalUID,
-                            'order_no': no,
-                            'reason': name
+                           
+                            'order_id': id,
+                            'manufacturer_distribution_id': m_id,
+                            'cancel_reason' : name,
+                            'user_id' : $cookieStore.get('userinfo').uid
                         });
 
                         //alert(name);return false; 
@@ -272,23 +246,22 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                                     'Content-Type': 'application/x-www-form-urlencoded'
                                 },
                                 method: 'POST',
-                                url: app_url + '/profileapi/cancelOrder',
+                                url: app_url + '/cancel_order',
                                 data: args
                             }).then(function (response) {
                                 loading.deactive();
-                                // console.log(response);
-                                // return false;
+                                 
                                 // $.alert('Confirmed!');
-                                if (response.data.status == "success") {
+                                if (response.data.responseStatus == "success") {
                                     alert("Order Successfully Cancelled");
-                                    $scope.ordersInit();
+                                    $scope.ordersDetalisInit();
                                 } else {
-                                    alert("Something went wrong.");
+                                    alert(response.data.responseMessage);
                                 }
                             })
                         } else {
-                            alert("Please Provide the Reason");
-                            $scope.ordersInit();
+                            alert("Please Provide a Reason");
+                            $scope.ordersDetalisInit();
                         }
                     }
                 },

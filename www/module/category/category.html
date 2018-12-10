@@ -10,7 +10,7 @@
 								 style="width: 13px;" /></a></li>
 						<li class="page_name left">
 							<a href="javacript:void(0)" class="text-left ">
-								<p>All Categories</p>
+								<p>{{'All_Categories' | translate}}</p>
 							</a>
 						</li>
 						<li class="cart_icon">
@@ -23,8 +23,9 @@
 					<ul class="nav navbar-nav bottom_header">
 						<li class="menu_search_container"><a href="javacript:void(0)">
 								<!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
-								<input type="text" class="menu_search" placeholder="Search products brands and more" />
-							</a></li>
+								<input type="text" class="menu_search" ng-model="searchProduct" name="searchProduct" placeholder="Search products brands and more" required/>
+							<button class="search_bar_span" ng-click="searchproducts()" ><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+						</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -68,7 +69,7 @@
 										<!-- == row 1 == -->
 										<div class="row" >
 											<a href="javascript:void(0)"  >
-												<div class="col-md-4 col-sm-4 col-xs-4 text-center all_cat_odd_bg mt-5" ng-repeat="y in x.sub" ng-click="showProducts(y.id)">
+												<div class="col-md-4 col-sm-4 col-xs-4 text-center all_cat_odd_bg mt-5" ng-repeat="y in x.sub" ng-click="showProducts(y.id,y.url)">
 													<img class="all_cat_product_img img-responsive" src="assets/img/all_category/p1.png">
 													<p class="all_cat_product_name">{{y.name}}</p>
 												</div>
