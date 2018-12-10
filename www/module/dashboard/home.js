@@ -11,8 +11,15 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     }
     
     $scope.product_view = function(id, manu_id){
-        $cookieStore.put('id',id);
-        $cookieStore.put('manu_id',id);
+
+        var productinfo = {
+            'id' : id,
+            //'url' : url
+        }
+        $cookieStore.put('productinfo', productinfo);
+
+      //  $cookieStore.put('id',id);
+        $cookieStore.put('manu_id',manu_id);
         $location.path('/product/view');
     }
     // if (!$cookieStore.get('storeinfo')) {
