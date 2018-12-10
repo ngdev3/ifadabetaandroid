@@ -98,7 +98,7 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
             // alert("Success");
             var reg1 = /^([a-zA-Z0-9- ]{6,})$/;
             var reg2 = /^[0-9]{6}$/;
-            var reg3 = /^[0-9]{10}$/;
+            var reg3 = /^[^0][0-9]{9}$/;
             var reg4 = /^([a-zA-Z- ])+$/;
         //     var reg5 = /^[a-zA-Z ]+$/;
         //    var reg2 = /^[A-za-z\d-]{2,10}$/;

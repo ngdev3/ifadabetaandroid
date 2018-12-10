@@ -29,16 +29,16 @@
                 <div class="order_container">
                     <div class="dlvry_container no-padding">
                         <div class="order_heading col-xs-12">
-                            <p>Order ID <span>{{detail.id}}</span></p>
+                            <p>{{'Order_ID' | translate}} <span>{{detail.id}}</span></p>
                         </div>
                         <div class="order_subcontainer" ng-repeat="y in detail_distribution">
                             <div class="order_subcontainer_heading col-xs-12">
-                                <p>Order ID &nbsp;<span>{{detail.id}}-{{y.id}} </span></p>
+                                <p>{{'Order_ID' | translate}} &nbsp;<span>{{detail.id}}-{{y.id}} </span></p>
                                 <p class="status_btn">Pending</p>
-                                <a href="" class="track_btn" ng-click="trackOrder(y.id,detail.id)">Track Order</a>
+                                <a href="" class="track_btn" ng-click="trackOrder(y.id,detail.id)">{{'Track_Order' | translate}}</a>
                             </div>
                             <div class="order_subcontainer_detail col-xs-12">
-                                <p><span>Order On: 12-7-2018</span><span>Order Amt: AED 220</span></p>
+                                <p><span>{{'Order_on' | translate}}: 12-7-2018</span><span>{{'Order_Amt' | translate}}: {{'AED' | translate}} 220</span></p>
                             </div>
                             <div class="order_subcontainer__content col-xs-12" ng-repeat="z in y.items">
                                 <div class="prod_row_wrapper" >
@@ -47,8 +47,8 @@
                                     </div>
                                     <div class="prod_content_wrapper">
                                         <p class="order_sub_name">{{z.MENU_NAME}}</p>
-                                        <p><span>Unit </span>{{z.UNIT_VALUE}}{{z.FS_UNIT_NAME}}</p>
-                                        <p><span>Price </span>AED {{z.final_amount}}</p>
+                                        <p><span>{{'Units' | translate}} </span>{{z.UNIT_VALUE}}{{z.FS_UNIT_NAME}}</p>
+                                        <p><span>{{'Price' | translate}} </span>{{'AED' | translate}} {{z.final_amount}}</p>
                                     </div>
                                 </div>
                                 <!-- <div class="prod_row_wrapper">
@@ -64,10 +64,10 @@
                                    
                             </div>
                             <div ng-if="y.ORDER_STATUS != '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
-                                <a href="javascript:void(0)" ng-click="deleteOrder(y.id,detail.id)">Cancel</a>
+                                <a href="javascript:void(0)" ng-click="deleteOrder(y.id,detail.id)">{{'Cancel' | translate}}</a>
                               </div>
                               <div ng-if="y.ORDER_STATUS == '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
-                                <a href="javascript:void(0)" style="background-color: #cd3b3b">Order Cancelled </a>
+                                <a href="javascript:void(0)" style="background-color: #cd3b3b">{{'Order_Cancelled' | translate}} </a>
                               </div>
                         </div>
                        
@@ -82,9 +82,9 @@
                                     <tr>
                                       <td width="100px;">{{'Payment' | translate}}</td>
                                       <td width="20px;">:</td>
-                                      <td ng-if="detail.payment_type == '1'">COD</td>
-                                      <td ng-if="detail.payment_type == '2'">Online</td>
-                                      <td ng-if="detail.payment_type == ''">Wallet</td>
+                                      <td ng-if="detail.payment_type == '1'">{{'COD' | translate}}</td>
+                                      <td ng-if="detail.payment_type == '2'">{{'Online' | translate}}</td>
+                                      <td ng-if="detail.payment_type == ''">{{'Wallet' | translate}}</td>
                                     </tr>
                                     <tr>
                                       <td>{{'Ordered_On' | translate}}</td>
@@ -112,8 +112,8 @@
                         </div>
                     </div>
                     <div class="view_prod">
-                        <p class="col-xs-6"><a href="view_cart.php">Total Amount</a></p>
-                        <p class="col-xs-6 text-right">AED {{detail.total_amount}}</p>
+                        <p class="col-xs-6"><a href="view_cart.php">{{'Total_Amount' | translate}}</a></p>
+                        <p class="col-xs-6 text-right">{{'AED' | translate}} {{detail.total_amount}}</p>
                     </div>
                     
                 </div>

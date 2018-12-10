@@ -57,12 +57,26 @@ app.controller('contactus', function ($scope, $http, $location, $cookieStore, mo
             var reg1 = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/;
             var reg2 = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/;
             var reg3 = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-
+            var reg4 = /^[a-zA-Z ]+$/;
 
             if (reg3.test($scope.email) == false) {
                 error_str = " Please enter proper Email-ID ";
                 // model.show('Alert', error_str);
                 alert(error_str);
+                return false;
+            }
+
+            if (reg4.test($scope.fname) == false) {
+                error_str = "First Name should contain Alphabets Only";
+                model.show('Alert', error_str);
+                // alert(error_str);
+                return false;
+            }
+
+            if (reg4.test($scope.lname) == false) {
+                error_str = "Last Name should contain Alphabets Only";
+                model.show('Alert', error_str);
+                // alert(error_str);
                 return false;
             }
 
@@ -93,7 +107,7 @@ app.controller('contactus', function ($scope, $http, $location, $cookieStore, mo
                 console.log("response from the server ")
                 console.log(response.data)
                 if (res.data.responseCode == 200) {
-                    alert(res.data.responseStatus);
+                    alert("Message Send Successfully");
                     $location.path('/dashboard/home');
                 } else {
                     alert(res.data.responseMessage.error_msg)
