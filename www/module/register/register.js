@@ -77,15 +77,16 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
 
 
             if($('#retailer').prop('checked') == true){
-                alert("checked");
-                return;
-              }else{
-                  
+                // alert();return;
+                $scope.retailer = ''
+            }else{
+                $scope.retailer = ''
               }
             
         }
 
         if (error_str == '') {
+
             loading.active();
             
             var args = $.param({
