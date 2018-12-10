@@ -1,6 +1,13 @@
 app.controller('view_product', function ($scope, $http, $location, $cookieStore, model, loading, $cordovaDialogs, $cordovaGeolocation, $rootScope) {
 
+  if(!$cookieStore.get('userinfo')){
 
+    var uid = '';
+    var user_type = '';
+  }else{
+    var uid = $cookieStore.get('userinfo').uid;
+    var user_type = $cookieStore.get('userinfo').user_type;
+  }
     $scope.cart = function(){
         $location.path('/cart');
     }
@@ -62,8 +69,8 @@ $scope.fetch_product_data = function () {
             'manufacture_id':  $cookieStore.put('manu_id'),
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code ,   
-            user_id:$cookieStore.get("userinfo").uid,
-            user_type:$cookieStore.get("userinfo").left_data.user_type,
+            user_id: uid,
+            user_type: user_type,
 
         });
 
