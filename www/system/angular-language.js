@@ -127,7 +127,17 @@ app.config(function ($translateProvider) {
      Discount_Price : 'Discount Price',
      Tax_Amount : 'Tax Amount',
      Proceed_To_Checkout : 'Proceed To Checkout',
-     AED : 'AED'
+     AED : 'AED',
+     Referral_Code : 'Referral_Code',
+     Reedem_Your_Points : 'Reedem Your Points',
+     Points : 'Points',
+     Note : 'Note',
+     To_reedem_minimum_point_should_be : 'To Reedem minimum point should be',
+     Reedem_Points : 'Reedem Points',
+     Not_Enough_Points : 'Not Enough Points',
+     Your_Points_History : 'YOUR POINTS HISTORY',
+     Date : 'Date',
+     
 
   });
 
@@ -266,7 +276,16 @@ app.config(function ($translateProvider) {
     Discount_Price : 'سعر الخصم',
     Tax_Amount : 'قيمة الضريبة',
     Proceed_To_Checkout : 'باشرالخروج من الفندق',
-    AED : 'درهم إماراتي'
+    AED : 'درهم إماراتي',
+    Referral_Code : 'كود الإحالة',
+    Redeem_Your_Points : 'Redeem النقاط الخاصة بك',
+    Points : 'نقاط',
+    Note : 'ملحوظة',
+    To_redeem_minimum_point_should_be : 'إلى Reedem يجب أن يكون الحد الأدنى للنقطة',
+    Reedem_Points : 'استبدال النقاط',
+    Not_Enough_Points : 'لا ما يكفي من النقاط',
+    Your_Points_History : 'تاريخ نقاطك',
+    Date : 'تاريخ'
 
   });
 });
