@@ -97,9 +97,10 @@ app.controller('address_edit', function ($scope, $http, $location, $cookieStore,
 
         if ($scope[form].$valid) { //if all field are filled then this will check pattern of input entered
             // alert("Success");
-            var reg1 = /^([a-zA-Z0-9 ]{6,})$/; 
+            var reg1 = /^([a-zA-Z0-9- ]{6,})$/; 
             var reg2 = /^[0-9]{6}$/;
             var reg3 = /^[0-9]{10}$/;
+            var reg4 = /^[a-zA-Z- ]+$/;
         //     var reg5 = /^[a-zA-Z ]+$/;
         //    var reg2 = /^[A-za-z\d-]{2,10}$/;
         //     var reg4 = /^[a-zA-Z ]{3,20}$/;

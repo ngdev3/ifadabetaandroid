@@ -45,7 +45,21 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
             var reg1 = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/;
             var reg2 = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/;
             var reg3 = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            var reg4 = /^[a-zA-Z ]+$/;
 
+            if (reg4.test($scope.fname) == false) {
+                error_str = "First Name should contain Alphabets Only";
+                model.show('Alert', error_str);
+                // alert(error_str);
+                return false;
+            }
+
+            if (reg4.test($scope.lname) == false) {
+                error_str = "Last Name should contain Alphabets Only";
+                model.show('Alert', error_str);
+                // alert(error_str);
+                return false;
+            }
 
             if (reg3.test($scope.email) == false) {
                 error_str = " Please enter proper Email-ID ";
@@ -64,6 +78,8 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
         }
 
         if (error_str == '') {
+            loading.active();
+            
             var args = $.param({
                 first_name: $scope.fname,
                 last_name: $scope.lname,
@@ -73,7 +89,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                 language_code: sessionStorage.lang_code,
                 referal_code: $scope.referal_code
             });
-            loading.active();
+            
             $http({
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
