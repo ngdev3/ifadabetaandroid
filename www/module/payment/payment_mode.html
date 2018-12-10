@@ -28,20 +28,20 @@
               <form class="" name="paymentoption" nonvalidate>
                 <div class="col-xs-12">
                 <!--<div class="addr_heading">-->
-                <div class="">
+                <div class="" ng-if="paybywallet !== '1'">
                     <div class="radio mb-20 mt-10">
-                    <input id="radio-1" ng-model="payby" name="payby" type="radio" value="COD" required>
+                    <input id="radio-1" ng-model="payby" name="payby" type="radio" value="1" required>
                     <label for="radio-1" class="radio-label">{{'Cash_On_Delivery' | translate}}</label>
                     </div>
                     <div class="radio mb-20">
-                    <input id="radio-2" ng-model="payby" name="payby" type="radio" value="Card" required>
+                    <input id="radio-2" ng-model="payby" name="payby" type="radio" value="2" required>
                     <label for="radio-2" class="radio-label">{{'Payment_Gateway' | translate}} <span>({{'Coming_Soon' | translate}})</span></label>
                     </div>
-                    <div class="radio mb-20">
-                        <input id="radio-3" ng-model="payby" name="payby" type="radio" value="Wallet" required>
-                        <label for="radio-3" class="radio-label">{{'Wallet' | translate}}</label>
-                        </div>
                   </div>
+                  <div class="radio mb-20">
+                    <input id="checkbox1" ng-model="iswalletused" name="iswalletused" type="checkbox" value="1" required ng-change="selectwallet()">
+                    <label for="checkbox1" class="radio-label">{{'Wallet' | translate}}<span>(Amount - {{wallet_amount}})</span></label>
+                    </div>
                 </div>
                 
                 <div class="submit-btn col-xs-12 text-center">

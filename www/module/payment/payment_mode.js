@@ -5,8 +5,30 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
         return false;
     }
 
-    $scope.payment = function(form){
+    // On ng-change of wallet checkbox for check that wallet have enough amount or not
+    $scope.selectwallet = function(){
+        if($('#checkbox1').prop('checked') == true){
+            
+            if($rootScope.wallet_amount >= $rootScope.finalTotal){
+                $scope.paybywallet = '1';
+                $scope.is_wallet_apply = '1';
+                
+            }else{
+                $scope.paybywallet = '';
+                $scope.is_wallet_apply = '1';
+               
+            }
+            alert('Pay by Wallet');
+            //return false; 
+        }else{
+            $scope.is_wallet_apply = '';
+        }
+       
+    }
 
+    $scope.payment = function(form){
+        console.log($scope.is_wallet_apply)
+        if($scope.is_wallet_apply != 1){
         if ($scope[form].$error) {
             var error_str = '';
                 if ($scope[form].payby.$error.required !== undefined) {
@@ -18,13 +40,19 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
                     return false;
                 }
         }
+    }
+        if($scope.payby == '2'){
+            alert('Online Payment');
+            return false;
+        }
         console.log($scope.payby)
         loading.active();
 
         var args = $.param({
             user_id : $cookieStore.get('userinfo').uid,
             country_id : sessionStorage.country,
-            payment_mod : 1,
+            payment_mod : $scope.payby,
+            is_wallet_apply : $scope.is_wallet_apply,
             address : $cookieStore.get('aid')
         });
         

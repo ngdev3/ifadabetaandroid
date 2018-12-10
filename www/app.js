@@ -583,6 +583,37 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
     $rootScope.activeCartValue = 0;
     $rootScope.usercartvalue = function () {
+
+        var args = $.param({
+            user_id: $cookieStore.get('userinfo').uid,
+            page : '0'
+
+        });
+
+        $http({
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/cart/wallet_list',
+            data: args //forms user object
+
+        }).then(function (response) {
+            loading.deactive();
+            res = response;
+            
+            //  alert("response from the server ");
+            if (res.data.responseStatus == 'success') {
+                $rootScope.wallet_amount = res.data.data.wallet_data.wallet_total_amount - res.data.data.wallet_data.wallet_used_amount;
+                $rootScope.wallet_transaction = res.data.data.wallet_transaction;
+                $rootScope.mycart();
+            } else {
+                alert(res.data.responseStatus);
+            }
+        })
+    }
+
+    $rootScope.mycart = function(){
         var args = $.param({
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code,
@@ -622,7 +653,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 $rootScope.cart_values = ''
             }
         })
-    }
+}
 
     $rootScope.apply_promo = function(type){
       console.log($rootScope.promocode)

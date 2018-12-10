@@ -42,7 +42,7 @@ app.controller('changepassword', function ($scope, $http, $location, $cookieStor
             }
             if ($scope[form].conf_pwd.$error.required !== undefined)
             {
-                error_str += "Confirm Password, ";
+                error_str += "Confirm New Password, ";
             }
             error_str = error_str.substr(0, error_str.lastIndexOf(', '));
 
