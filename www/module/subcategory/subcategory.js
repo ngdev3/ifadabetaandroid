@@ -214,6 +214,7 @@ if($cookieStore.get('userinfo')){
             
 
             if (res.data.data.status == 'success') {
+                console.log(res.data.data.view_all)
                 $scope.best_picks_of_the_season = res.data.data.view_all;
                 $rootScope.is_in_wishlist = res.data.data.view_all[0].menu_varient_data.is_in_wishlist;
                 $location.path('/subcategory');
