@@ -238,7 +238,8 @@ if($cookieStore.get('userinfo')){
 
 
     $scope.product_view = function (id,url) {
-        // alert(id);return;
+        // alert(url);
+        // return;
         
         var productinfo = {
             'id' : id,
