@@ -347,6 +347,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 $('#' + enableCartID).removeClass('hide').removeClass('ng-hide');
                 $('#' + quantityID).val('1');
                 $('#enableCart_' + varient_id).attr('data-rowid',response.data.data.add_cart.menu_row_id);
+                
 
 
             } else if (response.data.data.add_cart.allow_to_add_in_cart == 'no') {
@@ -399,7 +400,9 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
         }).then(function (response) {
             console.log(response.data.data)
-            // console.log(response.data.s_price)
+            console.log('********'+varient_id)
+            $('#enableCart_' + varient_id).attr('data-rowid',response.data.data.menu_row_id);
+
             if (response.data.data.allow_to_add_in_cart == 'no') {
                 // alert()
                 console.log('#outofstock_' + menu_id);
@@ -409,10 +412,12 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             } else if (response.data.data.is_in_cart == 'yes') {
 
                // $('#enableCart_' + varient_id).addClass('ng-hide')
-               
+               $('#enableCart_' + varient_id).attr('data-rowid',response.data.data.menu_row_id);
+                $('#enableCart_' + varient_id).val(response.data.data.qnty);
                 $('#quantity_' + varient_id).val(response.data.data.qnty);
                 $('#outofstock_' + varient_id).addClass('ng-hide')
                 $('#addToCart_' + varient_id).addClass('ng-hide')
+                $('#enableCart_' + varient_id).removeClass('ng-hide').show()
 
                console.log('**********************************')
                console.log(menu_id)
