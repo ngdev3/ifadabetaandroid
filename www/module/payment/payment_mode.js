@@ -21,6 +21,7 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
             alert('Pay by Wallet');
             //return false; 
         }else{
+            $scope.paybywallet = '';
             $scope.is_wallet_apply = '';
         }
        
