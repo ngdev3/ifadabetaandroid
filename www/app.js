@@ -158,7 +158,7 @@ app.config(function ($routeProvider, $httpProvider) {
             templateUrl: "module/ticket/add/add_ticket.html"
 
         })
-        
+
 
 });
 
@@ -226,20 +226,20 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         });
     }
 
-    
+
     $rootScope.sort = '';
     $rootScope.searchBar = function () {
 
-  
+
         $rootScope.searchresult = '';
-        
+
         loading.active();
-        
+
         var args = $.param({
             'country_id': sessionStorage.country,
             'language_code': sessionStorage.lang_code,
             'search_product': $rootScope.searchProduct,
-            'sort_by' : $rootScope.sort
+            'sort_by': $rootScope.sort
         })
         $http({
             headers: {
@@ -249,11 +249,11 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             method: 'POST',
             url: app_url + '/product_list',
             data: args
-        
+
         }).then(function (response) {
-        
+
             res = response;
-            
+
             if (res.data.data.category_product.total_rows > 0) {
                 $rootScope.searchresult = res.data.data.category_product.products;
                 $rootScope.search_product = res.data.data.category_product;
@@ -266,42 +266,42 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 $location.path("/product/list");
                 // $scope.datanotfound = true;
             }
-    
+
         }).finally(function () {
             loading.deactive();
         });
     }
- /*    $rootScope.currentval = 0;
-
-    $rootScope.getProductList = function () {
-        loading.active()
-        $rootScope.productlist = '';
-        $http({
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: 'GET',
-            url: app_url + 'productapi?catid=' + $cookieStore.get('categoryInfo').productListID + '&uid=' + $cookieStore.get('userinfo').uid + '&store_id=' + $cookieStore.get('storeinfo').store_id + '&mid=' + uuid,
-        }).then(function (response) {
-            res = response;
-            console.log(response.data);
-            if (res.status == '200') {
-                if (res.data.data.length > 0) {
-                    $rootScope.productlist = res.data.data;
-                    $rootScope.get_brands_with_product_count = res.data.get_brands_with_product_count;
-                    $rootScope.get_category_with_product_count = res.data.get_category_with_product_count;
-                } else {
-                    $rootScope.productlist = '';
-                }
-            } else {
-                //Throw error if not logged in
-                model.show('Alert', res.data.responseMessage);
-                $location.path('/register');
-            }
-        }).finally(function () {
-            loading.deactive();
-        })
-    } */
+    /*    $rootScope.currentval = 0;
+   
+       $rootScope.getProductList = function () {
+           loading.active()
+           $rootScope.productlist = '';
+           $http({
+               headers: {
+                   'Content-Type': 'application/x-www-form-urlencoded'
+               },
+               method: 'GET',
+               url: app_url + 'productapi?catid=' + $cookieStore.get('categoryInfo').productListID + '&uid=' + $cookieStore.get('userinfo').uid + '&store_id=' + $cookieStore.get('storeinfo').store_id + '&mid=' + uuid,
+           }).then(function (response) {
+               res = response;
+               console.log(response.data);
+               if (res.status == '200') {
+                   if (res.data.data.length > 0) {
+                       $rootScope.productlist = res.data.data;
+                       $rootScope.get_brands_with_product_count = res.data.get_brands_with_product_count;
+                       $rootScope.get_category_with_product_count = res.data.get_category_with_product_count;
+                   } else {
+                       $rootScope.productlist = '';
+                   }
+               } else {
+                   //Throw error if not logged in
+                   model.show('Alert', res.data.responseMessage);
+                   $location.path('/register');
+               }
+           }).finally(function () {
+               loading.deactive();
+           })
+       } */
 
 
 
@@ -309,6 +309,12 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
         console.log(weightid.target.dataset);
         // return;
+
+        if (!$cookieStore.get('userinfo')) {
+            alert('Please Login First !')
+            return
+            //$location.path('')
+        }
         varient_id = weightid.target.dataset.weightid;
         manufacture_id = weightid.target.dataset.user_id;
         //menu_id = weightid.target.dataset.weightid;
@@ -346,8 +352,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 $('#' + addToCartID).hide();
                 $('#' + enableCartID).removeClass('hide').removeClass('ng-hide');
                 $('#' + quantityID).val('1');
-                $('#enableCart_' + varient_id).attr('data-rowid',response.data.data.add_cart.menu_row_id);
-                
+                $('#enableCart_' + varient_id).attr('data-rowid', response.data.data.add_cart.menu_row_id);
+
 
 
             } else if (response.data.data.add_cart.allow_to_add_in_cart == 'no') {
@@ -362,9 +368,16 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     // $rootScope.usercartvalue();
 
     $rootScope.varientCheck = function (weightid, menu_id, price, unit, manufacture_id, varient_id) {
+
+        
+        if (!$cookieStore.get('userinfo')) {
+            alert('Please Login First !')
+            return
+            //$location.path('')
+        }
         
         $('#firstt_' + menu_id).find('.add_item_button').attr('id', 'enableCart_' + varient_id);
-        $('#firstt_' + menu_id).find('.add_item_button').find('.add_item').attr('id', 'plus_' + varient_id).attr('data-weightid',varient_id);
+        $('#firstt_' + menu_id).find('.add_item_button').find('.add_item').attr('id', 'plus_' + varient_id).attr('data-weightid', varient_id);
         $('#firstt_' + menu_id).find('.add_item_button').find('input[type="text"]').attr('id', 'quantity_' + varient_id);;
         $('#firstt_' + menu_id).find('.less_item').attr('data-weightid', varient_id).attr('id', 'minus_' + varient_id);
         $('#firstt_' + menu_id).find('.add_cart_button').attr('id', 'addToCart_' + varient_id);
@@ -372,7 +385,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         $('#firstt_' + menu_id).find('.div_in_stock').find('.out_of_stock').attr('data-weightid', varient_id).attr('id', 'addCart_' + varient_id);
         $('#firstt_' + menu_id).find('.add_cart_button').find('.addcart_button').attr('data-weightid', varient_id).attr('id', 'addCart_' + varient_id);
         $('#firstt_' + menu_id).attr('data-attr', varient_id);
-        
+
         $('.unfill').attr('id', 'heart_' + varient_id);
         $('.fill').attr('id', 'heart_fill_' + varient_id);
 
@@ -400,8 +413,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
         }).then(function (response) {
             console.log(response.data.data)
-            console.log('********'+varient_id)
-            $('#enableCart_' + varient_id).attr('data-rowid',response.data.data.menu_row_id);
+            console.log('********' + varient_id)
+            $('#enableCart_' + varient_id).attr('data-rowid', response.data.data.menu_row_id);
 
             if (response.data.data.allow_to_add_in_cart == 'no') {
                 // alert()
@@ -411,31 +424,31 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
             } else if (response.data.data.is_in_cart == 'yes') {
 
-               // $('#enableCart_' + varient_id).addClass('ng-hide')
-               $('#enableCart_' + varient_id).attr('data-rowid',response.data.data.menu_row_id);
+                // $('#enableCart_' + varient_id).addClass('ng-hide')
+                $('#enableCart_' + varient_id).attr('data-rowid', response.data.data.menu_row_id);
                 $('#enableCart_' + varient_id).val(response.data.data.qnty);
                 $('#quantity_' + varient_id).val(response.data.data.qnty);
                 $('#outofstock_' + varient_id).addClass('ng-hide')
                 $('#addToCart_' + varient_id).addClass('ng-hide')
                 $('#enableCart_' + varient_id).removeClass('ng-hide').show()
 
-               console.log('**********************************')
-               console.log(menu_id)
-               console.log(varient_id)
+                console.log('**********************************')
+                console.log(menu_id)
+                console.log(varient_id)
 
             } else if (response.data.data.is_in_wishlist == 'yes') {
                 //heart icon
                 $('#heart_' + varient_id).addClass('ng-hide')
                 $('#heart_fill_' + varient_id).removeClass('ng-hide')
 
-            } else if (response.data.data.allow_to_add_in_cart == 'yes'){
+            } else if (response.data.data.allow_to_add_in_cart == 'yes') {
 
                 // alert('d')
                 $('#enableCart_' + varient_id).addClass('ng-hide')
                 $('#outofstock_' + varient_id).addClass('ng-hide')
                 $('#addToCart_' + varient_id).removeClass('ng-hide').show()
 
-            }else {
+            } else {
                 alert()
 
                 // $('#outofstock_' + menu_id).addClass('ng-hide')
@@ -507,12 +520,12 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     $rootScope.minusToCart = function (weightid) {
         // console.log(weightid.target.dataset);
         weightid = weightid.target.dataset.weightid;
-        console.log("------"+weightid)
+        console.log("------" + weightid)
         rowid = $('#enableCart_' + weightid).attr('data-rowid');
         addToCartID = 'addToCart_' + weightid;
         enableCartID = 'enableCart_' + weightid;
         quantityID = 'quantity_' + weightid;
-        console.log("******"+rowid);
+        console.log("******" + rowid);
         $rootScope.currentval = $('#' + quantityID).val();
         $rootScope.currentval--
 
@@ -537,17 +550,17 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         }).then(function (response) {
             console.log(response.data.data.isEmpty)
             if (response.data.data.isEmpty == 0) {
-               // $rootScope.usercartvalue();
+                // $rootScope.usercartvalue();
                 $('#' + addToCartID).removeClass('ng-hide').show();
                 $('#' + enableCartID).addClass('ng-hide');
                 $('#' + quantityID).val('1');
-            } else if ($rootScope.currentval == 0 && response.data.data.status == 'success'){
+            } else if ($rootScope.currentval == 0 && response.data.data.status == 'success') {
                 $('#' + addToCartID).removeClass('ng-hide').show();
                 $('#' + enableCartID).addClass('ng-hide');
                 $('#' + quantityID).val('1');
-            }else {
+            } else {
                 $('#' + quantityID).val($rootScope.currentval)
-              //  $rootScope.usercartvalue();
+                //  $rootScope.usercartvalue();
             }
             $rootScope.usercartvalue();
 
@@ -592,9 +605,16 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     $rootScope.activeCartValue = 0;
     $rootScope.usercartvalue = function () {
 
+        
+        if (!$cookieStore.get('userinfo')) {
+           // alert('Please Login First !')
+            return
+            //$location.path('')
+        }
+
         var args = $.param({
             user_id: $cookieStore.get('userinfo').uid,
-            page : '0'
+            page: '0'
 
         });
 
@@ -609,7 +629,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         }).then(function (response) {
             loading.deactive();
             res = response;
-            
+
             //  alert("response from the server ");
             if (res.data.responseStatus == 'success') {
                 $rootScope.wallet_amount = res.data.data.wallet_data.wallet_total_amount - res.data.data.wallet_data.wallet_used_amount;
@@ -621,7 +641,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         })
     }
 
-    $rootScope.mycart = function(){
+    $rootScope.mycart = function () {
         var args = $.param({
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code,
@@ -644,33 +664,33 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             loading.deactive();
             res = response.data.data.cart_data;
             console.log(response.data.data.subtotalafterdiscount)
-            $rootScope.cart_count  = response.data.data.cart_item_count
+            $rootScope.cart_count = response.data.data.cart_item_count
             if (response.data.responseCode !== '400') {
 
                 $rootScope.cart_data = res;
                 $rootScope.cart_values = response.data.data;
-                if(!$cookieStore.get("promocode")){
+                if (!$cookieStore.get("promocode")) {
                     $rootScope.subtotalafterdiscount = response.data.data.subtotalafterdiscount;
                     $rootScope.tax_amount = response.data.data.tax_amount;
                     $rootScope.finalTotal = response.data.data.finalTotal;
                     $rootScope.is_coupon_applied = response.data.data.is_coupon_applied;
-                   // return
+                    // return
                 }
                 var cartdata = {
-                    'from' : 'cart'
+                    'from': 'cart'
                 }
-                $cookieStore.put('cart',cartdata);
+                $cookieStore.put('cart', cartdata);
             } else {
                 $rootScope.cart_data = '';
                 $rootScope.cart_values = ''
             }
         })
-}
+    }
 
-    $rootScope.apply_promo = function(type){
-      console.log($rootScope.promocode)
-        if(type == 'remove'){
-            $('#inputpromo').removeAttr('disabled','disabled');
+    $rootScope.apply_promo = function (type) {
+        console.log($rootScope.promocode)
+        if (type == 'remove') {
+            $('#inputpromo').removeAttr('disabled', 'disabled');
             $('#apply').removeClass('ng-hide')
             $('#applied').addClass('ng-hide')
             $cookieStore.remove("promocode")
@@ -678,37 +698,37 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             return;
         };
 
-        if(type == 'add'){
+        if (type == 'add') {
 
-            if(!$cookieStore.get("promocode")){
+            if (!$cookieStore.get("promocode")) {
 
                 return
             }
         }
-     
-            //  alert("Error");
-            var error_str = '';
-            if ($rootScope.promocode == '' || $rootScope.promocode == undefined ) {
-                error_str += "Promo Code";
-            }
-           
-            if (error_str !== '') {
-                error_str = "<span style='font-weight:700;'> Following field must have valid information:</span><br/>" + error_str;
-               alert(error_str);
-               return
-                // model.show('Alert', error_str);
-            }
-      
-        if ($rootScope.promocode != '' ||$rootScope.promocode != undefined ) {
+
+        //  alert("Error");
+        var error_str = '';
+        if ($rootScope.promocode == '' || $rootScope.promocode == undefined) {
+            error_str += "Promo Code";
+        }
+
+        if (error_str !== '') {
+            error_str = "<span style='font-weight:700;'> Following field must have valid information:</span><br/>" + error_str;
+            alert(error_str);
+            return
+            // model.show('Alert', error_str);
+        }
+
+        if ($rootScope.promocode != '' || $rootScope.promocode != undefined) {
             loading.active();
 
             var args = $.param({
-                
+
                 promo_code: $rootScope.promocode,
                 country_id: sessionStorage.country,
                 user_id: $cookieStore.get("userinfo").uid,
                 language_code: sessionStorage.lang_code,
-                user_type:$cookieStore.get("userinfo").left_data.user_type,
+                user_type: $cookieStore.get("userinfo").left_data.user_type,
 
             });
 
@@ -723,23 +743,23 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             }).then(function (response) {
                 res = response;
                 console.log(res.data.data.status);
-                if(res.data.data.status != 'error'){
+                if (res.data.data.status != 'error') {
 
                     console.log(response.data.data.subTotalAfterDiscount);
                     $rootScope.subtotalafterdiscount = response.data.data.subTotalAfterDiscount;
                     $rootScope.tax_amount = response.data.data.vat;
                     $rootScope.finalTotal = response.data.data.finalTotal;
-                    
-                    var promocode = {
-                        codename:$rootScope.promocode
-                    }
-                    $cookieStore.put("promocode",promocode);
 
-                    $('#inputpromo').attr('disabled','disabled');
+                    var promocode = {
+                        codename: $rootScope.promocode
+                    }
+                    $cookieStore.put("promocode", promocode);
+
+                    $('#inputpromo').attr('disabled', 'disabled');
                     $('#apply').addClass('ng-hide')
                     $('#applied').removeClass('ng-hide').show();
-                }else{
-                    model.show('Alert','Promo Code Invalid')
+                } else {
+                    model.show('Alert', 'Promo Code Invalid')
                 }
             }).finally(function () {
                 loading.deactive();
@@ -754,7 +774,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         currentUrl = currentUrl.split('/')[1];
         console.log(currentUrl)
         // $rootScope.ChangeRoute = currentUrl.split('/')[1];
-        if (currentUrl !== "cart" && currentUrl !== "addressdetail" && currentUrl !== "payment"  && currentUrl !== "payment/mode" ) {
+        if (currentUrl !== "cart" && currentUrl !== "addressdetail" && currentUrl !== "payment" && currentUrl !== "payment/mode") {
             $rootScope.promocode = '';
             $cookieStore.remove("promocode")
             //$rootScope.usercartvalue()
@@ -972,80 +992,80 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
     }
 
 
-    $rootScope.addToWishlist = function(id, wishlist_status){     
+    $rootScope.addToWishlist = function (id, wishlist_status) {
         // alert(id);return;
         // console.log("aaaaaaaaaaaaa----");
         // console.log($rootScope.is_in_wishlist);
         // return;
-            if(!$cookieStore.get("userinfo")){
-                alert("Please Login First");
-                return false;
-            }else{
-                var userID = $cookieStore.get("userinfo").uid;
-            }
-            
-          //  loading.active();
-            if(wishlist_status == 1){
-                var args = $.param({
-                    'country_id': sessionStorage.country,
-                    'menu_varient_id' : id,
-                    'user_id' : userID,
-                    'is_for' : 'delete'
-                });
-            }else{
-                var args = $.param({
-                    'country_id': sessionStorage.country,
-                    'menu_varient_id' : id,
-                    'user_id' : userID,
-                    'is_for' : 'add'
-                });
-            }
-            
-    
-            // alert(args);return;
-            $http({
-                headers: {
-                    //'token': '40d3dfd36e217abcade403b73789d732',
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                method: 'POST',
-                url: app_url + '/add_wishlist',
-                data: args
-    
-            }).then(function (response) {
-    
-                res = response;
-                console.log("wwwwwwwwwwwwwwwwwww");
-                console.log(res.data.data);
-                // return;
-                if(wishlist_status == 1){
-                    if (res.data.data.status == 'success') { 
-                        $('#filler_'+id).addClass('ng-hide')
-                        $('#blank_'+id).removeClass('ng-hide')
-                        // $("#unclicked"+id).removeClass("fa-heart-o").addClass("fa-heart fill");         
-                      //  model.show("Alert","Removed From Wishlist Successfully");
-                        //$rootScope.is_in_wishlist = 0;
-                       // $route.reload();
-                    } else {
-                        model.show("Alert","Something went wrong");
-                    }
-                }else{
-                    if (res.data.data.status == 'success') {  
-                        $('#blank_'+id).addClass('ng-hide')
-                        $('#filler_'+id).removeClass('ng-hide')
-                        // $("#unclicked"+id).removeClass("fa-heart-o").addClass("fa-heart fill");         
-                     //   model.show("Alert","Added To Wishlist Successfully");
-                       // $rootScope.is_in_wishlist = 1;
-//$route.reload();
-                    } else {
-                        model.show("Alert","Something went wrong");
-                    }
-                }
-                
-            }).finally(function () {
-                loading.deactive();
+        if (!$cookieStore.get("userinfo")) {
+            alert("Please Login First");
+            return false;
+        } else {
+            var userID = $cookieStore.get("userinfo").uid;
+        }
+
+        //  loading.active();
+        if (wishlist_status == 1) {
+            var args = $.param({
+                'country_id': sessionStorage.country,
+                'menu_varient_id': id,
+                'user_id': userID,
+                'is_for': 'delete'
+            });
+        } else {
+            var args = $.param({
+                'country_id': sessionStorage.country,
+                'menu_varient_id': id,
+                'user_id': userID,
+                'is_for': 'add'
             });
         }
+
+
+        // alert(args);return;
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/add_wishlist',
+            data: args
+
+        }).then(function (response) {
+
+            res = response;
+            console.log("wwwwwwwwwwwwwwwwwww");
+            console.log(res.data.data);
+            // return;
+            if (wishlist_status == 1) {
+                if (res.data.data.status == 'success') {
+                    $('#filler_' + id).addClass('ng-hide')
+                    $('#blank_' + id).removeClass('ng-hide')
+                    // $("#unclicked"+id).removeClass("fa-heart-o").addClass("fa-heart fill");         
+                    //  model.show("Alert","Removed From Wishlist Successfully");
+                    //$rootScope.is_in_wishlist = 0;
+                    // $route.reload();
+                } else {
+                    model.show("Alert", "Something went wrong");
+                }
+            } else {
+                if (res.data.data.status == 'success') {
+                    $('#blank_' + id).addClass('ng-hide')
+                    $('#filler_' + id).removeClass('ng-hide')
+                    // $("#unclicked"+id).removeClass("fa-heart-o").addClass("fa-heart fill");         
+                    //   model.show("Alert","Added To Wishlist Successfully");
+                    // $rootScope.is_in_wishlist = 1;
+                    //$route.reload();
+                } else {
+                    model.show("Alert", "Something went wrong");
+                }
+            }
+
+        }).finally(function () {
+            loading.deactive();
+        });
+    }
 
     $rootScope.BackgroundColor();
 
