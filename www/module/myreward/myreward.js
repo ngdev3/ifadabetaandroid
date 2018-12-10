@@ -9,7 +9,7 @@ $scope.myrewards = function(){
     loading.active();
         var args = $.param({
             user_id: $cookieStore.get('userinfo').uid,
-            
+            user_type: $cookieStore.get('userinfo').user_type
         });
 
         $http({

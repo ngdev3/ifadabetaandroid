@@ -40,16 +40,12 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
         }).then(function (response) {
 
             res = response;
-           console.log(res);
-           return;
            if(res.data.data.status == 'success'){
-               console.log(res.data.data.value_pack)
-               $scope.valpacks =  res.data.data.value_pack;
-            return;
-               $location.path('/dashboard/home');
+               console.log(res);
                $location.path('/thankyou');
            }else{
-
+               alert("Some Problem in Payment Check Your Cart Again");
+                $location.path('/cart');
            }
 
         }).finally(function () {
