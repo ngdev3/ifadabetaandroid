@@ -307,6 +307,15 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
     $rootScope.addToCart = function (weightid) {
 
+        if(!$cookieStore.get('userinfo')){
+
+            var uid = '';
+            var user_type = '';
+          }else{
+            var uid = $cookieStore.get('userinfo').uid;
+            var user_type = $cookieStore.get('userinfo').user_type;
+          }
+
         console.log(weightid.target.dataset);
         // return;
         varient_id = weightid.target.dataset.weightid;
@@ -321,8 +330,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
 
         var args = $.param({
-            user_type: $cookieStore.get("userinfo").left_data.user_type,
-            user_id: $cookieStore.get("userinfo").uid,
+            user_type: user_type,
+            user_id: uid,
             country_id: sessionStorage.country,
             manufacture_id: manufacture_id,
             menu_id: menu_id,
@@ -586,9 +595,17 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
     $rootScope.activeCartValue = 0;
     $rootScope.usercartvalue = function () {
+        if(!$cookieStore.get('userinfo')){
+
+            var uid = '';
+           
+          }else{
+            var uid = $cookieStore.get('userinfo').uid;
+            
+          }
 
         var args = $.param({
-            user_id: $cookieStore.get('userinfo').uid,
+            user_id: uid,
             page : '0'
 
         });
@@ -617,10 +634,19 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     }
 
     $rootScope.mycart = function(){
+        if(!$cookieStore.get('userinfo')){
+
+            var uid = '';
+            
+          }else{
+            var uid = $cookieStore.get('userinfo').uid;
+            
+          }
+
         var args = $.param({
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code,
-            user_id: $cookieStore.get("userinfo").uid,
+            user_id: uid,
 
         });
 
