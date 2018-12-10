@@ -5,6 +5,11 @@ app.controller('address_detail', function ($scope, $http, $location, $cookieStor
         return false;
     }
 
+    if(!$cookieStore.get('cart')){
+        alert('Some Problem in Cart');
+        $location.path('/cart');
+        return false;
+    }
     // if (!$cookieStore.get('paymentStatus')) {
     //     $location.path('/cart');
     //     return false;

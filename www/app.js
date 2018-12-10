@@ -648,6 +648,10 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                     $rootScope.is_coupon_applied = response.data.data.is_coupon_applied;
                    // return
                 }
+                var cartdata = {
+                    'from' : 'cart'
+                }
+                $cookieStore.put('cart',cartdata);
             } else {
                 $rootScope.cart_data = '';
                 $rootScope.cart_values = ''

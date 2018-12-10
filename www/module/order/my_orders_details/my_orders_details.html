@@ -34,7 +34,13 @@
                         <div class="order_subcontainer" ng-repeat="y in detail_distribution">
                             <div class="order_subcontainer_heading col-xs-12">
                                 <p>{{'Order_ID' | translate}} &nbsp;<span>{{detail.id}}-{{y.id}} </span></p>
-                                <p class="status_btn">Pending</p>
+                                <p class="status_btn" ng-if="y.ORDER_STATUS == '1'">Pending</p>
+                                <p class="status_btn" ng-if="y.ORDER_STATUS == '2'">Confirm</p>
+                                <p class="status_btn" ng-if="y.ORDER_STATUS == '3'">Delivery Boy Assigned</p>
+                                <p class="status_btn" ng-if="y.ORDER_STATUS == '4'">Out for delivery</p>
+                                <p class="status_btn" ng-if="y.ORDER_STATUS == '5'">Delivered</p>
+                                <p class="status_btn" ng-if="y.ORDER_STATUS == '6'">Cancelled</p>
+                                <p class="status_btn" ng-if="y.ORDER_STATUS == '7'">Rejected</p>                                
                                 <a href="" class="track_btn" ng-click="trackOrder(y.id,detail.id)">{{'Track_Order' | translate}}</a>
                             </div>
                             <div class="order_subcontainer_detail col-xs-12">
