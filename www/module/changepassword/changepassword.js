@@ -115,7 +115,7 @@ app.controller('changepassword', function ($scope, $http, $location, $cookieStor
                 data: args //forms user object
 
             }).then(function (response) {
-               
+                loading.deactive();
                 res = response;
                 
                 if (res.data.responseStatus == 'success') {
@@ -139,9 +139,9 @@ app.controller('changepassword', function ($scope, $http, $location, $cookieStor
                 }
 
 
-            }).finally(function () {
+            })/* .finally(function () {
                 loading.deactive();
-            }); 
+            }); */ 
         }
 
     };

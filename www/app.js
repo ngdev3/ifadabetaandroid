@@ -677,7 +677,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 $rootScope.cart_data = res;
                 $rootScope.cart_values = response.data.data;
                 if (!$cookieStore.get("promocode")) {
-                    $rootScope.subtotalafterdiscount = response.data.data.subtotalafterdiscount;
+                    $rootScope.subtotalbeforediscount = response.data.data.subtotalafterdiscount;
                     $rootScope.tax_amount = response.data.data.tax_amount;
                     $rootScope.finalTotal = response.data.data.finalTotal;
                     $rootScope.is_coupon_applied = response.data.data.is_coupon_applied;
@@ -700,6 +700,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             $('#inputpromo').removeAttr('disabled', 'disabled');
             $('#apply').removeClass('ng-hide')
             $('#applied').addClass('ng-hide')
+            $rootScope.promocode = ''
             $cookieStore.remove("promocode")
             $rootScope.usercartvalue();
             return;
@@ -755,6 +756,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                     console.log(response.data.data.subTotalAfterDiscount);
                     $rootScope.subtotalafterdiscount = response.data.data.subTotalAfterDiscount;
                     $rootScope.tax_amount = response.data.data.vat;
+                    $rootScope.coupon_discount = response.data.data.coupon_discount;
                     $rootScope.finalTotal = response.data.data.finalTotal;
 
                     var promocode = {

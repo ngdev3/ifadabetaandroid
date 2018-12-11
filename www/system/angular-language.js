@@ -170,7 +170,11 @@ app.config(function ($translateProvider) {
      Date_Time : 'Date & Time',
      Complex : 'Complex',
      Ticket_Logs : 'Ticket Logs',
-     Apply : 'Apply'
+     Apply : 'Apply',
+     To_redeem_minimum_point_should_be : 'To redeem minimum point should be',
+     Redeem_Your_Points : 'Redeem Your Points',
+     Sub_Total_after_discount : 'Sub Total After Discount',
+     Applied : 'Applied',
      
   });
 
@@ -352,6 +356,8 @@ app.config(function ($translateProvider) {
     Date_Time : 'التاريخ والوقت',
     Complex : 'مركب',
     Ticket_Logs : 'سجلات التذاكر',
-    Apply : 'تطبيق'
+    Apply : 'تطبيق',
+    Sub_Total_after_discount : 'المجموع الفرعي بعد الخصم',
+    Applied : 'مستعمل'
   });
 }); 

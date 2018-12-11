@@ -117,7 +117,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                 data: args //forms user object
 
             }).then(function (response) {
-
+                loading.deactive();
                 res = response;
 
                 console.log("response from the server ")
@@ -144,9 +144,9 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                     return false;
                 }
 
-            }).finally(function () {
+            })/* .finally(function () {
                 loading.deactive();
-            })
+            }) */
         }
 
     }

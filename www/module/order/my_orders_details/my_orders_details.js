@@ -257,7 +257,7 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                                     alert("Order Successfully Cancelled");
                                     $scope.ordersDetalisInit();
                                 } else {
-                                    alert(response.data.responseMessage);
+                                    alert("Order Can't be Cancelled,<br> Date Exceeds!!! ");
                                 }
                             })
                         } else {

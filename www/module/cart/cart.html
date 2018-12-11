@@ -102,13 +102,15 @@
 					<div class="coupon_input text-right">
 						<input type="text" name="promocode" id="inputpromo" ng-model="$root.promocode" class="couponcode" required>
 						<input ng-show="cart_values.is_coupon_applied == 0" type="button" class="btn coupon_apply" name="" id="apply" value="{{'Apply' | translate }}" ng-click="apply_promo('apply')">
-						<input ng-show="cart_values.is_coupon_applied != 0" style="background-color: #006d07;" type="button" id="applied" class="btn coupon_apply applied " ng-click="apply_promo('remove')" value="Applied">
+						<input ng-show="cart_values.is_coupon_applied != 0" style="background-color: #006d07;" type="button" id="applied" class="btn coupon_apply applied " ng-click="apply_promo('remove')" value="{{'Applied' | translate}}">
 					</div>
 				</form>
 			</div>
 
 			<div class="after_coupon">
-				<div class="after_discount">{{'Sub_Total' | translate}} <span>{{'AED' | translate}} {{subtotalafterdiscount}}</span></div>
+				<div class="after_discount" ng-if="subtotalafterdiscount">{{'Sub_Total_after_discount' | translate}} <span>{{'AED' | translate}} {{subtotalafterdiscount}}</span></div>
+				<div class="after_discount" ng-if="!subtotalafterdiscount">{{'Sub_Total' | translate}} <span>{{'AED' | translate}} {{subtotalbeforediscount}}</span></div>
+				<div class="after_discount" ng-if="coupon_discount">{{'Coupon_Discount' | translate}} <span>{{'AED' | translate}} {{coupon_discount}}</span></div>
 				<div class="after_cart">{{'Tax_Amount' | translate}}<span>{{'AED' | translate}} {{tax_amount}}</span></div>
 			</div>
 			<!-- {{cart_data}} -->
