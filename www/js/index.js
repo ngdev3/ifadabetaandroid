@@ -20,6 +20,9 @@ var app = {
     // Application Constructor
     initialize: function () {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        document.getElementById("networkInfo").addEventListener("onload", networkInfo);
+        document.addEventListener("offline", onOffline, false);
+        document.addEventListener("online", onOnline, false);
     },
 
     // deviceready Event Handler
@@ -27,7 +30,6 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
-        // alert('aaaa');
         this.receivedEvent('deviceready');
     },
 
@@ -44,33 +46,8 @@ var app = {
     }
 };
 
-
-
-var app = {
-    // Application Constructor
-    initialize: function () {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-        document.getElementById("networkInfo").addEventListener("onload", networkInfo);
-        document.addEventListener("offline", onOffline, false);
-        document.addEventListener("online", onOnline, false);
-    },
-	
-	onDeviceReady: function () {
-        this.receivedEvent('deviceready');
-    },
-	 receivedEvent: function (id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    }
-};
-
 app.initialize();
+
 
 function networkInfo() {
     var networkState = navigator.connection.type;
