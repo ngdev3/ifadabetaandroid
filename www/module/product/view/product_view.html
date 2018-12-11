@@ -105,10 +105,14 @@
 
 							</div>
 							<!-- {{is_in_wishlist}} -->
-							<div class="wislist_sub wishlist-container">
+							<div class="wislist_sub wishlist-container" ng-click="taptowish(product_details.menu_varient[0].id, product_details.menu_varient[0].is_in_wishlist)">									
+								<i id="blank_{{product_details.menu_varient[0].id}}" class="fa heart fa-heart-o" ng-show="product_details.menu_varient[0].is_in_wishlist == '0'"></i>
+								<i id="filler_{{product_details.menu_varient[0].id}}" class="fa heart fa-heart fill" ng-show="product_details.menu_varient[0].is_in_wishlist == '1'"></i>
+							</div>
+							<!-- <div class="wislist_sub wishlist-container">
 								<i class="fa heart fa-heart-o unfill" id="heart_{{DweightID}}" ng-show="is_in_wishlist == '0'"></i>
 								<i class="fa heart fa-heart fill" id="heart_fill_{{DweightID}}" ng-show="is_in_wishlist != '0' "></i>
-							</div>
+							</div> -->
 
 							<div class="sub_add_product">
 								<div class="add_item_container sub_add_btn" id="firstt_{{productpid}}" data-attr="{{DweightID}}">

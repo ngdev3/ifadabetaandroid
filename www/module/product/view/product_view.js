@@ -165,4 +165,14 @@ $scope.fetch_product_data = function () {
      $scope.addToCarts = function(){
        console.log($scope.z);
      }
+
+     $scope.taptowish = function(id, wishlist_status){
+      //  alert(id+ " "+ wishlist_status);
+      $rootScope.addToWishlist(id, wishlist_status);
+      /* setTimeout(function(){
+          $scope.see_alls();
+      }, 1000) */
+    }
+
+
 });
