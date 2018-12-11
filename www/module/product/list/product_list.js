@@ -52,10 +52,9 @@ $scope.filter = function(form) {
 $scope.taptowishlist = function(id, wishlist_status){
     //  alert(id+ " "+ wishlist_status);return;
     $rootScope.addToWishlist(id, wishlist_status);
-    //  $route.reload();
-    setTimeout(function(){
+    /* setTimeout(function(){
         $scope.searchproducts();
-    }, 1000)
+    }, 1000) */
 }
 
 

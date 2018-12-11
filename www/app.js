@@ -230,7 +230,11 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     $rootScope.sort = '';
     $rootScope.searchBar = function () {
 
-
+        if (!$cookieStore.get("userinfo")) {
+            var userID = '';
+        } else {
+            var userID = $cookieStore.get("userinfo").uid;
+        }
         $rootScope.searchresult = '';
 
         loading.active();
@@ -239,7 +243,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             'country_id': sessionStorage.country,
             'language_code': sessionStorage.lang_code,
             'search_product': $rootScope.searchProduct,
-            'sort_by': $rootScope.sort
+            'sort_by': $rootScope.sort,
+            'user_id' : userID
         })
         $http({
             headers: {
@@ -258,11 +263,13 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 $rootScope.searchresult = res.data.data.category_product.products;
                 $rootScope.search_product = res.data.data.category_product;
                 $rootScope.searchProduct = '';
+                // $rootScope.searchresult = '';
                 $location.path("/product/list");
             } else {
                 // alert()
                 // $scope.resultstatus = false;
                 $rootScope.searchresult = '';
+                $rootScope.searchProduct = '';
                 $location.path("/product/list");
                 // $scope.datanotfound = true;
             }
@@ -372,7 +379,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         
         if (!$cookieStore.get('userinfo')) {
             alert('Please Login First !')
-            return
+            return 
             //$location.path('')
         }
         
