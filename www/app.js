@@ -424,10 +424,11 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             $('#enableCart_' + varient_id).attr('data-rowid', response.data.data.menu_row_id);
 
             if (response.data.data.allow_to_add_in_cart == 'no') {
-                // alert()
+               // alert()
                 console.log('#outofstock_' + menu_id);
-                $('#outofstock_' + menu_id).removeClass('ng-hide')
-                $('#addToCart_' + menu_id).addClass('ng-hide')
+                $('#outofstock_' + varient_id).removeClass('ng-hide')
+                $('#addToCart_' + varient_id).addClass('ng-hide')
+                $('#enableCart_' + varient_id).addClass('ng-hide')
 
             } else if (response.data.data.is_in_cart == 'yes') {
 
