@@ -13,7 +13,7 @@ app.controller('view_product', function ($scope, $http, $location, $cookieStore,
     }
 
     $scope.productpid = $cookieStore.get('productinfo').id
-console.log($cookieStore.get("userinfo"));
+    // console.log($cookieStore.get("userinfo"));
 
     $scope.getvalueforOtherVarient = function (menu_id, id) {
       
@@ -85,7 +85,7 @@ $scope.fetch_product_data = function () {
 
         }).then(function (response) {
             //alert();
-        
+          // console.log(response);return;
             if (response.data.data.status == 'success') {
 
                 $scope.product_details = response.data.data.product_details;

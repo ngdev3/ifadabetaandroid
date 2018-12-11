@@ -46,15 +46,15 @@
 							<div class="col-md-3 col-sm-3 col-xs-3 items_img_div">
 								<a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="assets/img/all_category/title_product.png"></a>
 							</div>
-							<div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc">
+							<div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc" ng-click="product_view(x.MENU_ID)">
 								<!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
 								<a href="javascript:void(0)">
 									<p class="sub_produt_name">{{x.MENU_NAME}}</p>
 								</a>
-								<p class="sub_product_qty">1 Kg</p>
+								<p class="sub_product_qty">{{x.UNIT}} {{x.UNIT_TYPE}}</p>
 								<p class="sub_prcing"> 
 									<!-- <strike>AED 190</strike> -->
-									<span id="sub_rrp">AED {{x.PRICE}}</span></p>
+									<span id="sub_rrp">{{'AED' | translate}} {{x.PRICE}}</span></p>
 							</div>
 							<div class="wislist_sub wishlist-container cart_remove" ng-click="removeWishlistItem(x.id)">
 								<i class="fa heart fa-trash delete_item"></i>

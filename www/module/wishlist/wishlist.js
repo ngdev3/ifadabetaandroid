@@ -85,4 +85,16 @@ app.controller('wishlist', function ($scope, $http, $location, $cookieStore, mod
         $rootScope.searchBar();
     }
 
+
+        
+    $scope.product_view = function (id,url) {
+        // alert(id);return;
+        var productinfo = {
+            'id' : id,
+            'url' : url
+        }
+        $cookieStore.put('productinfo', productinfo);
+        $location.path('/product/view');
+    }
+
 });
