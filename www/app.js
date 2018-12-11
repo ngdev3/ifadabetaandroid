@@ -393,8 +393,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         $('#firstt_' + menu_id).find('.add_cart_button').find('.addcart_button').attr('data-weightid', varient_id).attr('id', 'addCart_' + varient_id);
         $('#firstt_' + menu_id).attr('data-attr', varient_id);
 
-        $('.unfill').attr('id', 'heart_' + varient_id);
-        $('.fill').attr('id', 'heart_fill_' + varient_id);
+        $('.unfill').attr('id', 'blank_' + varient_id);
+        $('.fill').attr('id', 'filler_' + varient_id);
 
 
         addToCartID = 'addToCart_' + weightid;
@@ -430,7 +430,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 $('#addToCart_' + varient_id).addClass('ng-hide')
                 $('#enableCart_' + varient_id).addClass('ng-hide')
 
-            } else if (response.data.data.is_in_cart == 'yes') {
+            } 
+             if (response.data.data.is_in_cart == 'yes') {
 
                 // $('#enableCart_' + varient_id).addClass('ng-hide')
                 $('#enableCart_' + varient_id).attr('data-rowid', response.data.data.menu_row_id);
@@ -444,26 +445,28 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 console.log(menu_id)
                 console.log(varient_id)
 
-            } else if (response.data.data.is_in_wishlist == 'yes') {
+            } 
+             if (response.data.data.is_in_wishlist == 'yes') {
                 //heart icon
-                $('#heart_' + varient_id).addClass('ng-hide')
-                $('#heart_fill_' + varient_id).removeClass('ng-hide')
+                $('#blank_' + varient_id).addClass('ng-hide')
+                $('#filler_' + varient_id).removeClass('ng-hide')
 
-            } else if (response.data.data.allow_to_add_in_cart == 'yes') {
+            } 
+             if (response.data.data.allow_to_add_in_cart == 'yes') {
 
                 // alert('d')
                 $('#enableCart_' + varient_id).addClass('ng-hide')
                 $('#outofstock_' + varient_id).addClass('ng-hide')
                 $('#addToCart_' + varient_id).removeClass('ng-hide').show()
 
-            } else {
-                alert()
-
-                // $('#outofstock_' + menu_id).addClass('ng-hide')
-                // $('#addToCart_' + menu_id).removeClass('ng-hide')
-
+            } 
+            
+            if(response.data.data.is_in_wishlist == 'no'){
+             
+                $('#blank_' + varient_id).removeClass('ng-hide')
+                $('#filler_' + varient_id).addClass('ng-hide')
             }
-            // return;
+           
 
         })
         return false;
