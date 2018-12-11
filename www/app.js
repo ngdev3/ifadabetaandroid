@@ -356,6 +356,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             $rootScope.usercartvalue();
             if (response.data.data.add_cart.allow_to_add_in_cart == 'yes') {
 
+                $('.' + addToCartID).hide();
                 $('#' + addToCartID).hide();
                 $('#' + enableCartID).removeClass('hide').removeClass('ng-hide');
                 $('#' + quantityID).val('1');
@@ -419,20 +420,19 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             data: args //forms user object
 
         }).then(function (response) {
-            console.log(response.data.data)
-            console.log('********' + varient_id)
+          
             $('#enableCart_' + varient_id).attr('data-rowid', response.data.data.menu_row_id);
 
             if (response.data.data.allow_to_add_in_cart == 'no') {
                // alert()
-                console.log('#outofstock_' + menu_id);
+               console.log(1)
                 $('#outofstock_' + varient_id).removeClass('ng-hide')
                 $('#addToCart_' + varient_id).addClass('ng-hide')
                 $('#enableCart_' + varient_id).addClass('ng-hide')
 
             } 
              if (response.data.data.is_in_cart == 'yes') {
-
+                console.log(2)
                 // $('#enableCart_' + varient_id).addClass('ng-hide')
                 $('#enableCart_' + varient_id).attr('data-rowid', response.data.data.menu_row_id);
                 $('#enableCart_' + varient_id).val(response.data.data.qnty);
@@ -441,28 +441,33 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 $('#addToCart_' + varient_id).addClass('ng-hide')
                 $('#enableCart_' + varient_id).removeClass('ng-hide').show()
 
-                console.log('**********************************')
-                console.log(menu_id)
-                console.log(varient_id)
+               
 
             } 
              if (response.data.data.is_in_wishlist == 'yes') {
                 //heart icon
+                console.log(3)
                 $('#blank_' + varient_id).addClass('ng-hide')
                 $('#filler_' + varient_id).removeClass('ng-hide')
 
             } 
              if (response.data.data.allow_to_add_in_cart == 'yes') {
 
+                console.log(4)
                 // alert('d')
-                $('#enableCart_' + varient_id).addClass('ng-hide')
+                if(response.data.data.is_in_cart != 'yes'){
+                    
+                    $('#enableCart_' + varient_id).addClass('ng-hide')
+                    $('#addToCart_' + varient_id).removeClass('ng-hide').show()
+                }
+               
                 $('#outofstock_' + varient_id).addClass('ng-hide')
-                $('#addToCart_' + varient_id).removeClass('ng-hide').show()
 
             } 
             
             if(response.data.data.is_in_wishlist == 'no'){
              
+                console.log(5)
                 $('#blank_' + varient_id).removeClass('ng-hide')
                 $('#filler_' + varient_id).addClass('ng-hide')
             }
