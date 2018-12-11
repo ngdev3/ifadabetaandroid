@@ -48,7 +48,8 @@ var app = {
 
 app.initialize();
 
-
+document.addEventListener("offline", onOffline, false);
+document.addEventListener("online", onOnline, false);
 
 function networkInfo() {
     var networkState = navigator.connection.type;
