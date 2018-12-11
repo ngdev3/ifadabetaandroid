@@ -1469,3 +1469,6 @@ li.progtrckr-todo.inprocessed span.pending_check i
     margin-bottom: 20px;    
     padding: 0px 13px;
 }
+.input_default_focus{
+    background-color: #006d07;
+}
