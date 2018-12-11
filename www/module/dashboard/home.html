@@ -105,9 +105,9 @@
             <ul class="side_nav">
                 <li ng-if="loggedin"><a href="javascript:void(0)"><span ng-if="profileImage != ''"><img src="{{profileImage}}"
                                 alt="" /> </span>
-                        <span ng-if="profileImage == ''"><img src="assets/img/icon/user_icon.png" alt="" /> </span><span>{{fullName}}</span></a></li>
+                         <span ng-if="profileImage == ''"><img src="assets/img/icon/user_icon.png" alt="" /> </span> <span>{{fullName}}</span></a></li>
 
-                <li ng-if="!loggedin"><a href="javascript:void(0)"><span><img src="{{assets/img/icon/user_icon.png}}"
+                <li ng-if="!loggedin"><a href="javascript:void(0)"><span><img src="assets/img/icon/user_icon.png"
                                 alt="" /> </span><span>{{'Welcome' | translate}}</span></a></li>
                 <li><a href="javascript:void(0)"><img src="assets/img/icon/flag_icon.png" alt="" /> <span>{{country_name}}</span><img
                             src="assets/img/icon/edit_icon.png" alt="" class="location_view" ng-click="toswitchCountry()"/> </a></li>

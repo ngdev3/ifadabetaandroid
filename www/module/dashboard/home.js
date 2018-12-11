@@ -408,13 +408,23 @@ $scope.searchresults = function(){
 
     if($cookieStore.get("FullName")){
         $scope.fullName = $cookieStore.get("FullName").fullName;  
+        if($cookieStore.get("userinfo").profile_image == ''){
+            $scope.profileImage = '';
+            console.log($scope.profileImage)
+        }else{
+
+            $scope.profileImage = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/'+$cookieStore.get("userinfo").profile_image; 
+        }
     }else{  
         if($cookieStore.get("userinfo")){
             $scope.fullName = $cookieStore.get("userinfo").fullName; 
             if($cookieStore.get("userinfo").profile_image == ''){
                 $scope.profileImage = '';
+                console.log($scope.profileImage)
+            }else{
+
+                $scope.profileImage = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/'+$cookieStore.get("userinfo").profile_image; 
             }
-            $scope.profileImage = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/'+$cookieStore.get("userinfo").profile_image; 
         }      
     }
 
