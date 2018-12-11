@@ -61,6 +61,9 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
     }
 
     $scope.deleteproduct = function (rowid) {
+
+        // alert(rowid);
+        // return
         loading.active();
 
         var args = $.param({

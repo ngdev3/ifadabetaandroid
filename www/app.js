@@ -1677,7 +1677,7 @@ app.directive("mwInputRestrict", [
         return {
             restrict: "A",
             link: function (scope, element, attrs) {
-                element.on("keypress", function (event) {
+                element.on("keypress", function (event) {   
                     if (attrs.mwInputRestrict === "onlynumbers") {
                         alert(event.charCode);
                         // allow only digits to be entered, or backspace and delete keys to be pressed

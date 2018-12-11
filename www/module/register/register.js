@@ -144,9 +144,9 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                     return false;
                 }
 
-            })/* .finally(function () {
+            }).finally(function () {
                 loading.deactive();
-            }) */
+            }) 
         }
 
     }
