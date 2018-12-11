@@ -56,10 +56,9 @@
 
                                 <div class="row padding_ticket">
                                     <div class="col-md-9 col-sm-9 col-xs-9 no-padding">
-                                        <h5 class="ordrlist_head"><img class="myorderlist_img" src="assets/img/my_order_list.png">Order
-                                            ID {{x.id}}</h5>
+                                        <h5 class="ordrlist_head"><img class="myorderlist_img" src="assets/img/my_order_list.png">{{'Order_ID' | translate}} {{x.id}}</h5>
                                         <div>
-                                            <h5>Total : AED {{x.final_amount}}</h5>
+                                            <h5>{{'Total' | translate}} : {{'AED' | translate}} {{x.final_amount}}</h5>
                                             <p>{{x.created_date}}</p>
                                         </div>
                                     </div>

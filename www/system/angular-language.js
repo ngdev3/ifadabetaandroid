@@ -164,10 +164,14 @@ app.config(function ($translateProvider) {
      Major : 'Major',
      Description : 'Description',
      Send : 'Send',
-     Enter_Description : 'Enter Description'
+     Enter_Description : 'Enter Description',
+     Out_Of_Stocks : 'Out Of Stocks',
+     CMP : 'CMP',
+     Date_Time : 'Date & Time',
+     Complex : 'Complex',
+     Ticket_Logs : 'Ticket Logs',
+     Apply : 'Apply'
      
-     
-
   });
 
 
@@ -342,6 +346,12 @@ app.config(function ($translateProvider) {
     Major : 'رائد',
     Description : 'وصف',
     Send : 'إرسال',
-    Enter_Description : 'أدخل الوصف'
+    Enter_Description : 'أدخل الوصف',
+    Out_Of_Stocks    : 'للخروج من الأسهم',
+    CMP : 'CMP',
+    Date_Time : 'التاريخ والوقت',
+    Complex : 'مركب',
+    Ticket_Logs : 'سجلات التذاكر',
+    Apply : 'تطبيق'
   });
 }); 

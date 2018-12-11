@@ -10,7 +10,7 @@ app.controller('splash', function ($translate, $scope, $http, $location, $interv
     }, 100)
 
     $scope.season_fetch =   function(){
-        loading.active();
+        //loading.active();
 
         var args = $.param({
            
@@ -45,9 +45,9 @@ app.controller('splash', function ($translate, $scope, $http, $location, $interv
 
            }
 
-        }).finally(function () {
+        })/* .finally(function () {
             loading.deactive();
-        });
+        }); */
 
     }
 

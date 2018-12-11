@@ -40,20 +40,20 @@
 				<form class="mui-form" name="updateProfile" method="POST" novalidate enctype="multipart/form-data">
 				
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="fname" name="fname" ng-model="fname" readonly placeholder="Enter first name" required>
+					<input type="text"  id="fname" name="fname" ng-model="fname" readonly placeholder="{{'First_Name' | translate}}" required>
 					<label for="frst">{{'First_Name' | translate }}</label>
 				  </div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="text"  id="lname" name="lname" ng-model="lname" readonly placeholder="Enter last name" required>
+					<input type="text"  id="lname" name="lname" ng-model="lname" readonly placeholder="{{'Last_Name' | translate}}" required>
 					<label for="lst">{{'Last_Name' | translate }}</label>
 					</div>
 					<div id="onLoad">
 						<div class="mui-textfield col-sm-6 col-xs-12">
-						<input type="text"  id="input_country" name="country" ng-model="country" readonly placeholder="Enter Country" >
+						<input type="text"  id="input_country" name="country" ng-model="country" readonly placeholder="{{'Country' | translate}}" >
 						<label for="lst">{{'Country' | translate }}</label>
 						</div>
 						<div class="mui-textfield col-sm-6 col-xs-12">
-						<input type="text"  id="input_city" name="city" ng-model="city" readonly placeholder="Enter City" >
+						<input type="text"  id="input_city" name="city" ng-model="city" readonly placeholder="{{'City' | translate}}" >
 						<label for="lst">{{'City' | translate }}</label>
 						</div>
 					</div>
@@ -74,15 +74,15 @@
 					</div>
 					
 					<div class="mui-textfield col-sm-6 col-xs-12">
-						<input type="text"  id="address" name="address" ng-model="address" readonly placeholder="Enter Address" ng-required="address">
+						<input type="text"  id="address" name="address" ng-model="address" readonly placeholder="{{'Address' | translate}}" ng-required="address">
 						<label for="email">{{'Address' | translate }}</label>
 					</div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="email"  id="email" name="email" ng-model="email" readonly placeholder="Enter email id" required>
+					<input type="email"  id="email" name="email" ng-model="email" readonly placeholder="{{'Email_ID' | translate}}" required>
 					<label for="email">{{'Email_ID' | translate }}</label>
 				  </div>
 				  <div class="mui-textfield col-sm-6 col-xs-12">
-					<input type="tel"  id="mbl_num"  name="mobile" ng-model="mobile" readonly placeholder="Mobile Number" pattern="[0-9]{10}" required>
+					<input type="tel"  id="mbl_num"  name="mobile" ng-model="mobile" readonly placeholder="{{'Mobile_Number' | translate}}" pattern="[0-9]{10}" required>
 					<label for="mbl_num">{{'Mobile_Number' | translate }}</label>
 					</div>
 				<!-- 	<div class="mui-textfield col-sm-6 col-xs-12">

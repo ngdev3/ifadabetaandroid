@@ -1,8 +1,8 @@
 app.controller('new_pass', function ($scope, $http, $location, $cookieStore, $timeout, loading, model, $rootScope) {
 
-/* if ($cookieStore.get('userinfo')) {
+ if ($cookieStore.get('userinfo')) {
     $location.path('/dashboard/home');
-} */
+}
 
 $scope.forgot = function(form){
 

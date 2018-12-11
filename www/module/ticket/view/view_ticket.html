@@ -14,7 +14,7 @@
                                     id="asdf" alt="menu icon" style="width: 13px;" /></a></li>
                         <li class="page_name left">
                             <a href="javascript:void(0)" class="text-left ">
-                                <p>View Ticket</p>
+                                <p>{{'View_Ticket' | translate }}</p>
                             </a>
                         </li>
                         <!-- <li class="cart_icon">
@@ -52,10 +52,10 @@
                             <div class="tickets_date">
                                 <div class="row padding_ticket">
                                     <div class="col-md-5 col-sm-5 col-xs-5 no-padding">
-                                        <h5>Ticket ID</h5>
+                                        <h5>{{'Ticket_ID' | translate }}</h5>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-4 no-padding complaint_content">
-                                        <h5>CMP{{view_ticket.id}}</h5>
+                                        <h5>{{'CMP' | translate }}{{view_ticket.id}}</h5>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-3 no-padding">
                                         <input type="button" ng-if="view_ticket.status == 0" class="btn btn-default btn_discounts ticket_process_btns ticket_in_process"
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="row padding_ticket">
                                     <div class="col-md-5 col-sm-5 col-xs-5 no-padding">
-                                        <h5>Date & Time</h5>
+                                        <h5>{{'Date_Time' | translate }}</h5>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-6 no-padding complaint_content">
                                         <h5>{{view_ticket.created_date}}</h5>
@@ -77,7 +77,7 @@
                             <div class="tickets_deatils">
                                 <div class="row padding_ticket">
                                     <div class="col-md-5 col-sm-5 col-xs-5 no-padding">
-                                        <h5>Order Number</h5>
+                                        <h5>{{'Order_Number' | translate}}</h5>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-6 no-padding complaint_content">
                                         <h5>0D{{view_ticket.order_id}}</h5>
@@ -89,13 +89,13 @@
                                         <h5>Complaint Type</h5>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-6 no-padding complaint_content">
-                                        <h5 ng-if="view_ticket.complaint_type == 1">Normal</h5>
-                                        <h5 ng-if="view_ticket.complaint_type == 2">Complex</h5>
+                                        <h5 ng-if="view_ticket.complaint_type == 1">{{'Normal' | translate}}</h5>
+                                        <h5 ng-if="view_ticket.complaint_type == 2">{{'Complex' | translate}}</h5>
                                     </div>
                                 </div>
                                 <div class="row padding_ticket">
                                     <div class="col-md-5 col-sm-5 col-xs-5 no-padding">
-                                        <h5>Description</h5>
+                                        <h5>{{'Description' | translate}}</h5>
                                     </div>
                                     <div class="col-md-7 col-sm-7 col-xs-7 no-padding complaint_content">
                                         <h5 style="text-align: justify; line-height: 1.4em">{{view_ticket.description}}</h5>
@@ -112,7 +112,7 @@
                 <div class="row padding products_wrapper ticket_wrapper" ng-show="ticket_logs_details">
 
                     <div class="col-md-12 col-sm-12 col-xs-12 padding_container">
-                        <h4 class="ticket_logs_heading">Ticket Logs <i ng-click="ticket_logs()" class="fa fa-refresh" aria-hidden="true"></i></h4>
+                        <h4 class="ticket_logs_heading">{{'Ticket_Logs' | translate}} <i ng-click="ticket_logs()" class="fa fa-refresh" aria-hidden="true"></i></h4>
                     </div>
                     <div class="row padding_container">
                         <div class="col-md-12 col-xs-12 col-sm-12 ticket_wrapper chat_window">
