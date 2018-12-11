@@ -12,7 +12,7 @@ app.controller('view_product', function ($scope, $http, $location, $cookieStore,
         $location.path('/cart');
     }
 
-    $scope.productpid = $cookieStore.get('id')
+    $scope.productpid = $cookieStore.get('productinfo').id
 console.log($cookieStore.get("userinfo"));
 
     $scope.getvalueforOtherVarient = function (menu_id, id) {
