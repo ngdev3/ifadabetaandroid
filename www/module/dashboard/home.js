@@ -396,6 +396,14 @@ $scope.searchresults = function(){
     }
     $scope.logout = function(){
         $cookieStore.remove('userinfo');
+        $cookieStore.remove('aid');
+        $cookieStore.remove('cart');
+        $cookieStore.remove('orderID');
+        $cookieStore.remove('orderinfo');
+        $cookieStore.remove('productinfo');
+        $cookieStore.remove('search');
+        $cookieStore.remove('subcategoryInfo');
+        $cookieStore.remove('ticketid');
         $cookieStore.remove('FullName');
         $location.path('/login');
     }
@@ -413,7 +421,7 @@ $scope.searchresults = function(){
             console.log($scope.profileImage)
         }else{
 
-            $scope.profileImage = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/'+$cookieStore.get("userinfo").profile_image; 
+            $scope.profileImage = profile_image_path +$cookieStore.get("userinfo").profile_image; 
         }
     }else{  
         if($cookieStore.get("userinfo")){
@@ -423,7 +431,7 @@ $scope.searchresults = function(){
                 console.log($scope.profileImage)
             }else{
 
-                $scope.profileImage = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/'+$cookieStore.get("userinfo").profile_image; 
+                $scope.profileImage = profile_image_path +$cookieStore.get("userinfo").profile_image; 
             }
         }      
     }

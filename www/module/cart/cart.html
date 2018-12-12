@@ -1,4 +1,4 @@
-<div ng-controller="cart">
+<div ng-controller="cart" ng-init="mycart()">
 
 
 	<header class="container-fluid nav-down">
@@ -38,9 +38,9 @@
 	<!-- END HEADER -->
 
 	<!--  [PULSES] Sub categories content -->
-	<div class="container-fluid mt-55">
+	<div class="container-fluid mt-55" ng-init="usercartvalue()">
 		<div class="row">
-			<div class="mt-10 mycart_itemslist" ng-if="cart_data" ng-init="usercartvalue()">
+			<div class="mt-10 mycart_itemslist" ng-if="cart_data" >
 
 
 				<!-- ** Product Lists ** -->

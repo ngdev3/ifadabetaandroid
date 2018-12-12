@@ -12,6 +12,7 @@ var uuid = sessionStorage.u_ids;
 var device_type = 'Android';
 var lat;
 var lng;
+var profile_image_path = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/';
 
 var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngCordovaOauth', 'ngCordova', /* 'kendo.directives', */ 'pascalprecht.translate']);
 
@@ -47,7 +48,7 @@ function onOffline() {
 function onOnline() {
     //  navigator.app.exitApp();
     // alert('You are now online!');
-}; 
+};
 
 app.config(function ($routeProvider, $httpProvider) {
     $routeProvider
@@ -277,7 +278,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             'language_code': sessionStorage.lang_code,
             'search_product': $rootScope.searchProduct,
             'sort_by': $rootScope.sort,
-            'user_id' : userID
+            'user_id': userID
         })
         $http({
             headers: {
@@ -410,13 +411,13 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
     $rootScope.varientCheck = function (weightid, menu_id, price, unit, manufacture_id, varient_id) {
 
-        
+
         if (!$cookieStore.get('userinfo')) {
             alert('Please Login First !')
-            return 
+            return
             //$location.path('')
         }
-        
+
         $('#firstt_' + menu_id).find('.add_item_button').attr('id', 'enableCart_' + varient_id);
         $('#firstt_' + menu_id).find('.add_item_button').find('.add_item').attr('id', 'plus_' + varient_id).attr('data-weightid', varient_id);
         $('#firstt_' + menu_id).find('.add_item_button').find('input[type="text"]').attr('id', 'quantity_' + varient_id);;
@@ -453,18 +454,18 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             data: args //forms user object
 
         }).then(function (response) {
-          
+
             $('#enableCart_' + varient_id).attr('data-rowid', response.data.data.menu_row_id);
 
             if (response.data.data.allow_to_add_in_cart == 'no') {
-               // alert()
-               console.log(1)
+                // alert()
+                console.log(1)
                 $('#outofstock_' + varient_id).removeClass('ng-hide')
                 $('#addToCart_' + varient_id).addClass('ng-hide')
                 $('#enableCart_' + varient_id).addClass('ng-hide')
 
-            } 
-             if (response.data.data.is_in_cart == 'yes') {
+            }
+            if (response.data.data.is_in_cart == 'yes') {
                 console.log(2)
                 // $('#enableCart_' + varient_id).addClass('ng-hide')
                 $('#enableCart_' + varient_id).attr('data-rowid', response.data.data.menu_row_id);
@@ -474,37 +475,37 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 $('#addToCart_' + varient_id).addClass('ng-hide')
                 $('#enableCart_' + varient_id).removeClass('ng-hide').show()
 
-               
 
-            } 
-             if (response.data.data.is_in_wishlist == 'yes') {
+
+            }
+            if (response.data.data.is_in_wishlist == 'yes') {
                 //heart icon
                 console.log(3)
                 $('#blank_' + varient_id).addClass('ng-hide')
                 $('#filler_' + varient_id).removeClass('ng-hide')
 
-            } 
-             if (response.data.data.allow_to_add_in_cart == 'yes') {
+            }
+            if (response.data.data.allow_to_add_in_cart == 'yes') {
 
                 console.log(4)
                 // alert('d')
-                if(response.data.data.is_in_cart != 'yes'){
-                    
+                if (response.data.data.is_in_cart != 'yes') {
+
                     $('#enableCart_' + varient_id).addClass('ng-hide')
                     $('#addToCart_' + varient_id).removeClass('ng-hide').show()
                 }
-               
+
                 $('#outofstock_' + varient_id).addClass('ng-hide')
 
-            } 
-            
-            if(response.data.data.is_in_wishlist == 'no'){
-             
+            }
+
+            if (response.data.data.is_in_wishlist == 'no') {
+
                 console.log(5)
                 $('#blank_' + varient_id).removeClass('ng-hide')
                 $('#filler_' + varient_id).addClass('ng-hide')
             }
-           
+
 
         })
         return false;
@@ -654,11 +655,23 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     $rootScope.activeCartValue = 0;
     $rootScope.usercartvalue = function () {
 
-        
+        currentUrls = $location.path();
+        currentUrls = currentUrls.split('/')[1];
+
         if (!$cookieStore.get('userinfo')) {
-           // alert('Please Login First !')
+
+                $rootScope.cart_count = '';
+                $rootScope.subtotalbeforediscount = '';
+                $rootScope.tax_amount = '';
+                $rootScope.finalTotal = '';
+                $rootScope.cart_data = '';
+                $rootScope.is_coupon_applied
+
+            if (currentUrls == 'cart') {
+                alert('Please Login First !')
+                return
+            }
             return
-            //$location.path('')
         }
 
         var args = $.param({
@@ -690,7 +703,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         })
     }
 
-   
+
 
 
     $rootScope.mycart = function () {
@@ -881,7 +894,7 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
 
         console.log('some Thing Went Wrong :-  Init One Signal')
         return;
-        
+
         document.addEventListener("deviceready", onDeviceReady, false);
 
         function onDeviceReady() {
@@ -950,7 +963,7 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
 
     }
 
-  
+
 
     $rootScope.BackgroundColor = function () {
         return false;
@@ -1723,7 +1736,7 @@ app.directive("mwInputRestrict", [
         return {
             restrict: "A",
             link: function (scope, element, attrs) {
-                element.on("keypress", function (event) {   
+                element.on("keypress", function (event) {
                     if (attrs.mwInputRestrict === "onlynumbers") {
                         alert(event.charCode);
                         // allow only digits to be entered, or backspace and delete keys to be pressed
