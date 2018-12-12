@@ -175,6 +175,7 @@ app.config(function ($translateProvider) {
      Redeem_Your_Points : 'Redeem Your Points',
      Sub_Total_after_discount : 'Sub Total After Discount',
      Applied : 'Applied',
+     Wallet_used_amount : 'Wallet Used Amount'
      
   });
 
@@ -358,6 +359,7 @@ app.config(function ($translateProvider) {
     Ticket_Logs : 'سجلات التذاكر',
     Apply : 'تطبيق',
     Sub_Total_after_discount : 'المجموع الفرعي بعد الخصم',
-    Applied : 'مستعمل'
+    Applied : 'مستعمل',
+    Wallet_used_amount : 'كمية المحفظة المستخدمة'
   });
 }); 

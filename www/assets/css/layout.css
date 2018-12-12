@@ -473,7 +473,6 @@ input.btn.btn-success.all-sub-cat_buttons:focus
     position: absolute;
     bottom: 0;
     background-color: #d4d4d4;
-    height: 176px;
     position: fixed;
     width: 100%
 }
@@ -523,7 +522,6 @@ input.btn.btn-success.all-sub-cat_buttons:focus
 .checkout_container
 {
     background-color: #006d07;
-    height: 70px;
     color: #fff;
     display: block;
     padding: 5px 15px;
