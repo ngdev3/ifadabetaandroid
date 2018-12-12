@@ -96,6 +96,7 @@ $scope.fetch_product_data = function () {
                 $scope.menu_id = response.data.data.product_details.id;
                 $scope.addedQnty = response.data.data.product_details.menu_varient[0].cart_quantity;
                 $scope.is_in_stock = response.data.data.product_details.menu_varient[0].is_in_stock;
+                $scope.ALLOW_TO_ADD_IN_CART = response.data.data.product_details.menu_varient[0].ALLOW_TO_ADD_IN_CART;
                 $scope.quantity = response.data.data.product_details.menu_varient[0].quantity;
                 $scope.manufacture_id = response.data.data.product_details.user_id;
                 $scope.is_in_wishlist = response.data.data.product_details.menu_varient[0].is_in_wishlist;
