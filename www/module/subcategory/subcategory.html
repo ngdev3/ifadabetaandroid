@@ -43,7 +43,7 @@
               <div class="container no-padding"> 
                 <ul class="nav navbar-nav top_header">
                   <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back()" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
-                    <li class="page_name left" ng-if="!best_picks_of_the_season">
+                    <li class="page_name left" ng-if="categoryData">
                         <a href="javascript:void(0)" class="text-left ">
                             <p>{{categoryData.name | limitTo:20}}{{categoryData.name.length > 20 ? '...' : ''}}</p>
                         </a>
@@ -54,7 +54,7 @@
                         </a>
                     </li>                      
                   <li class="cart_icon">
-                    <a href="javascript:void(0);" ng-if="!best_picks_of_the_season"><img src="assets/img/header/filter.png" alt="search icon" onclick="openFilter()"/></a>
+                    <a href="javascript:void(0);"><img src="assets/img/header/filter.png" alt="search icon" onclick="openFilter()"/></a>
                       <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
                         <span class="badge">{{cart_count}}</span>
                       </a>
@@ -312,15 +312,12 @@
                                                 </button>
                                             </div>
         
-                                            <div class="add_cart_button sub_add_btn addToCart_{{x.product_varient[0].id}}" id="addToCart_{{x.product_varient[0].id}}" ng-show="x.product_varient[0].cart_row_id == '' && x.product_varient[0].is_in_stock == 'unlimited'">
+                                            <div class="add_cart_button sub_add_btn" id="addToCart_{{x.product_varient[0].id}}" ng-show="x.product_varient[0].cart_row_id == '' && x.product_varient[0].ALLOW_TO_ADD_IN_CART == 'yes'">
                                                 <button class="addcart_button" data-menuid="{{x.product_varient[0].id}}" data-user_id="{{x.user_id}}" data-weightid="{{x.product_varient[0].id}}" id="addCart_{{x.product_varient[0].id}}"
                                                  ng-click="addToCart($event)">{{'Add' | translate }}</button>
                                             </div>
-                                            <div class="add_cart_button sub_add_btn addToCart_{{x.product_varient[0].id}}" id="addToCart_{{x.product_varient[0].id}}" ng-show="x.product_varient[0].cart_row_id == '' && x.product_varient[0].quantity > '0' && x.product_varient[0].is_in_stock == 'limited'">
-                                                <button class="addcart_button" data-menuid="{{x.product_varient[0].id}}" data-user_id="{{x.user_id}}" data-weightid="{{x.product_varient[0].id}}" id="addCart_{{x.product_varient[0].id}}"
-                                                 ng-click="addToCart($event)">{{'Add' | translate }}</button>
-                                            </div>
-                                            <div class="add_cart_button div_in_stock sub_add_btn" id="outofstock_{{x.product_varient[0].id}}" ng-show="x.product_varient[0].is_in_stock == 'limited' && x.product_varient[0].quantity == '0'">
+                                           
+                                            <div class="add_cart_button div_in_stock sub_add_btn" id="outofstock_{{x.product_varient[0].id}}" ng-show="x.product_varient[0].cart_row_id == '' && x.product_varient[0].ALLOW_TO_ADD_IN_CART == 'no'">
                                                 <button class="out_of_stock" data-menuid="{{x.product_varient[0].id}}" data-user_id="{{x.user_id}}" data-weightid="{{x.product_varient[0].id}}" id="addCart_{{x.product_varient[0].id}}"
                                                  >{{'Out_Of_Stocks' | translate}} </button>
                                             </div>
@@ -378,17 +375,12 @@
 <!-- {{x.menu_varient_data.is_in_stock == 'unlimited' || x.menu_varient_data.quantity > '0' && x.menu_varient_data.is_in_stock == 'limited' }} -->
 <!-- {{x.menu_varient_data}} -->
 <!-- {{x.menu_varient_data.is_in_stock == 'unlimited' && !x.menu_varient_data.cart_row_id}} -->
-                                            <div class="add_cart_button sub_add_btn addToCart_{{x.menu_varient_data.id}}" id="addToCart_{{x.menu_varient_data.id}}" ng-show="x.menu_varient_data.is_in_stock == 'unlimited' && !x.menu_varient_data.cart_row_id ">
+                                            <div class="add_cart_button sub_add_btn " id="addToCart_{{x.menu_varient_data.id}}" ng-show=" x.menu_varient_data.cart_row_id == '' && x.menu_varient_data.ALLOW_TO_ADD_IN_CART == 'yes'">
                                                 <button class="addcart_button" data-menuid="{{x.menu_varient_data.id}}" data-user_id="{{x.MANUFACTTURER_ID}}" data-weightid="{{x.menu_varient_data.id}}" id="addCart_{{x.menu_varient_data.id}}"
-                                                 ng-click="addToCart($event)">Add1</button>
+                                                 ng-click="addToCart($event)">Add</button>
                                             </div>
 
-                                            <div class="add_cart_button sub_add_btn addToCart_{{x.menu_varient_data.id}}" id="addToCart_{{x.menu_varient_data.id}}" ng-show="x.menu_varient_data.is_in_stock == 'limited' && !x.menu_varient_data.cart_row_id && x.menu_varient_data.quantity > '0' ">
-                                                    <button class="addcart_button" data-menuid="{{x.menu_varient_data.id}}" data-user_id="{{x.MANUFACTTURER_ID}}" data-weightid="{{x.menu_varient_data.id}}" id="addCart_{{x.menu_varient_data.id}}"
-                                                     ng-click="addToCart($event)">Add1</button>
-                                                </div>
-                                            
-                                            <div class="add_cart_button div_in_stock sub_add_btn" id="outofstock_{{x.menu_varient_data.id}}" ng-show="x.menu_varient_data.is_in_stock == 'limited' && x.menu_varient_data.quantity == '0'">
+                                            <div class="add_cart_button div_in_stock sub_add_btn" id="outofstock_{{x.menu_varient_data.id}}" ng-show="x.menu_varient_data.cart_row_id == '' && x.menu_varient_data.ALLOW_TO_ADD_IN_CART == 'no'">
                                                 <button class="out_of_stock" data-menuid="{{x.menu_varient_data.id}}" data-user_id="{{x.MANUFACTTURER_ID}}" data-weightid="{{x.menu_varient_data.id}}" id="addCart_{{x.menu_varient_data.id}}"
                                                  >Out Of Stocks</button>
                                             </div>
