@@ -1,13 +1,17 @@
 app.controller('sub_category', function ($scope, $http, $location, $interval, $cookieStore, model, $locale, loading, $rootScope) {
 
     // console.log($rootScope.searchresult);return;
-if($cookieStore.get('userinfo')){
-    var user_type = $cookieStore.get('userinfo').user_type;
-    var uid = $cookieStore.get('userinfo').uid;
-}else{
-    var user_type = '';
-    var uid = '';
-}
+    if($cookieStore.get('userinfo')){
+        var user_type = $cookieStore.get('userinfo').user_type;
+        var uid = $cookieStore.get('userinfo').uid;
+    }else{
+        var user_type = '';
+        var uid = '';
+    }
+
+    if ($cookieStore.get('subcategoryInfo').from == 'home') {
+        loading.active();
+    }
 
     $scope.cart = function () {
         $location.path('/cart');
@@ -16,6 +20,7 @@ if($cookieStore.get('userinfo')){
     var ID;
     $scope.fetch_product_list = function (id,url) {
         // alert(id);
+        $("#all").removeClass("input_default_focus");
         var suburl;
         if(url){
             suburl = url ;
@@ -285,9 +290,9 @@ if($cookieStore.get('userinfo')){
         //  alert(id+ " "+ wishlist_status);return;
         $rootScope.addToWishlist(id, wishlist_status);
         // //  $route.reload();
-        // setTimeout(function(){
-        //     $scope.fetch_product_list('all');
-        // }, 1000)
+        setTimeout(function(){
+            $scope.fetch_product_list('all');
+        }, 1000)
     }
 
     

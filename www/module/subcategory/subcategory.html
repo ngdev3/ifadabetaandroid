@@ -54,7 +54,7 @@
                         </a>
                     </li>                      
                   <li class="cart_icon">
-                    <a href="javascript:void(0);"><img src="assets/img/header/filter.png" alt="search icon" onclick="openFilter()"/></a>
+                    <a href="javascript:void(0);" ng-if="!best_picks_of_the_season"><img src="assets/img/header/filter.png" alt="search icon" onclick="openFilter()"/></a>
                       <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
                         <span class="badge">{{cart_count}}</span>
                       </a>
@@ -251,7 +251,7 @@
                                 </script> -->
                                 <slick class="slider" settings="slickConfig0" >
                                     <div>
-                                        <input type="button" ng-if="categorysubData" class="btn btn-success all-sub-cat_buttons" id="all" name="" value="All" ng-click="fetch_product_list('all')">
+                                        <input type="button" ng-if="categorysubData" class="btn btn-success all-sub-cat_buttons input_default_focus" id="all" name="" value="All" ng-click="fetch_product_list('all')">
                                     </div>
                                     <div ng-repeat="sub in categorysubData">
                                         <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id,sub.url)">                      
