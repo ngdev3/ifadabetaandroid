@@ -40,7 +40,7 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
     $scope.form ={}
     $scope.payment = function(form){
         console.log($scope.is_wallet_apply)
-        if($scope.is_wallet_apply != 1){
+        if($scope.paybywallet != 1){
         if ($scope[form].$error) {
             var error_str = '';
                 if ($scope[form].payby.$error.required !== undefined) {

@@ -784,6 +784,8 @@ li.menu_search_container a input{
     outline: none;
     border: 0px;
     color: #252525;
+    min-height: 26px;
+    max-height: 26px;
 }
 .modal-header {
     padding: 15px;
@@ -960,10 +962,13 @@ li.menu_search_container a input{
 }
 .mui-textfield, .mui-select {
     display: block;
-    padding-top: 15px;
-    margin-bottom: 25px;
+    padding-top: 25px;
+    margin-bottom: 15px;
     position: relative;
-} 
+}
+.mui-textfield>label {
+    top: 8px;
+}
 .mui-textfield>textarea {
     min-height: 40px;
 }
@@ -1562,7 +1567,7 @@ li.menu_search_container a input{
 .order_subcontainer{
 	clear: both;
     overflow: hidden;
-    box-shadow: 0px 2px 11px #0000005c;
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.3607843137254902);
     margin-bottom: 0px;
 }
 .order_subcontainer_heading{
@@ -1694,4 +1699,7 @@ li.menu_search_container a input{
     height: 100vh;
     display: flex;
     align-items: center;
+}
+.span_date_tarck{
+    font-size: 12px;
 }

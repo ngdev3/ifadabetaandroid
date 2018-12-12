@@ -89,21 +89,17 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                 // alert(error_str);
                 return false;
             }
-
-
-            if($('#retailer').prop('checked') == true){
-                // alert();return;
-                $scope.retailer = 'on';
-            }else{
-                $scope.retailer = '';
-              }
-            
         }
+        if($('#retailer').prop('checked') == true){
+            // alert();return;
+            $scope.retailer = 'on';
+        }else{
+            $scope.retailer = '';
+          }
 
         if (error_str == '') {
 
             loading.active();
-            
             var args = $.param({
                 first_name: $scope.fname,
                 last_name: $scope.lname,
@@ -124,7 +120,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                 data: args //forms user object
 
             }).then(function (response) {
-                loading.deactive();
+                //loading.deactive();
                 res = response;
 
                 console.log("response from the server ")

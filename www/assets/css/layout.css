@@ -838,7 +838,7 @@ span.span_text {
     display: inline-block;
     width: 142px;
     text-align: left;
-        vertical-align: text-bottom;
+    font-size: 12px;
 }
 li.progtrckr-todo.inprocessed span.pending_check
 {
@@ -955,11 +955,12 @@ li.progtrckr-todo.inprocessed span.pending_check i
 }
 /*OTP Screen*/
 /*pop up css*/
-.pop_up_div{
-	width: 100%;
+.pop_up_div {
+    width: 100%;
     height: 100%;
     display: flex;
     position: fixed;
+    top: 0;
     z-index: 99999;
     background: rgba(0,0,0,0.5);
 }
@@ -1103,7 +1104,7 @@ li.progtrckr-todo.inprocessed span.pending_check i
 /*Empty Cart*/
 .empty_cart {
     height: 90vh;
-   /* margin: 100px auto 200px auto; */
+   margin: 100px auto 200px auto;
    text-align: center;
 }
 .empty_cart h3{
@@ -1410,7 +1411,7 @@ li.progtrckr-todo.inprocessed span.pending_check i
 .search_bar_span{
 	position: absolute;
     right: 15px;
-    height: 26px;
+    height: 25.5px;
     width: 32px;
     top: 5px;
     text-align: center;
@@ -1418,7 +1419,7 @@ li.progtrckr-todo.inprocessed span.pending_check i
     background-color: #006d07;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
-	border:0px;
+    border: 0px;
 }
 .search_bar_span > i{
 	color: #fffdf2;

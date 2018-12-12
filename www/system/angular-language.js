@@ -68,7 +68,8 @@ app.config(function ($translateProvider) {
     Save : 'Save',
     Email_ID : 'Email ID',
     Basic_Info : 'Basic Info',
-    Address_Detail : 'Address Detail',
+    Address_Detail : 'Address Details',
+    Add_Address : 'Add Address',
     No_Order_Found : 'No Order Found',
     No_Data_Found : 'No Data Found',
     Contact_Us : 'Contact Us',
@@ -360,6 +361,7 @@ app.config(function ($translateProvider) {
     Apply : 'تطبيق',
     Sub_Total_after_discount : 'المجموع الفرعي بعد الخصم',
     Applied : 'مستعمل',
-    Wallet_used_amount : 'كمية المحفظة المستخدمة'
+    Wallet_used_amount : 'كمية المحفظة المستخدمة',
+    Add_Address : 'اضف عنوان',
   });
 }); 
