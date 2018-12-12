@@ -121,6 +121,8 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
 
 
     $scope.resendOtps = function () {
+
+        alert('Your OTP is 1234');return;
         var args = $.param({
             user_id: $cookieStore.get('otpverification').uid,
         });
