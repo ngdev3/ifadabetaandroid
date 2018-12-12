@@ -1064,8 +1064,12 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
     }
 
 
-    $rootScope.addToWishlist = function (id, wishlist_status) {
-        // alert(id);return;
+    $rootScope.addToWishlist = function (id, wishlist_status, from = null, pid= null) {
+
+        // if(from == 'detail'){
+        //     $('#whish_' + pid).
+        // }
+        // alert(pid);return;
         // console.log("aaaaaaaaaaaaa----");
         // console.log($rootScope.is_in_wishlist);
         // return;
