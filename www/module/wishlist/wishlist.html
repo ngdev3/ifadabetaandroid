@@ -22,7 +22,7 @@
 					<ul class="nav navbar-nav bottom_header">
 						<li class="menu_search_container"><a href="javascript:void(0)">
 						  <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
-						  <input type="text" class="menu_search" ng-model="searchProduct" name="searchProduct" placeholder="{{'Search_Products_Brands_and_More' | translate}}" required/>
+						  <input type="text" class="menu_search" ng-model="searchProduct" name="searchProduct" placeholder="{{'Search_Products_Brands_and_More' | translate}}" ng-keyup="$event.keyCode == 13 ? searchproducts() : null" required/>
 						  <button class="search_bar_span" ng-click="searchproducts()" ><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 					  </a></li>
 					  </ul>
