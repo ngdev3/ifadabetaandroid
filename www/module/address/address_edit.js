@@ -81,7 +81,7 @@ app.controller('address_edit', function ($scope, $http, $location, $cookieStore,
                 error_str += "Delivery Instructions, ";
             }
             if ($scope[form].mobile.$error.required !== undefined) {
-                error_str += "Mobile, ";
+                error_str += "Mobile Number, ";
             }
            
         }
