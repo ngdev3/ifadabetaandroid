@@ -43,7 +43,7 @@
               <div class="container no-padding"> 
                 <ul class="nav navbar-nav top_header">
                   <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back()" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
-                    <li class="page_name left" ng-if="categoryData">
+                    <li class="page_name left" ng-if="!best_picks_of_the_season">
                         <a href="javascript:void(0)" class="text-left ">
                             <p>{{categoryData.name | limitTo:20}}{{categoryData.name.length > 20 ? '...' : ''}}</p>
                         </a>
@@ -54,7 +54,7 @@
                         </a>
                     </li>                      
                   <li class="cart_icon">
-                    <a href="javascript:void(0);"><img src="assets/img/header/filter.png" alt="search icon" onclick="openFilter()"/></a>
+                    <a href="javascript:void(0);" ng-if="!best_picks_of_the_season"><img src="assets/img/header/filter.png" alt="search icon" onclick="openFilter()"/></a>
                       <a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon"  />
                         <span class="badge">{{cart_count}}</span>
                       </a>
