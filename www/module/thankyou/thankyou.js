@@ -12,8 +12,10 @@ app.controller('thankyou', function ($scope, $http, $location, $cookieStore, mod
         return false;
     }
 
-    $scope.orders = function(){
-        $location.path('order/myorder');
+    $scope.orders = function(orderID){
+        
+        $location.path('/order/myorderdetails');
+        
     }
 
     $scope.home = function(){
@@ -22,6 +24,7 @@ app.controller('thankyou', function ($scope, $http, $location, $cookieStore, mod
     
     $scope.thanks = function(){
         $scope.order_id= $cookieStore.get('order_id');
+        $cookieStore.put('orderID', $scope.order_id);
         $cookieStore.remove('order_id');
         $cookieStore.remove('cart');
         $cookieStore.remove('aid');

@@ -144,7 +144,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
             j = 3;
         }
 
-    },3000);
+    },6000);
 
 
 

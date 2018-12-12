@@ -696,10 +696,12 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             if (res.data.responseStatus == 'success') {
                 $rootScope.wallet_amount = res.data.data.wallet_data.wallet_total_amount - res.data.data.wallet_data.wallet_used_amount;
                 $rootScope.wallet_transaction = res.data.data.wallet_transaction;
-                $rootScope.mycart();
+               
             } else {
                 alert(res.data.responseStatus);
             }
+
+            $rootScope.mycart();
         })
     }
 
@@ -759,8 +761,10 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             $('#apply').removeClass('ng-hide')
             $('#applied').addClass('ng-hide')
             $rootScope.promocode = ''
+
+            
             $cookieStore.remove("promocode")
-            $rootScope.usercartvalue();
+            $rootScope.mycart();
             return;
         };
 
@@ -844,7 +848,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         if (currentUrl !== "cart" && currentUrl !== "addressdetail" && currentUrl !== "payment" && currentUrl !== "payment/mode") {
             $rootScope.promocode = '';
             $cookieStore.remove("promocode")
-            $rootScope.usercartvalue()
+            $rootScope.usercartvalue();
         }
     });
 
