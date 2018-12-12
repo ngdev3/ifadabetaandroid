@@ -20,9 +20,9 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
         if($('#checkbox1').prop('checked') == true){
             
             if($rootScope.wallet_amount >= $rootScope.finalTotal){
+                $scope.form.payby = '';
                 $scope.paybywallet = '1';
                 $scope.is_wallet_apply = '1';
-                
             }else{
                 $scope.paybywallet = '';
                 $scope.is_wallet_apply = '1';

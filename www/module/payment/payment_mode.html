@@ -38,9 +38,17 @@
                     <label for="radio-2" class="radio-label">{{'Payment_Gateway' | translate}} <span>({{'Coming_Soon' | translate}})</span></label>
                     </div>
                   </div>
-                  <div class="radio mb-20">
+                  <!-- <div class="radio mb-20">
                     <input id="checkbox1" ng-model="iswalletused" name="iswalletused" type="checkbox" value="1" required ng-change="selectwallet()">
-                    <label for="checkbox1" class="radio-label">{{'Wallet' | translate}}<span>({{'Amount' | translate}} - {{wallet_amount}})</span></label>
+                    <label for="checkbox1" class="radio-label">{{'Wallet' | translate}}<span>({{'Amount' | translate}} - {{wallet_amount | number : 2}})</span></label>
+                    </div> -->
+
+                    <div class="pretty p-icon p-curve p-pulse">
+                      <input type="checkbox" id="checkbox1" name="iswalletused" ng-model="iswalletused" value="1" required ng-change="selectwallet()" >
+                      <div class="state p-info-o">
+                          <i class="icon  fa fa-check"></i>
+                          <label for="checkbox1" style="color: #000 !important;">{{'Wallet' | translate}}<span style="font-size: 11px; color: #949494;">({{'Amount' | translate}} - {{wallet_amount | number : 2}})</span></label> 
+                      </div>
                     </div>
                 </div>
                 
