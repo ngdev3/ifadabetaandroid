@@ -828,7 +828,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         if (currentUrl !== "cart" && currentUrl !== "addressdetail" && currentUrl !== "payment" && currentUrl !== "payment/mode") {
             $rootScope.promocode = '';
             $cookieStore.remove("promocode")
-            //$rootScope.usercartvalue()
+            $rootScope.usercartvalue()
         }
     });
 
@@ -876,6 +876,9 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
 
     $rootScope.initOneSignal = function () {
 
+        console.log('some Thing Went Wrong :-  Init One Signal')
+        return;
+        
         document.addEventListener("deviceready", onDeviceReady, false);
 
         function onDeviceReady() {
@@ -944,9 +947,7 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
 
     }
 
-    setTimeout(function () {
-        $rootScope.initOneSignal();
-    }, 5000);
+  
 
     $rootScope.BackgroundColor = function () {
         return false;

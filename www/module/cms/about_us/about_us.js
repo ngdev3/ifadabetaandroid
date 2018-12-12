@@ -5,10 +5,7 @@ app.controller('aboutus', function ($scope, $http, $location, $cookieStore, mode
         return false;
     } 
     
-    var ID = 1; //global Id for about us
-
-    $rootScope.initOneSignal();
-    loading.deactive();
+   
 
     $scope.home = function() {
         //$location.path('/home');
