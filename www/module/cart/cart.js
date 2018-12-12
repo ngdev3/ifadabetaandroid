@@ -1,6 +1,8 @@
 app.controller('cart', function ($rootScope, $scope, $http, $location, $interval, $cookieStore, model, loading, $filter, $route) {
 
 
+
+    
     $scope.homePage = function () {
         $location.path('/dashboard/home');
     }

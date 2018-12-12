@@ -3,6 +3,12 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
 
     // $scope.select_country = "INDIA";
     // return;
+
+    if (!$cookieStore.get('userinfo')) {
+        $location.path('/login');
+        return false;
+    }
+    
     $scope.maxDate = new Date();
     $scope.monthSelectorOptions = {
         format: "dd-MM-yyyy"

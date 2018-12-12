@@ -1,6 +1,13 @@
 app.controller('user_register', function ($rootScope, $scope, $http, $location, $interval, $cookieStore, model, loading, $filter) {
 
 
+    
+    if ($cookieStore.get('userinfo')) {
+        $location.path('/dashboard/home');
+        return false;
+    }
+
+
     $scope.terms = function () {
         $location.path('/terms');
     }

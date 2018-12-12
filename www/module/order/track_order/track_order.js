@@ -1,6 +1,11 @@
 app.controller('track_order', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope, $cordovaFileTransfer) {
 
     
+    
+    if (!$cookieStore.get('userinfo')) {
+        $location.path('/login');
+        return false;
+    }
     $scope.home = function () {
         //$location.path('/home');
         window.history.back();

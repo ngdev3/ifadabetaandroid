@@ -1,9 +1,5 @@
 app.controller('aboutus', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope) {
     
-    if (!$cookieStore.get('userinfo')) {
-        $location.path('/login');
-        return false;
-    } 
     
    
 
