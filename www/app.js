@@ -15,6 +15,39 @@ var lng;
 
 var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngCordovaOauth', 'ngCordova', /* 'kendo.directives', */ 'pascalprecht.translate']);
 
+//document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+//document.getElementById("networkInfo").addEventListener("onload", networkInfo);
+document.addEventListener("offline", onOffline, false);
+document.addEventListener("online", onOnline, false);
+
+function networkInfo() {
+    var networkState = navigator.connection.type;
+    var states = {};
+
+    states[Connection.UNKNOWN] = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI] = 'WiFi connection';
+    states[Connection.CELL_2G] = 'Cell 2G connection';
+    states[Connection.CELL_3G] = 'Cell 3G connection';
+    states[Connection.CELL_4G] = 'Cell 4G connection';
+    states[Connection.CELL] = 'Cell generic connection';
+    states[Connection.NONE] = 'No network connection';
+
+    alert('Connection type: ' + states[networkState]);
+};
+
+function onOffline() {
+    alert('You are now offline!');
+    setTimeout(function () {
+        navigator.app.exitApp();
+    }, 1000)
+    //window.location = 'no_internet.html';
+};
+
+function onOnline() {
+    //  navigator.app.exitApp();
+    // alert('You are now online!');
+}; 
 
 app.config(function ($routeProvider, $httpProvider) {
     $routeProvider
