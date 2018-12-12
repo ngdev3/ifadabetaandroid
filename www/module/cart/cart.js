@@ -87,6 +87,7 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
             loading.deactive();
             res = response.data;
             console.log(res);
+            $rootScope.usercartvalue();
             if(res.data.cart_count == 0){
                 $rootScope.usercartvalue();
                 alert('Product Deleted Successfully');
