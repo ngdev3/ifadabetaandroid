@@ -690,6 +690,9 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         })
     }
 
+   
+
+
     $rootScope.mycart = function () {
         var args = $.param({
             country_id: sessionStorage.country,
