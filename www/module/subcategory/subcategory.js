@@ -1,4 +1,4 @@
-app.controller('sub_category', function ($scope, $http, $location, $interval, $cookieStore, model, $locale, loading, $rootScope) {
+app.controller('sub_category', function ($scope, $http, $location, $interval, $cookieStore,$window, model, $locale, loading, $rootScope) {
 
     // console.log($rootScope.searchresult);return;
     if($cookieStore.get('userinfo')){
@@ -295,5 +295,51 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         }, 1000)
     }
 
+    /* $scope.scrollPagination = function(){
+        var pause = false;
+        if(pause){
+            $(window).scroll(function () {				
+                var hT = $('#main-div2').offset().top,
+                    hH = $('#main-div2').outerHeight(),
+                    wH = $(window).height(),
+                    wS = $(this).scrollTop();
+                if (wS > (hT + hH - wH)) {
+                    // alert("Reached the bottom");
+                    loading.active();
+                    var args = $.param({                      
+                    });
+        
+                    $http({
+                        method: 'POST',
+                        cache: false,
+                        url: app_url + 'product_list',
+                        data: args, //forms user object
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    }).then(function (response) {
+                            loading.deactive();
+                            console.log(response.data);
+                        if (response.data.status) {
+                            $('html').removeClass('tmla-mask');
+                            $('.tmla-mask').css('opacity' , '0');
+                            $scope.page3=abc;
+                            $("#get_page").val($scope.page3);
+                            
+                            angular.forEach(response.data.data, function (value, key) {
+                                $scope.pending_list.push(value);
+                            });
+                        } else {
+                            $scope.errormsg = response.data.message;
+                        }
+                    });
+                }
+            });
+        }
+    } 
+     */
+   /*  $scope.scrollPagination1 = function(){
+        alert("Reached the bottom");          
+    } */
     
 });

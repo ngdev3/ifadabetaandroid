@@ -1,4 +1,4 @@
-app.controller('wallet', function ($scope, $http, $location, $cookieStore, model, loading, $cordovaDialogs, $cordovaGeolocation, $rootScope, $route) {
+app.controller('wallet', function ($scope, $http, $location,$window, $cookieStore, model, loading, $cordovaDialogs, $cordovaGeolocation, $rootScope, $route) {
 
     /**
      * This will check if user is registered with app or not , if not user will be redirected to login screen
@@ -32,7 +32,14 @@ app.controller('wallet', function ($scope, $http, $location, $cookieStore, model
             if (res.data.responseStatus == 'success') {
                 $scope.wallet_amount = res.data.data.wallet_data.wallet_total_amount - res.data.data.wallet_data.wallet_used_amount;
                 $scope.wallet_transaction = res.data.data.wallet_transaction;
-                   console.log($scope.wallet_transaction)
+
+                /* for(var i=0;i<$scope.wallet_transaction.length;i++){
+                    $scope.addedDate = $scope.wallet_transaction[i].added_date;
+                    var date = new Date($scope.addedDate);
+                    $scope.ate = (date.getMonth() + 1) + '-' + date.getDate() + '-' +  date.getFullYear() ;             
+                    console.log((date.getMonth() + 1) + '-' + date.getDate() + '-' +  date.getFullYear());     
+                    // console.log($scope.date);              
+                } */
             } else {
                 alert(res.data.responseStatus);
             }

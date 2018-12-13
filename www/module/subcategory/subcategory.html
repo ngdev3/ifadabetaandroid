@@ -1,4 +1,4 @@
-<div ng-controller="sub_category" >
+<div ng-controller="sub_category">
     <style type="text/css">
         
     .owl-carousel .owl-stage
@@ -276,8 +276,8 @@
                     </div> -->
                     <!-- ** !. Buttons ** -->
                     <!-- ** Product Lists ** -->
-                   
-                    <div class="no-padding item_lists_main" ng-repeat="x in product" ng-if="categoryData" >
+                   <div id="main-div2">
+                    <div class="no-padding item_lists_main" ng-repeat="x in product" ng-if="categoryData">
                        
                         <div class="prodcut_main_container">
                             <div class="products_wrapper">
@@ -326,6 +326,7 @@
                                     </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                     <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="!product && !best_picks_of_the_season">
                         <div class="">
@@ -391,12 +392,18 @@
                             </div>
                         </div>
                     <!-- ** !. Product Lists ** --> 
-                    <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="categorysubData.length == '0' && !product">
-                        <div class="">
-                            <img src="img/no_data_found.png">
-                            <h3 class="text-center">{{'No_Product_Found' | translate}}!!!</h3>
+                        <!-- <pagination 
+                            ng-model="currentPage"
+                            total-items="product.length"
+                            max-size="maxSize"  
+                            boundary-links="true">
+                        </pagination> -->
+                        <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="categorysubData.length == '0' && !product">
+                            <div class="">
+                                <img src="img/no_data_found.png">
+                                <h3 class="text-center">{{'No_Product_Found' | translate}}!!!</h3>
+                            </div>
                         </div>
-                    </div>
                    <!--  <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="!product && categorysubData.length == '0'">
                         <div class="">
                             <img src="img/no_data_found.png">

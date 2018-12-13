@@ -135,7 +135,7 @@
         .form-control:focus {
         border-color: #006d07;}
     </style>
-    <div class="bg" ng-controller="wallet" ng-init="my_wallet_data()">
+    <div class="bg" ng-controller="wallet" ng-init="my_wallet_data()"  >
     <header class="container-fluid nav-down">
         <div class="row">
             <nav class="navbar navbar-inverse">
@@ -243,7 +243,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="x in wallet_transaction">
-                      <th style="text-align:center;font-weight:400;">{{x.added_date.split(' ')[0]}}</th>
+                      <th style="text-align:center;font-weight:400;">{{x.added_date.split(' ')[0] | date:'dd-MM-yyyy'}}</th>
                       <td ng-if="x.payment_by == '1'">By Add</td>
                       <td ng-if="x.payment_by == '2'">By Cancel</td>
                       <td ng-if="x.payment_by == '3'">By Return</td>
