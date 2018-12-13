@@ -428,8 +428,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         $('#firstt_' + menu_id).find('.add_cart_button').find('.addcart_button').attr('data-weightid', varient_id).attr('id', 'addCart_' + varient_id);
         $('#firstt_' + menu_id).attr('data-attr', varient_id);
 
-        $('.unfill').attr('id', 'blank_' + varient_id);
-        $('.fill').attr('id', 'filler_' + varient_id);
+        $('.unfill').attr('id', 'blank_' + varient_id).attr('data-varient_id', varient_id);
+        $('.fill').attr('id', 'filler_' + varient_id).attr('data-varient_id', varient_id);
 
 
         addToCartID = 'addToCart_' + weightid;
@@ -481,6 +481,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             if (response.data.data.is_in_wishlist == 'yes') {
                 //heart icon
                 console.log(3)
+                
                 $('#blank_' + varient_id).addClass('ng-hide')
                 $('#filler_' + varient_id).removeClass('ng-hide')
 
@@ -736,11 +737,13 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
                 $rootScope.cart_data = res;
                 $rootScope.cart_values = response.data.data;
+
                 if (!$cookieStore.get("promocode")) {
                     $rootScope.subtotalbeforediscount = response.data.data.subtotalafterdiscount;
                     $rootScope.tax_amount = response.data.data.tax_amount;
                     $rootScope.finalTotal = response.data.data.finalTotal;
-                    $rootScope.is_coupon_applied = response.data.data.is_coupon_applied;
+                    $rootScope.coupon_discount = '';
+                    $rootScope.subtotalafterdiscount = '';
                     // return
                 }
                 var cartdata = {
