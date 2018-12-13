@@ -93,7 +93,7 @@ app.controller('address', function ($scope, $http, $location, $cookieStore, mode
         var args = $.param({
             'user_id': GlobalUID,
             'address_id': id,
-            'language_code' : 'en',
+            language_code: sessionStorage.lang_code,
             'country_id' : sessionStorage.country
         });
         //var isConfirmed = confirm("Are you sure to delete this record ?");
