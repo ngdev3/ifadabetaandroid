@@ -105,9 +105,9 @@
 
 							</div>
 							<!-- {{is_in_wishlist}} -->
-							<div class="wislist_sub wishlist-container" id="whish_{{productpid}}" ng-click="taptowish(product_details.menu_varient[0].id, product_details.menu_varient[0].is_in_wishlist, product_details.id)">									
-								<i id="blank_{{product_details.menu_varient[0].id}}" class="fa heart fa-heart-o unfill" ng-show="product_details.menu_varient[0].is_in_wishlist == '0'"></i>
-								<i id="filler_{{product_details.menu_varient[0].id}}" class="fa heart fa-heart fill" ng-show="product_details.menu_varient[0].is_in_wishlist == '1'"></i>
+							<div class="wislist_sub wishlist-container" id="whish_{{productpid}}" ng-click="taptowish(product_details.menu_varient[0].id, product_details.menu_varient[0].is_in_wishlist, product_details.id, $event)">									
+								<i id="blank_{{product_details.menu_varient[0].id}}" data-varient_id="{{product_details.menu_varient[0].id}}" data-status = '0' class="fa heart fa-heart-o unfill" ng-show="product_details.menu_varient[0].is_in_wishlist == '0'"></i>
+								<i id="filler_{{product_details.menu_varient[0].id}}" data-varient_id="{{product_details.menu_varient[0].id}}" data-status = '1' class="fa heart fa-heart fill" ng-show="product_details.menu_varient[0].is_in_wishlist == '1'"></i>
 							</div>
 							<!-- <div class="wislist_sub wishlist-container">
 								<i class="fa heart fa-heart-o unfill" id="heart_{{DweightID}}" ng-show="is_in_wishlist == '0'"></i>

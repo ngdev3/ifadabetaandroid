@@ -167,9 +167,76 @@ $scope.fetch_product_data = function () {
        console.log($scope.z);
      }
 
-     $scope.taptowish = function(id, wishlist_status, pid){
-    //   alert(id+ " "+ wishlist_status);
-      $rootScope.addToWishlist(id, wishlist_status, 'detail', pid);
+     $scope.taptowish = function(id, wishlist_status, pid, event){
+    console.log(event.target.dataset)
+    // return;
+
+    wishlist_status = event.target.dataset.status;
+    id = event.target.dataset.varient_id;
+
+    if (!$cookieStore.get("userinfo")) {
+      alert("Please Login First");
+      return false;
+  } else {
+      var userID = $cookieStore.get("userinfo").uid;
+  }
+
+
+
+      if (wishlist_status == 1) {
+        var args = $.param({
+            'country_id': sessionStorage.country,
+            'menu_varient_id': id,
+            'user_id': userID,
+            'is_for': 'delete'
+        });
+    } else {
+        var args = $.param({
+            'country_id': sessionStorage.country,
+            'menu_varient_id': id,
+            'user_id': userID,
+            'is_for': 'add'
+        });
+    }
+
+
+    // alert(args);return;
+    $http({
+        headers: {
+            //'token': '40d3dfd36e217abcade403b73789d732',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        method: 'POST',
+        url: app_url + '/add_wishlist',
+        data: args
+
+    }).then(function (response) {
+
+        res = response;
+        console.log("wwwwwwwwwwwwwwwwwww");
+        console.log(res.data.data);
+        // return;
+        if (wishlist_status == 1) {
+            if (res.data.data.status == 'success') {
+                $('#filler_' + id).addClass('ng-hide')
+                $('#blank_' + id).removeClass('ng-hide')
+
+            } else {
+                model.show("Alert", "Something went wrong");
+            }
+        } else {
+            if (res.data.data.status == 'success') {
+                $('#blank_' + id).addClass('ng-hide')
+                $('#filler_' + id).removeClass('ng-hide')
+            } else {
+                model.show("Alert", "Something went wrong");
+            }
+        }
+
+    }).finally(function () {
+        loading.deactive();
+    });
+
      
     }
 
