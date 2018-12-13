@@ -13,7 +13,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
     }
 
     $scope.user_registers = function (form) {
-    
+        // loading.active();return
         var error_str = '';
         if ($scope[form].$error) {
 
