@@ -62,6 +62,15 @@
                 </div>
               </div>
           </div>
+          <div class="terms">
+              <div class="pretty p-icon p-curve p-pulse">
+                <input type="checkbox" name="terms" ng-model="terms" required>
+                <div class="state p-info-o">
+                    <i class="icon  fa fa-check"></i>
+                    <label>I Accept<a href="javascript:void(0)" ng-click="terms()"> {{'Terms_n_Conditions' | translate }}</a></label> 
+                </div>
+              </div>
+          </div>
           <div class="submit-btn col-sm-6 col-xs-12 text-center" ng-click="user_registers('loginform')">
             <a href="javascript:void(0)">{{'Sign_Up' | translate}}</a>
           </div>

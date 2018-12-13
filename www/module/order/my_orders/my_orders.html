@@ -59,7 +59,7 @@
                                         <h5 class="ordrlist_head"><img class="myorderlist_img" src="assets/img/my_order_list.png">{{'Order_ID' | translate}} {{x.id}}</h5>
                                         <div>
                                             <h5>{{'Total' | translate}} : {{'AED' | translate}} {{x.final_amount}}</h5>
-                                            <p>{{x.created_date}}</p>
+                                            <p>{{x.created_date | date : 'dd-MM-yyyy'}}</p>
                                         </div>
                                     </div>
 

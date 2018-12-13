@@ -491,6 +491,10 @@ $scope.searchresults = function(){
         $route.reload();
   }
 
+  $scope.details = function(id) {
+      alert(id);
+  }
+
 });
 
 

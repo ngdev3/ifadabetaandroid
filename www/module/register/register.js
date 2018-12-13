@@ -35,6 +35,10 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
             if ($scope[form].password.$error.required !== undefined) {
                 error_str += "Password, ";
             }
+
+            if ($scope[form].terms.$error.required !== undefined) {
+                error_str += "Terms & Conditions, ";
+            }
             
 
         }
@@ -49,7 +53,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
         }, 100);
 
         if($scope[form].$valid){
-            var reg1 = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/;
+            var reg1 = /^[^%\s]{6,}$/;
             var reg2 = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/;
             var reg3 = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
             var reg4 = /^[a-zA-Z ]+$/;
@@ -77,7 +81,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
             }
 
             if (reg1.test($scope.password) == false) {
-                error_str = " Password should contain at least one Character,one Number & one Special Char and length should be 6 minimum! ";
+                error_str = " Password should contain at least one Character & Number and length should be 6 minimum! ";
                 // model.show('Alert', error_str);
                 alert(error_str);
                 return false;

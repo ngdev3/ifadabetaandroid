@@ -7,7 +7,7 @@ app.controller('thankyou', function ($scope, $http, $location, $cookieStore, mod
     }
 
     if(!$cookieStore.get('cart')){
-        alert('Some Problem in Cart');
+        //alert('Some Problem in Cart');
         $location.path('/cart');
         return false;
     }

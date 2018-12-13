@@ -166,7 +166,7 @@ app.config(function ($translateProvider) {
      Description : 'Description',
      Send : 'Send',
      Enter_Description : 'Enter Description',
-     Out_Of_Stocks : 'Out Of Stocks',
+     Out_Of_Stocks : 'Out Of Stock',
      CMP : 'CMP',
      Date_Time : 'Date & Time',
      Complex : 'Complex',
@@ -176,7 +176,9 @@ app.config(function ($translateProvider) {
      Redeem_Your_Points : 'Redeem Your Points',
      Sub_Total_after_discount : 'Sub Total After Discount',
      Applied : 'Applied',
-     Wallet_used_amount : 'Wallet Used Amount'
+     Wallet_used_amount : 'Wallet Used Amount',
+     Qnty : 'Qnty',
+     Terms_n_Conditions : 'Terms And Conditions'
      
   });
 
@@ -363,5 +365,7 @@ app.config(function ($translateProvider) {
     Applied : 'مستعمل',
     Wallet_used_amount : 'كمية المحفظة المستخدمة',
     Add_Address : 'اضف عنوان',
+    Qnty : 'كمية',
+    Terms_n_Conditions : 'الأحكام والشروط'
   });
 }); 

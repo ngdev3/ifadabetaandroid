@@ -123,13 +123,13 @@
                                         <li class="chat_thread by_support" ng-if="x.sender != user_ids">
                                             <h5>{{x.SENDER_NAME | ucwords}}</h5>
                                             <p class="chat_desc">{{x.content | ucwords}}</p>
-                                            <small class="chat_time">{{x.created_date}}</small>
+                                            <small class="chat_time">{{x.created_date | date : 'dd-MM-yyyy'}}</small>
 
                                         </li>
                                         <li class="chat_thread by_user" ng-if="x.sender == user_ids">
                                             <h5>{{x.SENDER_NAME | ucwords}}</h5>
                                             <p class="chat_desc">{{x.content | ucwords}}</p>
-                                            <small class="chat_time">{{x.created_date}}</small>
+                                            <small class="chat_time">{{x.created_date | date : 'dd-MM-yyyy'}}</small>
 
                                         </li>
 
