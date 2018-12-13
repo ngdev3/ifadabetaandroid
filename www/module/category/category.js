@@ -72,10 +72,19 @@ var currentid;
         $.each($scope.category_data, function(idx, item) {
         console.log(item.id + "-----------"+id)
         if(item.id !== id){
-            $('#collapseOne_'+item.id).removeClass('show').addClass('hide')
+			//alert()
+           // $('#cOne_'+item.id).slideUp();
+            //$(this).find("a.all_cat_headbar").addClass("collapsed");
         }
         });
-        $('#collapseOne_'+id).removeClass('hide').addClass('show')
+		//alert();
+		//$('.all_cat_below_div').slideUp();
+		$(".all_cat_below_div").not('#collapseOne_'+id).slideUp();
+        $('#collapseOne_'+id).slideToggle();
+		var turn_icon = $('#collapseOne_'+id).siblings(".panel-heading").find(".all_cat_headbar");
+		$(".all_cat_headbar").not(turn_icon).addClass("collapsed");
+		turn_icon.toggleClass("collapsed");
+        //$(this).find("a.all_cat_headbar").removeClass("collapsed");
         
     }
     /**
