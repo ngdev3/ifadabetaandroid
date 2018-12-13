@@ -1,4 +1,4 @@
-<div ng-controller="myprofile" ng-init="myprofile_data()">
+<div ng-controller="myprofile" ng-init="fetchcountry()">
 <header class="container-fluid nav-down">
 	<div class="row">
 		<nav class="navbar navbar-inverse">
@@ -29,7 +29,7 @@
 <div class="container">
 		<div class="login_form">
 			<div class="info-container"> 
-				<div class="info-btn col-xs-6 text-center pl-10 pr-10 active" ng-init="fetchcountry()">
+				<div class="info-btn col-xs-6 text-center pl-10 pr-10 active" ng-init="myprofile_data()">
 					<a href="javascript:void(0)" >{{'Basic_Info' | translate }}</a>
 				</div>
 				<div class="info-btn col-xs-6 text-center pl-10 pr-10">
@@ -59,14 +59,15 @@
 					</div>
 					<div id="onEdit">
 						<div class="mui-select col-sm-6 col-xs-12">
-							<select id="country" name="select_country" ng-model="select_country"  readonly required ng-change="fetchcity()">
-								<!-- <option>Select Country</option> -->
-								<option ng-repeat="c in Countries" ng-value="{{c.id}}" >{{c.name}}</option>
+							<select id="country" name="select_country" ng-model="select_country"   readonly required ng-change="fetchcity()">
+								<option value="">Select Country</option>
+								<option ng-repeat="c in Countries" ng-value="c.id" >{{c.name}}</option>
 							</select>
 							<label for="country">{{'Country' | translate }}</label>
 						</div>
 						<div class="mui-select col-sm-6 col-xs-12">
 							<select id="city"  name="select_city" ng-model="select_city"  required>
+									<option value="">Select City</option>
 								<option ng-value="{{city.id}}" ng-repeat="city in Cities">{{city.name}}</option>
 							</select>
 							<label for="city">{{'City' | translate }}</label>
