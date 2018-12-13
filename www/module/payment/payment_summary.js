@@ -12,7 +12,47 @@ app.controller('payment_summary', function ($scope, $http, $location, $cookieSto
     }
 
     $scope.paymode= function(){
-        $location.path('/payment/mode');
+
+        if (!$cookieStore.get('userinfo')) {
+            alert('Please Login First !')
+             return
+             //$location.path('')
+         }
+ 
+         var args = $.param({
+             user_id: $cookieStore.get('userinfo').uid,
+             country_id: sessionStorage.country,
+ 
+         });
+ 
+         $http({
+             headers: {
+                 'Content-Type': 'application/x-www-form-urlencoded'
+             },
+             method: 'POST',
+             url: app_url + '/cart/check_stock_for_cart',
+             data: args //forms user object
+ 
+         }).then(function (response) {
+             loading.deactive();
+             res = response;
+            // console.log(res.data.status)
+             if(res.data.status == 'valid'){
+                 
+                 data = true;
+                 $location.path('/payment/mode');
+                 
+             }else{
+                 
+                 model.show('Alert','Some products in cart is out of stock');
+                 $location.path('/cart')
+             }
+ 
+             
+         })
+
+
+       // $location.path('/payment/mode');
     } 
    
     $scope.fullName = $cookieStore.get("userinfo").fullName;
