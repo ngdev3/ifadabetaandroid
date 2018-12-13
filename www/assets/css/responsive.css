@@ -18,14 +18,14 @@
 @media screen and (max-width: 690px) {
 .all_cat_title_img
 	{
-	margin-top: 33px;
+	margin-top: 18px;
 	}
 	.all_cat_head_img 
 	{
     padding-right: 11px;
     border-right: 3px solid #eee;
     display: table-cell;
-    height: 109px;
+    height: 85px;
     vertical-align: middle;
     width: 20%;
 	}
@@ -89,14 +89,14 @@
 	}
 	.all_cat_title_img
 	{
-	margin-top: 33px;
+	margin-top: 18px;
 	}
 	.all_cat_head_img 
 	{
     padding-right: 11px;
     border-right: 3px solid #eee;
     display: table-cell;
-    height: 109px;
+    height: 85px;
     vertical-align: middle;
     width: 20%;
 	}

@@ -49,12 +49,12 @@
 									<h4 class="all_cat_panelt panel-title">
 										<a class="all_cat_headbar collapsed" data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" aria-expanded="false" aria-controls="collapseOne">
 											<div class="all_cat_head_img">
-												<img class="all_cat_title_img img-responsive" src="assets/img/all_category/title_product.png">
+												<img class="all_cat_title_img img-responsive" src="{{x.cat_image}}">
 											</div>
 											<div class="all_cat_headings">
 												<h4 class="all_cat_title">{{x.name}}</h4>
-												<p class="all_cat_desc">Pulses, Rice & Flour Dry Fruitss,</p>
-												<h5 class="all_cat_tags">Spices, Breads</h5>
+												<p class="all_cat_desc">{{x.sub[0].name}}, {{x.sub[1].name}}...</p>
+												<!-- <h5 class="all_cat_tags">Spices, Breads</h5> -->
 											</div>
 										</a>
 									</h4>
@@ -70,7 +70,7 @@
 										<div class="row" >
 											<a href="javascript:void(0)"  >
 												<div class="col-md-4 col-sm-4 col-xs-4 text-center all_cat_odd_bg mt-5" ng-repeat="y in x.sub" ng-click="showProducts(y.id,y.url)">
-													<img class="all_cat_product_img img-responsive" src="assets/img/all_category/p1.png">
+													<img class="all_cat_product_img img-responsive" src="{{y.cat_image}}"	>
 													<p class="all_cat_product_name">{{y.name}}</p>
 												</div>
 											</a>
