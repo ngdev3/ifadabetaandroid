@@ -124,7 +124,7 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                     
                     }else{
 
-                        alert('Login Credentials are Wrong');
+                        alert(response.data.responseMessage);
                     }
                     //model.show('Alert', response.data.responseMessage);
                 }
