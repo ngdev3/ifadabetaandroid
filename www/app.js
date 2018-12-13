@@ -737,11 +737,13 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
                 $rootScope.cart_data = res;
                 $rootScope.cart_values = response.data.data;
+
                 if (!$cookieStore.get("promocode")) {
                     $rootScope.subtotalbeforediscount = response.data.data.subtotalafterdiscount;
                     $rootScope.tax_amount = response.data.data.tax_amount;
                     $rootScope.finalTotal = response.data.data.finalTotal;
-                    $rootScope.is_coupon_applied = response.data.data.is_coupon_applied;
+                    $rootScope.coupon_discount = '';
+                    $rootScope.subtotalafterdiscount = '';
                     // return
                 }
                 var cartdata = {
