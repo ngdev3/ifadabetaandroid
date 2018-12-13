@@ -112,7 +112,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 $scope.fetchcountry();
                 $scope.select_country = res.data.data.basic_info.country_id;
                 $scope.fetchcity();
-                $scope.select_city = 17; //res.data.data.basic_info.cit;
+                $scope.select_city = res.data.data.basic_info.cit_id;
                /*  $scope.countryID = res.data.data.address_details[0].country;
                 $scope.cityID = res.data.data.address_details[0].city;
                 $scope.countryName = res.data.data.address_details[0].COUNTRY_NAME;
