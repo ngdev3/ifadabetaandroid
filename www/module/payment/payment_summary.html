@@ -60,10 +60,14 @@
                                           <td>{{'Sub_Total' | translate}}</td>
                                           <td align="right">{{'AED' | translate}} {{subtotalafterdiscount | number : 2}}</td>
                                         </tr>
-                                        <tr ng-if="is_coupon_applied == '0'">
+                                        <tr ng-if="coupon_discount == '0'">
                                           <td>{{'Coupon_Discount' | translate}}</td>
                                           <td align="right">{{'AED' | translate}} 0.00</td>
                                         </tr>
+                                        <tr ng-if="coupon_discount != '0'">
+                                            <td>{{'Coupon_Discount' | translate}}</td>
+                                            <td align="right">{{'AED' | translate}} {{coupon_discount}}</td>
+                                          </tr>
                                         <tr>
                                           <td>{{'VAT' | translate}}</td>
                                           <td align="right">{{'AED' | translate}} {{tax_amount | number : 2}}</td>
