@@ -101,7 +101,7 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                         'left_data':response.data.data  
                     }
                     $cookieStore.put('userinfo', userinfo);
-                    $scope.default_hit();
+                    //$scope.default_hit();
                     $location.path('/dashboard/home');
 
                 } else {
@@ -137,7 +137,7 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
         }
     };
 
-    $scope.default_hit = function() {
+/*     $scope.default_hit = function() {
         var args = $.param({
            
         });
@@ -172,6 +172,6 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
            }
 
         })
-    }
+    } */
 
 });

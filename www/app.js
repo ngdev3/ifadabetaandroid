@@ -827,6 +827,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                     var promocode = {
                         codename: $rootScope.promocode
                     }
+                    
                     $cookieStore.put("promocode", promocode);
 
                     $('#inputpromo').attr('disabled', 'disabled');
