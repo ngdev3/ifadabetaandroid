@@ -1191,12 +1191,12 @@ li.progtrckr-todo.inprocessed span.pending_check i
 	border-radius:50%;
 	border:0px solid #006d07;
 	animation-name: example;
-    animation-duration: 1s;
+    animation-duration: 0.7s;
 	animation-iteration-count: 2;
 }
 @keyframes example{
   0%   {border: 0px solid #006d07;}
-  50%  {border: 10px solid #006d07;}	
+  50%  {border: 6px solid #006d07;}	
   100% {border: 0px solid #006d07;}
 }
 .text_div{
