@@ -159,6 +159,10 @@
 	.coupon_container h5 {
     font-size: 12px;
 }
+.tk_bg > .tk_hungry > h5 {
+    color: #fff;
+    font-size: 12px;
+}
 }
 @media screen and (max-width: 345px) {
 .coupon_container h5 {
