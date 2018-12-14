@@ -30,7 +30,7 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
             model.show('Info', 'You Have No Items In Your Shopping Cart.')
             return false;
         }
-        loading.active();
+        loading.active(); 
 
         var args = $.param({
             country_id: sessionStorage.country,
