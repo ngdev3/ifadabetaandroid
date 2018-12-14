@@ -60,7 +60,11 @@ app.controller('view_product', function ($scope, $http, $location, $cookieStore,
 
 $scope.product_details = '';
 $scope.fetch_product_data = function () {
-       
+        if(!$cookieStore.get("userinfo")){
+            alert("Some problem occurs in API");
+            // $location.path("/dashboard/home");
+            return false;
+        }
         loading.active();
 
         $scope.pid = $cookieStore.get('id')
