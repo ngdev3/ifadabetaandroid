@@ -101,7 +101,8 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                         'left_data':response.data.data  
                     }
                     $cookieStore.put('userinfo', userinfo);
-                    $location.path('/splash');
+                    $scope.default_hit();
+                    $location.path('/dashboard/home');
 
                 } else {
 
@@ -135,5 +136,42 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
 
         }
     };
+
+    $scope.default_hit = function() {
+        var args = $.param({
+           
+        });
+        
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/default_lang_country',
+            data: args 
+
+        }).then(function (response) {
+
+            res = response;
+
+           console.log(res.data.data.default_language_country);
+
+           if(res.data.data.status == 'success'){
+            sessionStorage.country = res.data.data.default_language_country.default_country_id;
+            sessionStorage.country_name = res.data.data.default_language_country.COUNTRY_NAME;
+                sessionStorage.lang = res.data.data.default_language_country.default_language;
+                sessionStorage.lang_code = res.data.data.default_language_country.language_code;
+                sessionStorage.currency = res.data.data.default_language_country.currency;
+               console.log("-----aaa-------"); 
+               console.log(sessionStorage) 
+               $translate.use(sessionStorage.lang_code);
+               $location.path('/dashboard/home');
+           }else{
+
+           }
+
+        })
+    }
 
 });
