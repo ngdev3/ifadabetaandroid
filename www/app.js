@@ -266,8 +266,10 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
         if (!$cookieStore.get("userinfo")) {
             var userID = '';
+            var user_type = '';
         } else {
             var userID = $cookieStore.get("userinfo").uid;
+            var user_type = $cookieStore.get("userinfo").user_type;
         }
         $rootScope.searchresult = '';
 
@@ -278,7 +280,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             'language_code': sessionStorage.lang_code,
             'search_product': $rootScope.searchProduct,
             'sort_by': $rootScope.sort,
-            'user_id': userID
+            'user_id': userID,
+            'user_type': user_type
         })
         $http({
             headers: {

@@ -179,8 +179,10 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
 	}
 	if($cookieStore.get("userinfo")){
         var userID = $cookieStore.get("userinfo").uid;
+        var user_type = $cookieStore.get("userinfo").user_type;
     }else{
         var userID = '';
+        var user_type = '';
     }
     $scope.see_alls = function () {
        // loading.active();
@@ -189,7 +191,8 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             product_type: $cookieStore.get('subcategoryInfo').subcatid,
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code,
-            user_id : userID
+            user_id : userID,
+            user_type : user_type
         });
 
         if($cookieStore.get('subcategoryInfo').subcatid == 1){

@@ -35,13 +35,16 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
          loading.active();
         if(!$cookieStore.get("userinfo")){
             var userID = '';
+            var user_type = '';
         }else{
             var userID = $cookieStore.get("userinfo").uid;
+            var user_type = $cookieStore.get('userinfo').user_type;
         }
 
         var args = $.param({
             country_id: sessionStorage.country,
-            user_id : userID
+            user_id : userID,
+            user_type : user_type
         });
         
         $http({
