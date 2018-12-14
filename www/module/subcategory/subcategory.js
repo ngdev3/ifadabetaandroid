@@ -9,6 +9,8 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         var uid = '';
     }
 
+    $scope.cat_id = $cookieStore.get('subcategoryInfo').subcatid;
+
     if ($cookieStore.get('subcategoryInfo').from == 'home') {
         loading.active();
     }
@@ -18,7 +20,21 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
     }    
     
     var ID;
+    $scope.brands_id = [];
     $scope.fetch_product_list = function (id,url) {
+        if($scope.brand_array){
+            for(var i=0 ; i<$scope.brand_array.length  ; i++){
+                if($scope.brand_array[i].brand_id != undefined){
+                    
+                    brands_id = $scope.brands_id.push($scope.brand_array[i].brand_id) ;
+                }
+                  
+            }
+            var brand_ids =$scope.brands_id.join();
+        }else{
+           var brand_ids = '';
+        }
+        
         // alert(id);
         $("#all").removeClass("input_default_focus");
         var suburl;
@@ -51,6 +67,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             user_id : uid,
             cat_url : suburl,
             sort_by : $scope.sort,
+            brand : brand_ids
             //retailer_id : 47
         });
 
@@ -74,7 +91,10 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             if (res.data.responseStatus == 'success') {
                 console.log(res.data.data.category_product.products);
                 $scope.categoryData = res.data.data.category_data[0];
-             
+                
+             if($scope.brand_data == '' || $scope.brand_data == undefined){
+                $scope.brand_data = res.data.data.brand_data;
+             }
                 
                 // $scope.product_price = response.data.data.category_product.menu_varient[0].price;
                 // $scope.DweightID = response.data.data.category_product.menu_varient[0].id;
@@ -279,6 +299,28 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         $scope.fetch_product_list('all');
         
     }
+
+    $scope.brand_array = [];
+     $scope.Filtering = function(id){
+        
+        getBrandDataFromFilter  = {
+            'brand_id':id
+        }
+         
+        if($('#brand_'+id).prop("checked") == true){
+            console.log($scope.brands);
+            brand_array = $scope.brand_array.push(getBrandDataFromFilter); 
+           console.log(brand_array) 
+        }
+        else if($('#brand_'+id).prop("checked") == false){
+            let index = $scope.brand_array.findIndex( getBrandDataFromFilter => getBrandDataFromFilter.id === id );
+            //console.log(index)
+            $scope.brand_array.splice(index, 1);
+        }
+        console.log($scope.brand_array)
+        
+     }
+
 
     $scope.taptowish = function(id, wishlist_status){
         //  alert(id+ " "+ wishlist_status);

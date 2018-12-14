@@ -165,9 +165,14 @@
                             </div>
                             <div class="estimate_deliaver">
                                 <h5>Billing Address</h5>
-                                <p>{{orderinfo.landmark}}</p>
+                                <h5>
+                                        {{orderinfo.landmark + " , " + orderinfo.address}}<br />
+                                        {{orderinfo.CITY_NAME + " , " + " " + orderinfo.COUNTRY_NAME}}<br />
+                                        {{orderinfo.zipcode}}<br />
+                                    </h5>
+                               <!--  <p>{{orderinfo.landmark}}</p>
                                 <p>{{orderinfo.location}}</p>
-                                <p>{{orderinfo.zipcode}}</p>
+                                <p>{{orderinfo.zipcode}}</p> -->
                             </div>
                             <div class="more_methods_opt">
                                 <div class="more_methods_opt_line">

@@ -137,21 +137,21 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div> -->
 
         <button class="accordion" id="accord_2" ng-click="init(2);">Brand</button>
         <div class="accordion-panel accordion-panel_2">
           <div class="accordion-container">
-                <div class="accordion-options">
+                <div class="accordion-options" ng-repeat="x in brand_data">
                     <div class="pretty p-icon p-curve p-pulse">
-                        <input type="checkbox" name="">
+                        <input type="checkbox" id="brand_{{x.id}}" value="x.id" ng-model="brands" name="brands" ng-change="Filtering(x.id)">
                         <div class="state p-info-o">
                             <i class="icon fa fa-check"></i>
-                            <label> BB Royal</label>
+                            <label> {{x.name}}</label>
                         </div>
                     </div>
                 </div>
-                <div class="accordion-options">
+                <!-- <div class="accordion-options">
                     <div class="pretty p-icon p-curve p-pulse">
                         <input type="checkbox" name="">
                         <div class="state p-info-o">
@@ -177,9 +177,9 @@
                             <label> Star Lion</label>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
-        </div>-->
+        </div>
 
         <button class="accordion" id="accord_3" ng-click="init(3);">Sort By</button>
         <div class="accordion-panel accordion-panel_3">
@@ -228,7 +228,7 @@
 <footer>
     <div class="apply_btn_container">
         <button onclick="closeFilter()"> Cancel</button>
-        <button onclick="closeFilter()" ng-click="filter('filter_form')"> Apply</button>
+        <button onclick="closeFilter()" ng-click="fetch_product_list(cat_id,'')"> Apply</button>
     </div>
 </footer>
 </form>
