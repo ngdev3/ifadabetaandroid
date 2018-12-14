@@ -260,7 +260,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         });
     }
 
-
+    $rootScope.currency = sessionStorage.currency;
     $rootScope.sort = '';
     $rootScope.searchBar = function () {
 

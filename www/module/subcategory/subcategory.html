@@ -288,7 +288,7 @@
                                     <!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
                                     <a href="javascript:void(0)"><p class="sub_produt_name">{{x.menu_name}}</p></a>
                                     <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
-                                    <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->{{'AED' | translate}} {{x.product_varient[0].price}}<!-- </span> --></p>
+                                    <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->{{currency}} {{x.product_varient[0].price}}<!-- </span> --></p>
                                 </div>
                                     <div class="wislist_sub wishlist-container" ng-click="taptowishlist(x.product_varient[0].id, x.product_varient[0].is_in_wishlist)">
                                         <!-- <i class="fa heart fa-heart-o"></i>  -->
@@ -348,7 +348,7 @@
                                         <!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
                                         <a href="javascript:void(0)"><p class="sub_produt_name">{{x.menu_name}}</p></a>
 <!--                                             <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
--->                                            <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->{{'AED' | translate}} {{x.menu_varient_data.price}}<!-- </span> --></p>
+-->                                            <p class="sub_prcing" ><!-- <strike>AED {{productVarient.price_for_retailer}}</strike> --><!-- <span id="sub_rrp" > -->{{currency}} {{x.menu_varient_data.price}}<!-- </span> --></p>
                                     </div>
                                     <div class="wislist_sub wishlist-container" ng-click="taptowish(x.menu_varient_data.id, x.menu_varient_data.is_in_wishlist)">
                                         <!-- <i class="fa heart fa-heart-o"></i>  -->

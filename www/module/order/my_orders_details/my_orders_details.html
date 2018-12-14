@@ -44,7 +44,7 @@
                                 <a href="" class="track_btn" ng-click="trackOrder(y.id,detail.id)">{{'Track_Order' | translate}}</a>
                             </div>
                             <div class="order_subcontainer_detail col-xs-12">
-                                <p><span>{{'Order_on' | translate}}: 12-7-2018</span><span>{{'Order_Amt' | translate}}: {{'AED' | translate}} 220</span></p>
+                                <p><span>{{'Order_on' | translate}}: 12-7-2018</span><span>{{'Order_Amt' | translate}}: {{currency}} 220</span></p>
                             </div>
                             <div class="order_subcontainer__content col-xs-12" ng-repeat="z in y.items">
                                 <div class="prod_row_wrapper" >
@@ -54,7 +54,7 @@
                                     <div class="prod_content_wrapper">
                                         <p class="order_sub_name">{{z.MENU_NAME}}</p>
                                         <p><span>{{'Units' | translate}} </span>{{z.UNIT_VALUE}}{{z.FS_UNIT_NAME}}</p>
-                                        <p><span>{{'Price' | translate}} </span>{{'AED' | translate}} {{z.final_amount}}</p>
+                                        <p><span>{{'Price' | translate}} </span>{{currency}} {{z.final_amount}}</p>
                                         <p><span>{{'Qnty' | translate}} </span>{{z.quantity}}</p>
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
                                     <tr>
                                       <td width="100px;">{{'Payment' | translate}}</td>
                                       <td width="20px;">:</td>
-                                      <td ng-if="detail.payment_type == '1'">{{'COD' | translate}}<span> ({{'AED' | translate}}-{{codamount | number : 2}})</span></td>
+                                      <td ng-if="detail.payment_type == '1'">{{'COD' | translate}}<span> ({{currency}}-{{codamount | number : 2}})</span></td>
                                       <td ng-if="detail.payment_type == '2'">{{'Online' | translate}}</td>
                                       <td ng-if="detail.payment_type == ''">{{'Wallet' | translate}}</td>
                                     </tr>
@@ -120,7 +120,7 @@
                     </div>
                     <div class="view_prod">
                         <p class="col-xs-6"><a href="view_cart.php">{{'Total_Amount' | translate}}</a></p>
-                        <p class="col-xs-6 text-right">{{'AED' | translate}} {{detail.final_amount | number : 2}}</p>
+                        <p class="col-xs-6 text-right">{{currency}} {{detail.final_amount | number : 2}}</p>
                     </div>
                     
                 </div>
