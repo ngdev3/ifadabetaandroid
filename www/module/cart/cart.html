@@ -111,7 +111,7 @@
 				<div class="after_discount" ng-if="subtotalafterdiscount">{{'Sub_Total_after_discount' | translate}} <span>{{'AED' | translate}} {{subtotalafterdiscount | number : 2}}</span></div>
 				<div class="after_discount" ng-if="!subtotalafterdiscount">{{'Sub_Total' | translate}} <span>{{'AED' | translate}} {{subtotalbeforediscount | number : 2}}</span></div>
 				<div class="after_discount" ng-if="coupon_discount">{{'Coupon_Discount' | translate}} <span>{{'AED' | translate}} {{coupon_discount | number : 2}}</span></div>
-				<div class="after_cart">{{'VAT' | translate}}<span>{{'AED' | translate}} {{tax_amount | number : 2}}</span></div>
+				<div class="after_cart">{{'VAT' | translate}}<span>{{currency}} {{tax_amount | number : 2}}</span></div>
 			</div>
 			<!-- {{cart_data}} -->
 			<a href="javascript:void(0)" ng-click="address_delivery()">

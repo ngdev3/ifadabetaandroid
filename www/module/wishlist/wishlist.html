@@ -54,7 +54,7 @@
 								<p class="sub_product_qty">{{x.UNIT}} {{x.UNIT_TYPE}}</p>
 								<p class="sub_prcing"> 
 									<!-- <strike>AED 190</strike> -->
-									<span id="sub_rrp">{{'AED' | translate}} {{x.PRICE}}</span></p>
+									<span id="sub_rrp">{{currency}} {{x.PRICE}}</span></p>
 							</div>
 							<div class="wislist_sub wishlist-container cart_remove" ng-click="removeWishlistItem(x.id)">
 								<i class="fa heart fa-trash delete_item"></i>
