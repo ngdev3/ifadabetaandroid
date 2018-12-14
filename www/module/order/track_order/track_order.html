@@ -161,7 +161,7 @@
                         <div class="tracking_more_details">
                             <div ng-if="trackorder_location.delivery_date != '0000-00-00'" class="estimate_deliaver">
                                 <h5>Estimated Delivery Time</h5>
-                                <p>{{trackorder_location.delivery_date}}</p>
+                                <p>{{trackorder_location.delivery_date | date : 'dd-MM-yyyy'}}</p>
                             </div>
                             <div class="estimate_deliaver">
                                 <h5>Billing Address</h5>
