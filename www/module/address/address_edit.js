@@ -149,7 +149,7 @@ app.controller('address_edit', function ($scope, $http, $location, $cookieStore,
                 'zip_code': $scope.zip,
                 'lattitude' : 28.5355161,
                 'longitude' : 25.3019341,
-                'language_code' : 'en'
+                language_code: sessionStorage.lang_code
             });
         
             //Edit Address from LocalAPI    

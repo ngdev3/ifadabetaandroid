@@ -50,6 +50,33 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
 
 
     //Function to fetch the User's Data
+    $scope.fetchcountry = function(){  
+        loading.active();      
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded' //'multipart/form-data' 
+            },
+            method: 'POST',
+            url: app_url + '/get_country',
+            //data: args
+        }).then(function (response) {  
+            loading.deactive();
+            console.log(response);
+            res = response;   
+            if (res.data.data.status == 'success') {
+                $scope.Countries = res.data.data.country;   
+                console.log($scope.Countries);             
+            } else {    
+                model.show('Alert', res.data.responseMessage);
+                $location.path('/dashboard/myprofile');
+            }
+        }).finally(function () {
+            loading.deactive();
+        })
+    }
+
+
 
     $scope.myprofile_data = function () {
         loading.active();
@@ -57,7 +84,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
 
         var args = $.param({
             'user_id': $cookieStore.get("userinfo").uid,
-            'language_code' : 'en'
+            language_code: sessionStorage.lang_code
             // 'country_id' : sessionStorage.country
         });
 
@@ -82,12 +109,11 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 $scope.mobile = res.data.data.basic_info.mobile_number;
                 $scope.address = res.data.data.basic_info.address;
                 $scope.country = res.data.data.basic_info.COUNTRY_NAME;
-               /*  $scope.countryID = res.data.data.address_details[0].country;
-                $scope.cityID = res.data.data.address_details[0].city;
-                $scope.countryName = res.data.data.address_details[0].COUNTRY_NAME;
-                $scope.cityName = res.data.data.address_details[0].CITY_NAME; */
+                $scope.fetchcountry();
+                $scope.select_country = res.data.data.basic_info.country_id;
+                $scope.fetchcity();
+                $scope.select_city = res.data.data.basic_info.city_id;
                 $scope.city = res.data.data.basic_info.CITY_NAME;
-                // console.log($scope.countryID);
                 $scope.image = res.data.data.basic_info.image;
 
                
@@ -250,32 +276,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
 
 
     //defualt country
-    $scope.fetchcountry = function(){  
-        loading.active();      
-        $http({
-            headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
-                'Content-Type': 'application/x-www-form-urlencoded' //'multipart/form-data' 
-            },
-            method: 'POST',
-            url: app_url + '/get_country',
-            //data: args
-        }).then(function (response) {  
-            loading.deactive();
-            console.log(response);
-            res = response;   
-            if (res.data.data.status == 'success') {
-                $scope.Countries = res.data.data.country;   
-                console.log($scope.Countries);             
-            } else {    
-                model.show('Alert', res.data.responseMessage);
-                $location.path('/dashboard/myprofile');
-            }
-        }).finally(function () {
-            loading.deactive();
-        })
-    }
-
+   
     //default city
     $scope.fetchcity = function(){
         // alert($scope.select_country);
