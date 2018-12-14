@@ -3,6 +3,9 @@
         display: block;
         padding: 15px;
     }
+	.nav > li.cart_icon img {
+    width: 28px;
+   }  
 </style>
 <div ng-controller="list_ticket" ng-init="ticketlistData()">
 
@@ -19,9 +22,10 @@
                             </a>
                         </li>
                         <li class="cart_icon">
-                                <div class="view_tkt_btn" ng-click="raise_ticket()">
-                                        <a href="javascript:void(0)"><input type="button" class="btn btn-success" value="{{'Raise_Ticket' | translate}}"></a>
-                                    </div> </li>
+                          <a href="javascript:void(0)" ng-click="raise_ticket()">
+						     <img src="assets/img/icon/raise_ticket.png">
+						  </a>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav bottom_header">
                         <li class="menu_search_container"><a href="javascript:void(0)">

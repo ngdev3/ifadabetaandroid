@@ -901,7 +901,7 @@ li.menu_search_container a input{
 .wishlist-container {
     position: absolute;
     top: 8px;
-    right: 7px;
+    right: 13px;
 }
 .fill{
 	color: #f26e71;
@@ -1588,20 +1588,20 @@ li.menu_search_container a input{
     padding: 0 8px;
     font-size: 11px;
     min-width: 65px;
-	float: right;
-    margin-left: 10px;
-    margin-top: 8px;
+    /* float: unset; */
+    margin-left: 6px;
+    margin-top: 8px;	
 }
 .order_subcontainer_heading a.track_btn{
-    display: inline-block;
+   display: inline-block;
     background: #15b620;
     color: #fff;
     border-radius: 4px;
     padding: 0 8px;
     font-size: 11px;
     min-width: 65px;
-	float: right;
-    margin-left: 10px;
+    float: right;
+    /* margin-left: 10px; */
     margin-top: 8px;
 }
 .order_subcontainer_detail{

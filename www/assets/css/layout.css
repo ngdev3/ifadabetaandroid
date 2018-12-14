@@ -259,7 +259,7 @@ input.btn.btn-success.all-sub-cat_buttons:focus
 
 .no-padding.item_lists_main {
    
-     box-shadow: 0px 4px 5px 0px #e6e6e6;
+	box-shadow: 0px -3px 7px 0px #e6e6e6;
     margin-bottom: 0px;
     margin-top:0px;
     padding-bottom: 12px !important;
@@ -1108,9 +1108,8 @@ li.progtrckr-todo.inprocessed span.pending_check i
 /*address Ends*/
 /*Empty Cart*/
 .empty_cart {
-    height: 90vh;
-   margin: 100px auto 200px auto;
-   text-align: center;
+    margin: 100px auto 100px auto;
+    text-align: center;
 }
 .empty_cart h3{
    color: #4c4c4c;
@@ -1492,4 +1491,11 @@ li.progtrckr-todo.inprocessed span.pending_check i
 }
 .terms_and_cond > a:focus{
 	color: #006d07;
+}
+.submit-btn > a.cancel_order{
+	background: #bcbcbc;
+    color: #5c5c5c;
+    display: inline-block;
+    padding: 8px 0;
+    width: 120px;
 }

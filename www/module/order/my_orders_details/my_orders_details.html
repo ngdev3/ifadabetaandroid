@@ -71,8 +71,8 @@
                                    
                             </div>
                             <div ng-if="y.ORDER_STATUS != '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
-                                <a href="javascript:void(0)" ng-click="deleteOrder(y.id,detail.id)">{{'Cancel' | translate}}</a>
-                              </div>
+                                <a class="cancel_order" href="javascript:void(0)" ng-click="deleteOrder(y.id,detail.id)">{{'Cancel' | translate}}</a>
+						    </div>
                               <div ng-if="y.ORDER_STATUS == '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
                                 <a href="javascript:void(0)" style="background-color: #eda1a8">{{'Order_Cancelled' | translate}} </a>
                               </div>
