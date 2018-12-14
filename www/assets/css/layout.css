@@ -270,11 +270,11 @@ input.btn.btn-success.all-sub-cat_buttons:focus
     position: relative;
 }
 .wislist_sub.wishlist-container i {
-    font-size: 20px;
+    font-size: 16px;
 }
 /** add button**/
 .less_item.sub_add_btn {
-    font-size: 23px;
+    font-size: 20px;
     background-color: transparent;
     border: none;
     margin: 0px;
@@ -288,10 +288,10 @@ input.btn.btn-success.all-sub-cat_buttons:focus
     border: 1px solid #00be0c;
     color: #00be0c;
     font-weight: 700;
-    /* padding: 2px; */
+    padding: 2px;
+    padding-bottom: 6px;
     line-height: 0px;
-    padding-bottom: 5px;
-    text-align: center;
+    /* padding: 0; */
 }
 .add_item_button.sub_add_btn input {
     font-size: 17px;
@@ -1397,8 +1397,8 @@ li.progtrckr-todo.inprocessed span.pending_check i
     letter-spacing: 1px;
 }
 .add_cart_button.sub_add_btn > button.out_of_stock {
-    width: 76px;
-    font-size: 13px;
+    width: 75px;
+    font-size: 10px;
     background-color: #eda1a8;
     border: none;
     margin: 0px;
@@ -1408,15 +1408,15 @@ li.progtrckr-todo.inprocessed span.pending_check i
     outline: none;
     margin-top: 3px;
     position: absolute;
-    padding: 7px 12px;
+    padding: 5px 10px;
     right: -3px;
-    top: -42px;
+    bottom: 15px;
 }
 /*Search bar Icon*/
 .search_bar_span{
 	position: absolute;
     right: 15px;
-    height: 25.5px;
+    height: 29.5px;
     width: 32px;
     top: 5px;
     text-align: center;
@@ -1475,4 +1475,11 @@ li.progtrckr-todo.inprocessed span.pending_check i
 }
 .input_default_focus{
     background-color: #006d07;
+}
+.terms_and_cond{
+	width: max-content;
+    display: inline-block;
+}
+.terms_and_cond > a:focus{
+	color: #006d07;
 }

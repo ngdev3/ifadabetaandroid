@@ -246,7 +246,9 @@
                         <div class="catg_product_container">
                             <a href="javascript:void(0)">
                                 <div class="offer-img" ng-click="product_view(x.id)">
-                                    <img src="{{x.product_image}}" alt="" class="img-responsive" />
+                                    <div class="offer-img-container">
+										<img src="{{x.product_image}}" alt="" class="img-responsive" />
+									</div>
                                     <div class="catg_overlay text-center">
                                         <p>{{x.menu_name}}</p>
                                         <p class="product_price">{{'AED' | translate }} {{x.menu_varient_data.price}}</p>
@@ -297,8 +299,10 @@
                         <div class="catg_product_container">
                             <a href="javascript:void(0)">
                                 <div class="offer-img" ng-click="product_view(y.id, y.MANUFACTURER_ID)">
-                                    <img src="{{y.product_image}}" alt="" class="img-responsive" />
-                                    <div class="catg_overlay text-center">
+                                    <div class="offer-img-container">
+										<img src="{{y.product_image}}" alt="" class="img-responsive" />
+                                    </div>
+									<div class="catg_overlay text-center">
                                         <p>{{y.menu_name}}</p>
                                         <p class="product_price">{{'AED' | translate }} {{y.menu_varient_data.price}}</p>
                                     </div>
@@ -349,8 +353,10 @@
                         <div class="catg_product_container">
                             <a href="javascript:void(0)">
                                 <div class="offer-img" ng-click="product_view(x.id)">
-                                    <img src="{{x.product_image}}" alt="" class="img-responsive" />
-                                    <div class="catg_overlay text-center">
+                                    <div class="offer-img-container">
+										<img src="{{x.product_image}}" alt="" class="img-responsive" />
+                                    </div>
+									<div class="catg_overlay text-center">
                                         <p>{{x.menu_name}}</p>
                                         <p class="product_price">{{'AED' | translate }} {{x.menu_varient_data.price}}</p>
                                     </div>
@@ -384,8 +390,10 @@
                         <div class="catg_product_container">
                             <a href="javascript:void(0)">
                                 <div class="offer-img" ng-click="product_view(x.id)">
-                                    <img src="{{x.product_image}}" alt="" class="img-responsive" />
-                                    <div class="catg_overlay text-center">
+                                    <div class="offer-img-container">
+										<img src="{{x.product_image}}" alt="" class="img-responsive" />
+                                    </div>
+									<div class="catg_overlay text-center">
                                         <p>{{x.menu_name}}</p>
                                     </div>
                                 </div>

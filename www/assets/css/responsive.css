@@ -18,14 +18,14 @@
 @media screen and (max-width: 690px) {
 .all_cat_title_img
 	{
-	margin-top: 18px;
+	margin-top: 33px;
 	}
 	.all_cat_head_img 
 	{
     padding-right: 11px;
     border-right: 3px solid #eee;
     display: table-cell;
-    height: 85px;
+    height: 109px;
     vertical-align: middle;
     width: 20%;
 	}
@@ -79,7 +79,7 @@
 	}
 	
 	.offer-img img{
-		padding: 5px;
+		
 	}
 	.nav > li.menu_icon {
 		width: auto;
@@ -89,14 +89,14 @@
 	}
 	.all_cat_title_img
 	{
-	margin-top: 18px;
+	margin-top: 33px;
 	}
 	.all_cat_head_img 
 	{
     padding-right: 11px;
     border-right: 3px solid #eee;
     display: table-cell;
-    height: 85px;
+    height: 109px;
     vertical-align: middle;
     width: 20%;
 	}
@@ -115,6 +115,15 @@
 	.all_cat_product_name 
 	{
     font-size: 14px;
+    min-height: 30px;
+    max-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 15px;
+    max-height: 30px;
     }
     .all_cat_panelt.panel-title > a.collapsed:before {
     height: 28px;

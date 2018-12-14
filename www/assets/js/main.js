@@ -5,13 +5,13 @@ function openNav() {
 	//document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
     document.getElementById("main").style.width = "100%";
 	$('.backdrop').css('display', 'block');
-	$('body').css('overflow', 'hidden');
+	$('body').css({"position": "fixed", "width": "100%"});
 }
 function closeNav() {
 	if(event.target.id != 'asdf'){
 		$("#mySidenav").attr('style','width=block');
 		//document.getElementById("main").style.marginLeft= "0";
-		$('body').css('overflow', 'auto');
+		$('body').css('position', 'relative');
 		$('.backdrop').css('display', 'none');
 		
 	}
