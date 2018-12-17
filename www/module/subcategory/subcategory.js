@@ -9,6 +9,10 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         var uid = '';
     }
 
+    if($cookieStore.get('value_pack')){
+        $scope.value_pack = true;
+        $cookieStore.remove('value_pack');
+    }
     $scope.cat_id = $cookieStore.get('subcategoryInfo').subcatid;
 
     if ($cookieStore.get('subcategoryInfo').from == 'home') {
@@ -319,19 +323,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             $scope.brand_array.splice(index, 1);
         }
         console.log($scope.brand_array)
-        
-        /* if($scope.brand_array){
-            for(var i=0 ; i<$scope.brand_array.length  ; i++){
-                if($scope.brand_array[i] != undefined){
-                    
-                    brands_id = $scope.brands_id.push($scope.brand_array[i]) ;
-                }
-                  
-            }
-            $scope.brand_ids =$scope.brands_id.join();
-        }else{
-           $scope.brand_ids = '';
-        } */
+       
      }
 
 

@@ -433,6 +433,7 @@ fieldset {
     bottom: 0;
     border-top: 2px solid #cccccc91;
     width: 100%;
+    background: #fff;
 }
 .sidenav-right footer .apply_btn_container{
     margin: 10px auto;
@@ -1332,7 +1333,7 @@ li.menu_search_container a input{
     font-family: Calibri-Light;
     padding: 2px 0;
 }
-.filter-container{margin-top: 55px;}
+.filter-container{margin-top: 55px; margin-bottom: 65px;}
 .accordion {
     background-color: transparent;
     color: #333;

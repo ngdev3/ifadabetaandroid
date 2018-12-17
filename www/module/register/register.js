@@ -36,9 +36,9 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                 error_str += "Password, ";
             }
 
-           /*  if ($scope[form].terms.$error.required !== undefined) {
+             if ($scope[form].terms.$error.required !== undefined) {
                 error_str += "Terms & Conditions, ";
-            } */
+            } 
             
 
         }

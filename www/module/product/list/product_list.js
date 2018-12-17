@@ -48,6 +48,29 @@ $scope.filter = function(form) {
     
 }
 
+$scope.brand_array = [];
+//$scope.brand_ids = [];
+ $scope.Filtering = function(id){
+    
+   /*  getBrandDataFromFilter  = {
+        'brand_id':id
+    }
+      */
+    if($('#brand_'+id).prop("checked") == true){
+        console.log($scope.brands);
+        brand_array = $scope.brand_array.push(id); 
+       console.log(brand_array) 
+    }
+    else if($('#brand_'+id).prop("checked") == false){
+        //let index = $scope.brand_array.findIndex( getBrandDataFromFilter => getBrandDataFromFilter.id === id );
+        //console.log(index)
+        var index = $scope.brand_array.indexOf(id);
+        $scope.brand_array.splice(index, 1);
+    }
+    $cookieStore.put('brand_array',$scope.brand_array);
+   
+ }
+
 
 $scope.taptowishlist = function(id, wishlist_status){
     //  alert(id+ " "+ wishlist_status);return;

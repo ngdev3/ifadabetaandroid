@@ -263,6 +263,17 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     $rootScope.currency = sessionStorage.currency;
     $rootScope.sort = '';
     $rootScope.searchBar = function () {
+        var brands =$cookieStore.get('brand_array');
+        console.log(brands);
+        var brand_str = '';
+        angular.forEach(brands,(value,key)=>{
+            console.log(value);
+            if(brand_str == ''){
+                brand_str   =   value;
+            }else{
+                brand_str += ','+value;
+            }
+        });
 
         if (!$cookieStore.get("userinfo")) {
             var userID = '';
@@ -281,7 +292,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             'search_product': $rootScope.searchProduct,
             'sort_by': $rootScope.sort,
             'user_id': userID,
-            'user_type': user_type
+            'user_type': user_type,
+            'brand': brand_str
         })
         $http({
             headers: {
@@ -297,16 +309,23 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             res = response;
 
             if (res.data.data.category_product.total_rows > 0) {
+                
                 $rootScope.searchresult = res.data.data.category_product.products;
                 $rootScope.search_product = res.data.data.category_product;
+                if($rootScope.brand_data == '' || $rootScope.brand_data == undefined)
+                {
+                    $rootScope.brand_data = res.data.data.brand_data;
+                }
                 $rootScope.searchProduct = '';
                 // $rootScope.searchresult = '';
+                $cookieStore.remove('brand_array');
                 $location.path("/product/list");
             } else {
                 // alert()
                 // $scope.resultstatus = false;
                 $rootScope.searchresult = '';
                 $rootScope.searchProduct = '';
+                $cookieStore.remove('brand_array');
                 $location.path("/product/list");
                 // $scope.datanotfound = true;
             }

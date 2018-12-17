@@ -33,6 +33,7 @@ $scope.val_packs = function(){
            if(res.data.data.status == 'success'){
                console.log(res.data.data.value_pack)
                $scope.valpacks =  res.data.data.value_pack;
+               
             return;
                $location.path('/dashboard/home');
            }else{
@@ -64,6 +65,7 @@ var packs = {
     'subcatid': id,
     'url' : url
 }
+   $cookieStore.put('value_pack','value_pack');
    $cookieStore.put('subcategoryInfo',packs);
    $location.path('/subcategory');
 }
