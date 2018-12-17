@@ -249,7 +249,7 @@
                       <td ng-if="x.payment_by == '3'">By Return</td>
                       <td ng-if="x.payment_by == '4'">Place Order</td>
                       <td ng-if="x.payment_by == '5'">By loyalty point redeem</td>
-                      <td>{{x.amount}}</td>
+                      <td>{{currency}} {{x.amount}}</td>
                       <td ng-if="x.transaction_type == '1'">CR</td>
                       <td ng-if="x.transaction_type == '2'">DR</td>
                     </tr>

@@ -67,7 +67,7 @@
                     <tr ng-repeat="x in redeemhistory">
                       <th style="text-align:center;font-weight:400;">{{x.updated_date.split(' ')[0] | date:'dd-MM-yyyy'}}</th>
                       <td>{{x.loyalty_by}}</td>
-                      <td>{{x.loyalty_point}}</td>
+                      <td>{{currency}} {{x.loyalty_point}}</td>
                       <td>{{x.type}}</td>
                     </tr>
                     <!-- <tr>

@@ -348,7 +348,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
      * Pagination on Scrolling
      */
 
-    $scope.scrollPagination = function(id,url){
+  /*   $scope.scrollPagination = function(id,url){
         // alert(id+ " "+url);return;
         $("#all").removeClass("input_default_focus");
         var suburl;
@@ -425,14 +425,14 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
 
                 }
                     
-                /* }else{
+                 }else{
                     if( paused ){
                        paused = false;
-                   } */
-            });
+                   } 
+            //});
             // });
-        }
-
+       // }
+ */
         /**
          * End of Function
          */

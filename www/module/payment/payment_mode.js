@@ -36,6 +36,15 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
         }
        
     }
+    if(!$cookieStore.get('coupon_data')){
+        var coupon_code = '';
+        var coupon_id = '';
+        var percentage = '';
+    }else{
+        var coupon_code = $cookieStore.get('coupon_data').coupon_code;
+        var coupon_id = $cookieStore.get('coupon_data').coupon_id;
+        var percentage = $cookieStore.get('coupon_data').percentage;
+    }
 
     $scope.form ={}
     $scope.payment = function(form){
@@ -65,7 +74,10 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
             country_id : sessionStorage.country,
             payment_mod : $scope.form.payby,
             is_wallet_apply : $scope.is_wallet_apply,
-            address : $cookieStore.get('aid')
+            address : $cookieStore.get('aid'),
+            coupon_code : coupon_code,
+            coupon_id : coupon_id,
+            percentage : percentage,
         });
         
         $http({
@@ -83,6 +95,7 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
            if(res.data.data.status == 'success')
            {
                 $cookieStore.put('order_id',res.data.data.order_id);
+                $cookieStore.remove("coupon_data");
                 $rootScope.usercartvalue();
                 $location.path('/thankyou');
            }

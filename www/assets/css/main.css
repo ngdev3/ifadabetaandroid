@@ -1711,8 +1711,7 @@ li.menu_search_container a input{
     font-size: 12px;
 }
 .offer-img-container{
-	min-height: 90px;
-    max-height: 90px;
+	
     overflow: hidden;
     padding: 5px;
 }

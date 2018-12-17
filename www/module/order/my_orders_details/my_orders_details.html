@@ -34,17 +34,17 @@
                         <div class="order_subcontainer" ng-repeat="y in detail_distribution">
                             <div class="order_subcontainer_heading col-xs-12">
                                 <p>{{'Order_ID' | translate}} &nbsp;<span>{{detail.id}}-{{y.id}} </span></p>
-                                <p class="status_btn" ng-if="y.ORDER_STATUS == '1'">Pending</p>
-                                <p class="status_btn" ng-if="y.ORDER_STATUS == '2'">Confirm</p>
-                                <p class="status_btn" ng-if="y.ORDER_STATUS == '3'">Delivery Boy Assigned</p>
-                                <p class="status_btn" ng-if="y.ORDER_STATUS == '4'">Out for delivery</p>
-                                <p class="status_btn" ng-if="y.ORDER_STATUS == '5'">Delivered</p>
-                                <p class="status_btn" ng-if="y.ORDER_STATUS == '6'">Cancelled</p>
-                                <p class="status_btn" ng-if="y.ORDER_STATUS == '7'">Rejected</p>                                
+                                <p class="status_btn" ng-if="y.status == '1'">Pending</p>
+                                <p class="status_btn" ng-if="y.status == '2'">Confirm</p>
+                                <p class="status_btn" ng-if="y.status == '3'">Delivery Boy Assigned</p>
+                                <p class="status_btn" ng-if="y.status == '4'">Out for delivery</p>
+                                <p class="status_btn" ng-if="y.status == '5'">Delivered</p>
+                                <p class="status_btn" ng-if="y.status == '6'">Cancelled</p>
+                                <p class="status_btn" ng-if="y.status == '7'">Rejected</p>                                
                                 <a href="" class="track_btn" ng-click="trackOrder(y.id,detail.id)">{{'Track_Order' | translate}}</a>
                             </div>
                             <div class="order_subcontainer_detail col-xs-12">
-                                <p><span>{{'Order_on' | translate}}: 12-7-2018</span><span>{{'Order_Amt' | translate}}: {{currency}} 220</span></p>
+                                <p><span>{{'Order_on' | translate}}: {{y.updated_date.split(' ')[0] | date : 'dd-MM-yyyy'}}</span><span>{{'Order_Amt' | translate}}: {{currency}} {{y.final_amount}}</span></p>
                             </div>
                             <div class="order_subcontainer__content col-xs-12" ng-repeat="z in y.items">
                                 <div class="prod_row_wrapper" >
@@ -54,7 +54,8 @@
                                     <div class="prod_content_wrapper">
                                         <p class="order_sub_name">{{z.MENU_NAME}}</p>
                                         <p><span>{{'Units' | translate}} </span>{{z.UNIT_VALUE}}{{z.FS_UNIT_NAME}}</p>
-                                        <p><span>{{'Price' | translate}} </span>{{currency}} {{z.final_amount}}</p>
+                                        <p><span>{{'Price' | translate}} </span>{{currency}} {{z.unit_price}}</p>
+                                        <p><span>{{'VAT' | translate}} </span>{{currency}} {{z.tax_amount}}</p>
                                         <p><span>{{'Qnty' | translate}} </span>{{z.quantity}}</p>
                                     </div>
                                 </div>
@@ -92,6 +93,11 @@
                                       <td ng-if="detail.payment_type == '1'">{{'COD' | translate}}<span> ({{currency}}-{{codamount | number : 2}})</span></td>
                                       <td ng-if="detail.payment_type == '2'">{{'Online' | translate}}</td>
                                       <td ng-if="detail.payment_type == ''">{{'Wallet' | translate}}</td>
+                                    </tr>
+                                    <tr ng-if="detail.coupon_code_amount != '0.00'">
+                                      <td>{{'Coupon_discount' | translate}}</td>
+                                      <td width="20px;">:</td>
+                                      <td>{{detail.coupon_code_amount}}</td>
                                     </tr>
                                     <tr>
                                       <td>{{'Ordered_On' | translate}}</td>

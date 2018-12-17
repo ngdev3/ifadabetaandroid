@@ -543,8 +543,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
 
     $rootScope.plusToCart = function (weightid) {
-
-
+      
         weightid = weightid.target.dataset.weightid;
         rowid = $('#enableCart_' + weightid).attr('data-rowid');
         addToCartID = 'addToCart_' + weightid;
@@ -576,7 +575,11 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         }).then(function (response) {
             //  alert($rootScope.currentval);
             if (response.data.status !== 'outofstock') {
-
+                $rootScope.in_stock_check = response.data.data.allow_to_add_in_cart;
+                if( $rootScope.in_stock_check == 'no'){
+                    alert('Out of stock');
+                    return false;
+                }
                 $rootScope.currentval = parseInt($rootScope.currentval) + 1;
             } else {
                 alert('This Item is out of stock ')
@@ -851,6 +854,13 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                     }
                     
                     $cookieStore.put("promocode", promocode);
+                    console.log(response.data.data)
+                    var coupon_data = {
+                        coupon_code: response.data.data.coupon_data.coupon_code,
+                        coupon_id: response.data.data.coupon_data.coupon_id,
+                        percentage: response.data.data.coupon_data.percentage
+                    }
+                    $cookieStore.put("coupon_data", coupon_data);
 
                     $('#inputpromo').attr('disabled', 'disabled');
                     $('#apply').addClass('ng-hide')

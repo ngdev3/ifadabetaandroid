@@ -494,8 +494,13 @@ $scope.searchresults = function(){
         $route.reload();
   }
 
-  $scope.details = function(id) {
-      alert(id);
+  $scope.details = function(id, url) {
+    var subcategoryInfo = {
+        'subcatid': id,
+        'url': url
+    }
+    $cookieStore.put('subcategoryInfo', subcategoryInfo);
+      $location.path('/subcategory');
   }
 
 });

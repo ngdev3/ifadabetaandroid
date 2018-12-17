@@ -65,7 +65,7 @@
                                           <td>{{'Coupon_Discount' | translate}}</td>
                                           <td align="right">{{currency}} 0.00</td>
                                         </tr>
-                                        <tr ng-if="coupon_discount != '0'">
+                                        <tr ng-if="coupon_discount != '0' && coupon_discount">
                                             <td>{{'Coupon_Discount' | translate}}</td>
                                             <td align="right">{{currency}} {{coupon_discount}}</td>
                                           </tr>
