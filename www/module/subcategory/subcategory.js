@@ -20,21 +20,20 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
     }    
     
     var ID;
-    $scope.brands_id = [];
     $scope.fetch_product_list = function (id,url) {
-        if($scope.brand_array){
-            for(var i=0 ; i<$scope.brand_array.length  ; i++){
-                if($scope.brand_array[i].brand_id != undefined){
-                    
-                    brands_id = $scope.brands_id.push($scope.brand_array[i].brand_id) ;
-                }
-                  
+        var brands =$scope.brand_array;
+        console.log(brands);
+        var brand_str = '';
+        angular.forEach(brands,(value,key)=>{
+            console.log(value);
+            if(brand_str == ''){
+                brand_str   =   value;
+            }else{
+                brand_str += ','+value;
             }
-            var brand_ids =$scope.brands_id.join();
-        }else{
-           var brand_ids = '';
-        }
-        
+        });
+        console.log(brand_str);
+        //var brands_input = JSON.parse(brands);
         // alert(id);
         $("#all").removeClass("input_default_focus");
         var suburl;
@@ -67,7 +66,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             user_id : uid,
             cat_url : suburl,
             sort_by : $scope.sort,
-            brand : brand_ids
+            brand : brand_str
             //retailer_id : 47
         });
 
@@ -301,24 +300,38 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
     }
 
     $scope.brand_array = [];
+    //$scope.brand_ids = [];
      $scope.Filtering = function(id){
         
-        getBrandDataFromFilter  = {
+       /*  getBrandDataFromFilter  = {
             'brand_id':id
         }
-         
+          */
         if($('#brand_'+id).prop("checked") == true){
             console.log($scope.brands);
-            brand_array = $scope.brand_array.push(getBrandDataFromFilter); 
+            brand_array = $scope.brand_array.push(id); 
            console.log(brand_array) 
         }
         else if($('#brand_'+id).prop("checked") == false){
-            let index = $scope.brand_array.findIndex( getBrandDataFromFilter => getBrandDataFromFilter.id === id );
+            //let index = $scope.brand_array.findIndex( getBrandDataFromFilter => getBrandDataFromFilter.id === id );
             //console.log(index)
+            var index = $scope.brand_array.indexOf(id);
             $scope.brand_array.splice(index, 1);
         }
         console.log($scope.brand_array)
         
+        /* if($scope.brand_array){
+            for(var i=0 ; i<$scope.brand_array.length  ; i++){
+                if($scope.brand_array[i] != undefined){
+                    
+                    brands_id = $scope.brands_id.push($scope.brand_array[i]) ;
+                }
+                  
+            }
+            $scope.brand_ids =$scope.brands_id.join();
+        }else{
+           $scope.brand_ids = '';
+        } */
      }
 
 
@@ -339,52 +352,97 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             $scope.fetch_product_list('all');
         }, 1000)
     }
+/** 
+     * Pagination on Scrolling
+     */
 
-    /* $scope.scrollPagination = function(){
-        var pause = false;
-        if(pause){
-            $(window).scroll(function () {				
-                var hT = $('#main-div2').offset().top,
-                    hH = $('#main-div2').outerHeight(),
-                    wH = $(window).height(),
-                    wS = $(this).scrollTop();
-                if (wS > (hT + hH - wH)) {
-                    // alert("Reached the bottom");
+    $scope.scrollPagination = function(id,url){
+        // alert(id+ " "+url);return;
+        $("#all").removeClass("input_default_focus");
+        var suburl;
+        if(url){
+            suburl = url ;
+        }else{
+            suburl = $cookieStore.get('subcategoryInfo').url
+        }
+        if (id) {
+
+            if (id !== 'all') {
+                ID = id;
+            }else{
+                ID = $cookieStore.get('subcategoryInfo').subcatid;
+            }
+
+
+        } else {
+            ID = $cookieStore.get('subcategoryInfo').subcatid;
+        }
+        // alert(id+ " "+url);return;       
+        // alert();return  
+        $(window).scroll(function () {
+            var window_top = $(window).scrollTop();
+            var div_top = $('#main-div2').offset().top;
+            var div_height = $('#main-div2').outerHeight();
+            console.log("outside");
+            var sum = div_top + div_height + 3 - window.innerHeight;
+            console.log(window_top + " " + sum + " outside");  
+            // console.log($scope.product.length);return;
+            if (window_top == sum) {
+                console.log("inside");
+                // alert("Reached the bottom");return;
+                if($scope.product.length < 10){
+                    alert("Don't have further page");
+                }else{
+                    var pageNo = $scope.page;
+                    // alert(pageNo);
+                    ++pageNo;
                     loading.active();
-                    var args = $.param({                      
+                    var args = $.param({  
+                        category_id: ID,
+                        country_id: sessionStorage.country,
+                        language_code: sessionStorage.lang_code,
+                        user_type : user_type,
+                        user_id : uid,
+                        cat_url : suburl,
+                        sort_by : '',
+                        page : pageNo                   
                     });
-        
+                    // alert(args);
                     $http({
                         method: 'POST',
-                        cache: false,
-                        url: app_url + 'product_list',
+                        url: app_url + '/product_list',
                         data: args, //forms user object
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     }).then(function (response) {
                             loading.deactive();
-                            console.log(response.data);
-                        if (response.data.status) {
-                            $('html').removeClass('tmla-mask');
-                            $('.tmla-mask').css('opacity' , '0');
-                            $scope.page3=abc;
-                            $("#get_page").val($scope.page3);
-                            
-                            angular.forEach(response.data.data, function (value, key) {
-                                $scope.pending_list.push(value);
-                            });
-                        } else {
-                            $scope.errormsg = response.data.message;
-                        }
-                    });
+                            //console.log(response.data);return;
+                            if (response.data.responseStatus == 'success'){                                
+                                $scope.page = pageNo;
+                                angular.forEach(response.data.data.category_product.products, function (value, key) {
+                                    $scope.product.push(value);                                   
+                                });
+                            } else {
+                                alert("Something went wrong");
+                            }
+                        });
+                        // paused = true;
+                    }
+                }else{
+
                 }
+                    
+                /* }else{
+                    if( paused ){
+                       paused = false;
+                   } */
             });
+            // });
         }
-    } 
-     */
-   /*  $scope.scrollPagination1 = function(){
-        alert("Reached the bottom");          
-    } */
-    
+
+        /**
+         * End of Function
+         */
+
 });
