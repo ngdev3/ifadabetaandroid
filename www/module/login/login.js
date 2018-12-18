@@ -29,6 +29,30 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
         $location.path('/register');
     }
 
+    $scope.default_hit = function(){
+
+        var args = $.param({
+           country_id : sessionStorage.country,
+           user_id : $cookieStore.get('userinfo').uid,
+           token : sessionStorage.u_ids
+        });
+        
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/cart/opt_cart_by_token_over_user_id',
+            data: args 
+
+        }).then(function (response) {
+            console.log(response);
+        }).finally(function(){
+
+        })
+    }
+
     // $scope.mobile_no = '8299334781';
     $scope.phoneVerifiedStatus = false;
     $scope.loginuser = function (form) {
@@ -101,7 +125,7 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                         'left_data':response.data.data  
                     }
                     $cookieStore.put('userinfo', userinfo);
-                    //$scope.default_hit();
+                    $scope.default_hit();
                     $location.path('/dashboard/home');
 
                 } else {

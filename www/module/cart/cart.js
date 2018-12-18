@@ -25,7 +25,15 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
 
 
     $scope.empty_cart = function () {
+        $rootScope.checkToken();
     console.log($scope.cart_data)
+    if($cookieStore.get('userinfo')){
+        var user_type = $cookieStore.get("userinfo").left_data.user_type;
+        var uid = $cookieStore.get("userinfo").left_data.uid;
+    }else{
+        var uid = '';
+        var user_type = '';
+    }
         if ($scope.cart_data.length == 0) {
             model.show('Info', 'You Have No Items In Your Shopping Cart.')
             return false;
@@ -35,8 +43,8 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
         var args = $.param({
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code ,   
-            user_id:$cookieStore.get("userinfo").uid,
-            token: sessionStorage.u_ids
+            user_id: uid,
+            token:uuid
         });
 
         $http({
@@ -64,7 +72,14 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
     }
 
     $scope.deleteproduct = function (rowid) {
-
+        $rootScope.checkToken();
+        if($cookieStore.get('userinfo')){
+            var user_type = $cookieStore.get("userinfo").left_data.user_type;
+            var uid = $cookieStore.get("userinfo").left_data.uid;
+        }else{
+            var uid = '';
+            var user_type = '';
+        }
         // alert(rowid);
         // return
         loading.active();
@@ -72,8 +87,9 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
         var args = $.param({
             rowid: rowid,
             language_code: sessionStorage.lang_code,
-            user_id: $cookieStore.get("userinfo").uid,
+            user_id: uid,
             country_id: sessionStorage.country,
+            token:uuid
         });
 
         $http({

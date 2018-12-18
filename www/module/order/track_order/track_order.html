@@ -185,7 +185,7 @@
                                 <div class="more_methods_opt_line">
                                     <h5 class="opt_line_head">{{'Ordered_On' | translate}}</h5>
                                     <p>:</p>
-                                    <h5 class="opt_line_text">{{orderinfo.order_on}}</h5>
+                                    <h5 class="opt_line_text">{{orderinfo.order_on.split(' ')[0] | date : 'dd-MM-yyyy'}}</h5>
                                 </div>
                                 <div class="more_methods_opt_line">
                                     <h5 class="opt_line_head">{{'Deliver_To' | translate}}</h5>
