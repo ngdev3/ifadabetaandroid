@@ -1715,3 +1715,70 @@ li.menu_search_container a input{
     overflow: hidden;
     padding: 5px;
 }
+
+/* customer_review */
+
+
+.review-spr-container{
+	padding:10px;
+}
+
+.spr-reviews-header{
+	position:relative;
+}
+
+.spr-reviews-header img {
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    width: 50px;
+	position: absolute;
+    top: 25px;
+}
+
+.spr-reviews-header h2 {
+    display: inline-block;
+	font-size: 16px;
+	padding-left: 55px;
+}
+
+.spr-summarys{
+    padding-bottom: 10px;
+}
+
+.customer-rating-star{
+	padding-left: 54px;
+    margin-top: -12px;
+}
+
+.spr-review-headers-byline {
+    position: absolute;
+    top: 27px;
+    right: 0;
+}
+
+.customer-rating-star span i.fa-star{
+	color: #ff6b00;
+}
+
+.spr-summarys span i.fa-star{
+	color: #ff6b00;
+}
+
+.review-sections span{
+    width: 350px;
+    height: 1px;
+    border: 1px solid #ebebeb;
+    display: inline-block;
+}
+
+.spr-reviews-content{
+	margin-top: 14px;
+}
+
+.spr-reviews-content p {
+  line-height: 20px;
+}
+
+.spr-header h3{
+	margin-top: 12px;
+}
