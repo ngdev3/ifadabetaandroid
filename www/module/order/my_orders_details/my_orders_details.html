@@ -1,5 +1,24 @@
 <div ng-controller="orderdetails" ng-init="ordersDetalisInit()" >
+<style>
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
 
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+</style>
 
         <header class="container-fluid nav-down">
             <div class="row">
@@ -49,7 +68,7 @@
                             <div class="order_subcontainer__content col-xs-12" ng-repeat="z in y.items">
                                 <div class="prod_row_wrapper" >
                                     <div class="prod_img_wrapper">
-                                        <img src="{{z.product_image}}" class="img-responsive" />						
+                                        <img src="{{z.product_image}}" class="img-responsive" />		
                                     </div>
                                     <div class="prod_content_wrapper">
                                         <p class="order_sub_name">{{z.MENU_NAME}}</p>
@@ -57,6 +76,9 @@
                                         <p><span>{{'Price' | translate}} </span>{{currency}} {{z.unit_price}}</p>
                                         <p><span>{{'VAT' | translate}} </span>{{currency}} {{z.tax_amount}}</p>
                                         <p><span>{{'Qnty' | translate}} </span>{{z.quantity}}</p>
+                                    </div>
+									<div class="prod_img_wrapper review_icon">
+                                        <img src="assets/img/review_icon.png" class="img-responsive"  data-toggle="modal" data-target="#item_review"/>		
                                     </div>
                                 </div>
                                 <!-- <div class="prod_row_wrapper">
@@ -134,3 +156,52 @@
             </div>
         <!--  END Banner SLIDER -->
 </div>
+
+
+
+
+ <!-- Modal -->
+  <div class="modal fade" id="item_review" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+		    <div class="customer-image">
+			    <img src="assets/img/profile_image.png">
+			</div>
+          <h4 class="modal-title">Review by Sajal</h4>
+        </div>
+		<div class="customer-rating-star">
+		    <span class="spr-starratings spr-review-header-starratings">
+                <i class="fa fa-star fa-fw"></i>
+				<i class="fa fa-star fa-fw"></i>
+				<i class="fa fa-star fa-fw"></i>
+				<i class="fa fa-star-o fa-fw"></i>
+				<i class="fa fa-star-o fa-fw"></i>                              
+			</span>
+		    <span class="spr-starratings spr-review-header-starratings">
+                Love it..!!                           
+			</span>
+		</div>
+                            
+        <div class="comment_box_review">
+                  <!-- <textarea rows="4" name="comments" placeholder="Give your valuable comment..."></textarea> -->
+				  
+				<div class="form_container">
+					<form class="mui-form">
+						<div class="mui-textfield contactmessage col-xs-12">
+							<textarea rows="2" placeholder=""></textarea>
+							<label>Comments</label>
+						</div>
+					</form>
+				</div>
+               </div>
+			   
+			   <div class="review-subbmit-bttn">
+			       <button type="button" value="submit" class="review-subbmit-button">Submit</button>
+			   </div>
+      </div>
+      
+    </div>
+  </div>
