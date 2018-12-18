@@ -260,7 +260,6 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         });
     }
 
-    $rootScope.currency = sessionStorage.currency;
     $rootScope.sort = '';
     $rootScope.searchBar = function () {
         var brands =$cookieStore.get('brand_array');
@@ -374,7 +373,12 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         // return;
 
         if (!$cookieStore.get('userinfo')) {
-            alert('Please Login First !')
+            var user = {
+                uid : sessionStorage.u_ids
+            }
+            $cookieStore.put("userinfo", user)
+            //alert(sessionStorage.u_ids)
+           // alert('Please Login First !')
             return
             //$location.path('')
         }
