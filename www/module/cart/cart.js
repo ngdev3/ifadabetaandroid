@@ -36,6 +36,7 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code ,   
             user_id:$cookieStore.get("userinfo").uid,
+            token: sessionStorage.u_ids
         });
 
         $http({

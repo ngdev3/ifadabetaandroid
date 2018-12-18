@@ -22,17 +22,17 @@ $scope.val_packs = function(){
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/get_value_pack',
+            url: app_url + '/home_page',
             data: args 
 
         }).then(function (response) {
 
             res = response;
-           
+           console.log(res);
            
            if(res.data.data.status == 'success'){
-               console.log(res.data.data.value_pack)
-               $scope.valpacks =  res.data.data.value_pack;
+               console.log(res.data.data.offer)
+               $scope.valpacks =  res.data.data.offer;
                
             return;
                $location.path('/dashboard/home');

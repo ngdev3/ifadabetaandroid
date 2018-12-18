@@ -371,17 +371,14 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
         console.log(weightid.target.dataset);
         // return;
-
-        if (!$cookieStore.get('userinfo')) {
-            var user = {
-                uid : sessionStorage.u_ids
-            }
-            $cookieStore.put("userinfo", user)
-            //alert(sessionStorage.u_ids)
-           // alert('Please Login First !')
-            return
-            //$location.path('')
+        if($cookieStore.get('userinfo')){
+            var user_type = $cookieStore.get("userinfo").left_data.user_type;
+            var uid = $cookieStore.get("userinfo").left_data.uid;
+        }else{
+            var uid = '';
+            var user_type = '';
         }
+     
         varient_id = weightid.target.dataset.weightid;
         manufacture_id = weightid.target.dataset.user_id;
         //menu_id = weightid.target.dataset.weightid;
@@ -394,12 +391,13 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
 
         var args = $.param({
-            user_type: $cookieStore.get("userinfo").left_data.user_type,
-            user_id: $cookieStore.get("userinfo").uid,
+            user_type: user_type,
+            user_id: uid,
             country_id: sessionStorage.country,
             manufacture_id: manufacture_id,
             menu_id: menu_id,
-            menu_varient_id: varient_id
+            menu_varient_id: varient_id,
+            token: sessionStorage.u_ids
         });
 
         // Get the user info from Database
@@ -547,6 +545,14 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
 
     $rootScope.plusToCart = function (weightid) {
+
+        if($cookieStore.get('userinfo')){
+            var user_type = $cookieStore.get("userinfo").left_data.user_type;
+            var uid = $cookieStore.get("userinfo").left_data.uid;
+        }else{
+            var uid = '';
+            var user_type = '';
+        }
       
         weightid = weightid.target.dataset.weightid;
         rowid = $('#enableCart_' + weightid).attr('data-rowid');
@@ -563,8 +569,9 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             rowid: rowid,
             qty: parseInt(new_qnty) + 1,
             language_code: sessionStorage.lang_code,
-            user_id: $cookieStore.get("userinfo").uid,
+            user_id: uid,
             country_id: sessionStorage.country,
+            token: sessionStorage.u_ids
         });
 
         // Get the user info from Database
@@ -598,6 +605,15 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     }
 
     $rootScope.minusToCart = function (weightid) {
+
+        if($cookieStore.get('userinfo')){
+            var user_type = $cookieStore.get("userinfo").left_data.user_type;
+            var uid = $cookieStore.get("userinfo").left_data.uid;
+        }else{
+            var uid = '';
+            var user_type = '';
+        }
+      
         // console.log(weightid.target.dataset);
         weightid = weightid.target.dataset.weightid;
         console.log("------" + weightid)
@@ -614,8 +630,9 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             rowid: rowid,
             qty: $rootScope.currentval,
             language_code: sessionStorage.lang_code,
-            user_id: $cookieStore.get("userinfo").uid,
+            user_id: uid,
             country_id: sessionStorage.country,
+            token: sessionStorage.u_ids
         });
 
         // Get the user info from Database
@@ -739,10 +756,17 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
 
     $rootScope.mycart = function () {
+        if($cookieStore.get('userinfo')){
+            var user_type = $cookieStore.get("userinfo").left_data.user_type;
+            var uid = $cookieStore.get("userinfo").left_data.uid;
+        }else{
+            var uid = '';
+            var user_type = '';
+        }
         var args = $.param({
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code,
-            user_id: $cookieStore.get("userinfo").uid,
+            user_id: uid,
 
         });
 
@@ -787,6 +811,13 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     }
 
     $rootScope.apply_promo = function (type) {
+        if($cookieStore.get('userinfo')){
+            var user_type = $cookieStore.get("userinfo").left_data.user_type;
+            var uid = $cookieStore.get("userinfo").left_data.uid;
+        }else{
+            var uid = '';
+            var user_type = '';
+        }
         console.log($rootScope.promocode)
         if (type == 'remove') {
             $('#inputpromo').removeAttr('disabled', 'disabled');
@@ -828,9 +859,9 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
                 promo_code: $rootScope.promocode,
                 country_id: sessionStorage.country,
-                user_id: $cookieStore.get("userinfo").uid,
+                user_id: uid,
                 language_code: sessionStorage.lang_code,
-                user_type: $cookieStore.get("userinfo").left_data.user_type,
+                user_type: user_type,
 
             });
 
