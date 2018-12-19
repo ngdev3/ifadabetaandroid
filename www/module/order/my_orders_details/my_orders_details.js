@@ -89,6 +89,48 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
         });
     }
 
+    $scope.rating = 0;
+    $scope.ratings = [ {
+        current: 5,
+        max: 5
+    }];
+
+    $scope.getSelectedRating = function (rating) {
+        console.log(rating);
+    switch(rating){
+        case 0:
+        $scope.currentfeedback = ' &#9786; Very Bad';
+        break;
+
+        case 1 :
+        $scope.currentfeedback = "Bad";
+        break;
+
+        case 2 :
+        $scope.currentfeedback = "Average";
+        break;
+
+        case 3 :
+        $scope.currentfeedback = "Good";
+        break;
+        
+        case 4 :
+        $scope.currentfeedback = "Very Good";
+        break;
+
+        case 5 :
+        $scope.currentfeedback = "Excellent";
+        break;
+
+
+
+
+
+        
+    }
+       // $scope.currentfeedback = rating
+    }
+
 
     $scope.downloadinvoice = function (invoicedatas, invoiceurl) {
 

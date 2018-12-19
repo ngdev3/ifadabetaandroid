@@ -11,7 +11,8 @@ app.controller('view_product', function ($scope, $http, $location, $cookieStore,
     $scope.cart = function(){
         $location.path('/cart');
     }
-
+    
+    $scope.profile_image_path = profile_image_path;
     $scope.productpid = $cookieStore.get('productinfo').id
     // console.log($cookieStore.get("userinfo"));
 
@@ -93,6 +94,7 @@ $scope.fetch_product_data = function () {
             if (response.data.data.status == 'success') {
 
                 $scope.product_details = response.data.data.product_details;
+                $scope.product_details_description = $(response.data.data.product_details.description).text();
                 $scope.rating_details = response.data.data.rating_details;
                 $scope.rating_details_length = response.data.data.rating_details.length;
                 $scope.rating_average = response.data.data.rating_average;

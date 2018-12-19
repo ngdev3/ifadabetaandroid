@@ -1,6 +1,6 @@
-<div ng-controller="orderdetails" ng-init="ordersDetalisInit()" >
-<style>
-.modal {
+<div ng-controller="orderdetails" ng-init="ordersDetalisInit()">
+    <style>
+        .modal {
   text-align: center;
   padding: 0!important;
 }
@@ -18,70 +18,94 @@
   text-align: left;
   vertical-align: middle;
 }
+
+.rating {
+    color: #a9a9a9;
+    margin: 0;
+    padding: 0;
+}
+ul.rating {
+    display: inline-block;
+}
+.rating li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.rating .filled {
+    color: red;
+}
 </style>
 
-        <header class="container-fluid nav-down">
-            <div class="row">
-                <nav class="navbar navbar-inverse">
-                  <div class="container no-padding">
+    <header class="container-fluid nav-down">
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+                <div class="container no-padding">
                     <ul class="nav navbar-nav top_header text-center">
-                      <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back()" alt="menu icon"style="width: 13px;" /></a></li>
+                        <li class="menu_icon "><a href="javascript:void(0)"><img src="assets/img/icon/back.png"
+                                    ng-click="back()" alt="menu icon" style="width: 13px;" /></a></li>
                         <li class="page_name left">
                             <a href="javascript:void(0)" class="text-left ">
                                 <p>{{'Order_Summary' | translate}}</p>
                             </a>
                         </li>
-                      
+
                     </ul>
-                    
-                  </div>
-                </nav>
-            
-            </div> 
-            <!-- MOBILE-MENU-AREA END -->
-        </header>
-        <!-- END HEADER -->
-              
-        <!--  START Banner SLIDER -->
-            <div class="container-fluid mt-55">
-            <div class="row">    
-                <div class="order_container">
-                    <div class="dlvry_container no-padding">
-                        <div class="order_heading col-xs-12">
-                            <p>{{'Order_ID' | translate}} <span>{{detail.id}}</span></p>
+
+                </div>
+            </nav>
+
+        </div>
+        <!-- MOBILE-MENU-AREA END -->
+    </header>
+    <!-- END HEADER -->
+
+    <!--  START Banner SLIDER -->
+    <div class="container-fluid mt-55">
+        <div class="row">
+            <div class="order_container">
+                <div class="dlvry_container no-padding">
+                    <div class="order_heading col-xs-12">
+                        <p>{{'Order_ID' | translate}} <span>{{detail.id}}</span></p>
+                    </div>
+                    <div class="order_subcontainer" ng-repeat="y in detail_distribution">
+                        <div class="order_subcontainer_heading col-xs-12">
+                            <p>{{'Order_ID' | translate}} &nbsp;<span>{{detail.id}}-{{y.id}} </span></p>
+                            <p class="status_btn" ng-if="y.status == '1'">Pending</p>
+                            <p class="status_btn" ng-if="y.status == '2'">Confirm</p>
+                            <p class="status_btn" ng-if="y.status == '3'">Delivery Boy Assigned</p>
+                            <p class="status_btn" ng-if="y.status == '4'">Out for delivery</p>
+                            <p class="status_btn" ng-if="y.status == '5'">Delivered</p>
+                            <p class="status_btn" ng-if="y.status == '6'">Cancelled</p>
+                            <p class="status_btn" ng-if="y.status == '7'">Rejected</p>
+                            <a href="" class="track_btn" ng-click="trackOrder(y.id,detail.id)">{{'Track_Order' |
+                                translate}}</a>
                         </div>
-                        <div class="order_subcontainer" ng-repeat="y in detail_distribution">
-                            <div class="order_subcontainer_heading col-xs-12">
-                                <p>{{'Order_ID' | translate}} &nbsp;<span>{{detail.id}}-{{y.id}} </span></p>
-                                <p class="status_btn" ng-if="y.status == '1'">Pending</p>
-                                <p class="status_btn" ng-if="y.status == '2'">Confirm</p>
-                                <p class="status_btn" ng-if="y.status == '3'">Delivery Boy Assigned</p>
-                                <p class="status_btn" ng-if="y.status == '4'">Out for delivery</p>
-                                <p class="status_btn" ng-if="y.status == '5'">Delivered</p>
-                                <p class="status_btn" ng-if="y.status == '6'">Cancelled</p>
-                                <p class="status_btn" ng-if="y.status == '7'">Rejected</p>                                
-                                <a href="" class="track_btn" ng-click="trackOrder(y.id,detail.id)">{{'Track_Order' | translate}}</a>
-                            </div>
-                            <div class="order_subcontainer_detail col-xs-12">
-                                <p><span>{{'Order_on' | translate}}: {{y.updated_date.split(' ')[0] | date : 'dd-MM-yyyy'}}</span><span>{{'Order_Amt' | translate}}: {{currency}} {{y.final_amount}}</span></p>
-                            </div>
-                            <div class="order_subcontainer__content col-xs-12" ng-repeat="z in y.items">
-                                <div class="prod_row_wrapper" >
-                                    <div class="prod_img_wrapper">
-                                        <img src="{{z.product_image}}" class="img-responsive" />		
-                                    </div>
-                                    <div class="prod_content_wrapper">
-                                        <p class="order_sub_name">{{z.MENU_NAME}}</p>
-                                        <p><span>{{'Units' | translate}} </span>{{z.UNIT_VALUE}}{{z.FS_UNIT_NAME}}</p>
-                                        <p><span>{{'Price' | translate}} </span>{{currency}} {{z.unit_price}}</p>
-                                        <p><span>{{'VAT' | translate}} </span>{{currency}} {{z.tax_amount}}</p>
-                                        <p><span>{{'Qnty' | translate}} </span>{{z.quantity}}</p>
-                                    </div>
-									<div class="prod_img_wrapper review_icon">
-                                        <img src="assets/img/review_icon.png" class="img-responsive"  data-toggle="modal" data-target="#item_review"/>		
-                                    </div>
+                        <div class="order_subcontainer_detail col-xs-12">
+                            <p><span>{{'Order_on' | translate}}: {{y.updated_date.split(' ')[0] | date : 'dd-MM-yyyy'}}</span><span>{{'Order_Amt'
+                                    | translate}}: {{currency}} {{y.final_amount}}</span></p>
+                        </div>
+                        <div class="order_subcontainer__content col-xs-12" ng-repeat="z in y.items">
+                            <div class="prod_row_wrapper">
+                                <div class="prod_img_wrapper">
+                                    <img src="{{z.product_image}}" class="img-responsive" />
                                 </div>
-                                <!-- <div class="prod_row_wrapper">
+                                <div class="prod_content_wrapper">
+                                    <p class="order_sub_name">{{z.MENU_NAME}}</p>
+                                    <p><span>{{'Units' | translate}} </span>{{z.UNIT_VALUE}}{{z.FS_UNIT_NAME}}</p>
+                                    <p><span>{{'Price' | translate}} </span>{{currency}} {{z.unit_price}}</p>
+                                    <p><span>{{'VAT' | translate}} </span>{{currency}} {{z.tax_amount}}</p>
+                                    <p><span>{{'Qnty' | translate}} </span>{{z.quantity}}</p>
+                                </div>
+                                <div class="prod_img_wrapper review_icon">
+                                    <img src="assets/img/review_icon.png" class="img-responsive" data-toggle="modal"
+                                        data-target="#item_review" />
+                                </div>
+                            </div>
+                            <!-- <div class="prod_row_wrapper">
                                     <div class="prod_img_wrapper">
                                         <img src="assets/img/product/order_img1.png" class="img-responsive" />						
                                     </div>
@@ -91,117 +115,124 @@
                                         <p><span>Price </span>AED 140</p>
                                     </div>
                                 </div> -->
-                                   
-                            </div>
-                            <div ng-if="y.status != '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
-                                <a class="cancel_order" href="javascript:void(0)" ng-click="deleteOrder(y.id,detail.id)">{{'Cancel' | translate}}</a>
-						    </div>
-                              <div ng-if="y.status == '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
-                                <a href="javascript:void(0)" style="background-color: #eda1a8">{{'Order_Cancelled' | translate}} </a>
-                              </div>
+
                         </div>
-                       
+                        <div ng-if="y.status != '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
+                            <a class="cancel_order" href="javascript:void(0)" ng-click="deleteOrder(y.id,detail.id)">{{'Cancel'
+                                | translate}}</a>
+                        </div>
+                        <div ng-if="y.status == '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
+                            <a href="javascript:void(0)" style="background-color: #eda1a8">{{'Order_Cancelled' |
+                                translate}} </a>
+                        </div>
                     </div>
-                    <div class="dlvry_time_container mt-15">
-                        <div class="dlvry_address col-xs-12">
-                            <div class="dlvry_address_heading">
-                                
-                                
-                                <table class="mui-table">
-                                  <tbody>
+
+                </div>
+                <div class="dlvry_time_container mt-15">
+                    <div class="dlvry_address col-xs-12">
+                        <div class="dlvry_address_heading">
+
+
+                            <table class="mui-table">
+                                <tbody>
                                     <tr>
-                                      <td width="100px;">{{'Payment' | translate}}</td>
-                                      <td width="20px;">:</td>
-                                      <td ng-if="detail.payment_type == '1'">{{'COD' | translate}}<span> ({{currency}}-{{codamount | number : 2}})</span></td>
-                                      <td ng-if="detail.payment_type == '2'">{{'Online' | translate}}</td>
-                                      <td ng-if="detail.payment_type == ''">{{'Wallet' | translate}}</td>
+                                        <td width="100px;">{{'Payment' | translate}}</td>
+                                        <td width="20px;">:</td>
+                                        <td ng-if="detail.payment_type == '1'">{{'COD' | translate}}<span>
+                                                ({{currency}}-{{codamount | number : 2}})</span></td>
+                                        <td ng-if="detail.payment_type == '2'">{{'Online' | translate}}</td>
+                                        <td ng-if="detail.payment_type == ''">{{'Wallet' | translate}}</td>
                                     </tr>
                                     <tr ng-if="detail.coupon_code_amount != '0.00'">
-                                      <td>{{'Coupon_discount' | translate}}</td>
-                                      <td width="20px;">:</td>
-                                      <td>{{detail.coupon_code_amount}}</td>
+                                        <td>{{'Coupon_discount' | translate}}</td>
+                                        <td width="20px;">:</td>
+                                        <td>{{detail.coupon_code_amount}}</td>
                                     </tr>
                                     <tr>
-                                      <td>{{'Ordered_On' | translate}}</td>
-                                      <td width="20px;">:</td>
-                                      <td>{{delivery_address.updated_date.split(' ')[0] | date : 'dd-MM-yyyy'}}</td>
+                                        <td>{{'Ordered_On' | translate}}</td>
+                                        <td width="20px;">:</td>
+                                        <td>{{delivery_address.updated_date.split(' ')[0] | date : 'dd-MM-yyyy'}}</td>
                                     </tr>
                                     <tr>
-                                      <td>{{'Deliver_To' | translate}}</td>
-                                      <td width="20px;">:</td>
-                                      <td>{{delivery_address.address}}</td>
+                                        <td>{{'Deliver_To' | translate}}</td>
+                                        <td width="20px;">:</td>
+                                        <td>{{delivery_address.address}}</td>
                                     </tr>
                                     <tr>
-                                      <td>{{'Mobile_Number' | translate}}</td>
-                                      <td width="20px;">:</td>
-                                      <td>{{delivery_address.mobile_number}}</td>
+                                        <td>{{'Mobile_Number' | translate}}</td>
+                                        <td width="20px;">:</td>
+                                        <td>{{delivery_address.mobile_number}}</td>
                                     </tr>
                                     <tr ng-if="detail.wallet_used_amount !='0.00'">
                                         <td>{{'Wallet_used_amount' | translate}}</td>
                                         <td width="20px;">:</td>
                                         <td>{{detail.wallet_used_amount | number : 2}}</td>
                                     </tr>
-                                  </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="view_prod">
-                        <p class="col-xs-6"><a href="view_cart.php">{{'Total_Amount' | translate}}</a></p>
-                        <p class="col-xs-6 text-right">{{currency}} {{detail.final_amount | number : 2}}</p>
-                    </div>
-                    
                 </div>
+                <div class="view_prod">
+                    <p class="col-xs-6"><a href="view_cart.php">{{'Total_Amount' | translate}}</a></p>
+                    <p class="col-xs-6 text-right">{{currency}} {{detail.final_amount | number : 2}}</p>
+                </div>
+
             </div>
-            </div>
-        <!--  END Banner SLIDER -->
-</div>
-
-
-
-
- <!-- Modal -->
-  <div class="modal fade" id="item_review" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-		    <div class="customer-image">
-			    <img src="assets/img/profile_image.png">
-			</div>
-          <h4 class="modal-title">Review by Sajal</h4>
         </div>
-		<div class="customer-rating-star">
-		    <span class="spr-starratings spr-review-header-starratings">
+    </div>
+    <!--  END Banner SLIDER -->
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="item_review" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="customer-image">
+                        <img src="assets/img/profile_image.png">
+                    </div>
+                    <h4 class="modal-title">Review by Sajal</h4>
+                </div>
+                <div class="customer-rating-star">
+                    <!-- <span class="spr-starratings spr-review-header-starratings">
                 <i class="fa fa-star fa-fw"></i>
 				<i class="fa fa-star fa-fw"></i>
 				<i class="fa fa-star fa-fw"></i>
 				<i class="fa fa-star-o fa-fw"></i>
 				<i class="fa fa-star-o fa-fw"></i>                              
-			</span>
-		    <span class="spr-starratings spr-review-header-starratings">
-                Love it..!!                           
-			</span>
-		</div>
-                            
-        <div class="comment_box_review">
-                  <!-- <textarea rows="4" name="comments" placeholder="Give your valuable comment..."></textarea> -->
-				  
-				<div class="form_container">
-					<form class="mui-form">
-						<div class="mui-textfield contactmessage col-xs-12">
-							<textarea rows="2" placeholder=""></textarea>
-							<label>Comments</label>
-						</div>
-					</form>
-				</div>
-               </div>
-			   
-			   <div class="review-subbmit-bttn">
-			       <button type="button" value="submit" class="review-subbmit-button">Submit</button>
-			   </div>
-      </div>
-      
+            </span> -->
+                    <span ng-repeat="rating in ratings">
+                        <!-- {{rating.max}} -->
+                        <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating, {{}})"></div>
+                    </span>
+                    <span class="spr-starratings spr-review-header-starratings">
+                        &#9786; {{currentfeedback}}
+                    </span>
+                </div>
+
+                <div class="comment_box_review">
+                    <!-- <textarea rows="4" name="comments" placeholder="Give your valuable comment..."></textarea> -->
+
+                    <div class="form_container">
+                        <form class="mui-form">
+                            <div class="mui-textfield contactmessage col-xs-12">
+                                <textarea rows="2" placeholder=""></textarea>
+                                <label>Comments</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="review-subbmit-bttn">
+                    <button type="button" value="submit" class="review-subbmit-button">Submit</button>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
+</div>
