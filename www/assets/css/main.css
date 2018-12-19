@@ -1876,3 +1876,10 @@ li.menu_search_container a input{
     margin: 0 5px;
 	color: #ff6b00;
 }
+.customer-rating-star > span.cust_review i.fa-fw{
+	font-size:inherit;
+	margin:0px 0px;
+}
+.customer-rating-star > span.cust_review{
+	text-align:left;
+}
