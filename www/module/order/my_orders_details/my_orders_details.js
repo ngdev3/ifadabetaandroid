@@ -12,7 +12,9 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
         window.history.back();
     }
 
+    $scope.fullName = $cookieStore.get("userinfo").fullName;
     $scope.profile_image = profile_image_path+$cookieStore.get("userinfo").profile_image;
+    $scope.profile_image_found = $cookieStore.get("userinfo").profile_image;
     /**
      * Funtion: ordersDetalisInit from my_orders_details.html on ng-init
      * Name: Sajal Goyal
@@ -90,6 +92,7 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
     }
 
     $scope.rating = 5;
+    $scope.currentfeedback = "Excellent";
     $scope.ratings = [ {
         current: 5,
         max: 5
