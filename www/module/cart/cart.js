@@ -29,7 +29,7 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
     console.log($scope.cart_data)
     if($cookieStore.get('userinfo')){
         var user_type = $cookieStore.get("userinfo").left_data.user_type;
-        var uid = $cookieStore.get("userinfo").left_data.uid;
+        var uid = $cookieStore.get("userinfo").uid;
     }else{
         var uid = '';
         var user_type = '';
@@ -75,7 +75,7 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
         $rootScope.checkToken();
         if($cookieStore.get('userinfo')){
             var user_type = $cookieStore.get("userinfo").left_data.user_type;
-            var uid = $cookieStore.get("userinfo").left_data.uid;
+            var uid = $cookieStore.get("userinfo").uid;
         }else{
             var uid = '';
             var user_type = '';
