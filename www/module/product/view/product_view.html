@@ -203,7 +203,7 @@
 							
 				<div class="review-spr-container">
 					<div class="spr-header">
-						<h3 class="spr-header-title">Customer Reviews</h3>
+						<h3 class="spr-header-title">{{'Customer_Reviews' | translate }}</h3>
 						   <div class="spr-summarys">
 							   <span class="spr-starrating spr-summary-starrating">
 									<i ng-if="rating_average >= 1" class="fa fa-star" aria-hidden="true"></i>
@@ -217,7 +217,9 @@
 									<i ng-if="rating_average == 5" class="fa fa-star" aria-hidden="true"></i>
 									<i ng-if="rating_average < 5 " class="fa fa-star-o" aria-hidden="true"></i>
 											   </span>
-								<span class="spr-summary-caption"><span class="spr-summary-actions-togglereviews">Based On {{rating_details_length}} Reviews <!--</a> --></span>
+								<span ng-if="rating_details_length > 0" class="spr-summary-caption"><span class="spr-summary-actions-togglereviews">{{'Based_On' | translate }} {{rating_details_length}} {{'Reviews' | translate }} <!--</a> --></span>
+							  </span>
+								<span ng-if="rating_details_length == 0" class="spr-summary-caption"><span class="spr-summary-actions-togglereviews">{{'No_Reviews' | translate }} <!--</a> --></span>
 							  </span>
 							</div>
 					</div>
@@ -249,7 +251,7 @@
 				
 				<span class="spr-review-headers-byline">
 				
-				On <strong>{{x.created_date.split(' ')[0] | date : 'dd-MM-yyyy'}}                            </strong>
+				{{'On' | translate}} <strong>{{x.created_date.split(' ')[0] | date : 'dd-MM-yyyy'}}                            </strong>
 				</span>
 			  <div class="spr-reviews-content">
 				<p class="spr-review-content-body">
@@ -265,72 +267,6 @@
 			
 					</div>
 				  </div>
-<!-- 							  
-				  <div class="spr-review" id="">
-						   <div class="spr-reviews-header">
-								<img class="review-user-img" src="http://projects.tekshapers.in/ifadabeta/uploads/user_image/5deda764814804a620607ffba189d8d7.jpg">
-									<h2 class="spr-review-header-title">Sajal Goyal</h2>
-									
-									<div class="customer-rating-star">
-									<span class="spr-starratings spr-review-header-starratings cust_review">
-				<i class="fa fa-star fa-fw"></i><i class="fa fa-star fa-fw"></i><i class="fa fa-star fa-fw"></i><i class="fa fa-star-o fa-fw"></i><i class="fa fa-star-o fa-fw"></i>                              </span></div>
-				
-				
-				<span class="spr-review-headers-byline">
-				
-				On <strong>18-12-2018                            </strong>
-				</span>
-			  <div class="spr-reviews-content">
-				<p class="spr-review-content-body">
-				average product   
-				</p>
-				
-			  </div>
-			  <div class="review-sections">
-						<span></span>
-					</div>
-					
-				  
-				  
-			   </div>
-			</div>
-			
-			
-			<div class="spr-review" id="">
-			   <div class="spr-reviews-header">
-				   <img class="review-user-img" src="http://projects.tekshapers.in/ifadabeta/uploads/user_image/5deda764814804a620607ffba189d8d7.jpg">
-						<h2 class="spr-review-header-title">Sajal Goyal</h2>
-									
-						<div class="customer-rating-star">
-						 <span class="spr-starratings spr-review-header-starratings  cust_review">
-							<i class="fa fa-star fa-fw"></i>
-							<i class="fa fa-star fa-fw"></i>
-							<i class="fa fa-star fa-fw"></i>
-							<i class="fa fa-star-o fa-fw"></i>
-							<i class="fa fa-star-o fa-fw"></i>
-						  </span>
-						</div>
-				
-				
-				<span class="spr-review-headers-byline">
-				
-				On <strong>18-12-2018                            </strong>
-				</span>
-			  <div class="spr-reviews-content">
-				<p class="spr-review-content-body">
-				average product   
-				</p>
-				
-			  </div>
-			  <div class="review-sections">
-						<span></span>
-					</div>
-					
-				  
-				  
-			   </div>
-			</div> -->
-	
 	
 </div>
 </div>
