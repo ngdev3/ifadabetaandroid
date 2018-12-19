@@ -12,7 +12,7 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
         window.history.back();
     }
 
-
+    $scope.profile_image = profile_image_path+$cookieStore.get("userinfo").profile_image;
     /**
      * Funtion: ordersDetalisInit from my_orders_details.html on ng-init
      * Name: Sajal Goyal

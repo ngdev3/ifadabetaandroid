@@ -53,7 +53,7 @@ app.controller('payment_mode', function ($scope, $http, $location, $cookieStore,
         if ($scope[form].$error) {
             var error_str = '';
                 if ($scope[form].payby.$error.required !== undefined) {
-                    error_str += "Payment Method, ";
+                    error_str += "Payment Method";
                 }
                 if (error_str !== '') {
                     error_str = "<span style='font-weight:700;'> Following field must have valid information:</span><br/>" + error_str;

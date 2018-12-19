@@ -100,7 +100,7 @@ ul.rating {
                                     <p><span>{{'VAT' | translate}} </span>{{currency}} {{z.tax_amount}}</p>
                                     <p><span>{{'Qnty' | translate}} </span>{{z.quantity}}</p>
                                 </div>
-                                <div class="prod_img_wrapper review_icon">
+                                <div class="prod_img_wrapper review_icon" ng-if="y.status == '5'">
                                     <img src="assets/img/review_icon.png" class="img-responsive" data-toggle="modal"
                                         data-target="#item_review" />
                                 </div>
@@ -117,7 +117,7 @@ ul.rating {
                                 </div> -->
 
                         </div>
-                        <div ng-if="y.status != '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
+                        <div ng-if="y.status != '6' && y.status != '5'" class="submit-btn col-sm-6 col-xs-12 text-center">
                             <a class="cancel_order" href="javascript:void(0)" ng-click="deleteOrder(y.id,detail.id)">{{'Cancel'
                                 | translate}}</a>
                         </div>
@@ -194,7 +194,7 @@ ul.rating {
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="customer-image">
-                        <img src="assets/img/profile_image.png">
+                        <img src="{{profile_image}}">
                     </div>
                     <h4 class="modal-title">Review by Sajal</h4>
                 </div>
@@ -208,10 +208,10 @@ ul.rating {
             </span> -->
                     <span ng-repeat="rating in ratings">
                         <!-- {{rating.max}} -->
-                        <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating, {{}})"></div>
+                        <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
                     </span>
                     <span class="spr-starratings spr-review-header-starratings">
-                        &#9786; {{currentfeedback}}
+                        {{currentfeedback}}
                     </span>
                 </div>
 

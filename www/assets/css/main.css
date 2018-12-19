@@ -1808,7 +1808,11 @@ li.menu_search_container a input{
 }
 
 #item_review .customer-image img {
-    width: 100%;
+    width: 70px;
+    border-radius: 50%;
+    height: 70px;
+
+
 }
 
 #item_review .customer-rating-star{
