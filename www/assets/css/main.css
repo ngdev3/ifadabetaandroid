@@ -902,7 +902,7 @@ li.menu_search_container a input{
 .pr-7{padding-right: 7px !important;}
 .wishlist-container {
     position: absolute;
-    top: 8px;
+    top: 24px;
     right: 13px;
 }
 .fill{
