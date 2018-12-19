@@ -104,27 +104,27 @@ app.controller('address_add', function ($scope, $http, $location, $cookieStore, 
 
         if ($scope[form].$valid) { //if all field are filled then this will check pattern of input entered
             // alert("Success");
-            var reg1 = /^([a-zA-Z0-9- ]{6,})$/;
-            var reg2 = /^[0-9]{6}$/;
+           // var reg1 = /^([a-zA-Z0-9- ]{6,})$/;
+            //var reg2 = /^[0-9]{6}$/;
             var reg3 = /^[^0][0-9]{9}$/;
             var reg4 = /^([a-zA-Z- ])+$/;
         //     var reg5 = /^[a-zA-Z ]+$/;
         //    var reg2 = /^[A-za-z\d-]{2,10}$/;
         //     var reg4 = /^[a-zA-Z ]{3,20}$/;
 
-         if (reg1.test($scope.landmark) == false) {
+         /* if (reg1.test($scope.landmark) == false) {
                 error_str = "Landmark should contain Numbers & Alphabets Only & Length should be 6 Minimum";
                 model.show('Alert', error_str);
                 // alert(error_str);
                 return false;
-            }
+            } */
 
-            if (reg2.test($scope.zip) == false) {
+          /*   if (reg2.test($scope.zip) == false) {
                 error_str = "Zip Code should contain Numbers Only & Length should be 6";
                 model.show('Alert', error_str);
                 // alert(error_str);
                 return false;
-            }
+            } */
 
             if (reg4.test($scope.instructions) == false) {
                 error_str = "Delivery Instruction should contain Numbers & Alphabets Only";

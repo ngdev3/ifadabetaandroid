@@ -237,6 +237,14 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         });
     }
 
+    if($cookieStore.get('userinfo')){
+        var user_type = $cookieStore.get("userinfo").left_data.user_type;
+        var uid = $cookieStore.get("userinfo").uid;
+    }else{
+        var uid = '';
+        var user_type = '';
+    }
+
     $rootScope.FetchData = function (id) {
         db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM userinfo WHERE id = ?', ['1'], function (tx, results) {
@@ -260,6 +268,13 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         });
     }
 
+    $rootScope.checkToken = function(){
+    if(!$cookieStore.get('userinfo')){
+        uuid = sessionStorage.u_ids;
+    }else{
+        uuid = '';
+    }
+}
     $rootScope.sort = '';
     $rootScope.searchBar = function () {
         var brands =$cookieStore.get('brand_array');
@@ -369,11 +384,13 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
     $rootScope.addToCart = function (weightid) {
 
+        
+    $rootScope.checkToken();
         console.log(weightid.target.dataset);
         // return;
         if($cookieStore.get('userinfo')){
             var user_type = $cookieStore.get("userinfo").left_data.user_type;
-            var uid = $cookieStore.get("userinfo").left_data.uid;
+            var uid = $cookieStore.get("userinfo").uid;
         }else{
             var uid = '';
             var user_type = '';
@@ -397,7 +414,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             manufacture_id: manufacture_id,
             menu_id: menu_id,
             menu_varient_id: varient_id,
-            token: sessionStorage.u_ids
+            token:uuid
         });
 
         // Get the user info from Database
@@ -436,11 +453,13 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     $rootScope.varientCheck = function (weightid, menu_id, price, unit, manufacture_id, varient_id) {
 
 
-        if (!$cookieStore.get('userinfo')) {
+        $rootScope.checkToken();
+
+       /*  if (!$cookieStore.get('userinfo')) {
             alert('Please Login First !')
             return
             //$location.path('')
-        }
+        } */
 
         $('#firstt_' + menu_id).find('.add_item_button').attr('id', 'enableCart_' + varient_id);
         $('#firstt_' + menu_id).find('.add_item_button').find('.add_item').attr('id', 'plus_' + varient_id).attr('data-weightid', varient_id);
@@ -465,7 +484,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             menu_varient_id: varient_id,
             manufacture_id: manufacture_id,
             country_id: sessionStorage.country,
-            user_id: $cookieStore.get("userinfo").uid,
+            user_id: uid,
+            token:uuid
         });
 
         // Get the user info from Database
@@ -545,10 +565,10 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
 
     $rootScope.plusToCart = function (weightid) {
-
+        $rootScope.checkToken();
         if($cookieStore.get('userinfo')){
             var user_type = $cookieStore.get("userinfo").left_data.user_type;
-            var uid = $cookieStore.get("userinfo").left_data.uid;
+            var uid = $cookieStore.get("userinfo").uid;
         }else{
             var uid = '';
             var user_type = '';
@@ -571,7 +591,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             language_code: sessionStorage.lang_code,
             user_id: uid,
             country_id: sessionStorage.country,
-            token: sessionStorage.u_ids
+            token:uuid
         });
 
         // Get the user info from Database
@@ -585,7 +605,9 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
         }).then(function (response) {
             //  alert($rootScope.currentval);
+            console.log(response.data.status)
             if (response.data.status !== 'outofstock') {
+        
                 $rootScope.in_stock_check = response.data.data.allow_to_add_in_cart;
                 if( $rootScope.in_stock_check == 'no'){
                     alert('Out of stock');
@@ -598,17 +620,20 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             $rootScope.usercartvalue();
 
             $('#' + quantityID).val($rootScope.currentval)
-            $rootScope.apply_promo('add')
+            if($cookieStore.get('userinfo')){
+
+                $rootScope.apply_promo('add')
+            }
         }).finally(function () {
             loading.deactive();
         });
     }
 
     $rootScope.minusToCart = function (weightid) {
-
+        $rootScope.checkToken();
         if($cookieStore.get('userinfo')){
             var user_type = $cookieStore.get("userinfo").left_data.user_type;
-            var uid = $cookieStore.get("userinfo").left_data.uid;
+            var uid = $cookieStore.get("userinfo").uid;
         }else{
             var uid = '';
             var user_type = '';
@@ -632,7 +657,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             language_code: sessionStorage.lang_code,
             user_id: uid,
             country_id: sessionStorage.country,
-            token: sessionStorage.u_ids
+            token:uuid
         });
 
         // Get the user info from Database
@@ -660,9 +685,10 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 //  $rootScope.usercartvalue();
             }
             $rootScope.usercartvalue();
+            if($cookieStore.get('userinfo')){
 
-            $rootScope.apply_promo('add')
-
+                $rootScope.apply_promo('add')
+            }
         }).finally(function () {
             loading.deactive();
         });
@@ -705,7 +731,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         currentUrls = $location.path();
         currentUrls = currentUrls.split('/')[1];
 
-        if (!$cookieStore.get('userinfo')) {
+        /* if (!$cookieStore.get('userinfo')) {
 
                 $rootScope.cart_count = '';
                 $rootScope.subtotalbeforediscount = '';
@@ -717,12 +743,19 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             if (currentUrls == 'cart') {
                 alert('Please Login First !')
                 return
-            }
+            } 
             return
-        }
+        } */
 
+        if($cookieStore.get('userinfo')){
+            var user_type = $cookieStore.get("userinfo").left_data.user_type;
+            var uid = $cookieStore.get("userinfo").uid;
+        }else{
+            var uid = '';
+            var user_type = '';
+        }
         var args = $.param({
-            user_id: $cookieStore.get('userinfo').uid,
+            user_id: uid,
             page: '0'
 
         });
@@ -756,9 +789,10 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
 
     $rootScope.mycart = function () {
+        $rootScope.checkToken();
         if($cookieStore.get('userinfo')){
             var user_type = $cookieStore.get("userinfo").left_data.user_type;
-            var uid = $cookieStore.get("userinfo").left_data.uid;
+            var uid = $cookieStore.get("userinfo").uid;
         }else{
             var uid = '';
             var user_type = '';
@@ -767,6 +801,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code,
             user_id: uid,
+            token:uuid,
 
         });
 
@@ -811,12 +846,10 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     }
 
     $rootScope.apply_promo = function (type) {
-        if($cookieStore.get('userinfo')){
-            var user_type = $cookieStore.get("userinfo").left_data.user_type;
-            var uid = $cookieStore.get("userinfo").left_data.uid;
-        }else{
-            var uid = '';
-            var user_type = '';
+       
+        if(!$cookieStore.get('userinfo')){
+            alert('Please Login First !');
+            return false;
         }
         console.log($rootScope.promocode)
         if (type == 'remove') {
@@ -859,9 +892,9 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
                 promo_code: $rootScope.promocode,
                 country_id: sessionStorage.country,
-                user_id: uid,
+                user_id: $cookieStore.get("userinfo").uid,
                 language_code: sessionStorage.lang_code,
-                user_type: user_type,
+                user_type: $cookieStore.get("userinfo").left_data.user_type,
 
             });
 

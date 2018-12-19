@@ -58,6 +58,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
             var reg3 = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
             var reg4 = /^[a-zA-Z ]+$/;
             var reg5 = /^[^0][0-9]{9}$/;
+            var reg6 = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
 
             if (reg4.test($scope.fname) == false) {
                 error_str = "First Name should contain Alphabets Only";
@@ -91,6 +92,12 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                 error_str = "Mobile Number should contain Numbers Only & Length should be 10";
                 model.show('Alert', error_str);
                 // alert(error_str);
+                return false;
+            }
+            if (reg6.test($scope.password) == false) {
+                error_str = " Password should contain at least one Character & one Number and length should be 6 minimum! ";
+                // model.show('Alert', error_str);
+                alert(error_str);
                 return false;
             }
         }
