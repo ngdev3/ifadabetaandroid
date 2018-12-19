@@ -1739,6 +1739,7 @@ li.menu_search_container a input{
     display: inline-block;
 	font-size: 14px;
 	padding-left: 55px;
+	margin-bottom: 1px;
 }
 
 .spr-summarys{
@@ -1746,7 +1747,7 @@ li.menu_search_container a input{
 }
 
 .customer-rating-star{
-	padding-left: 54px;
+	padding-left: 55px;
     margin-top: -12px;
 }
 
@@ -1880,7 +1881,7 @@ li.menu_search_container a input{
 }
 .customer-rating-star > span.cust_review i.fa-fw{
 	font-size:11px;
-	margin:0px 0px;
+	margin:0px -2px;
 }
 .customer-rating-star > span.cust_review{
 	text-align:left;
