@@ -7,7 +7,8 @@ if (!$cookieStore.get('userinfo')) {
 
 $scope.myrewards = function(){
     if($scope.loyality_points < $scope.redeem_limit){
-        alert('Not Enough points, Minimum points Should be'+$scope.redeem_limit);
+        alert('You can not redeem now. Minimum point should be greater than'+$scope.redeem_limit);
+        return false;
     }
     loading.active();
         var args = $.param({
