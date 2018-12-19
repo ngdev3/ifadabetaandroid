@@ -116,6 +116,63 @@ ul.rating {
                                     </div>
                                 </div> -->
 
+<!-- pop up for review -->
+
+
+                                <div class="modal fade" id="item_review" role="dialog">
+                                        <div class="modal-dialog">
+                                
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <div class="customer-image">
+                                                        <img src="{{profile_image}}">
+                                                    </div>
+                                                    <h4 class="modal-title">Review by Sajal</h4>
+                                                </div>
+                                                <form name="review" nonvalidate>
+                                                <div class="customer-rating-star">
+                                                    <!-- <span class="spr-starratings spr-review-header-starratings">
+                                                <i class="fa fa-star fa-fw"></i>
+                                                <i class="fa fa-star fa-fw"></i>
+                                                <i class="fa fa-star fa-fw"></i>
+                                                <i class="fa fa-star-o fa-fw"></i>
+                                                <i class="fa fa-star-o fa-fw"></i>                              
+                                            </span> -->
+                                                    <span ng-repeat="rating in ratings">
+                                                        <!-- {{rating.max}} -->
+                                                        <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
+                                                    </span>
+                                                    <span class="spr-starratings spr-review-header-starratings">
+                                                        {{currentfeedback}}
+                                                    </span>
+                                                </div>
+                                
+                                                <div class="comment_box_review">
+                                                    <!-- <textarea rows="4" name="comments" placeholder="Give your valuable comment..."></textarea> -->
+                                
+                                                    <div class="form_container">
+                                                        <form class="mui-form">
+                                                            <div class="mui-textfield contactmessage col-xs-12">
+                                                                <textarea rows="2" placeholder="" ng-model="form.comment" name="comment"></textarea>
+                                                                <label>Comments</label>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                
+                                                <div class="review-subbmit-bttn">
+                                                    <button type="button" value="submit" class="review-subbmit-button" ng-click="revieworder('review',z.MENU_ID,z.menu_varient_id,detail.id,z.manufacturer_id)">Submit</button>
+                                                </div>
+                                            </form>
+                                            </div>
+                                
+                                        </div>
+                                    </div>
+
+<!-- end of popup for review -->
+
+
                         </div>
                         <div ng-if="y.status != '6' && y.status != '5'" class="submit-btn col-sm-6 col-xs-12 text-center">
                             <a class="cancel_order" href="javascript:void(0)" ng-click="deleteOrder(y.id,detail.id)">{{'Cancel'
@@ -187,52 +244,5 @@ ul.rating {
 
 
     <!-- Modal -->
-    <div class="modal fade" id="item_review" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="customer-image">
-                        <img src="{{profile_image}}">
-                    </div>
-                    <h4 class="modal-title">Review by Sajal</h4>
-                </div>
-                <div class="customer-rating-star">
-                    <!-- <span class="spr-starratings spr-review-header-starratings">
-                <i class="fa fa-star fa-fw"></i>
-				<i class="fa fa-star fa-fw"></i>
-				<i class="fa fa-star fa-fw"></i>
-				<i class="fa fa-star-o fa-fw"></i>
-				<i class="fa fa-star-o fa-fw"></i>                              
-            </span> -->
-                    <span ng-repeat="rating in ratings">
-                        <!-- {{rating.max}} -->
-                        <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
-                    </span>
-                    <span class="spr-starratings spr-review-header-starratings">
-                        {{currentfeedback}}
-                    </span>
-                </div>
-
-                <div class="comment_box_review">
-                    <!-- <textarea rows="4" name="comments" placeholder="Give your valuable comment..."></textarea> -->
-
-                    <div class="form_container">
-                        <form class="mui-form">
-                            <div class="mui-textfield contactmessage col-xs-12">
-                                <textarea rows="2" placeholder=""></textarea>
-                                <label>Comments</label>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="review-subbmit-bttn">
-                    <button type="button" value="submit" class="review-subbmit-button">Submit</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    
 </div>

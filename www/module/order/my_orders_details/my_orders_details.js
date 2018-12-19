@@ -89,14 +89,16 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
         });
     }
 
-    $scope.rating = 0;
+    $scope.rating = 5;
     $scope.ratings = [ {
         current: 5,
         max: 5
     }];
-
+    
     $scope.getSelectedRating = function (rating) {
         console.log(rating);
+        $scope.rating = rating ;
+
     switch(rating){
         case 0:
         $scope.currentfeedback = ' &#9786; Very Bad';
@@ -129,6 +131,51 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
         
     }
        // $scope.currentfeedback = rating
+    }
+
+    $scope.form = {}
+    $scope.revieworder = function(form,menu_id,menu_varient_id,order_id,manufacturer_id){
+       
+        loading.active();
+
+         var args = $.param({
+            country_id: sessionStorage.country,
+             user_id: $cookieStore.get('userinfo').uid,
+             /* language_code : sessionStorage.lang_code*/ 
+             menu_id : menu_id,
+             menu_variant_id : menu_varient_id,
+             rating : $scope.rating,
+             comments : $scope.form.comment,
+             order_id : order_id,
+             order_manufacturer_distribution_id : manufacturer_id,
+        }); 
+        
+
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/add_review',
+            data: args 
+
+        }).then(function (response) {
+
+            res = response;
+
+           console.log(res);return;
+           if(res.data.data.status == 'success'){
+            $scope.order_list = res.data.data.order_list;
+           }else{
+               $scope.order_list= '';
+            alert("Order Doesn't Exist");
+           }
+
+        }).finally(function () {
+            loading.deactive();
+        });
+
     }
 
 
