@@ -93,6 +93,9 @@ $scope.fetch_product_data = function () {
             if (response.data.data.status == 'success') {
 
                 $scope.product_details = response.data.data.product_details;
+                $scope.rating_details = response.data.data.rating_details;
+                $scope.rating_details_length = response.data.data.rating_details.length;
+                $scope.rating_average = response.data.data.rating_average;
                 $scope.product_details_varients = response.data.data.product_details.menu_varient;
                 $scope.product_price = response.data.data.product_details.menu_varient[0].price;
                 $scope.DweightID = response.data.data.product_details.menu_varient[0].id;
