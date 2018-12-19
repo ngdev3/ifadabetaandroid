@@ -178,7 +178,12 @@ app.config(function ($translateProvider) {
      Applied : 'Applied',
      Wallet_used_amount : 'Wallet Used Amount',
      Qnty : 'Qnty',
-     Terms_n_Conditions : 'Terms And Conditions'
+     Terms_n_Conditions : 'Terms And Conditions',
+     Customer_Reviews : 'Customer Reviews',
+     Based_On : 'Based On',
+     Reviews : 'Reviews',
+     No_Reviews : 'No Reviews',
+     On : 'On'
      
   });
 
@@ -366,6 +371,12 @@ app.config(function ($translateProvider) {
     Wallet_used_amount : 'كمية المحفظة المستخدمة',
     Add_Address : 'اضف عنوان',
     Qnty : 'كمية',
-    Terms_n_Conditions : 'الأحكام والشروط'
+    Terms_n_Conditions : 'الأحكام والشروط',
+    Customer_Reviews : 'آراء العملاء',
+     Based_On : 'مرتكز على',
+     Reviews : 'التعليقات',
+     No_Reviews : 'لم يتم تقديم تعليقات',
+     On : 'على'
+
   });
 }); 
