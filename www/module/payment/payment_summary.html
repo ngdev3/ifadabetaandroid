@@ -57,9 +57,13 @@
                                     </div> -->
                                     <table class="mui-table">
                                       <tbody>
-                                        <tr>
+                                        <tr ng-if="subtotalafterdiscount">
                                           <td>{{'Sub_Total' | translate}}</td>
                                           <td align="right">{{currency}} {{subtotalafterdiscount | number : 2}}</td>
+                                        </tr>
+                                        <tr ng-if="!subtotalafterdiscount">
+                                            <td>{{'Sub_Total' | translate}}</td>
+                                            <td align="right">{{currency}} {{subtotalbeforediscount | number : 2}}</td>
                                         </tr>
                                         <tr ng-if="coupon_discount == '0'">
                                           <td>{{'Coupon_Discount' | translate}}</td>
