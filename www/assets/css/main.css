@@ -902,7 +902,12 @@ li.menu_search_container a input{
 .pr-7{padding-right: 7px !important;}
 .wishlist-container {
     position: absolute;
-    top: 24px;
+    top: 23px;
+    right: 13px;
+}
+.wishlist-container.cart_remove{
+    position: absolute;
+    top: 13px;
     right: 13px;
 }
 .fill{
@@ -1051,7 +1056,7 @@ li.menu_search_container a input{
 .dlvry_container{
 	overflow: hidden;
     padding-bottom: 20px;
-    box-shadow: 0px 2px 11px #0000005c;
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.3607843137254902);
     clear: both;
 }
 .dlvry_heading{
@@ -1094,7 +1099,7 @@ li.menu_search_container a input{
 }
 .view_prod{
 	clear: both;
-    background: #000;
+    background: #1f1f1f;
     color: #fff;
     font-size: 13px;
     text-align: left;
@@ -1889,4 +1894,7 @@ li.menu_search_container a input{
 .spr-summary-actions-togglereviews::before{
 	content:"|";
 	margin-right: 5px;
+}
+.redeem_btn > button:focus{
+	color:#fff;
 }

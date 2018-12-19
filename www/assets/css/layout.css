@@ -471,7 +471,7 @@ input.btn.btn-success.all-sub-cat_buttons:focus
 }
 .cart_remove i
 {
-    color: #f00
+    color: rgba(255, 0, 0, 0.6901960784313725);
 }
 .cart_footer
 {
@@ -1378,7 +1378,7 @@ li.progtrckr-todo.inprocessed span.pending_check i
 
 .amount-input-wallet button {
     position: absolute;
-    top: 6px;
+    top: 8px;
     right: 6px;
     background: #006d07;
     color: #fff;
@@ -1417,9 +1417,13 @@ li.progtrckr-todo.inprocessed span.pending_check i
     outline: none;
     margin-top: 3px;
     position: absolute;
-    padding: 5px 10px;
+    padding: 0px 10px;
     right: -3px;
-    bottom: 15px;
+    bottom: 13px;
+	top:unset;
+	
+    /* line-height: 20px; */
+    height: 19px;
 }
 /*Search bar Icon*/
 .search_bar_span{
