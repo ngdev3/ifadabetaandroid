@@ -115,14 +115,12 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
                 };
                 console.log($scope.slider);
                 $scope.sliderCount =  $scope.slider.length;
-           }else{
-
            }
 
            setTimeout(function(){
 
                loading.deactive();
-           },500)
+           },400)
 
         }).finally(function () {
            // loading.deactive();
