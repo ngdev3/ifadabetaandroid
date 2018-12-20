@@ -232,7 +232,7 @@
 
         <!--  START Best Picks Section -->
         <div class="container" ng-init="season_fetch()">
-            <div class="product_catg_section mt-15">
+            <div class="product_catg_section mt-15" ng-if="setdata == 1" >
 
                 <div class="section-heading">
                     <p>{{'Best_picks_of_the_season' | translate}}</p>
@@ -285,7 +285,7 @@
 
 
         <!--  START Product of the day  Section -->
-        <div class="container">
+        <div class="container" ng-if="setdata == 1">
             <div class="product_catg_section mt-15">
 
                 <div class="section-heading">
@@ -295,7 +295,7 @@
                     <a href="javascript:void(0)">{{'See_all' | translate}}</a>
                 </div>
                 <div class="col-xs-12 white-bg no-padding">
-                    <div class="col-xs-4 mt-15 mb-10 no-padding pl-5 pr-5" ng-repeat="y in product_of_the_day | limitTo:3:0">
+                    <div class="col-xs-4 mt-15 mb-10 no-padding pl-5 pr-5"  ng-repeat="y in product_of_the_day | limitTo:3:0">
                         <div class="catg_product_container">
                             <a href="javascript:void(0)">
                                 <div class="offer-img" ng-click="product_view(y.id, y.MANUFACTURER_ID)">
@@ -339,7 +339,7 @@
 
 
         <!--  START Featured Product Section -->
-        <div class="container">
+        <div class="container" ng-if="setdata == 1" >
             <div class="product_catg_section mt-15">
 
                 <div class="section-heading">
@@ -376,7 +376,7 @@
         <!--  END Featured Product Section -->
 
         <!--  START Featured category Section -->
-        <div class="container" ng-if="dairy_product">
+        <div class="container" ng-if="setdata == 1"  >
             <div class="product_catg_section mt-15 mb-15">
 
                 <div class="section-heading">
@@ -412,7 +412,7 @@
 
 
         <!--  START Advertisement Section -->
-        <div class="container-fluid">
+        <div class="container-fluid" ng-if="setdata == 1" >
             <div class="row">
                 <div id="adv_2" class="mt-15">
                     <a href="javascript:void(0)">

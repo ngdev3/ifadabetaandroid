@@ -769,7 +769,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             data: args //forms user object
 
         }).then(function (response) {
-            loading.deactive();
+          //  loading.deactive();
             res = response;
 
             //  alert("response from the server ");
@@ -817,7 +817,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         }).then(function (response) {
             //alert();
             // console.log(response.data)
-            loading.deactive();
+         //   loading.deactive();
             res = response.data.data.cart_data;
             console.log(response.data.data.subtotalafterdiscount)
             $rootScope.cart_count = response.data.data.cart_item_count

@@ -31,6 +31,8 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         $location.path('/login');
     }
 
+    $scope.setdata = 0;
+
     $scope.season_fetch =   function(){
          loading.active();
         if(!$cookieStore.get("userinfo")){
@@ -63,6 +65,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
            console.log(res);
 
            if(res.data.data.status == 'success'){
+                $scope.setdata = 1;
                 $scope.best_picks_of_the_season = res.data.data.best_picks_of_the_season;
                 $scope.offer = res.data.data.offer;
                 $scope.product_of_the_day = res.data.data.product_of_the_day;
@@ -116,8 +119,13 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
 
            }
 
+           setTimeout(function(){
+
+               loading.deactive();
+           },500)
+
         }).finally(function () {
-            loading.deactive();
+           // loading.deactive();
         });
 
     }
@@ -252,7 +260,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
             }
 
         }).finally(function () {
-            loading.deactive();
+           // loading.deactive();
         });
 
 
@@ -484,7 +492,7 @@ $scope.searchresults = function(){
                 model.show("Alert","Something went wrong");
             }
         }).finally(function () {
-            loading.deactive();
+           // loading.deactive();
         });
     }
 
