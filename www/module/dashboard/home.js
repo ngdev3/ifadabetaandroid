@@ -140,7 +140,8 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         
 
         if(first_length > i){
-
+            $('#custom_slider').attr('data-offerid', $scope.offer[i].URL)
+            $('#custom_slider').attr('data-catid', $scope.offer[i].category_id)
             $('#custom_slider').attr('src',$scope.offer[i].ad_big_image)
             i++;
         }else{
@@ -148,6 +149,9 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         }
 
         if(second_length > j){
+
+            $('#custom_second_slider').attr('data-offerid', $scope.offer[i].URL)
+            $('#custom_second_slider').attr('data-catid', $scope.offer[i].category_id)
 
             $('#custom_second_slider').attr('src',$scope.offer[j].ad_big_image)
             j++;
@@ -502,7 +506,11 @@ $scope.searchresults = function(){
         $route.reload();
   }
 
-  $scope.details = function(id, url) {
+  $scope.details = function(weightid) {
+    console.log(weightid.target.dataset.catid);
+    id = weightid.target.dataset.catid;
+    url = weightid.target.dataset.offerid
+    //return
     var subcategoryInfo = {
         'subcatid': id,
         'url': url

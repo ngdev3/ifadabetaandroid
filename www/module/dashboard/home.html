@@ -268,12 +268,12 @@
         <!--  END Best Picks Section -->
 
         <!--  START Advertisement Section -->
-        <div class="container-fluid" ng-click="details(offer[1].category_id,offer[1].URL )">
+        <div class="container-fluid" ng-click="details($event)">
             <div class="row">
                 <div id="start1" class="mt-15">
                     <a href="javascript:void(0)">
                         <div class="category-img">
-                            <img id="custom_slider" ng-if="offer[1].ad_big_image" style="min-height: 240px;max-height:240px" src="{{offer[1].ad_big_image}}" alt="" class="" />
+                            <img id="custom_slider" data-catid="{{offer[1].category_id}}" data-offerid="{{offer[1].URL}}" ng-if="offer[1].ad_big_image" style="min-height: 240px;max-height:240px" src="{{offer[1].ad_big_image}}" alt="" class="" />
                         </div>
                     </a>
                 </div>
@@ -323,12 +323,12 @@
         <!--  END Product of the day  Section -->
 
         <!--  START Advertisement Section -->
-        <div class="container-fluid" ng-click="details(offer[3].category_id,offer[3].URL )">
+        <div class="container-fluid" ng-click="details($event)">
             <div class="row">
                 <div id="adv_2" class="mt-15">
                     <a href="javascript:void(0)">
                         <div class="category-img">
-                            <img id="custom_second_slider" ng-if="offer[3].ad_big_image" style="min-height: 240px;max-height: 240px;" src="{{offer[3].ad_big_image}}" alt="" class="" />
+                            <img id="custom_second_slider" data-catid="{{offer[3].category_id}}" data-offerid="{{offer[3].URL}}" ng-if="offer[3].ad_big_image" style="min-height: 240px;max-height: 240px;" src="{{offer[3].ad_big_image}}" alt="" class="" />
                         </div>
                     </a>
                 </div>
