@@ -131,7 +131,7 @@ ul.rating {
                                                     <div class="customer-image" ng-if="profile_image_found == ''">
                                                             <img src="assets\img\icon\user_icon.png">
                                                         </div>
-                                                    <h4 class="modal-title">Review by {{fullName}}</h4>
+                                                    <h4 class="modal-title">{{'Review_by' | translate }} {{fullName}}</h4>
                                                 </div>
                                                 <form name="review" nonvalidate>
                                                 <div class="customer-rating-star">
@@ -158,15 +158,15 @@ ul.rating {
                                                         <form class="mui-form">
                                                             <div class="mui-textfield contactmessage col-xs-12">
                                                                 <textarea rows="2" placeholder="" ng-model="form.comment" name="comment"></textarea>
-                                                                <label>Comments</label>
+                                                                <label>{{'Comments' | translate}}</label>
                                                             </div>
                                                         </form>
                                                     </div>
                                                 </div>
                                 
                                                 <div class="review-subbmit-bttn">
-                                                        <button type="button" value="submit" class="review-cancel-button" data-dismiss="modal" >Cancel</button>
-                                                    <button type="button" value="submit" class="review-subbmit-button" data-dismiss="modal" ng-click="revieworder('review')">Submit</button>
+                                                        <button type="button" value="submit" class="review-cancel-button" data-dismiss="modal" >{{'Cancel' | translate }}</button>
+                                                    <button type="button" value="submit" class="review-subbmit-button" data-dismiss="modal" ng-click="revieworder('review')">{{'Submit' | translate }}</button>
                                                 </div>
                                             </form>
                                             </div>

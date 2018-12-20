@@ -182,8 +182,10 @@ app.config(function ($translateProvider) {
      Based_On : 'Based On',
      Reviews : 'Reviews',
      No_Reviews : 'No Reviews',
-     On : 'On'
-     
+     On : 'On',
+     Billing_Address : 'Billing Address',
+     Review_by : 'Review by',
+     Comments : 'Comments',
   });
 
 
@@ -374,7 +376,9 @@ app.config(function ($translateProvider) {
      Based_On : 'مرتكز على',
      Reviews : 'التعليقات',
      No_Reviews : 'لم يتم تقديم تعليقات',
-     On : 'على'
-
+     On : 'على',
+     Billing_Address : 'عنوان وصول الفواتير',
+     Review_by : 'روجع من قبل',
+     Comments : 'تعليقات',
   });
 }); 
