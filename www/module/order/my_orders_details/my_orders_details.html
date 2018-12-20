@@ -100,7 +100,7 @@ ul.rating {
                                     <p><span>{{'VAT' | translate}} </span>{{currency}} {{z.tax_amount}}</p>
                                     <p><span>{{'Qnty' | translate}} </span>{{z.quantity}}</p>
                                 </div>
-                                <div class="prod_img_wrapper review_icon" ng-if="y.status == '5'">
+                                <div class="prod_img_wrapper review_icon" ng-if="y.status == '5'" ng-click = "values(z.MENU_ID,z.menu_varient_id,detail.id,z.manufacturer_id)">
                                     <img src="assets/img/review_icon.png" class="img-responsive" data-toggle="modal"
                                         data-target="#item_review" />
                                 </div>
@@ -166,7 +166,7 @@ ul.rating {
                                 
                                                 <div class="review-subbmit-bttn">
                                                         <button type="button" value="submit" class="review-cancel-button" data-dismiss="modal" >Cancel</button>
-                                                    <button type="button" value="submit" class="review-subbmit-button" data-dismiss="modal" ng-click="revieworder('review',z.MENU_ID,z.menu_varient_id,detail.id,z.manufacturer_id)">Submit</button>
+                                                    <button type="button" value="submit" class="review-subbmit-button" data-dismiss="modal" ng-click="revieworder('review')">Submit</button>
                                                 </div>
                                             </form>
                                             </div>

@@ -127,17 +127,20 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
         $scope.currentfeedback = "Excellent";
         break;
 
-
-
-
-
-        
     }
        // $scope.currentfeedback = rating
     }
 
+    $scope.values = function(menu_id,menu_varient_id,order_id,manufacturer_id) {
+        $scope.menu_id = menu_id;
+        $scope.menu_varient_id = menu_varient_id;
+        $scope.order_id = order_id;
+        $scope.manufacturer_id = manufacturer_id;
+        
+    }
+
     $scope.form = {}
-    $scope.revieworder = function(form,menu_id,menu_varient_id,order_id,manufacturer_id){
+    $scope.revieworder = function(form){
        
         loading.active();
 
@@ -145,12 +148,12 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
             country_id: sessionStorage.country,
              user_id: $cookieStore.get('userinfo').uid,
              /* language_code : sessionStorage.lang_code*/ 
-             menu_id : menu_id,
-             menu_variant_id : menu_varient_id,
+             menu_id :$scope.menu_id,
+             menu_variant_id : $scope.menu_varient_id,
              rating : $scope.rating,
              comments : $scope.form.comment,
-             order_id : order_id,
-             order_manufacturer_distribution_id : manufacturer_id,
+             order_id : $scope.order_id,
+             order_manufacturer_distribution_id : $scope.manufacturer_id,
         }); 
         
 
