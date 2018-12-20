@@ -176,7 +176,7 @@ app.config(function ($translateProvider) {
      Sub_Total_after_discount : 'Sub Total After Discount',
      Applied : 'Applied',
      Wallet_used_amount : 'Wallet Used Amount',
-     Qnty : 'Qnty',
+     Qty : 'Qty',
      Terms_n_Conditions : 'Terms And Conditions',
      Customer_Reviews : 'Customer Reviews',
      Based_On : 'Based On',
@@ -186,6 +186,7 @@ app.config(function ($translateProvider) {
      Billing_Address : 'Billing Address',
      Review_by : 'Review by',
      Comments : 'Comments',
+     Product_Info : 'Product Info'
   });
 
 
@@ -370,7 +371,7 @@ app.config(function ($translateProvider) {
     Applied : 'مستعمل',
     Wallet_used_amount : 'كمية المحفظة المستخدمة',
     Add_Address : 'اضف عنوان',
-    Qnty : 'كمية',
+    Qty : 'كمية',
     Terms_n_Conditions : 'الأحكام والشروط',
     Customer_Reviews : 'آراء العملاء',
      Based_On : 'مرتكز على',
@@ -380,5 +381,6 @@ app.config(function ($translateProvider) {
      Billing_Address : 'عنوان وصول الفواتير',
      Review_by : 'روجع من قبل',
      Comments : 'تعليقات',
+     Product_Info : 'معلومات المنتج'
   });
 }); 

@@ -72,15 +72,15 @@ ul.rating {
                         <p>{{'Order_ID' | translate}} <span>{{detail.id}}</span></p>
                     </div>
                     <div class="order_subcontainer" ng-repeat="y in detail_distribution">
-                        <div class="order_subcontainer_heading col-xs-12">
-                            <p>{{'Order_ID' | translate}} &nbsp;<span>{{detail.id}}-{{y.id}} </span></p>
+                        <div class="order_subcontainer_heading col-xs-12 pb-5">
+                            <p style="width:100%;">{{'Order_ID' | translate}} &nbsp;<span>{{detail.id}}-{{y.id}} </span></p>
                             <p class="status_btn" ng-if="y.status == '1'">Pending</p>
-                            <p class="status_btn" ng-if="y.status == '2'">Confirm</p>
-                            <p class="status_btn" ng-if="y.status == '3'">Delivery Boy Assigned</p>
-                            <p class="status_btn" ng-if="y.status == '4'">Out for delivery</p>
-                            <p class="status_btn" ng-if="y.status == '5'">Delivered</p>
-                            <p class="status_btn" ng-if="y.status == '6'">Cancelled</p>
-                            <p class="status_btn" ng-if="y.status == '7'">Rejected</p>
+                            <p class="status_btn" style="background: #ff7f8d!important;" ng-if="y.status == '2'">In-Process</p>
+                            <p class="status_btn" style="background: #4a0d4a!important" ng-if="y.status == '3'">Delivery Boy Assigned</p>
+                            <p class="status_btn" style="background: #66af52!important;" ng-if="y.status == '4'">Out for delivery</p>
+                            <p class="status_btn" style="background: #39a91c!important;" ng-if="y.status == '5'">Delivered</p>
+                            <p class="status_btn" style="background: #eda1a8;" ng-if="y.status == '6'">Cancelled</p>
+                            <p class="status_btn" style="background: #dc081f!important;" ng-if="y.status == '7'">Rejected</p>
                             <a href="" class="track_btn" ng-click="trackOrder(y.id,detail.id)">{{'Track_Order' |
                                 translate}}</a>
                         </div>
@@ -98,9 +98,9 @@ ul.rating {
                                     <p><span>{{'Units' | translate}} </span>{{z.UNIT_VALUE}}{{z.FS_UNIT_NAME}}</p>
                                     <p><span>{{'Price' | translate}} </span>{{currency}} {{z.unit_price}}</p>
                                     <p><span>{{'VAT' | translate}} </span>{{currency}} {{z.tax_amount}}</p>
-                                    <p><span>{{'Qnty' | translate}} </span>{{z.quantity}}</p>
+                                    <p><span>{{'Qty' | translate}} </span>{{z.quantity}}</p>
                                 </div>
-                                <div class="prod_img_wrapper review_icon" ng-if="y.status == '5'" ng-click = "values(z.MENU_ID,z.menu_varient_id,detail.id,z.manufacturer_id)">
+                                <div class="prod_img_wrapper review_icon" ng-if="y.status == '5'" ng-click = "values(z.MENU_ID,z.menu_varient_id,detail.id,z.id)">
                                     <img src="assets/img/review_icon.png" class="img-responsive" data-toggle="modal"
                                         data-target="#item_review" />
                                 </div>
@@ -178,14 +178,14 @@ ul.rating {
 
 
                         </div>
-                        <div ng-if="y.status != '6' && y.status != '5'" class="submit-btn col-sm-6 col-xs-12 text-center">
+                        <div ng-if="y.status != '6' && y.status != '5' && y.status != '7'" class="submit-btn col-sm-6 col-xs-12 text-center">
                             <a class="cancel_order" href="javascript:void(0)" ng-click="deleteOrder(y.id,detail.id)">{{'Cancel'
                                 | translate}}</a>
                         </div>
-                        <div ng-if="y.status == '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
+                        <!-- <div ng-if="y.status == '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
                             <a href="javascript:void(0)" style="background-color: #eda1a8">{{'Order_Cancelled' |
                                 translate}} </a>
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>
@@ -235,7 +235,7 @@ ul.rating {
                     </div>
                 </div>
                 <div class="view_prod">
-                    <p class="col-xs-6"><a href="view_cart.php">{{'Total_Amount' | translate}}</a></p>
+                    <p class="col-xs-6"><a href="javascript:void(0)">{{'Total_Amount' | translate}}</a></p>
                     <p class="col-xs-6 text-right">{{currency}} {{detail.final_amount | number : 2}}</p>
                 </div>
 

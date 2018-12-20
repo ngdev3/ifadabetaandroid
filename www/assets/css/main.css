@@ -1596,7 +1596,6 @@ li.menu_search_container a input{
     font-size: 11px;
     min-width: 65px;
     /* float: unset; */
-    margin-left: 6px;
     margin-top: 8px;	
 }
 .order_subcontainer_heading a.track_btn{
@@ -1734,10 +1733,12 @@ li.menu_search_container a input{
 
 .spr-reviews-header img {
     border: 1px solid #ccc;
-    border-radius: 50px;
+    border-radius: 50%;
     width: 50px;
-	position: absolute;
+    position: absolute;
     top: 25px;
+    height: 48px;
+    width: 48px;
 }
 
 .spr-reviews-header h2 {

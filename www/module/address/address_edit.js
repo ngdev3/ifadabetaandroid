@@ -27,8 +27,8 @@ app.controller('address_edit', function ($scope, $http, $location, $cookieStore,
     $scope.addressEdit = $cookieStore.get(paramid[1]);
     // console.log(address);return;
     // $scope.form.country = $scope.addressEdit.COUNTRY_NAME;
-    // $scope.country = $scope.addressEdit.country;
-    // $scope.city = $scope.addressEdit.city;
+     $scope.country = $scope.addressEdit.country;
+     $scope.city = $scope.addressEdit.city;
     $scope.address = $scope.addressEdit.address;
     $scope.landmark = $scope.addressEdit.landmark;
     $scope.zip = parseInt($scope.addressEdit.zipcode);
@@ -198,7 +198,8 @@ app.controller('address_edit', function ($scope, $http, $location, $cookieStore,
             res = response;   
             if (res.data.data.status == 'success') {
                 $scope.Countries = res.data.data.country;
-                // $scope.country = res.data.data.country[0].id;   
+                // $scope.country = res.data.data.country[0].id;
+                $scope.fetchcity();   
                 console.log($scope.Countries);             
             } else {    
                 model.show('Alert', res.data.responseMessage);
@@ -213,7 +214,7 @@ app.controller('address_edit', function ($scope, $http, $location, $cookieStore,
      $scope.fetchcity = function(){
         loading.active();
         var args = $.param({
-            'country_id': $scope.country
+            'country_id': sessionStorage.country
         });
         
         $http({
