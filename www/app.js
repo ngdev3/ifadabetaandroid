@@ -832,6 +832,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                     $rootScope.finalTotal = response.data.data.finalTotal;
                     $rootScope.coupon_discount = '';
                     $rootScope.subtotalafterdiscount = '';
+                    $rootScope.subtotalwithoutdiscount = '';
                     // return
                 }
                 var cartdata = {
@@ -914,6 +915,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
                     console.log(response.data.data.subTotalAfterDiscount);
                     $rootScope.subtotalafterdiscount = response.data.data.subTotalAfterDiscount;
+                    $rootScope.subtotalwithoutdiscount = response.data.data.subTotalAfterDiscount +  response.data.data.coupon_discount;
                     $rootScope.tax_amount = response.data.data.vat;
                     $rootScope.coupon_discount = response.data.data.coupon_discount;
                     $rootScope.finalTotal = response.data.data.finalTotal;
@@ -930,7 +932,6 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                         percentage: response.data.data.coupon_data.percentage
                     }
                     $cookieStore.put("coupon_data", coupon_data);
-
                     $('#inputpromo').attr('disabled', 'disabled');
                     $('#apply').addClass('ng-hide')
                     $('#applied').removeClass('ng-hide').show();

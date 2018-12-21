@@ -61,6 +61,7 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                 $scope.codamount = res.data.data.basic_info.final_amount - res.data.data.basic_info.wallet_used_amount;
                 $scope.delivery_address = res.data.data.delivery_address;
                 $scope.detail_distribution = res.data.data.basic_info.order_manufacturer_distribution;
+                $scope.detail_date = res.data.data.basic_info.order_manufacturer_distribution[0].updated_date;
                 var orderinfo = {
                     'order_on': res.data.data.delivery_address.updated_date,
                     'address': res.data.data.delivery_address.address,

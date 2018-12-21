@@ -347,7 +347,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
 /** 
      * Pagination on Scrolling
      */
-
+    $scope.page = 0;
    $scope.scrollPagination = function(id,url){
         // alert(id+ " "+url);return;
         $("#all").removeClass("input_default_focus");
@@ -381,13 +381,22 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             // console.log($scope.product.length);return;
             if (window_top == sum) {
                 console.log("inside");
-                 alert("Reached the bottom");return;
+                // alert("Reached the bottom");return;
                 if($scope.product.length < 10){
                     alert("Don't have further page");
                 }else{
                     var pageNo = $scope.page;
-                    // alert(pageNo);
+                    alert(pageNo);
+
+                    if(pageNo >= 1){
+                        alert("Don't have further page");
+                        return
+                    }
+
+                    
                     ++pageNo;
+
+                   
                     loading.active();
                     var args = $.param({  
                         category_id: ID,

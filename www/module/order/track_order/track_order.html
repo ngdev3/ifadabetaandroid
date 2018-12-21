@@ -54,12 +54,12 @@
                            
                                 <ol class="progtrckr" data-progtrckr-steps="5">
                                     <li class="progtrckr-todo inprocessed" >
-                                        <span class="span_date_tarck">{{trackorder_location.created_date.split(' ')[0] | date : 'dd-MM-yyyy'}}</span>
+                                        <span class="span_date_tarck">{{trackorder_location.created_date.split(' ')[0] | date : 'dd-MM-yyyy'}},</span><span>{{trackorder_location.created_date.split(' ')[1]}}</span>
                                         <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
                                         <span class="span_text"><img class="bar_icons" src="assets/img/order_placed.png">Order Placed</span>
                                     </li>
                                       <li class="progtrckr-todo inprocessed" ng-repeat="x in orderhistory">
-                                        <span class="span_date_tarck">{{x.created_date.split(' ')[0] | date : 'dd-MM-yyyy'}}</span>
+                                        <span class="span_date_tarck">{{x.created_date.split(' ')[0] | date : 'dd-MM-yyyy'}},</span><span>{{x.created_date.split(' ')[1]}}</span>
                                         <span class="pending_check"><i class="fa fa-check" aria-hidden="true"></i></span>
                                         <span class="span_text">
                                             <img ng-if="x.order_status == '2'" class="bar_icons" src="assets/img/order_confirmed.png">
