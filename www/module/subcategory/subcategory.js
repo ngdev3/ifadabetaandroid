@@ -386,7 +386,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                     alert("Don't have further page");
                 }else{
                     var pageNo = $scope.page;
-                    alert(pageNo);
+                 //   alert(pageNo);
 
                     if(pageNo >= 1){
                         alert("Don't have further page");
