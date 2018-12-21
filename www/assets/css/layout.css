@@ -1511,3 +1511,6 @@ li.progtrckr-todo.inprocessed span.pending_check i
 .prod_dec.panel-body p{
     padding-left: 5px;
 }
+.slick-track{
+    min-width:350px !important;
+}
