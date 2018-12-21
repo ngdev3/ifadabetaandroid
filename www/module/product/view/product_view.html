@@ -34,7 +34,7 @@
 							<a href="javascript:void(0)"><img ng-click="cart()" src="assets/img/icon/cart_icon.png" alt="cart icon" />
 								<span class="badge">{{cart_count}}</span>
 							</a>
-							<a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
+							<a href="javascript:void(0)" onclick="expand_search()"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav bottom_header">
@@ -260,7 +260,7 @@
 				{{'On' | translate}} <strong>{{x.created_date.split(' ')[0] | date : 'dd-MM-yyyy'}}                            </strong>
 				</span>
 			  <div class="spr-reviews-content">
-				<p class="spr-review-content-body">
+				<p class="spr-review-content-body mb-10">
 				{{x.comments}}  
 				</p>
 				
@@ -284,13 +284,9 @@
 <script>
 
 
-	$(document).ready(function () {
-            $(".cart_icon a:last-child").click(function () {
-                //alert();
-                $(".bottom_header").slideToggle();
-                //$("#banner_slider").toggleClass("search-container")
-            });
-        });
+	function expand_search(){
+		        $(".bottom_header").slideToggle();
+		}
 
 
 	function expenddiv() {
