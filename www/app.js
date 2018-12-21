@@ -992,9 +992,18 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
 
 
     $rootScope.back = function () {
+
+        model.hide();
         window.history.back();
     }
 
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady() {
+        // Now safe to use device APIs
+        model.hide();
+    }
+    
     $rootScope.cart = function () {
         $location.path('/cart');
     }
