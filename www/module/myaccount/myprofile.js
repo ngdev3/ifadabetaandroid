@@ -184,7 +184,7 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                 var reg1 = /^[a-zA-Z ]+$/;
                 var reg2 = /^[a-zA-Z0-9- ]+$/;
     
-             if (reg1.test($scope.fname) == false) {
+             /* if (reg1.test($scope.fname) == false) {
                     error_str = "First Name should contain Alphabets Only";
                     model.show('Alert', error_str);
                     // alert(error_str);
@@ -196,13 +196,13 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                     // alert(error_str);
                     return false;
                 }
-    
-                if (reg2.test($scope.address) == false) {
+     */
+                /* if (reg2.test($scope.address) == false) {
                     error_str = "Address should contain Numbers &  Alphabets Only";
                     model.show('Alert', error_str);
                     // alert(error_str);
                     return false;
-                }
+                } */
 
             loading.active();
 

@@ -48,7 +48,7 @@ $scope.forgot = function(form){
         if ($scope[form].$valid) {
             if ($scope.conf_pwd != $scope.new_pwd)
             {
-                error_str += "Password and Confirm Password does not match.";
+                error_str += "New Password and Confirm Password does not match.";
             }
 
             if (error_str !== '')

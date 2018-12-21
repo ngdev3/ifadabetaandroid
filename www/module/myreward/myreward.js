@@ -6,6 +6,10 @@ if (!$cookieStore.get('userinfo')) {
 }
 
 $scope.myrewards = function(){
+    if($scope.loyality_points < $scope.redeem_limit){
+        alert('You can not redeem now. Minimum point should be greater than'+$scope.redeem_limit);
+        return false;
+    }
     loading.active();
         var args = $.param({
             user_id: $cookieStore.get('userinfo').uid,
@@ -28,6 +32,8 @@ $scope.myrewards = function(){
             if (res.data.responseStatus == 'success') {
                 console.log(res); 
                 $scope.redeemdata = res.data.data;
+                $scope.loyality_points = res.data.data.loyalty_point_data;
+                $scope.redeem_limit = res.data.data.redeem_limit;
                 $scope.redeemhistory = res.data.data.reward_history;
                 
             } else {
@@ -40,10 +46,10 @@ $scope.myrewards = function(){
         })
 }
 
-$scope.lesspoints = function(){
+/* $scope.lesspoints = function(){
 
     alert('No Enough Points');
-}
+} */
 
 $scope.reddempoints = function(){
 

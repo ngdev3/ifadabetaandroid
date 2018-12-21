@@ -31,6 +31,8 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         $location.path('/login');
     }
 
+    $scope.setdata = 0;
+
     $scope.season_fetch =   function(){
          loading.active();
         if(!$cookieStore.get("userinfo")){
@@ -63,8 +65,13 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
            console.log(res);
 
            if(res.data.data.status == 'success'){
+                $scope.setdata = 1;
                 $scope.best_picks_of_the_season = res.data.data.best_picks_of_the_season;
                 $scope.offer = res.data.data.offer;
+                if(res.data.data.banner_category.length > 0){
+
+                    $scope.banner_category = res.data.data.banner_category;
+                }
                 $scope.product_of_the_day = res.data.data.product_of_the_day;
                 $scope.best_picks_of_the_featured_products = res.data.data.best_picks_of_the_featured_products;
                 $scope.dairy_product = res.data.data.dairy_product;
@@ -112,27 +119,34 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
                 };
                 console.log($scope.slider);
                 $scope.sliderCount =  $scope.slider.length;
-           }else{
-
            }
 
+           setTimeout(function(){
+
+               loading.deactive();
+           },400)
+
         }).finally(function () {
-            loading.deactive();
+           // loading.deactive();
         });
 
     }
 
     var i = 1;
     var j = 3;
+    var j = 2;
+
     var first_length = 3;
     var second_length = 5;
+    var third_length = 0;
     // $scope.offer[1].ad_big_image = 'assets/img/advert_1.png';
     // $scope.offer[3].ad_big_image = 'assets/img/advert_1.png';
     setInterval(function(){ 
         
 
         if(first_length > i){
-
+            $('#custom_slider').attr('data-offerid', $scope.offer[i].URL)
+            $('#custom_slider').attr('data-catid', $scope.offer[i].category_id)
             $('#custom_slider').attr('src',$scope.offer[i].ad_big_image)
             i++;
         }else{
@@ -141,11 +155,15 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
 
         if(second_length > j){
 
+            $('#custom_second_slider').attr('data-offerid', $scope.offer[i].URL)
+            $('#custom_second_slider').attr('data-catid', $scope.offer[i].category_id)
             $('#custom_second_slider').attr('src',$scope.offer[j].ad_big_image)
             j++;
         }else{
             j = 3;
         }
+
+
 
     },6000);
 
@@ -252,7 +270,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
             }
 
         }).finally(function () {
-            loading.deactive();
+           // loading.deactive();
         });
 
 
@@ -484,7 +502,7 @@ $scope.searchresults = function(){
                 model.show("Alert","Something went wrong");
             }
         }).finally(function () {
-            loading.deactive();
+           // loading.deactive();
         });
     }
 
@@ -494,7 +512,11 @@ $scope.searchresults = function(){
         $route.reload();
   }
 
-  $scope.details = function(id, url) {
+  $scope.details = function(weightid) {
+    console.log(weightid.target.dataset.catid);
+    id = weightid.target.dataset.catid;
+    url = weightid.target.dataset.offerid
+    //return
     var subcategoryInfo = {
         'subcatid': id,
         'url': url

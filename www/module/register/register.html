@@ -84,7 +84,7 @@
               </div>
           </div> 
           <div class="submit-btn col-sm-6 col-xs-12 text-center" ng-click="user_registers('loginform')">
-            <a href="javascript:void(0)">{{'Sign_Up' | translate}}</a>
+            <a href="javascript:void(0)" ng-keyup="$event.keyCode == 13 ? loginuser('loginform') : null">{{'Sign_Up' | translate}}</a>
           </div>
           
         </form>

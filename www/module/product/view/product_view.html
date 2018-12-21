@@ -62,6 +62,9 @@
 						<!-- Buttons Items -->
 						<div class="item">
 							<slick class="slider" settings="slickConfig0">
+										<div>
+											<img class="slide_image" ng-src="{{product_details.image}}" />
+										</div>
 								<div ng-repeat="y in product_images">
 									<img class="slide_image" ng-src="{{y.product_image}}" />
 								</div>
@@ -73,12 +76,12 @@
 							<div class="prod_images">
 								<img class="img-responsive" src="assets/img/product/product_detail.png">
 							</div>
-						</div>-->
-						<div class="item" ng-if="!product_images">
+						</div>
+						 <div class="item" ng-if="!product_images">
 							<div class="prod_images">
 								<img style="height:250px; width:250px" class="img-responsive" src="{{product_details.image}}">
 							</div>
-						</div>
+						</div> -->
 
 						<!-- !. Buttons Items -->
 					</div>
@@ -175,19 +178,19 @@
 								<h4 class="prod_det_panel  panel-title prod_details_head">
 									<a class="all_cat_headbar collapsed" data-toggle="collapse" data-parent="#accordion" onclick="expenddiv()"
 									 aria-expanded="false" aria-controls="collapseOne">
-										{{ 'Product_Details' | translate}}
+										{{ 'Product_Info' | translate}}
 									</a>
 								</h4>
 							</div>
 							<div id="collapseOne" class="panel-collapse collapse col-xs-12 all_cat_below_div" role="tabpanel"
 							 aria-labelledby="headingOne">
 								<div class="prod_dec panel-body">
-									<h3>{{ 'Product_Details' | translate}} :-</h3>
+									<h5>{{ 'Product_Details' | translate}} :</h5>
 									<!-- Inside -->
 									<p>{{product_details.content}}</p>
 									<br>
-									<h3>{{ 'Description' | translate}} :-</h3>
-									<p>{{product_details.description}}</p>
+									<h5>{{ 'Description' | translate}} :</h5>
+									<p>{{product_details_description}}</p>
 								</div>
 								
 							</div>
@@ -232,7 +235,8 @@
 		  <!-- first rev -->
 					   <div class="spr-review" id="" ng-repeat="x in rating_details">
 						   <div class="spr-reviews-header">
-								<img class="review-user-img" src="http://projects.tekshapers.in/ifadabeta/uploads/user_image/{{x.user_profile_image}}">
+								<img ng-if="x.user_profile_image != ''" class="review-user-img" src="http://projects.tekshapers.in/ifadabeta/uploads/user_image/{{x.user_profile_image}}">
+								<img ng-if="x.user_profile_image == ''" class="review-user-img" src="assets\img\icon\user_icon.png">
 									<h2 class="spr-review-header-title">{{x.first_name}}{{x.last_name}}</h2>
 									
 									<div class="customer-rating-star">
@@ -281,12 +285,12 @@
 
 
 	$(document).ready(function () {
-		$(".cart_icon a:last-child").click(function () {
-			//alert();
-			$(".bottom_header").slideToggle();
-			//$("#banner_slider").toggleClass("search-container")
-		});
-	});
+            $(".cart_icon a:last-child").click(function () {
+                //alert();
+                $(".bottom_header").slideToggle();
+                //$("#banner_slider").toggleClass("search-container")
+            });
+        });
 
 
 	function expenddiv() {
@@ -294,3 +298,4 @@
 		$('.all_cat_headbar').toggleClass('  collapsed');
 	}
 </script>
+

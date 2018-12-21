@@ -769,7 +769,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             data: args //forms user object
 
         }).then(function (response) {
-            loading.deactive();
+          //  loading.deactive();
             res = response;
 
             //  alert("response from the server ");
@@ -817,7 +817,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         }).then(function (response) {
             //alert();
             // console.log(response.data)
-            loading.deactive();
+         //   loading.deactive();
             res = response.data.data.cart_data;
             console.log(response.data.data.subtotalafterdiscount)
             $rootScope.cart_count = response.data.data.cart_item_count
@@ -849,6 +849,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
        
         if(!$cookieStore.get('userinfo')){
             alert('Please Login First !');
+            $location.path('/login');
             return false;
         }
         console.log($rootScope.promocode)
@@ -991,9 +992,18 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
 
 
     $rootScope.back = function () {
+
+        model.hide();
         window.history.back();
     }
 
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady() {
+        // Now safe to use device APIs
+        model.hide();
+    }
+    
     $rootScope.cart = function () {
         $location.path('/cart');
     }
@@ -1841,7 +1851,45 @@ function onBackKeyDown(ev) {
 }
 
 
+app.directive('starRating', function () {
+    return {
+        restrict: 'A',
+        template: '<ul class="rating">' +
+            '<li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)">' +
+            '\u2605' +
+            '</li>' +
+            '</ul>',
+        scope: {
+            ratingValue: '=',
+            max: '=',
+            onRatingSelected: '&'
+        },
+        link: function (scope, elem, attrs) {
 
+            var updateStars = function () {
+                scope.stars = [];
+                for (var i = 0; i < scope.max; i++) {
+                    scope.stars.push({
+                        filled: i < scope.ratingValue
+                    });
+                }
+            };
+
+            scope.toggle = function (index) {
+                scope.ratingValue = index + 1;
+                scope.onRatingSelected({
+                    rating: index + 1
+                });
+            };
+
+            scope.$watch('ratingValue', function (oldVal, newVal) {
+                if (newVal) {
+                    updateStars();
+                }
+            });
+        }
+    }
+});
 
 app.directive("mwInputRestrict", [
     function () {

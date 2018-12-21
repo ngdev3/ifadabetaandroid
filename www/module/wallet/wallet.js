@@ -57,7 +57,7 @@ app.controller('wallet', function ($scope, $http, $location,$window, $cookieStor
         if ($scope[form].$error) {
 
             if ($scope[form].amount.$error.required !== undefined || $scope[form].amount.$error.number) {
-                error_str += "Enter Amount, ";
+                error_str += "Enter Amount";
             }
 
             if ($scope[form].creditpay.$error.required !== undefined) { 

@@ -32,7 +32,7 @@
 						<label for="email">{{'Mobile_Number' | translate}}</label>
 					</div>
 					<div class="mui-textfield col-sm-6 col-xs-12">
-						<input type="password" id="pass" name="userpassword" ng-model="userpassword" placeholder="{{'Password' | translate}}" required>
+						<input type="password" id="pass" name="userpassword" ng-model="userpassword" placeholder="{{'Password' | translate}}" ng-keyup="$event.keyCode == 13 ? loginuser('loginform') : null" required>
 						<label for="pass">{{'Password' | translate}}</label>
 					</div>
 				</div>

@@ -58,7 +58,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
             var reg3 = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
             var reg4 = /^[a-zA-Z ]+$/;
             var reg5 = /^[^0][0-9]{9}$/;
-            var reg6 = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
+            var reg6 = /^(?=.*?[a-z])(?=.*?[0-9]).{6,}/;
 
             if (reg4.test($scope.fname) == false) {
                 error_str = "First Name should contain Alphabets Only";

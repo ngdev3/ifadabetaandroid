@@ -1588,7 +1588,6 @@ li.menu_search_container a input{
     font-size: 11px;
     min-width: 65px;
     /* float: unset; */
-    margin-left: 6px;
     margin-top: 8px;	
 }
 .order_subcontainer_heading a.track_btn{
@@ -1726,10 +1725,12 @@ li.menu_search_container a input{
 
 .spr-reviews-header img {
     border: 1px solid #ccc;
-    border-radius: 50px;
+    border-radius: 50%;
     width: 50px;
-	position: absolute;
+    position: absolute;
     top: 25px;
+    height: 48px;
+    width: 48px;
 }
 
 .spr-reviews-header h2 {
@@ -1800,7 +1801,11 @@ li.menu_search_container a input{
 }
 
 #item_review .customer-image img {
-    width: 100%;
+    width: 70px;
+    border-radius: 50%;
+    height: 70px;
+
+
 }
 
 #item_review .customer-rating-star{
@@ -1824,12 +1829,12 @@ li.menu_search_container a input{
     padding: 0;
 }
 .customer-rating-star span.spr-starratings{
-	width: 100%;
+    width: 100%;
     display: block;
     text-align: center;
-	font-size: 16px;
-	margin-bottom: 22px;
-	color: #c73e20;
+    font-size: 16px;
+    margin-top: 10px;
+    color: #006d07;
 }
 
 .comment_box_review{
@@ -1843,7 +1848,7 @@ li.menu_search_container a input{
 
 .review-subbmit-button{
 	display: inline-block;
-    padding: 5px 12px 0 12px;
+    padding: 3px 12px 3px 12px;
     margin-bottom: 0;
     font-size: 16px;
     font-weight: 500;
@@ -1853,12 +1858,27 @@ li.menu_search_container a input{
     vertical-align: middle;
     border: none;
     background-color: white;
-    color: green;
+    color: #006d07;
+    margin-left: 10px;
+    float: right;
+}
+.review-cancel-button{
+	display: inline-block;
+    padding: 3px 12px 3px 12px;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: none;
+    background-color: white;
+    color: red;
 }
 
 .review-subbmit-bttn{
-    padding-bottom: 10px;
-    padding-left: 220px;
+    padding: 10px 22px;
 }
 
 #item_review .modal-dialog{
@@ -1889,4 +1909,13 @@ li.menu_search_container a input{
 }
 .redeem_btn > button:focus{
 	color:#fff;
+}
+.review_main_div{
+    text-align:center;
+}
+.review_main_div > ul{
+    width:100%;
+}
+.review_main_div > ul li{
+    font-size:30px;
 }

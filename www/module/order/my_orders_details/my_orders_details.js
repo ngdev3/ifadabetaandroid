@@ -12,7 +12,9 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
         window.history.back();
     }
 
-
+    $scope.fullName = $cookieStore.get("userinfo").fullName;
+    $scope.profile_image = profile_image_path+$cookieStore.get("userinfo").profile_image;
+    $scope.profile_image_found = $cookieStore.get("userinfo").profile_image;
     /**
      * Funtion: ordersDetalisInit from my_orders_details.html on ng-init
      * Name: Sajal Goyal
@@ -87,6 +89,99 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
         }).finally(function () {
             loading.deactive();
         });
+    }
+
+    $scope.rating = 5;
+    $scope.currentfeedback = "Excellent";
+    $scope.ratings = [ {
+        current: 5,
+        max: 5
+    }];
+    
+    $scope.getSelectedRating = function (rating) {
+        console.log(rating);
+        $scope.rating = rating ;
+
+    switch(rating){
+        case 0:
+        $scope.currentfeedback = ' &#9786; Very Bad';
+        break;
+
+        case 1 :
+        $scope.currentfeedback = "Bad";
+        break;
+
+        case 2 :
+        $scope.currentfeedback = "Average";
+        break;
+
+        case 3 :
+        $scope.currentfeedback = "Good";
+        break;
+        
+        case 4 :
+        $scope.currentfeedback = "Very Good";
+        break;
+
+        case 5 :
+        $scope.currentfeedback = "Excellent";
+        break;
+
+    }
+       // $scope.currentfeedback = rating
+    }
+
+    $scope.values = function(menu_id,menu_varient_id,order_id,manufacturer_id) {
+        $scope.menu_id = menu_id;
+        $scope.menu_varient_id = menu_varient_id;
+        $scope.order_id = order_id;
+        $scope.manufacturer_id = manufacturer_id;
+        
+    }
+
+    $scope.form = {}
+    $scope.revieworder = function(form){
+       
+        loading.active();
+
+         var args = $.param({
+            country_id: sessionStorage.country,
+             user_id: $cookieStore.get('userinfo').uid,
+             /* language_code : sessionStorage.lang_code*/ 
+             menu_id :$scope.menu_id,
+             menu_variant_id : $scope.menu_varient_id,
+             rating : $scope.rating,
+             comments : $scope.form.comment,
+             order_id : $scope.order_id,
+             order_manufacturer_distribution_id : $scope.manufacturer_id,
+        }); 
+        
+
+        $http({
+            headers: {
+                //'token': '40d3dfd36e217abcade403b73789d732',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            url: app_url + '/add_review',
+            data: args 
+
+        }).then(function (response) {
+
+            res = response;
+
+           console.log(res);return;
+           if(res.data.data.status == 'success'){
+            $scope.order_list = res.data.data.order_list;
+           }else{
+               $scope.order_list= '';
+            alert("Order Doesn't Exist");
+           }
+
+        }).finally(function () {
+            loading.deactive();
+        });
+
     }
 
 

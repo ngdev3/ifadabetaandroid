@@ -129,7 +129,6 @@ app.config(function ($translateProvider) {
      Tax_Amount : 'Tax Amount',
      Proceed_To_Checkout : 'Proceed To Checkout',
      AED : 'AED',
-     Referral_Code : 'Referral_Code',
      Reedem_Your_Points : 'Reedem Your Points',
      Points : 'Points',
      Note : 'Note',
@@ -177,14 +176,17 @@ app.config(function ($translateProvider) {
      Sub_Total_after_discount : 'Sub Total After Discount',
      Applied : 'Applied',
      Wallet_used_amount : 'Wallet Used Amount',
-     Qnty : 'Qnty',
+     Qty : 'Qty',
      Terms_n_Conditions : 'Terms And Conditions',
      Customer_Reviews : 'Customer Reviews',
      Based_On : 'Based On',
      Reviews : 'Reviews',
      No_Reviews : 'No Reviews',
-     On : 'On'
-     
+     On : 'On',
+     Billing_Address : 'Billing Address',
+     Review_by : 'Review by',
+     Comments : 'Comments',
+     Product_Info : 'Product Info'
   });
 
 
@@ -323,7 +325,6 @@ app.config(function ($translateProvider) {
     Tax_Amount : 'قيمة الضريبة',
     Proceed_To_Checkout : 'باشرالخروج من الفندق',
     AED : 'درهم إماراتي',
-    Referral_Code : 'كود الإحالة',
     Redeem_Your_Points : 'Redeem النقاط الخاصة بك',
     Points : 'نقاط',
     Note : 'ملحوظة',
@@ -370,13 +371,16 @@ app.config(function ($translateProvider) {
     Applied : 'مستعمل',
     Wallet_used_amount : 'كمية المحفظة المستخدمة',
     Add_Address : 'اضف عنوان',
-    Qnty : 'كمية',
+    Qty : 'كمية',
     Terms_n_Conditions : 'الأحكام والشروط',
     Customer_Reviews : 'آراء العملاء',
      Based_On : 'مرتكز على',
      Reviews : 'التعليقات',
      No_Reviews : 'لم يتم تقديم تعليقات',
-     On : 'على'
-
+     On : 'على',
+     Billing_Address : 'عنوان وصول الفواتير',
+     Review_by : 'روجع من قبل',
+     Comments : 'تعليقات',
+     Product_Info : 'معلومات المنتج'
   });
 }); 
