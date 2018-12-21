@@ -68,6 +68,10 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
                 $scope.setdata = 1;
                 $scope.best_picks_of_the_season = res.data.data.best_picks_of_the_season;
                 $scope.offer = res.data.data.offer;
+                if(res.data.data.banner_category.length > 0){
+
+                    $scope.banner_category = res.data.data.banner_category;
+                }
                 $scope.product_of_the_day = res.data.data.product_of_the_day;
                 $scope.best_picks_of_the_featured_products = res.data.data.best_picks_of_the_featured_products;
                 $scope.dairy_product = res.data.data.dairy_product;
@@ -130,8 +134,11 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
 
     var i = 1;
     var j = 3;
+    var j = 2;
+
     var first_length = 3;
     var second_length = 5;
+    var third_length = 0;
     // $scope.offer[1].ad_big_image = 'assets/img/advert_1.png';
     // $scope.offer[3].ad_big_image = 'assets/img/advert_1.png';
     setInterval(function(){ 
@@ -150,12 +157,13 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
 
             $('#custom_second_slider').attr('data-offerid', $scope.offer[i].URL)
             $('#custom_second_slider').attr('data-catid', $scope.offer[i].category_id)
-
             $('#custom_second_slider').attr('src',$scope.offer[j].ad_big_image)
             j++;
         }else{
             j = 3;
         }
+
+
 
     },6000);
 
