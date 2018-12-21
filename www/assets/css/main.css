@@ -1289,41 +1289,33 @@ li.menu_search_container a input{
 .add_item_button{
 	margin: 0 auto;
 }
-.less_item {
-    width: 23%;
-    font-size: 20px;
-    background-color: #51a900;
-    border: none;
-    margin: 0px;
-    border-radius: 3px;
-    float: left;
-    color: #ffffff;
-    outline: none;
-    margin-top: 4px;
-}
+/* .less_item { */
+    /* width: 23%; */
+    /* font-size: 20px; */
+    /* background-color: #51a900; */
+    /* border: none; */
+    /* margin: 0px; */
+    /* border-radius: 3px; */
+    /* float: left; */
+    /* color: #ffffff; */
+    /* outline: none; */
+    /* margin-top: 4px; */
+/* } */
 .add_item_button input {
-    font-size: 17px;
-    border: 0;
-    color: #b4b4b4;
-    width: 52%;
-    float: left;
-    text-align: center;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    background: #fff;
+    
 }
-.add_item {
-    width: 23%;
-    font-size: 20px;
-    background-color: #51a900;
-    border: none;
-    margin: 0px;
-    border-radius: 3px;
-    float: left;
-    color: #ffffff;
-    outline: none;
-    margin-top: 4px;
-}
+/* .add_item { */
+    /* width: 23%; */
+    /* font-size: 20px; */
+    /* background-color: #51a900; */
+    /* border: none; */
+    /* margin: 0px; */
+    /* border-radius: 3px; */
+    /* float: left; */
+    /* color: #ffffff; */
+    /* outline: none; */
+    /* margin-top: 4px; */
+/* } */
 .add_cart_button > button{
 	width: 100%;
     font-size: 13px;

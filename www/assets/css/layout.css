@@ -273,56 +273,39 @@ input.btn.btn-success.all-sub-cat_buttons:focus
     font-size: 16px;
 }
 /** add button**/
-.less_item.sub_add_btn {
-    font-size: 20px;
-    background-color: transparent;
+button.less_item{
     border: none;
-    margin: 0px;
+    background: #006d07;
+    color: #fff;
     border-radius: 50%;
-    float: right;
-    color: #ffffff;
-    outline: none;
-    margin-top: 4px;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #00be0c;
-    color: #00be0c;
-    font-weight: 700;
-    padding: 2px;
-    padding-bottom: 6px;
-    line-height: 0px;
-    /* padding: 0; */
+    padding: 2px 8px;
+    font-size: 15px;
+	font-weight: 600;
+}
+button.less_item:focus{
+   color: #fff;
+}button.add_item:focus{
+   color: #fff;
 }
 .add_item_button.sub_add_btn input {
     font-size: 17px;
     border: 0;
     color: #979c9f;
-    width: 34%;
-    float: right;
+    width: 30%;
+    /* float: none; */
     text-align: center;
     padding-bottom: 8px;
     padding-top: 5px;
     background: #fff;
 }
-.add_item.sub_add_btn {
-    font-size: 21px;
-    background-color: transparent;
+button.add_item{
     border: none;
-    margin: 0px;
+    background: #006d07;
+    color: #fff;
+    font-size: 15px;
     border-radius: 50%;
-    float: right;
-    color: #ffffff;
-    outline: none;
-    margin-top: 4px;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #00be0c;
-    color: #00be0c;
-    font-weight: 700;
-    padding: 2px;
-    line-height: 0px;
-    padding-bottom: 4px;
-    /* padding-right: 0px; */
+    padding: 2px 7px;
+	font-weight: 600;
 }
 .add_item.sub_add_btn:focus , .less_item.sub_add_btn:focus
 {
@@ -970,7 +953,7 @@ li.progtrckr-todo.inprocessed span.pending_check i
     background: rgba(0,0,0,0.5);
 }
 .pop_up_display{
-		height: 100vh;
+	height: 100vh;
     display: flex;
 }
 .main_pop_up{
@@ -1406,7 +1389,7 @@ li.progtrckr-todo.inprocessed span.pending_check i
     letter-spacing: 1px;
 }
 .add_cart_button.sub_add_btn > button.out_of_stock {
-    width: 75px;
+    width: 85px;
     font-size: 10px;
     background-color: #eda1a8;
     border: none;
@@ -1417,9 +1400,9 @@ li.progtrckr-todo.inprocessed span.pending_check i
     outline: none;
     margin-top: 3px;
     position: absolute;
-    padding: 0px 10px;
+    padding: 0px;
     right: -3px;
-    bottom: 13px;
+    bottom: 15px;
 	top:unset;
 	
     /* line-height: 20px; */

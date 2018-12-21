@@ -118,14 +118,15 @@
 								<div class="add_item_container sub_add_btn" id="firstt_{{productpid}}" data-attr="{{DweightID}}">
 
 									<div class="add_item_button sub_add_btn" data-rowid="{{rowid}}" id="enableCart_{{DweightID}}" ng-show="rowid">
-										<button class="add_item sub_add_btn" data-menuid="{{menu_id}}" data-weightid="{{DweightID}}" data-weightid="{{DweightID}}"
-										 id="plus_{{DweightID}}" ng-click="plusToCart($event)">
-											+
-										</button>
-										<input type="text" id="quantity_{{DweightID}}" value="{{addedQnty}}" disabled="">
-										<button class="less_item sub_add_btn" data-menuid="{{menu_id}}" data-weightid="{{DweightID}}" id="minus_{{DweightID}}"
+										<button class="less_item" data-menuid="{{menu_id}}" data-weightid="{{DweightID}}" id="minus_{{DweightID}}"
 										 ng-click="minusToCart($event)">
 											-
+										</button>
+										<input type="text" id="quantity_{{DweightID}}" value="{{addedQnty}}" disabled="">
+										
+										<button class="add_item" data-menuid="{{menu_id}}" data-weightid="{{DweightID}}" data-weightid="{{DweightID}}"
+										 id="plus_{{DweightID}}" ng-click="plusToCart($event)">
+											+
 										</button>
 									</div>
 

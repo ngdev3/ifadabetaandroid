@@ -147,6 +147,14 @@
 	{
 		width: auto;
 	}
+	.all_cat_panelt.panel-title > a.collapsed:before {
+    right: 18px;
+}
+.all_cat_panelt.panel-title > a:before
+	{
+	right:18px;
+	
+	}
 }
 
 @media screen and (max-width: 374px) {
@@ -207,4 +215,5 @@
 .couponcode {
     width: 86px;
 }
+
 }
