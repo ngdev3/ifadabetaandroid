@@ -849,6 +849,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
        
         if(!$cookieStore.get('userinfo')){
             alert('Please Login First !');
+            $location.path('/login');
             return false;
         }
         console.log($rootScope.promocode)

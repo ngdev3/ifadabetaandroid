@@ -120,14 +120,11 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
 
     $scope.address_delivery = function() {
         
-
-
             if (!$cookieStore.get('userinfo')) {
-               alert('Please Login First !')
-                return
-                //$location.path('')
+               alert('Please Login First !');
+               $location.path('/login');
+                return; 
             }
-    
             var args = $.param({
                 user_id: $cookieStore.get('userinfo').uid,
                 country_id: sessionStorage.country,
@@ -173,6 +170,16 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
             $rootScope.apply_promo('apply');
             //$location.path('/dashboard/home')
         }
+    }
+
+    $scope.product_view = function (id) {
+        // alert(id);return;
+        var productinfo = {
+            'id' : id,
+            
+        }
+        $cookieStore.put('productinfo', productinfo);
+        $location.path('/product/view');
     }
     
 });
