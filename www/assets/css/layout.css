@@ -1224,7 +1224,7 @@ li.progtrckr-todo.inprocessed span.pending_check i
 .tk_bg{
 	width: 70%;
     margin: 20px auto;
-    padding: 30px;
+    padding: 30px 20px;
     background-image: url(../img/tk_bg.png);
 }
 .tk_bg > .tk_hungry > h5{
