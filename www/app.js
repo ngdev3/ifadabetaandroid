@@ -963,6 +963,14 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
 app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $interval) {
 
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady() {
+        // Now safe to use device APIs
+        model.hide();
+        
+    }
+    
     window.alert = function (type, content) {
 
         if (content == '' || content == undefined) {
@@ -998,13 +1006,8 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
         window.history.back();
     }
 
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    function onDeviceReady() {
-        // Now safe to use device APIs
-        model.hide();
-    }
     
+
     $rootScope.cart = function () {
         $location.path('/cart');
     }
