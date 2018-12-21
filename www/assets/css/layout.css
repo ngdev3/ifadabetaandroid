@@ -278,9 +278,9 @@ button.less_item{
     background: #006d07;
     color: #fff;
     border-radius: 50%;
-    padding: 2px 8px;
+    padding: 0px 6px;
     font-size: 15px;
-	font-weight: 600;
+    font-weight: 600;
 }
 button.less_item:focus{
    color: #fff;
@@ -291,7 +291,7 @@ button.less_item:focus{
     font-size: 17px;
     border: 0;
     color: #979c9f;
-    width: 30%;
+    width: 29%;
     /* float: none; */
     text-align: center;
     padding-bottom: 8px;
@@ -304,8 +304,8 @@ button.add_item{
     color: #fff;
     font-size: 15px;
     border-radius: 50%;
-    padding: 2px 7px;
-	font-weight: 600;
+    padding: 0px 5px;
+    font-weight: 600;
 }
 .add_item.sub_add_btn:focus , .less_item.sub_add_btn:focus
 {
