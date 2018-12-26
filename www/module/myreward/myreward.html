@@ -58,7 +58,7 @@
                 <thead class="">
                     <tr>
                         <td scope="col">{{'Date' | translate}}</td>
-                        <td scope="col">{{'Earn_By' | translate}}</td>
+                        <td scope="col">{{'Description' | translate}}</td>
                         <td scope="col">{{'Amount' | translate}}</td>
                         <td scope="col">{{'CR_DR' | translate }}</td>
                     </tr>
@@ -66,7 +66,8 @@
                 <tbody>
                     <tr ng-repeat="x in redeemhistory">
                       <th style="text-align:center;font-weight:400;">{{x.updated_date.split(' ')[0] | date:'dd-MM-yyyy'}}</th>
-                      <td>{{x.loyalty_by}}</td>
+                      <td ng-if="x.order_id == '0'">{{x.loyalty_by}}</td>
+                      <td ng-if="x.order_id != '0'">{{x.loyalty_by}}<br> {{'Order_ID' | translate }}{{x.order_id}}</td>
                       <td>{{currency}} {{x.loyalty_point}}</td>
                       <td>{{x.type}}</td>
                     </tr>
