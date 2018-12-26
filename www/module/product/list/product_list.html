@@ -59,7 +59,7 @@
 						<ul class="nav navbar-nav bottom_header">
 						  <li class="menu_search_container"><a href="javascript:void(0)">
 							<!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
-							<input type="text" class="menu_search" ng-model="searchProduct" name="searchProduct" placeholder="{{'Search_Products_Brands_and_More' | translate}}" ng-keyup="$event.keyCode == 13 ? searchProducts() : null" required/>
+							<input type="text" class="menu_search" ng-model="searchProduct" name="searchProduct" placeholder="{{'Search_Products_Brands_and_More' | translate}}" ng-keyup="$event.keyCode == 13 ? searchproducts() : null" required/>
 							<button class="search_bar_span" ng-click="searchproducts()" ><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 						</a></li>
 						</ul>
@@ -88,6 +88,16 @@
 				</header>
 				<div class="filter-body">
 					<div class="filter-container">
+
+							<button class="accordion" id="accord_1" ng-click="init(1);">Price Range</button>
+							<div class="accordion-panel accordion-panel_1">
+							  <div class="accordion-container">
+								  <article>
+								 
+								<rzslider rz-slider-model="minRangeSlider.minValue" rz-slider-high="minRangeSlider.maxValue" rz-slider-options="minRangeSlider.options"></rzslider>
+							</article>  
+							  </div>
+							</div>
 
 							<button class="accordion" id="accord_2" ng-click="init(2);">Brand</button>
 							<div class="accordion-panel accordion-panel_2">

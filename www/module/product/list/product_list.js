@@ -14,12 +14,11 @@ $scope.product_view = function (id,url) {
 }
 
 $scope.searchproducts = function(){
-
+    
     if($scope.searchProduct == undefined || $scope.searchProduct == ""){
         model.show("Alert","Please Provide the Search Value");
         return false;
     }
-    
     var search_key = {
         'search' : $scope.searchProduct
     }
@@ -43,10 +42,26 @@ $scope.init =function(id){
 $scope.filter = function(form) {
     //console.log($scope.sort); 
     $rootScope.searchProduct = $cookieStore.get('search').search;
+    var range = $scope.minRangeSlider.minValue + "-" + $scope.minRangeSlider.maxValue
+    console.log(range)
+    $rootScope.range = range;
     $rootScope.sort = $scope.sort;
     $rootScope.searchBar();
     
 }
+
+ //slider
+ $scope.minRangeSlider = {
+    minValue: $rootScope.search_product,
+    maxValue: 1000,
+
+    };
+
+    $scope.changeMinSlider = function(){
+    console.log($scope.minRangeSlider)
+    }
+
+    //slider
 
 $scope.brand_array = [];
 //$scope.brand_ids = [];
@@ -180,6 +195,8 @@ $scope.taptowishlist = function(id, wishlist_status){
         /**
          * End of Function
          */
+
+       
 });
 
 

@@ -278,10 +278,9 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
     $rootScope.sort = '';
     $rootScope.searchBar = function () {
         var brands =$cookieStore.get('brand_array');
-        console.log(brands);
         var brand_str = '';
         angular.forEach(brands,(value,key)=>{
-            console.log(value);
+            
             if(brand_str == ''){
                 brand_str   =   value;
             }else{
@@ -307,7 +306,8 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             'sort_by': $rootScope.sort,
             'user_id': userID,
             'user_type': user_type,
-            'brand': brand_str
+            'brand': brand_str,
+            'range': $rootScope.range
         })
         $http({
             headers: {
