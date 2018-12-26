@@ -171,6 +171,18 @@
     color: #fff;
     font-size: 12px;
 }
+.span_date_tarck{
+	font-size:11px;
+}
+.span_time_track{
+	font-size:11px;
+}
+span.span_text {
+    font-size: 11px;
+}
+.pending_check {
+    margin: 1px 10px;
+}
 }
 @media screen and (max-width: 345px) {
 .coupon_container h5 {

@@ -806,7 +806,10 @@ img.bar_icons
     vertical-align: top;
 }
 .order_tacking_bar {
-    padding: 30px 15px;
+    padding: 30px 5px;
+}
+.span_time_track{
+	font-size:12px;
 }
 ol.progtrckr {
     margin: 0;
