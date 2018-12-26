@@ -52,8 +52,8 @@ $scope.filter = function(form) {
 
  //slider
  $scope.minRangeSlider = {
-    minValue: $rootScope.search_product,
-    maxValue: 1000,
+    minValue: $rootScope.search_product.min_price_for_slider,
+    maxValue: $rootScope.search_product.max_price_for_slider,
 
     };
 
