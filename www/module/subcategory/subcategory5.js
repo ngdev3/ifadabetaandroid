@@ -24,8 +24,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
     }    
     
     var ID;
-    $scope.fetch_product_list = function (id,url, apply = null) {
-      // alert(apply)
+    $scope.fetch_product_list = function (id,url) {
         var brands =$scope.brand_array;
         console.log(brands);
         var brand_str = '';
@@ -46,7 +45,6 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             suburl = url ;
         }else{
             suburl = $cookieStore.get('subcategoryInfo').url
-           
         }
         if (id) {
 
@@ -60,8 +58,6 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         } else {
             ID = $cookieStore.get('subcategoryInfo').subcatid;
         }
-
-        
         // alert(ID);
         loading.active();
 
@@ -75,26 +71,10 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             cat_url : suburl,
             sort_by : $scope.sort,
             brand : brand_str,
+            range:'500-1606'
 
             //retailer_id : 47
         });
-        if(apply == 'apply'){
-            var range = $scope.minRangeSlider.minValue + "-" + $scope.minRangeSlider.maxValue
-            console.log(range)
-            var args = $.param({
-                category_id: ID,
-                country_id: sessionStorage.country,
-                language_code: sessionStorage.lang_code,
-                user_type : user_type,
-                user_id : uid,
-                cat_url : suburl,
-                sort_by : $scope.sort,
-                brand : brand_str,
-                range:range
-    
-                //retailer_id : 47
-            });
-        }
 
         // console.log(args);return;
 
@@ -210,8 +190,10 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         });
 
     }
-	
+    $scope.min = 10;
+    $scope.max = 100;
 	$scope.init =function(id){
+       
 		    var max_heightss = $(".accordion-panel_"+id).css("maxHeight");
 		 var iScrollHeight = $(".accordion-panel_"+id).prop("scrollHeight");
 		 if(max_heightss!="0px"){
@@ -289,7 +271,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         $scope.fetch_product_list();
     }
 
-	
+
     $scope.product_view = function (id,url) {
         // alert(url);
         // return;
@@ -302,18 +284,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         $location.path('/product/view');
     }
 
-	//slider
-	$scope.minRangeSlider = {
-        minValue: 0,
-        maxValue: 1000,
-       
-    };
 
-    $scope.changeMinSlider = function(){
-        console.log($scope.minRangeSlider)
-    }
-
-	//slider
     $scope.searchproducts = function(){
         // alert($scope.searchProduct);
         if($scope.searchProduct == undefined || $scope.searchProduct == ""){
@@ -344,7 +315,6 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             'brand_id':id
         }
           */
-        
         if($('#brand_'+id).prop("checked") == true){
             console.log($scope.brands);
             brand_array = $scope.brand_array.push(id); 
