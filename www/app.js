@@ -348,6 +348,107 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             loading.deactive();
         });
     }
+
+    /** 
+     * Pagination on Scrolling
+     */
+    $rootScope.page = 0;
+   $rootScope.scrollPageinsearch = function(id,url){
+       
+        var brands =$cookieStore.get('brand_array');
+        var brand_str = '';
+        angular.forEach(brands,(value,key)=>{
+            
+            if(brand_str == ''){
+                brand_str   =   value;
+            }else{
+                brand_str += ','+value;
+            }
+        });
+
+        if($cookieStore.get("userinfo")){
+            var userID = $cookieStore.get("userinfo").uid;
+            var user_type = $cookieStore.get("userinfo").user_type;
+        }else{
+            var userID = '';
+            var user_type = '';
+        }
+        $(window).scroll(function () {
+            var window_top = $(window).scrollTop();
+            var div_top = $('#main-div2').offset().top;
+            var div_height = $('#main-div2').outerHeight();
+            console.log("outside");
+            var sum = div_top + div_height + 3 - window.innerHeight;
+            console.log(window_top + " " + sum + " outside");  
+            // console.log($scope.product.length);return;
+            if (window_top == sum) {
+                console.log("inside");
+                // alert("Reached the bottom");return;
+                if( $rootScope.searchresult.length < 10){
+                    alert("Don't have further page");
+                }else{
+                    var pageNo = $rootScope.page;
+                 //   alert(pageNo);
+
+                    if(pageNo >= 1){
+                        alert("Don't have further page");
+                        return
+                    }
+
+                    
+                    ++pageNo;
+
+                   
+                    loading.active();
+                    var args = $.param({  
+                        country_id: sessionStorage.country,
+                        language_code: sessionStorage.lang_code,
+                        search_product: $rootScope.searchProduct,
+                        sort_by: $rootScope.sort,
+                        user_id: userID,
+                        user_type: user_type,
+                        brand: brand_str,
+                        page : pageNo                   
+                    });
+                    // alert(args);
+                    $http({
+                        method: 'POST',
+                        url: app_url + '/product_list',
+                        data: args, //forms user object
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    }).then(function (response) {
+                            loading.deactive();
+                            //console.log(response.data);return;
+                            if (response.data.responseStatus == 'success'){                                
+                                $rootScope.page = pageNo;
+                                angular.forEach(response.data.data.category_product.products, function (value, key) {
+                                    $rootScope.searchresult.push(value);                                   
+                                });
+                            } else {
+                                alert("Something went wrong");
+                            }
+                        });
+                        // paused = true;
+                    }
+                }else{
+
+                }
+                    
+                 /* }else{
+                    if( paused ){
+                       paused = false;
+                   }  */
+                });
+            }
+        
+ 
+        /**
+         * End of Function
+         */
+
+
     /*    $rootScope.currentval = 0;
    
        $rootScope.getProductList = function () {
