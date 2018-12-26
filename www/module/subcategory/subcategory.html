@@ -1,3 +1,4 @@
+  
 <div ng-controller="sub_category" ng-init="scrollPagination('all')">
     <style type="text/css">
         
@@ -36,6 +37,21 @@
         line-height: 30px;
         max-height: 30px;
     }
+	article {
+    margin-bottom: 10px;
+}
+.tab-pane {
+    padding-top: 10px;
+}
+.field-title {
+    width: 100px;
+}
+.vertical-sliders {
+    margin: 0;
+}
+.vertical-sliders > div {
+    height: 250px;
+}
     </style>
     <header class="container-fluid nav-down" ng-init="usercartvalue()">
         <div class="row">
@@ -96,48 +112,17 @@
 <div class="filter-body">
     <div class="filter-container">
         
-
-        <!-- <button class="accordion" id="accord_1" ng-click="init(1);">Sub-categories</button>
+		
+		 
+	<button class="accordion" id="accord_1" ng-click="init(1);">Price Range</button>
         <div class="accordion-panel accordion-panel_1">
           <div class="accordion-container">
-                <div class="accordion-options">
-                    <div class="pretty p-icon p-curve p-pulse">
-                        <input type="checkbox" name="">
-                        <div class="state p-info-o">
-                            <i class="icon fa fa-check"></i>
-                            <label> Feeding Pillow</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-options">
-                    <div class="pretty p-icon p-curve p-pulse">
-                        <input type="checkbox" name="">
-                        <div class="state p-info-o">
-                            <i class="icon fa fa-check"></i>
-                            <label> Baby Sling</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-options">
-                    <div class="pretty p-icon p-curve p-pulse">
-                        <input type="checkbox" name="">
-                        <div class="state p-info-o">
-                            <i class="icon fa fa-check"></i>
-                            <label> Cutlery</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-options">
-                    <div class="pretty p-icon p-curve p-pulse">
-                        <input type="checkbox" name="">
-                        <div class="state p-info-o">
-                            <i class="icon fa fa-check"></i>
-                            <label> Grooming</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+              <article>
+             
+            <rzslider rz-slider-model="minRangeSlider.minValue" rz-slider-high="minRangeSlider.maxValue" rz-slider-options="minRangeSlider.options"></rzslider>
+        </article>  
+          </div>
+        </div>
 
         <button class="accordion" id="accord_2" ng-click="init(2);">Brand</button>
         <div class="accordion-panel accordion-panel_2">
@@ -403,7 +388,9 @@
         </div>
     <!--  !. [PULSES] Sub categories content -->
         
-   
+	
+	  
+	  
 
     <script>
 
@@ -415,6 +402,8 @@
         });	
     });
 
+	
+	
     </script>	
 
 </div>

@@ -267,7 +267,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         $scope.fetch_product_list();
     }
 
-
+	
     $scope.product_view = function (id,url) {
         // alert(url);
         // return;
@@ -280,7 +280,17 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         $location.path('/product/view');
     }
 
-
+	//slider
+	$scope.minRangeSlider = {
+        minValue: 0,
+        maxValue: 100,
+        options: {
+            floor: 0,
+            ceil: 100,
+            step: 1
+        }
+    };
+	//slider
     $scope.searchproducts = function(){
         // alert($scope.searchProduct);
         if($scope.searchProduct == undefined || $scope.searchProduct == ""){
