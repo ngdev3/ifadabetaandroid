@@ -97,32 +97,32 @@
     <div id="mySidenav-right" class="sidenav-right">		
 <form name="filter_form" nonvaldidate>
         <header id="filter-header" class="container-fluid nav-down" style="top: 0 !important;">
-    <div class="row">
-        <nav class="navbar navbar-inverse">
-          <div class="container-fluid no-padding">
-            <ul class="nav navbar-nav top_header">
-              <li class="menu_icon"><a href="javascript:void(0)" ><img onclick="closeFilter()" src="assets/img/header/cross_icon.png" id="asdf" alt="menu icon" /></a></li>
-              <li class="logo_name" style="width: 100%"><a class="text-center back">Filter</a></li>
-              
-            </ul>
-          </div>
-        </nav>
-    </div>
-</header>
-<div class="filter-body">
-    <div class="filter-container">
+			<div class="row">
+				<nav class="navbar navbar-inverse">
+				  <div class="container-fluid no-padding">
+					<ul class="nav navbar-nav top_header">
+					  <li class="menu_icon"><a href="javascript:void(0)" ><img onclick="closeFilter()" src="assets/img/header/cross_icon.png" id="asdf" alt="menu icon" /></a></li>
+					  <li class="logo_name" style="width: 100%"><a class="text-center back">Filter</a></li>
+					  
+					</ul>
+				  </div>
+				</nav>
+			</div>
+		</header>
+	<div class="filter-body">
+		<div class="filter-container">
         
 		
 		 
-	<button class="accordion" id="accord_1" ng-click="init(1);">Price Range</button>
-        <div class="accordion-panel accordion-panel_1">
-          <div class="accordion-container">
-              <article>
-             
-            <rzslider rz-slider-model="minRangeSlider.minValue" rz-slider-high="minRangeSlider.maxValue" rz-slider-options="minRangeSlider.options"></rzslider>
-        </article>  
-          </div>
-        </div>
+			<button class="accordion" id="accord_1" ng-click="init(1);">Price Range</button>
+				<div class="accordion-panel accordion-panel_1">
+				  <div class="accordion-container">
+					  <article>
+					 
+					<rzslider rz-slider-model="minRangeSlider.minValue" rz-slider-high="minRangeSlider.maxValue" rz-slider-options="minRangeSlider.options"></rzslider>
+				</article>  
+				  </div>
+				</div>
        <!-- // {{minRangeSlider}}---------- -->
 
         <button class="accordion" id="accord_2" ng-click="init(2);">Brand</button>
@@ -144,7 +144,7 @@
         <button class="accordion" id="accord_3" ng-click="init(3);">Sort By</button>
         <div class="accordion-panel accordion-panel_3">
           <div class="accordion-container">
-                <div class="accordion-options">
+					<div class="accordion-options">
                         <div class="pretty p-icon p-curve p-pulse">
                             <input type="radio" ng-model="sort" name="sort" value="1">
                             <div class="state p-info-o">
@@ -162,24 +162,24 @@
                             </div>
                         </div>
                     </div>
-            <div class="accordion-options">
-                <div class="pretty p-icon p-curve p-pulse">
-                    <input type="radio" ng-model="sort" name="sort" value="4">
-                    <div class="state p-info-o">
-                        <i class="icon fa fa-check"></i>
-                        <label> Low to High</label>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-options">
-                <div class="pretty p-icon p-curve p-pulse">
-                    <input type="radio" ng-model="sort" name="sort" value="5">
-                    <div class="state p-info-o">
-                        <i class="icon fa fa-check"></i>
-                        <label>High to Low</label>
-                    </div>
-                </div>
-            </div>	
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="radio" ng-model="sort" name="sort" value="4">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label> Low to High</label>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-options">
+						<div class="pretty p-icon p-curve p-pulse">
+							<input type="radio" ng-model="sort" name="sort" value="5">
+							<div class="state p-info-o">
+								<i class="icon fa fa-check"></i>
+								<label>High to Low</label>
+							</div>
+						</div>
+					</div>	
             
             </div>
         </div>			
