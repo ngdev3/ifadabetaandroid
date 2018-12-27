@@ -228,6 +228,7 @@ input.btn.btn-success.all-sub-cat_buttons:focus
 .sub_product_desc
 {
     border-left: 2px solid #e6e6e6;
+    width : 65%;
 }
 .products_wrapper
 {
