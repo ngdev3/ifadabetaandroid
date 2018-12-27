@@ -49,7 +49,7 @@ app.config(function ($translateProvider) {
     Referral_Code : 'Referral Code',
     First_Name : 'First Name',
     Last_Name : 'Last Name',
-    Buyer_Registration : 'Buyer Registration',
+    Registration : 'Registration',
     Delivery_Location : 'Delivery Location',
     My_Addresses : 'My Addresses',
     Select_Countries : 'Select Countries',
@@ -186,7 +186,8 @@ app.config(function ($translateProvider) {
      Billing_Address : 'Billing Address',
      Review_by : 'Review by',
      Comments : 'Comments',
-     Product_Info : 'Product Info'
+     Product_Info : 'Product Info',
+     privacy_policy : 'Privacy Policy'
   });
 
 
@@ -198,7 +199,7 @@ app.config(function ($translateProvider) {
     Mobile_Number:'رقم الهاتف المحمول',
     Last_Name:'الكنية',
     First_Name:'الاسم الاول',
-    Buyer_Registration:'تسجيل المشتري',
+    Registration:'التسجيل',
     Forgot_Password:'هل نسيت كلمة المرور',
     Password:'كلمه السر',
     Mobile_No:'رقم الموبايل',
@@ -381,6 +382,7 @@ app.config(function ($translateProvider) {
      Billing_Address : 'عنوان وصول الفواتير',
      Review_by : 'روجع من قبل',
      Comments : 'تعليقات',
-     Product_Info : 'معلومات المنتج'
+     Product_Info : 'معلومات المنتج',
+     privacy_policy : 'سياسة خاصة'
   });
 }); 

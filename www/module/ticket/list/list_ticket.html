@@ -89,7 +89,7 @@
                                     <h5>Date & Time</h5>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6 no-padding complaint_content">
-                                    <h5>{{x.created_date | date : 'dd-MM-yyyy'}}</h5>
+                                    <h5>{{x.created_date.split(' ')[0] | date : 'dd-MM-yyyy'}} {{x.created_date.split(' ')[1]}}</h5>
                                 </div>
 
                             </div>

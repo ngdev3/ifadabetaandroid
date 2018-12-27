@@ -385,13 +385,13 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 console.log("inside");
                 // alert("Reached the bottom");return;
                 if( $rootScope.searchresult.length < 10){
-                    alert("Don't have further page");
+                    //alert("Don't have further page");
                 }else{
                     var pageNo = $rootScope.page;
                  //   alert(pageNo);
 
                     if(pageNo >= 1){
-                        alert("Don't have further page");
+                        //alert("Don't have further page");
                         return
                     }
 

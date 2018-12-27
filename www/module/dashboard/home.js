@@ -425,6 +425,12 @@ $scope.searchresults = function(){
     $scope.contact_us = function(){
         $location.path('/contactus');
     }
+    $scope.about_us = function(){
+        $location.path('/aboutus');
+    }
+    $scope.privacy_policy = function(){
+        $location.path('/policy');
+    }
     $scope.my_address = function(){
         $location.path('/address');
     }

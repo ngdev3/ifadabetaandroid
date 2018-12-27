@@ -420,13 +420,13 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                 console.log("inside");
                 // alert("Reached the bottom");return;
                 if($scope.product.length < 10){
-                    alert("Don't have further page");
+                    //alert("Don't have further page");
                 }else{
                     var pageNo = $scope.page;
                  //   alert(pageNo);
 
                     if(pageNo >= 1){
-                        alert("Don't have further page");
+                        //alert("Don't have further page");
                         return
                     }
 
