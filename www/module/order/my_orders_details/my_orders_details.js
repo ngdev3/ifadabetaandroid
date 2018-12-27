@@ -325,10 +325,13 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                     btnClass: 'btn-blue',
                     action: function () {
                         var name = this.$content.find('.name').val();
-                        if (!name) {
+                        
+                        
+                        if ($.trim(name) == '') {
                             $.alert('Please Provide the Reason');
-                            return false;
+                            return;
                         }
+                        
                         loading.active();
 
                         var name = this.$content.find('.name').val(); //to get the prompt value
@@ -368,9 +371,9 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                         }
                     }
                 },
-                cancel: function () {
+                /* cancel: function () {
 
-                }
+                } */
             }
         })
     }
