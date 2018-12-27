@@ -82,25 +82,31 @@ app.controller('otp', function ($scope, $http, $location, $cookieStore, $timeout
                     //model.show('Success', 'Successfully Verified');
                     alert('OTP verified Successfully')
                     //console.log(response.data.data.result[0])
+                  
                     if($cookieStore.get('otpverification').from == 'forgot'){
                         $cookieStore.put('userid', response.data.data.result[0].id);
                         $cookieStore.remove('otpverification'); 
                         $location.path('/newpassword');
                     }else{
-                        var userinfo = {
-                            'uid': response.data.data.result[0].id,
-                            'phone_no': response.data.data.result[0].mobile_number,
-                            'email_address': response.data.data.result[0].email,
-                            'user_type' : response.data.data.result[0].user_type,
-                            'country_id': response.data.data.result[0].country_id,
-                            'fullName' : response.data.data.result[0].first_name+" "+response.data.data.result[0].last_name,
-                            'profile_image' : response.data.data.result[0].profile_image,
-                            'from'    : 'OTP',
-                            'left_data':response.data.data.result[0]
+                        if(response.data.data.result[0].user_type == '6'){
+                            $location.path('/login');
+                       
+                        }else{
+                            var userinfo = {
+                                'uid': response.data.data.result[0].id,
+                                'phone_no': response.data.data.result[0].mobile_number,
+                                'email_address': response.data.data.result[0].email,
+                                'user_type' : response.data.data.result[0].user_type,
+                                'country_id': response.data.data.result[0].country_id,
+                                'fullName' : response.data.data.result[0].first_name+" "+response.data.data.result[0].last_name,
+                                'profile_image' : response.data.data.result[0].profile_image,
+                                'from'    : 'OTP',
+                                'left_data':response.data.data.result[0]
+                            }
+                            $cookieStore.put('userinfo', userinfo);  
+                            $cookieStore.remove('otpverification');
+                            $location.path('/dashboard/home');
                         }
-                        $cookieStore.put('userinfo', userinfo);  
-                        $cookieStore.remove('otpverification');
-                        $location.path('/dashboard/home');
                     }
                     /* if ($cookieStore.get('userid')) {
                         $location.path('/newpassword');

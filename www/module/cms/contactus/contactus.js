@@ -1,13 +1,6 @@
 app.controller('contactus', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope) {
 
 
-            
-    if (!$cookieStore.get('userinfo')) {
-        $location.path('/login');
-        return false;
-    }
-
-    
     var ID = 1; //global Id for about us
 
     

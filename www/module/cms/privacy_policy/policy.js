@@ -1,13 +1,6 @@
 app.controller('policy', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope) {
 
-    if ($cookieStore.get('userinfo')) {
-        $location.path('/dashboard/home');
-    }
-
-    var ID = 4; //global Id for privacy policy
-
-    
-    loading.deactive();
+     
 
     $scope.home = function() {
         //$location.path('/home');
@@ -15,16 +8,19 @@ app.controller('policy', function ($scope, $http, $location, $cookieStore, model
     }
 
     /**
-     * Funtion privacyinit from policy.html on nginit
+     * Funtion aboutUsInit from aboutus.html on nginit
      * Name: Sajal Goyal
-     * Created-on: 05/10/2018 at 12:15pm
-     * Get the privacy policy by sending the http request
+     * Created-on: 05/10/2018 at 12:10pm
+     * Get the about us by sending the http request
      */
+    var GetDataFromApi; //what its use?
 
-
-    $scope.privacyinit =   function(){
+     $scope.privacyInit =   function(){
 
         loading.active();
+        var args = $.param({
+            'page_url' : 'privacypolicy'
+        });
 
         $http({
             headers: {
@@ -32,21 +28,21 @@ app.controller('policy', function ($scope, $http, $location, $cookieStore, model
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + 'cmsapi?id='+ID
-            //data: args 
+            url: app_url + '/get_cms',
+            data: args 
 
         }).then(function (response) {
             
             res = response;
             
-            if (res.data.status == 'success') {
-                //console.log(res.data);
+            if (res.data.data.status == 'success') {
+                console.log(res.data.data.about_us);
                 //put cookie and redirect it    
                 //model.show('Alert', res.data.responseMessage);
-                $location.path('/policy');
-                $scope.policy   = res.data.data;
-                $scope.policy.description = $($scope.policy.description).text();
-
+               
+                $scope.about   = res.data.data.about_us;
+                $scope.about.description = $($scope.about.content).text();
+                 $location.path('/policy');
             } else {
                 
                 //Throw error if not logged in
@@ -58,7 +54,6 @@ app.controller('policy', function ($scope, $http, $location, $cookieStore, model
             loading.deactive();
         }); 
 
-
-    }
+     }
 
 });

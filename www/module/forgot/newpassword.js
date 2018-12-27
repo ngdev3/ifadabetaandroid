@@ -80,18 +80,24 @@ $scope.forgot = function(form){
                 res = response;
                 console.log(response);
                 if (res.data.responseStatus == 'success') {
-                    var userinfo = {
-                        'uid': response.data.data.result.id,
-                        'phone_no': response.data.data.result.mobile_number,
-                        'email_address': response.data.data.result.email,
-                        'country_id': response.data.data.result.country_id,
-                        'fullName' : response.data.data.result.first_name+" "+response.data.data.result.last_name,
-                        'profile_image' : response.data.data.result.profile_image
-                    }
-                    $cookieStore.put('userinfo', userinfo);
+                    
                    alert('Password is successfully changed');
                    $cookieStore.remove('userid');
-                   $location.path('/dashboard/home');
+                   if(response.data.data.result[0].user_type == '6'){
+                    $location.path('/login');
+                    }else{
+                        var userinfo = {
+                            'uid': response.data.data.result.id,
+                            'phone_no': response.data.data.result.mobile_number,
+                            'email_address': response.data.data.result.email,
+                            'country_id': response.data.data.result.country_id,
+                            'fullName' : response.data.data.result.first_name+" "+response.data.data.result.last_name,
+                            'profile_image' : response.data.data.result.profile_image
+                        }
+                        $cookieStore.put('userinfo', userinfo);
+                        
+                        $location.path('/dashboard/home');
+                    }
                 } else {
 
                     alert('Password not changed')

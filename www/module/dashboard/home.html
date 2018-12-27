@@ -146,8 +146,14 @@
 
                 <li ng-if="loggedin" ng-click="change_password()"><a href="javascript:void(0)"><img src="assets/img/icon/password.png"
                             alt="" /> <span>{{'Change_Password' | translate}}</span></a></li>
-                <li ng-if="loggedin" ng-click="contact_us()"><a href="javascript:void(0)"><img src="assets/img/icon/contact.png"
+                <li ng-click="contact_us()"><a href="javascript:void(0)"><img src="assets/img/icon/contact.png"
                             alt="" /> <span>{{'Contact_Us' | translate}}</span></a></li>
+                            
+                <li ng-click="about_us()"><a href="javascript:void(0)"><img src="assets/img/icon/contact.png"
+                            alt="" /> <span>{{'About_Us' | translate}}</span></a></li>
+
+                <li ng-click="privacy_policy()"><a href="javascript:void(0)"><img src="assets/img/icon/contact.png"
+                            alt="" /> <span>{{'privacy_policy' | translate}}</span></a></li>
 
                 <li ng-if="loggedin" ng-click="logout()"><a href="javascript:void(0)"><img src="assets/img/icon/logout.png"
                             alt="" /> <span>{{'Log_Out' | translate}}</span></a></li>
