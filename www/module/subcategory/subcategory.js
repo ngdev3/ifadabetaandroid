@@ -449,7 +449,10 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
      */
     $scope.page = 0;
    $scope.scrollPagination = function(id,url){
-        // alert(id+ " "+url);return;
+    // console.log(id+ "-------- "+url);
+    // console.log($cookieStore.get('subcategoryInfo'))
+    // return;
+
         $("#all").removeClass("input_default_focus");
         var suburl;
         if(url){
@@ -545,5 +548,19 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         /**
          * End of Function
          */
+
+         $scope.loadchild = function(id, url){
+           
+
+                var subcategoryInfo = {
+                    'subcatid': id,
+                    'url': url,
+                    'from':'category'
+                }
+                $cookieStore.put('subcategoryInfo',subcategoryInfo);
+                location.reload();
+//$scope.fetch_product_list('all');
+               // console.log($cookieStore.get('subcategoryInfo'))
+         }
 
 });
