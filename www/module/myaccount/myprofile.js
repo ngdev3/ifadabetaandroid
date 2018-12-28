@@ -310,7 +310,9 @@ app.controller('myprofile', function ($scope, $http, $location, $interval, $cook
                     return false;
                 }else{
                     $scope.Cities = res.data.data.city;   
-                    console.log($scope.Cities); 
+                    //console.log(res.data.data.city[0].state_id)
+                    $scope.select_city = res.data.data.city[0].id;   
+                    console.log($scope.CitiesInit); 
                 }
             } else {    
                 model.show('Alert', res.data.responseMessage);

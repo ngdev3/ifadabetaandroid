@@ -398,6 +398,9 @@ $scope.searchresults = function(){
     $scope.cart = function(){
         $location.path('/cart');
     }
+    $scope.register = function(){
+        $location.path('/register');
+    }
     $scope.wishlist = function(){
         $location.path('/wishlist');
     }

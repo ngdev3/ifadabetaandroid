@@ -1,14 +1,39 @@
 app.controller('user_register', function ($rootScope, $scope, $http, $location, $interval, $cookieStore, model, loading, $filter) {
 
 
-    
+    $scope.backwithremove = function(){
+        $cookieStore.remove('regdata');
+        window.history.back();
+    } 
+
     if ($cookieStore.get('userinfo')) {
         $location.path('/dashboard/home');
         return false;
     }
 
+    if($cookieStore.get('regdata')){
+    $scope.fname = $cookieStore.get('regdata').fname
+    $scope.lname = $cookieStore.get('regdata').lname
+    $scope.mob_number = $cookieStore.get('regdata').mob_number
+    $scope.email = $cookieStore.get('regdata').email
+    $scope.referal_code = $cookieStore.get('regdata').referal_code
+    $scope.retailer = $cookieStore.get('regdata').retailer
+    $scope.conditions = $cookieStore.get('regdata').conditions
+    }
 
     $scope.terms = function () {
+
+        var regdata = {
+            fname:$scope.fname,
+            lname:$scope.lname,
+            mob_number:$scope.mob_number,
+            email:$scope.email,
+            referal_code:$scope.referal_code,
+            retailer:$scope.retailer,
+            conditions:$scope.conditions
+        }
+        $cookieStore.put('regdata',regdata)
+
         $location.path('/terms');
     }
 
@@ -152,6 +177,7 @@ app.controller('user_register', function ($rootScope, $scope, $http, $location, 
                     $cookieStore.put('otpverification', setOTPCookies);
                     alert('Registered Successfully')
                     //console.log($cookieStore.get('otpverification'))
+                    $cookieStore.remove('regdata');
                     $location.path('/otp');
                 }else{
                     alert(res.data.responseMessage.error_msg);

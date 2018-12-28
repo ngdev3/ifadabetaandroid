@@ -199,20 +199,14 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                  } */
                 //   console.log($scope.categorysubData);
                 $scope.category_product = res.data.data.category_product;
-                //console.log($scope.category_product)
-
-                //slider
-                $scope.minRangeSlider = {
-                    minValue: $scope.category_product.min_price_for_slider,
-                    maxValue: $scope.category_product.max_price_for_slider,
-                
-                };
-
-                $scope.changeMinSlider = function(){
-                    console.log($scope.minRangeSlider)
+                $scope.total_rows_remainder = res.data.data.category_product.total_rows % 10;
+                $scope.total_rows_page = res.data.data.category_product.total_rows / 10;
+                console.log( $scope.total_rows_page);
+                if($scope.total_rows_remainder >=1 && $scope.total_rows_remainder <=9 ){
+                    $scope.total_rows_page = $scope.total_rows_page + 1;
+                    $scope.total_pageno = Math.floor($scope.total_rows_page);
+                    
                 }
-
-                //slider
                 $scope.product = res.data.data.category_product.products;
                 $location.path('/subcategory');
             } else {
@@ -317,6 +311,18 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         $location.path('/product/view');
     }
 
+	//slider
+	$scope.minRangeSlider = {
+        minValue: 0,
+        maxValue: 1000,
+       
+    };
+
+    $scope.changeMinSlider = function(){
+        console.log($scope.minRangeSlider)
+    }
+
+	//slider
     $scope.searchproducts = function(){
         // alert($scope.searchProduct);
         if($scope.searchProduct == undefined || $scope.searchProduct == ""){
@@ -413,7 +419,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             var div_top = $('#main-div2').offset().top;
             var div_height = $('#main-div2').outerHeight();
             console.log("outside");
-            var sum = div_top + div_height + 3 - window.innerHeight;
+            var sum = div_top + div_height + 3.5 - window.innerHeight;
             console.log(window_top + " " + sum + " outside");  
             // console.log($scope.product.length);return;
             if (window_top == sum) {
@@ -425,7 +431,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                     var pageNo = $scope.page;
                  //   alert(pageNo);
 
-                    if(pageNo >= 1){
+                    if(pageNo > $scope.total_pageno){
                         //alert("Don't have further page");
                         return
                     }

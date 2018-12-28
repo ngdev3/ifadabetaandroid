@@ -71,6 +71,11 @@ app.controller('wallet', function ($scope, $http, $location,$window, $cookieStor
             }
         }
         if ($scope[form].$valid) {
+            console.log($scope.amount)
+            if($scope.amount <= 0){
+                alert('Please Add Valid Amount');
+                return;
+            }
             var reg1 = /^[0-9]*$/;
             
             if (reg1.test($scope.amount) == false) {

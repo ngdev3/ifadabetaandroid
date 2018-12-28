@@ -326,6 +326,13 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 
                 $rootScope.searchresult = res.data.data.category_product.products;
                 $rootScope.search_product = res.data.data.category_product;
+                $rootScope.total_rows_remainder = res.data.data.category_product.total_rows % 10;
+                $rootScope.total_rows_page = res.data.data.category_product.total_rows / 10;
+                console.log( $rootScope.total_rows_page);
+                if($rootScope.total_rows_remainder >=1 && $rootScope.total_rows_remainder <=9 ){
+                    $rootScope.total_rows_page = $rootScope.total_rows_page + 1;
+                    $rootScope.total_pageno = Math.floor($rootScope.total_rows_page);
+                }
                 if($rootScope.brand_data == '' || $rootScope.brand_data == undefined)
                 {
                     $rootScope.brand_data = res.data.data.brand_data;
@@ -378,7 +385,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             var div_top = $('#main-div2').offset().top;
             var div_height = $('#main-div2').outerHeight();
             console.log("outside");
-            var sum = div_top + div_height + 3 - window.innerHeight;
+            var sum = div_top + div_height + 3.5 - window.innerHeight;
             console.log(window_top + " " + sum + " outside");  
             // console.log($scope.product.length);return;
             if (window_top == sum) {
@@ -390,7 +397,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                     var pageNo = $rootScope.page;
                  //   alert(pageNo);
 
-                    if(pageNo >= 1){
+                    if(pageNo > $rootScope.total_pageno){
                         //alert("Don't have further page");
                         return
                     }
@@ -542,8 +549,12 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
             } else if (response.data.data.add_cart.allow_to_add_in_cart == 'no') {
                 model.show('alert', 'Item is out of stock');
+
             } else if (response.data.status == 'outofstock') {
+
                 alert('Stock Problem');
+            }else if(response.data.data.add_cart.status == 'error'){
+                alert(response.data.data.add_cart.error_msg);
             }
 
         })
