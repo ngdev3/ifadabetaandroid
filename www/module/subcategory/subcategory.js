@@ -1,6 +1,8 @@
 app.controller('sub_category', function ($scope, $http, $location, $interval, $cookieStore,$window, model, $locale, loading, $rootScope) {
 
     // console.log($rootScope.searchresult);return;
+    
+    
     if($cookieStore.get('userinfo')){
         var user_type = $cookieStore.get('userinfo').user_type;
         var uid = $cookieStore.get('userinfo').uid;
@@ -549,6 +551,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
          * End of Function
          */
 
+       
          $scope.loadchild = function(id, url){
            
 
@@ -557,10 +560,22 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                     'url': url,
                     'from':'category'
                 }
-                $cookieStore.put('subcategoryInfo',subcategoryInfo);
-                location.reload();
-//$scope.fetch_product_list('all');
+                subcategoryInfosss =  {
+                    'subcatid': id,
+                    'url': url,
+                    'from':'category'
+                }
+
+               subcategoryInfos.push(subcategoryInfosss)
+               $cookieStore.put('subcategoryInfo',subcategoryInfo);
+            //location.reload();
+
+                $scope.fetch_product_list('all');
                // console.log($cookieStore.get('subcategoryInfo'))
+         }
+
+         $scope.backToGo = function(){
+            console.log(subcategoryInfos)
          }
 
 });
