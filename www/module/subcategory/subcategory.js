@@ -198,6 +198,15 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                    $scope.categorysubSubData = $scope.categorysubData[i];
                  } */
                 //   console.log($scope.categorysubData);
+                $scope.category_product = res.data.data.category_product;
+                $scope.total_rows_remainder = res.data.data.category_product.total_rows % 10;
+                $scope.total_rows_page = res.data.data.category_product.total_rows / 10;
+                console.log( $scope.total_rows_page);
+                if($scope.total_rows_remainder >=1 && $scope.total_rows_remainder <=9 ){
+                    $scope.total_rows_page = $scope.total_rows_page + 1;
+                    $scope.total_pageno = Math.floor($scope.total_rows_page);
+                    
+                }
                 $scope.product = res.data.data.category_product.products;
                 $location.path('/subcategory');
             } else {
@@ -422,7 +431,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                     var pageNo = $scope.page;
                  //   alert(pageNo);
 
-                    if(pageNo >= 1){
+                    if(pageNo > $scope.total_pageno){
                         alert("Don't have further page");
                         return
                     }
