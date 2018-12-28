@@ -542,8 +542,12 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
             } else if (response.data.data.add_cart.allow_to_add_in_cart == 'no') {
                 model.show('alert', 'Item is out of stock');
+
             } else if (response.data.status == 'outofstock') {
+
                 alert('Stock Problem');
+            }else if(response.data.data.add_cart.status == 'error'){
+                alert(response.data.data.add_cart.error_msg);
             }
 
         })

@@ -198,21 +198,6 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                    $scope.categorysubSubData = $scope.categorysubData[i];
                  } */
                 //   console.log($scope.categorysubData);
-                $scope.category_product = res.data.data.category_product;
-                //console.log($scope.category_product)
-
-                //slider
-                $scope.minRangeSlider = {
-                    minValue: $scope.category_product.min_price_for_slider,
-                    maxValue: $scope.category_product.max_price_for_slider,
-                
-                };
-
-                $scope.changeMinSlider = function(){
-                    console.log($scope.minRangeSlider)
-                }
-
-                //slider
                 $scope.product = res.data.data.category_product.products;
                 $location.path('/subcategory');
             } else {
@@ -317,6 +302,18 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         $location.path('/product/view');
     }
 
+	//slider
+	$scope.minRangeSlider = {
+        minValue: 0,
+        maxValue: 1000,
+       
+    };
+
+    $scope.changeMinSlider = function(){
+        console.log($scope.minRangeSlider)
+    }
+
+	//slider
     $scope.searchproducts = function(){
         // alert($scope.searchProduct);
         if($scope.searchProduct == undefined || $scope.searchProduct == ""){
@@ -420,13 +417,13 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                 console.log("inside");
                 // alert("Reached the bottom");return;
                 if($scope.product.length < 10){
-                    //alert("Don't have further page");
+                    alert("Don't have further page");
                 }else{
                     var pageNo = $scope.page;
                  //   alert(pageNo);
 
                     if(pageNo >= 1){
-                        //alert("Don't have further page");
+                        alert("Don't have further page");
                         return
                     }
 
