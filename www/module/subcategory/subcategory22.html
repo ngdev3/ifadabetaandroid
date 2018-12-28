@@ -229,9 +229,8 @@
                                     <div>
                                         <input type="button" ng-if="categorysubData" class="btn btn-success all-sub-cat_buttons input_default_focus" id="all" name="" value="All" ng-click="fetch_product_list('all');scrollPagination('all')">
                                     </div>
-                                    <div ng-repeat="sub in categorysubData" class="subcategory_div">
-                                        <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id,sub.url);scrollPagination(sub.id,sub.url)">   
-										<span class="sub_category_icon"><i class="fa fa-th-large" aria-hidden="true"></i></span>										
+                                    <div ng-repeat="sub in categorysubData">
+                                        <input type="button" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name="" value="{{sub.name}}" ng-click="fetch_product_list(sub.id,sub.url);scrollPagination(sub.id,sub.url)">                      
 
                                     </div>
                                 </slick>

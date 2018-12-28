@@ -136,7 +136,7 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                             'from' : 'login'
                     }
                         $cookieStore.put('otpverification', setOTPCookies);
-                        alert('Please Varify OTP');
+                        alert('Please Verify OTP');
                         $location.path('/otp');
                         return false;
                     }else if(response.data.responseMessage == 'Invalid login credentials'){

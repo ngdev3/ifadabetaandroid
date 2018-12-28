@@ -55,7 +55,8 @@ app.controller('add_ticket', function ($scope, $http, $location, $cookieStore, m
                 console.log("---------------");
                 console.log(response);
                 if(response.data.data.status == 'success'){
-                    model.show('Info',response.data.responseMessage+" - "+response.data.data.result_data.result_data.id)
+                    //model.show('Info',response.data.responseMessage)
+                    alert('Ticket has been raised successfully !')
                     $location.path('/list_ticket')
                 }
             }).finally(function () {

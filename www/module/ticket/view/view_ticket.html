@@ -55,8 +55,12 @@
                                         <h5>{{'Ticket_ID' | translate }}</h5>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-4 no-padding complaint_content">
-                                        <h5>{{'CMP' | translate }}{{view_ticket.id}}</h5>
+                                        <h5>#{{view_ticket.id}}</h5>
                                     </div>
+
+                                    <a href="" class="track_btn" style="background: #f8cb00;" ng-if="view_ticket.status == '0'">{{'Pending' | translate}}</a>
+                                    <a href="" class="track_btn" style="background-color: #5cb85c;" ng-if="view_ticket.status == '1'">{{'Resolved' | translate}}</a>
+                                
                                     <div class="col-md-3 col-sm-3 col-xs-3 no-padding">
                                         <input type="button" ng-if="view_ticket.status == 0" class="btn btn-default btn_discounts ticket_process_btns ticket_in_process"
                                             name="" value="In Process">
@@ -80,7 +84,7 @@
                                         <h5>{{'Order_Number' | translate}}</h5>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-6 no-padding complaint_content">
-                                        <h5>0D{{view_ticket.order_id}}</h5>
+                                        <h5>{{view_ticket.order_id}}</h5>
                                     </div>
 
                                 </div>
