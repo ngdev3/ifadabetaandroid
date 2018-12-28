@@ -181,12 +181,29 @@ input.btn.btn-success.all-sub-cat_buttons:focus
      border:0px;
          padding: 9px 16px;
 }
+div.subcategory_div{
+	position:relative;
+}
 .all-sub-cat_buttons
 {
      
      background-color: #3bcc44;
      border:0px;
          padding: 9px 16px;
+}
+div.subcategory_div span.sub_category_icon
+{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+div.subcategory_div span.sub_category_icon .fa-th-large:before {
+
+    
+    content: "\f009";
+    color: #15801c;
+    font-size: 12px;
+
 }
 .btn_discounts
 {
