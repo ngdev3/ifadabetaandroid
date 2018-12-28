@@ -419,20 +419,20 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             var div_top = $('#main-div2').offset().top;
             var div_height = $('#main-div2').outerHeight();
             console.log("outside");
-            var sum = div_top + div_height + 3 - window.innerHeight;
+            var sum = div_top + div_height + 3.5 - window.innerHeight;
             console.log(window_top + " " + sum + " outside");  
             // console.log($scope.product.length);return;
             if (window_top == sum) {
                 console.log("inside");
                 // alert("Reached the bottom");return;
                 if($scope.product.length < 10){
-                    alert("Don't have further page");
+                    //alert("Don't have further page");
                 }else{
                     var pageNo = $scope.page;
                  //   alert(pageNo);
 
                     if(pageNo > $scope.total_pageno){
-                        alert("Don't have further page");
+                        //alert("Don't have further page");
                         return
                     }
 
