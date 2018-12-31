@@ -1,6 +1,8 @@
 app.controller('sub_category', function ($scope, $http, $location, $interval, $cookieStore,$window, model, $locale, loading, $rootScope) {
 
     // console.log($rootScope.searchresult);return;
+    
+    
     if($cookieStore.get('userinfo')){
         var user_type = $cookieStore.get('userinfo').user_type;
         var uid = $cookieStore.get('userinfo').uid;
@@ -30,7 +32,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         console.log(brands);
         var brand_str = '';
         angular.forEach(brands,(value,key)=>{
-            console.log(value);
+            //console.log(value);
             if(brand_str == ''){
                 brand_str   =   value;
             }else{
@@ -38,7 +40,21 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
             }
         });
         console.log(brand_str);
-        //var brands_input = JSON.parse(brands);
+
+        var manufacturer =$scope.manufacturer_array;
+        console.log(manufacturer);
+        var manufacturer_str = '';
+        angular.forEach(manufacturer,(value,key)=>{
+            //console.log(value);
+            if(manufacturer_str == ''){
+                manufacturer_str   =   value;
+            }else{
+                manufacturer_str += ','+value;
+            }
+        });
+        console.log(manufacturer_str);
+
+        //var manufacturer_input = JSON.parse(brands);
         // alert(id);
         $("#all").removeClass("input_default_focus");
         var suburl;
@@ -90,6 +106,7 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                 cat_url : suburl,
                 sort_by : $scope.sort,
                 brand : brand_str,
+                manufacture_id : manufacturer_str,
                 range:range
     
                 //retailer_id : 47
@@ -199,6 +216,26 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
                  } */
                 //   console.log($scope.categorysubData);
                 $scope.category_product = res.data.data.category_product;
+                $scope.min_price = res.data.data.category_product.min_price_for_slider;
+                $scope.max_price = res.data.data.category_product.max_price_for_slider;
+
+                $scope.minRangeSlider = {
+                    minValue: $scope.min_price,
+                    maxValue: $scope.max_price,
+                    options: {
+                        step: 0.01,
+                        precision: 3
+                        
+                      },
+                   
+                };
+
+                 //alert($scope.min_price)
+                if($scope.manufacturer_list == '' || $scope.manufacturer_list == undefined){
+
+                    $scope.manufacturer_list = res.data.data.manufacturer_list;
+                }
+
                 $scope.total_rows_remainder = res.data.data.category_product.total_rows % 10;
                 $scope.total_rows_page = res.data.data.category_product.total_rows / 10;
                 console.log( $scope.total_rows_page);
@@ -311,12 +348,9 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         $location.path('/product/view');
     }
 
-	//slider
-	$scope.minRangeSlider = {
-        minValue: 0,
-        maxValue: 1000,
-       
-    };
+    //slider
+    
+	
 
     $scope.changeMinSlider = function(){
         console.log($scope.minRangeSlider)
@@ -370,6 +404,31 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
      }
 
 
+    $scope.manufacturer_array = [];
+    //$scope.manufacturer_ids = [];
+     $scope.Filtering_manufacturer = function(id){
+        
+       /*  getBrandDataFromFilter  = {
+            'manufacturer_id':id
+        }
+          */
+        
+        if($('#manufacturer_'+id).prop("checked") == true){
+            console.log($scope.brands);
+            manufacturer_array = $scope.manufacturer_array.push(id); 
+           console.log(manufacturer_array) 
+        }
+        else if($('#manufacturer_'+id).prop("checked") == false){
+            //let index = $scope.manufacturer_array.findIndex( getBrandDataFromFilter => getBrandDataFromFilter.id === id );
+            //console.log(index)
+            var index = $scope.manufacturer_array.indexOf(id);
+            $scope.manufacturer_array.splice(index, 1);
+        }
+        console.log($scope.manufacturer_array)
+       
+     }
+
+
     $scope.taptowish = function(id, wishlist_status){
         //  alert(id+ " "+ wishlist_status);
         $rootScope.addToWishlist(id, wishlist_status);
@@ -392,7 +451,10 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
      */
     $scope.page = 0;
    $scope.scrollPagination = function(id,url){
-        // alert(id+ " "+url);return;
+    // console.log(id+ "-------- "+url);
+    // console.log($cookieStore.get('subcategoryInfo'))
+    // return;
+
         $("#all").removeClass("input_default_focus");
         var suburl;
         if(url){
@@ -488,5 +550,32 @@ app.controller('sub_category', function ($scope, $http, $location, $interval, $c
         /**
          * End of Function
          */
+
+       
+         $scope.loadchild = function(id, url){
+           
+
+                var subcategoryInfo = {
+                    'subcatid': id,
+                    'url': url,
+                    'from':'category'
+                }
+                subcategoryInfosss =  {
+                    'subcatid': id,
+                    'url': url,
+                    'from':'category'
+                }
+
+               subcategoryInfos.push(subcategoryInfosss)
+               $cookieStore.put('subcategoryInfo',subcategoryInfo);
+            //location.reload();
+
+                $scope.fetch_product_list('all');
+               // console.log($cookieStore.get('subcategoryInfo'))
+         }
+
+         $scope.backToGo = function(){
+            console.log(subcategoryInfos)
+         }
 
 });
