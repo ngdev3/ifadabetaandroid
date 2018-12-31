@@ -64,15 +64,17 @@
 									<div class="add_item_container sub_add_btn" id="firstt_{{x.id}}" data-attr="{{x.product_varient.id}}">
 				
 											<div class="add_item_button sub_add_btn" data-rowid="{{x.product_varient.cart_row_id}}" id="enableCart_{{x.product_varient.id}}" ng-show="x.product_varient.cart_row_id">
-													<button class="add_item sub_add_btn" data-menuid="{{x.product_varient.id}}" data-weightid="{{x.product_varient.id}}" data-weightid="{{x.product_varient.id}}"
-													 id="plus_{{x.product_varient.id}}" ng-click="plusToCart($event)">
-															+
-													</button>
-													<input type="text" id="quantity_{{x.product_varient.id}}" value="{{x.product_varient.cart_quantity}}" disabled="">
-													<button class="less_item sub_add_btn" data-menuid="{{x.product_varient.id}}" data-weightid="{{x.product_varient.id}}" id="minus_{{x.product_varient.id}}"
+													
+													<button class="less_item" data-menuid="{{x.product_varient.id}}" data-weightid="{{x.product_varient.id}}" id="minus_{{x.product_varient.id}}"
 													 ng-click="minusToCart($event)">
 															-
 													</button>
+													<input type="text" id="quantity_{{x.product_varient.id}}" value="{{x.product_varient.cart_quantity}}" disabled="">
+													<button class="add_item" data-menuid="{{x.product_varient.id}}" data-weightid="{{x.product_varient.id}}" data-weightid="{{x.product_varient.id}}"
+													 id="plus_{{x.product_varient.id}}" ng-click="plusToCart($event)">
+															+
+													</button>
+													
 											</div>
 				
 											<div class="add_cart_button sub_add_btn" id="addToCart_{{x.product_varient.id}}" ng-show="x.product_varient.cart_row_id == '' && x.product_varient.ALLOW_TO_ADD_IN_CART == 'yes'">
