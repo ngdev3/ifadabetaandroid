@@ -721,6 +721,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             if (response.data.status !== 'outofstock') {
         
                 $rootScope.in_stock_check = response.data.data.allow_to_add_in_cart;
+                $rootScope.vat_perticular = response.data.data.vat_on_this_item;
                 if( $rootScope.in_stock_check == 'no'){
                     alert('Out of stock');
                     return false;
@@ -783,6 +784,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
         }).then(function (response) {
             console.log(response.data.data.isEmpty)
+            $rootScope.vat_perticular = response.data.data.vat_on_this_item;
             if (response.data.data.isEmpty == 0) {
                 // $rootScope.usercartvalue();
                 $('#' + addToCartID).removeClass('ng-hide').show();
