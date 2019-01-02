@@ -187,7 +187,8 @@ app.config(function ($translateProvider) {
      Review_by : 'Review by',
      Comments : 'Comments',
      Product_Info : 'Product Info',
-     privacy_policy : 'Privacy Policy'
+     privacy_policy : 'Privacy Policy',
+     No_Ticket_Found : 'No Ticket Found',
   });
 
 
@@ -383,6 +384,7 @@ app.config(function ($translateProvider) {
      Review_by : 'روجع من قبل',
      Comments : 'تعليقات',
      Product_Info : 'معلومات المنتج',
-     privacy_policy : 'سياسة خاصة'
+     privacy_policy : 'سياسة خاصة',
+     No_Ticket_Found : 'لا توجد تذكرة',
   });
 }); 

@@ -49,7 +49,7 @@
 
                 <!-- ** Ticket Lists In process ** -->
 
-                <div class="no-padding item_lists_main" ng-repeat="x in order_list" >
+                <div class="no-padding item_lists_main" ng-repeat="x in order_list" ng-if="order_list != ''">
                     <div class="prodcut_main_container">
                         <div class="products_wrapper ticket_wrapper">
                             <div class="row padding_ticket">
@@ -112,7 +112,13 @@
                     </div>
                 </div>
                 <!-- ** !. Ticket Lists In process ** -->
-                
+                <div  class="no_data_wrapper" ng-if="order_list == ''">
+                    <div class="">
+                        <img src="img/no_data_found.png">
+                        <h3 class="text-center">{{'No_Ticket_Found' | translate}}!!!</h3>
+                    </div>
+                <!-- ** !. My Order List ** -->
+            </div>
                 <!-- ** !. Ticket Lists Resolved ** -->
 
             </div>

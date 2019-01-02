@@ -62,7 +62,8 @@
 								<p class="sub_product_qty">{{x.unit_value}} {{x.unit_name}}</p>
 								<p class="sub_prcing">
 									<!-- <strike>AED 190</strike> -->
-									<span id="sub_rrp">{{currency}} {{x.price}}</span></p>
+									<span id="sub_rrp">{{currency}} {{x.price}}</span>
+									<span ng-if="x.vat_on_this_item">{{'VAT' | translate}}({{x.tax_percentage}}%) - {{currency}} {{x.vat_on_this_item}}</span></p>
 							</div>
 
 							<div class="wislist_sub wishlist-container cart_remove" ng-click="deleteproduct(x.rowid)">
