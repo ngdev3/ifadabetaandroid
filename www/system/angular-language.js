@@ -189,6 +189,9 @@ app.config(function ($translateProvider) {
      Product_Info : 'Product Info',
      privacy_policy : 'Privacy Policy',
      No_Ticket_Found : 'No Ticket Found',
+     I_am_Retailer : 'I am Retailer',
+     I_Accept : 'I Accept',
+     Select_City : 'Select City'
   });
 
 
@@ -386,5 +389,8 @@ app.config(function ($translateProvider) {
      Product_Info : 'معلومات المنتج',
      privacy_policy : 'سياسة خاصة',
      No_Ticket_Found : 'لا توجد تذكرة',
+     I_am_Retailer : 'أنا بائع تجزئة',
+     I_Accept : 'موافق',
+     Select_City : 'اختر مدينة',
   });
 }); 

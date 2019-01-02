@@ -58,7 +58,7 @@
 					</div>
 				  <div class="mui-select col-sm-6 col-xs-12">
 					<select id="city" name="city" ng-model="city" required>
-						<option value="">Select City</option>
+						<option value="">{{'Select_City' | translate }}</option>
 					  <option value="{{city.id}}" ng-repeat="city in Cities">{{city.name}}</option>
 					</select>
 					<label for="city">{{'City' | translate }}</label>
