@@ -252,10 +252,15 @@ div.subcategory_div span.sub_category_icon .fa-th-large:before {
     line-height: 20px;
     max-height: 20px;
 }
+.sub_product_desc p.sub_prcing
+{
+   max-width:135px;
+}
 .sub_product_desc
 {
     border-left: 2px solid #e6e6e6;
     width : 65%;
+	min-height: 75px;
 }
 .products_wrapper
 {
