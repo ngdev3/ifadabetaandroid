@@ -14,7 +14,7 @@ var lat;
 var lng;
 var profile_image_path = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/';
 var subcategoryInfos = [];
-var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap','slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngCordovaOauth', 'ngCordova', /* 'kendo.directives', */ 'rzModule', 'pascalprecht.translate']);
+var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap','slickCarousel', 'ngSanitize', 'ngCookies','ngSidebarJS', 'geolocation', 'ngCordovaOauth', 'ngCordova', /* 'kendo.directives', */ 'rzModule', 'pascalprecht.translate']);
 
 //document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
 //document.getElementById("networkInfo").addEventListener("onload", networkInfo);
