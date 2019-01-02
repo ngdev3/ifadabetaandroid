@@ -193,9 +193,9 @@ span.span_text {
 	.couponcode {
     width: 96px;
 }
-	.sub_add_product {
-		width: 19%;
-	}
+	/* .sub_add_product { */
+		/* width: 19%; */
+	/* } */
 	.nav > li.cart_icon {
 		float: right;
 		width: 30%;

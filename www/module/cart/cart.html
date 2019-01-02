@@ -13,7 +13,7 @@
 								<p>{{'My_Cart' | translate}}</p>
 							</a>
 						</li>
-						<li style="float: right"><button ng-click="empty_cart()" style="float: right; margin-top: 5px; margin-right: 10px;border: none;
+						<li style="float: right"><button ng-click="empty_cart()" style="float: right; margin-top: 5px;border: none;
 							background: none;"><img
 								 height="27px" width="27px" src="assets/img/empty-cart.png"></button></li>
 						<!-- <li class="cart_icon">
@@ -59,11 +59,11 @@
 								<a href="javascript:void(0)" ng-click="product_view(x.menu_id)">
 									<p class="sub_produt_name">{{x.name}}</p>
 								</a>
-								<p class="sub_product_qty">{{x.unit_value}} {{x.unit_name}}</p>
+								<p class="sub_product_qty"><span id="sub_rrp" class="cart_sub_rrp">{{currency}} {{x.price}}</span> {{x.unit_value}} {{x.unit_name}}</p>
 								<p class="sub_prcing">
 									<!-- <strike>AED 190</strike> -->
-									<span id="sub_rrp">{{currency}} {{x.price}}</span>
-									<span ng-if="x.vat_on_this_item">{{'VAT' | translate}}({{x.tax_percentage}}%) - {{currency}} {{x.vat_on_this_item}}</span></p>
+									
+									<span ng-if="x.vat_on_this_item" class="vat_inc">{{'VAT' | translate}}({{x.tax_percentage}}%) - {{currency}} {{x.vat_on_this_item}}</span></p>
 							</div>
 
 							<div class="wislist_sub wishlist-container cart_remove" ng-click="deleteproduct(x.rowid)">

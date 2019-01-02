@@ -229,7 +229,17 @@ div.subcategory_div span.sub_category_icon .fa-th-large:before {
 #sub_rrp
 {
     margin-left:0px;
-        font-weight: 700;
+	font-weight: 700;
+	
+}
+#sub_rrp.cart_sub_rrp::after
+{
+    content: "|";
+	padding-left: 7px;
+	color: #ccc;
+}
+.sub_prcing > .vat_inc{
+	font-size:11px;
 }
 .sub_product_desc p
 {
@@ -272,7 +282,7 @@ div.subcategory_div span.sub_category_icon .fa-th-large:before {
     bottom: -15px;
     right: 15px;
     width: auto;
-    max-width: 20%;
+    max-width: 25%;
 }
 
 .no-padding.item_lists_main {
@@ -309,8 +319,7 @@ button.less_item:focus{
     font-size: 17px;
     border: 0;
     color: #979c9f;
-    width: 29%;
-    /* float: none; */
+    max-width: 26px;
     text-align: center;
     padding-bottom: 8px;
     padding-top: 5px;
