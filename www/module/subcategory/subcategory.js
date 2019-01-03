@@ -625,6 +625,9 @@ app.controller('sub_category', function ($filter, $scope, $http, $location, $int
                 sessionStorage.lastid = sessionStorage.lastid - 1
                 sessionStorage.seq = sessionStorage.lastid
                 $cookieStore.put('seq',sessionStorage.lastid)
+               }else{
+                $location.path('/category');
+                return
                }
                 // if(sessionStorage.lastid !== 0){
 
