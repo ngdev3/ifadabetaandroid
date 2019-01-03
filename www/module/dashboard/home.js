@@ -448,6 +448,11 @@ $scope.searchresults = function(){
         $cookieStore.remove('subcategoryInfo');
         $cookieStore.remove('ticketid');
         $cookieStore.remove('FullName');
+        db.transaction(function (tx) {
+            tx.executeSql('DELETE FROM userinfo');
+        });
+
+
         $location.path('/login');
     }
 

@@ -11,6 +11,7 @@ var store_id = '5';
 var uuid = sessionStorage.u_ids;
 var device_type = 'Android';
 var lat;
+sessionStorage.seq = 0;
 var lng;
 var profile_image_path = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/';
 var subcategoryInfos = [];

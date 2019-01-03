@@ -280,10 +280,10 @@
 
                         <div class="prodcut_main_container">
                             <div class="products_wrapper">
-                                <div class="col-md-3 col-sm-3 col-xs-3 items_img_div" ng-if="x.image != ''" ng-click="product_view(x.id,x.url)">
-                                    <a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="{{image_path}}{{x.image}}"></a>
+                                <div class="col-md-3 col-sm-3 col-xs-3" ng-if="x.image != ''" ng-click="product_view(x.id,x.url)">
+                                    <a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="http://projects.tekshapers.in/ifadabeta//uploads/menu_image/{{x.image}}"></a>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 items_img_div" ng-if="x.image == ''" ng-click="product_view(x.id,x.url)">
+                                <div class="col-md-3 col-sm-3 col-xs-3" ng-if="x.image == ''" ng-click="product_view(x.id,x.url)">
                                     <a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="assets/img/product/default.png"></a>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc" ng-click="product_view(x.id,x.url)">
@@ -363,7 +363,7 @@
 
                     <div class="prodcut_main_container">
                         <div class="products_wrapper">
-                            <div class="col-md-3 col-sm-3 col-xs-3 items_img_div" ng-click="product_view(x.id)">
+                            <div class="col-md-3 col-sm-3 col-xs-3" ng-click="product_view(x.id)">
                                 <a href="javascript:void(0)"><img class="img-responsive sub_cat_product_img" src="{{x.product_image}}"></a>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc" ng-click="product_view(x.id)">

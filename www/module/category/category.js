@@ -1,4 +1,4 @@
-app.controller('category', function ($scope, $http, $location, $interval, $cookieStore, model, $locale, loading, $rootScope) {
+app.controller('category', function ($filter, $scope, $http, $location, $interval, $cookieStore, model, $locale, loading, $rootScope) {
 
 
     $scope.my_account = function () {
@@ -14,6 +14,21 @@ app.controller('category', function ($scope, $http, $location, $interval, $cooki
 
         $location.path('/subcategory');
     }
+
+    // db.transaction(function (tx) {
+    //     tx.executeSql('DELETE FROM catlog');
+    // });
+
+    db.transaction(function (t) {
+        t.executeSql("DROP TABLE catlog",[], 
+            function(t,results){
+                console.error("Table Dropped")
+            },
+            function(t,error){
+                console.error("Error: " + error.message)
+            }
+        )
+   })
 
     $scope.searchproducts = function(){
 
@@ -161,6 +176,19 @@ var currentid;
         $location.path('/product/view')
     }
 
+    db.transaction(function (tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS userinfo (id INTEGER PRIMARY KEY AUTOINCREMENT, uid, phone_no, email_address, country_id, date_added)');
+
+    });
+
+    db.transaction(function (tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS catlog (id INTEGER PRIMARY KEY AUTOINCREMENT, seq_id, subca_id, url_type, from_where, date_added)');
+// alert()
+    });
+
+  
+
+
     $scope.showProducts = function(id,url){
         console.log(url)
         var subcategoryInfo = {
@@ -169,6 +197,15 @@ var currentid;
             'from':'category'
         }
         
+        var date = new Date();
+    fromDateString = $filter('date')(date, 'dd-MM-yyyy')
+    $cookieStore.remove('seq')
+    sessionStorage.seq = 0;
+    sessionStorage.seq++
+        db.transaction(function (tx) {
+            tx.executeSql('INSERT INTO catlog (seq_id, subca_id, url_type, from_where, date_added) VALUES ("'+ sessionStorage.seq +'","'+ id +'","'+url+'","category","'+fromDateString+ '")');
+        });
+
         $cookieStore.put('subcategoryInfo', subcategoryInfo);
         //console.log( $cookieStore.get('subcategoryInfo').url);
         $location.path('/subcategory');
