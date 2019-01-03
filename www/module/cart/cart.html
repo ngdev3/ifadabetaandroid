@@ -114,7 +114,7 @@
 
 			<div class="after_coupon">
 				<div class="after_discount" ng-if="!subtotalafterdiscount">{{'Sub_Total' | translate}} <span>{{currency}} {{subtotalbeforediscount | number : 2}}</span></div>
-				<div class="after_discount" ng-if="subtotalwithoutdiscount">{{'Sub_Total' | translate}} <span>{{currency}} {{subtotalwithoutdiscount | number : 2}}</span></div>
+				<div class="after_discount" ng-if="subtotalwithoutdiscount != ''">{{'Sub_Total' | translate}} <span>{{currency}} {{subtotalwithoutdiscount | number : 2}}</span></div>
 				<div class="after_discount" ng-if="coupon_discount">{{'Coupon_Discount' | translate}} <span>{{currency}} {{coupon_discount | number : 2}}</span></div>
 				<div class="after_discount" ng-if="subtotalafterdiscount">{{'Sub_Total_after_discount' | translate}} <span>{{currency}} {{subtotalafterdiscount | number : 2}}</span></div>
 				<div class="after_cart">{{'VAT' | translate}}<span>{{currency}} {{tax_amount | number : 2}}</span></div>
