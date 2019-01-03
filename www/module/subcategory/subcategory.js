@@ -1,4 +1,4 @@
-app.controller('sub_category', function ($filter, $scope, $http, $location, $interval, $cookieStore, $window, model, $locale, loading, $rootScope) {
+app.controller('sub_category', function ($route, $filter, $scope, $http, $location, $interval, $cookieStore, $window, model, $locale, loading, $rootScope) {
 
     // console.log($rootScope.searchresult);return;
 
@@ -590,7 +590,7 @@ app.controller('sub_category', function ($filter, $scope, $http, $location, $int
                 }else{
                     sessionStorage.lastid = '';
                 }
-                location.reload();
+                $route.reload();
             });
         });
 
@@ -658,8 +658,7 @@ app.controller('sub_category', function ($filter, $scope, $http, $location, $int
                   //  alert(sessionStorage.seq)
             
                     $cookieStore.put('subcategoryInfo',subcategoryInfo);
-                    location.reload();
-
+                    $route.reload();
                  }, null); 
                
                 
