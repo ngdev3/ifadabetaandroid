@@ -59,6 +59,11 @@ app.controller('view_product', function ($scope, $http, $location, $cookieStore,
     $rootScope.searchBar();
 }
 
+    $scope.group_not_assigned = function(){
+        alert('This product is not associated with any product group for you.');
+        return false;
+    }
+
 $scope.product_details = '';
 $scope.fetch_product_data = function () {
         /* if(!$cookieStore.get("userinfo")){
@@ -91,6 +96,7 @@ $scope.fetch_product_data = function () {
         }).then(function (response) {
             //alert();
           // console.log(response);return;
+          console.log(response.data)
             if (response.data.data.status == 'success') {
 
                 $scope.product_details = response.data.data.product_details;

@@ -17,6 +17,18 @@
 			width: 70%;
 			margin: 0 auto;
 		}
+		.nav > li.page_name.left {
+    		width: 60% !important;
+		}
+		li.page_name.left a p{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 1;
+			line-height: 20px;
+			max-height: 20px;
+		}
 	</style>
 	<header class="container-fluid nav-down" ng-init="fetch_product_data()">
 		<div class="row">
@@ -136,6 +148,10 @@
 									<div class="add_cart_button sub_add_btn" id="addToCart_{{DweightID}}" ng-show="rowid == '' && ALLOW_TO_ADD_IN_CART == 'yes'">
 										<button class="addcart_button" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}"
 										 ng-click="addToCart($event)">{{'Add' | translate}}</button>
+									</div>
+									<div class="add_cart_button sub_add_btn" id="addToCart_{{DweightID}}" ng-show="rowid == '' && ALLOW_TO_ADD_IN_CART == 'not'">
+										<button class="addcart_button" data-menuid="{{menu_id}}" data-user_id="{{manufacture_id}}" data-weightid="{{DweightID}}" id="addCart_{{DweightID}}"
+										 ng-click="group_not_assigned($event)">{{'Add' | translate}}</button>
 									</div>
 								
 									<div class="add_cart_button div_in_stock sub_add_btn" id="outofstock_{{DweightID}}" ng-show="rowid == '' && ALLOW_TO_ADD_IN_CART == 'no' ">

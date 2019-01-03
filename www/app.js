@@ -1,5 +1,6 @@
 var project_name = '/ifadabeta/webservices';
-var base_url = 'http://projects.tekshapers.org';
+var domain = 'org';
+var base_url = 'http://projects.tekshapers.'+domain;
 var country = 'en';
 var WebUrl = base_url + project_name;
 var app_upload_url = base_url + project_name; 
@@ -11,9 +12,9 @@ var store_id = '5';
 var uuid = sessionStorage.u_ids;
 var device_type = 'Android';
 var lat;
-sessionStorage.seq = 0;
 var lng;
-var profile_image_path = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/';
+var profile_image_path = 'http://projects.tekshapers.'+domain+'/ifadabeta/uploads/user_image/';
+var product_image_path = 'http://projects.tekshapers.'+domain+'/ifadabeta//uploads/menu_image/';
 var subcategoryInfos = [];
 var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap','slickCarousel', 'ngSanitize', 'ngCookies','ngSidebarJS', 'geolocation', 'ngCordovaOauth', 'ngCordova', /* 'kendo.directives', */ 'rzModule', 'pascalprecht.translate']);
 
@@ -261,6 +262,10 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
         });
     }
 
+    $rootScope.profile_image_path = profile_image_path ;
+    $rootScope.product_image_path = product_image_path ;
+
+
     $rootScope.DeleteData = function () {
         db.transaction(function (tx) {
             tx.executeSql('DELETE FROM userinfo', [], function (tx, results) {
@@ -386,7 +391,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             var div_top = $('#main-div2').offset().top;
             var div_height = $('#main-div2').outerHeight();
             console.log("outside");
-            var sum = div_top + div_height + 3.5 - window.innerHeight;
+            var sum = div_top + div_height + 3 - window.innerHeight;
             console.log(window_top + " " + sum + " outside");  
             // console.log($scope.product.length);return;
             if (window_top == sum) {

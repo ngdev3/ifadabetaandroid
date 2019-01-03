@@ -66,7 +66,7 @@
                 <div class="container no-padding">
                     <ul class="nav navbar-nav top_header">
                         <li class="menu_icon "><a href="javascript:void(0)"><img src="assets/img/icon/back.png"
-                                    ng-click="back()" id="asdf" alt="menu icon" style="width: 13px;" /></a></li>
+                                    ng-click="backToGo()" id="asdf" alt="menu icon" style="width: 13px;" /></a></li>
                         <li class="page_name left" ng-if="categoryData">
                             <a href="javascript:void(0)" class="text-left ">
                                 <p>{{categoryData.name | limitTo:20}}{{categoryData.name.length > 20 ? '...' : ''}}</p>
@@ -161,11 +161,11 @@
                         <div class="accordion-container">
                             <div class="accordion-options" ng-repeat="a in manufacturer_list">
                                 <div class="pretty p-icon p-curve p-pulse">
-                                    <input type="checkbox" id="manufacturer_{{a.id}}" value="a.id" ng-model="manufacturer"
+                                    <input type="checkbox" id="manufacturer_{{a.manufacturer_id}}" value="a.manufacturer_id" ng-model="manufacturer"
                                         name="manufacturer" ng-change="Filtering_manufacturer(a.id)">
                                     <div class="state p-info-o">
                                         <i class="icon fa fa-check"></i>
-                                        <label> {{a.name}}</label>
+                                        <label> {{a.Manufacturer_Name}}</label>
                                     </div>
                                 </div>
                             </div>

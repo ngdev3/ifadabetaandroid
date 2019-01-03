@@ -481,7 +481,7 @@ app.controller('sub_category', function ($filter, $scope, $http, $location, $int
             var div_top = $('#main-div2').offset().top;
             var div_height = $('#main-div2').outerHeight();
             console.log("outside");
-            var sum = div_top + div_height + 3.5 - window.innerHeight;
+            var sum = div_top + div_height + 3 - window.innerHeight;
             console.log(window_top + " " + sum + " outside");
             // console.log($scope.product.length);return;
             if (window_top == sum) {
