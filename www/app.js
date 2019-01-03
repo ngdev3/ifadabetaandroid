@@ -11,6 +11,7 @@ var db = window.openDatabase("ifadabeta", "1.0", "ifadabeta DB", 1000000);
 var store_id = '5';
 var uuid = sessionStorage.u_ids;
 var device_type = 'Android';
+sessionStorage.seq = 0;
 var lat;
 var lng;
 var profile_image_path = 'http://projects.tekshapers.'+domain+'/ifadabeta/uploads/user_image/';
