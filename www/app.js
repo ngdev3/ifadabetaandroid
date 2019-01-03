@@ -1960,7 +1960,22 @@ function onDeviceReady() {
     document.addEventListener("backbutton", onBackKeyDown, false);
 }
 
+// var load = angular.element(document.querySelector('.obscure'));
+// var title = angular.element(document.querySelector('.title'));
+// var message = angular.element(document.querySelector('.message'));
+// process.show = function (a, b) {
+//     title.html(a);
+//     message.html(b);
+//     return load.removeClass('hide').addClass('show');
+// };
+// process.hide = function () {
+//     return load.removeClass('show').addClass('hide');
+// };
+
+
 function onBackKeyDown(ev) {
+    var loads = angular.element(document.querySelector('.obscure'));
+    loads.removeClass('show').addClass('hide');
     var home = $("#containernew div:first-child").hasClass("homes");
     if (home) {
         if (confirm('Do You Want To Exit App!')) {
