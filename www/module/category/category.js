@@ -4,6 +4,9 @@ app.controller('category', function ($filter, $scope, $http, $location, $interva
     $scope.my_account = function () {
         $location.path('/myaccount/account');
     }
+    $scope.backtohome = function () {
+        $location.path('/dashboard/home');
+    }
 
     $scope.subcategory = function (id) {
         // console.log(id)
