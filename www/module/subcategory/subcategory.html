@@ -65,8 +65,11 @@
             <nav class="navbar navbar-inverse">
                 <div class="container no-padding">
                     <ul class="nav navbar-nav top_header">
-                        <li class="menu_icon "><a href="javascript:void(0)"><img src="assets/img/icon/back.png"
-                                    ng-click="backToGo()" id="asdf" alt="menu icon" style="width: 13px;" /></a></li>
+                        <li class="menu_icon "><a href="javascript:void(0)">
+                            <img src="assets/img/icon/back.png"  ng-if="valuekey == 'home'" ng-click="back()" id="asdf" alt="menu icon" style="width: 13px;" />
+                            <img src="assets/img/icon/back.png"  ng-if="valuekey !== 'home'" ng-click="backToGo()" id="asdf" alt="menu icon" style="width: 13px;" />
+                        
+                        </a></li>
                         <li class="page_name left" ng-if="categoryData">
                             <a href="javascript:void(0)" class="text-left ">
                                 <p>{{categoryData.name | limitTo:20}}{{categoryData.name.length > 20 ? '...' : ''}}</p>
@@ -76,6 +79,8 @@
                             <a href="javascript:void(0)" class="text-left ">
                                 <p>{{feature_name | translate}}</p>
                             </a>
+
+                            
                         </li>
                         <li class="cart_icon">
                             <a href="javascript:void(0);" ng-if="!best_picks_of_the_season"><img src="assets/img/header/filter.png"

@@ -596,8 +596,9 @@ app.controller('sub_category', function ($route, $filter, $scope, $http, $locati
 
     }
 
-   
-
+// console.log($coo..kieStore.get('subcategoryInfo'));
+   $scope.valuekey = $cookieStore.get('subcategoryInfo').from
+// alert($scope.valuekey)
     $scope.backToGo = function () {
      //  alert($cookieStore.get('seq'))
      //  console.log(sessionStorage.seq)
@@ -612,7 +613,11 @@ app.controller('sub_category', function ($route, $filter, $scope, $http, $locati
 
 
         if(sessionStorage.lastid == '' || sessionStorage.lastid == 1){
+            
+           
             $location.path('/category');
+            
+
             return
         }
 
