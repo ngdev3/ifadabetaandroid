@@ -497,11 +497,14 @@ button.add_item{
     position: fixed;
     width: 100%
 }
-.coupon_container
-{
+.coupon_container {
     display: block;
-    padding: 11px 15px;
+    padding: 11px 11px 11px 15px;
     height: 51px;
+}
+.btn.coupon_apply.applied{
+    font-size: 13px;
+    padding: 6px 8px;
 }
 .coupon_apply
 {

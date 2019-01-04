@@ -81,6 +81,8 @@ ul.rating {
                             <p class="status_btn" style="background: #39a91c!important;" ng-if="y.status == '5'">Delivered</p>
                             <p class="status_btn" style="background: #eda1a8;" ng-if="y.status == '6'">Cancelled</p>
                             <p class="status_btn" style="background: #dc081f!important;" ng-if="y.status == '7'">Rejected</p>
+                            <p class="status_btn" style="background: #f5ae48!important;" ng-if="y.status == '8'">Re-scheduled</p>
+                            <p class="status_btn" style="background: #df5739!important;" ng-if="y.status == '9'">No contacted</p>
                             <a href="" class="track_btn" ng-click="trackOrder(y.id,detail.id)">{{'Track_Order' |
                                 translate}}</a>
                         </div>

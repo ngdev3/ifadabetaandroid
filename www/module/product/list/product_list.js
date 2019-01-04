@@ -90,6 +90,30 @@ $scope.brand_array = [];
    
  }
 
+ $scope.manufacturer_array = [];
+    //$scope.manufacturer_ids = [];
+    $scope.Filtering_manufacturer = function (id) {
+
+       /*  getBrandDataFromFilter  = {
+        'manufacturer_id':id
+    }
+      */
+    if($('#manufacturer_'+id).prop("checked") == true){
+        console.log($scope.brands);
+        manufacturer_array = $scope.manufacturer_array.push(id); 
+       console.log(manufacturer_array) 
+    }
+    else if($('#manufacturer_'+id).prop("checked") == false){
+        //let index = $scope.manufacturer_array.findIndex( getBrandDataFromFilter => getBrandDataFromFilter.id === id );
+        //console.log(index)
+        var index = $scope.manufacturer_array.indexOf(id);
+        $scope.manufacturer_array.splice(index, 1);
+    }
+    $cookieStore.put('manufacturer_array',$scope.manufacturer_array);
+   
+
+    }
+
 
 $scope.taptowishlist = function(id, wishlist_status){
     //  alert(id+ " "+ wishlist_status);return;

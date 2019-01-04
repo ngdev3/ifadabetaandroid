@@ -139,7 +139,7 @@
                     </div>
                     <!-- // {{minRangeSlider}}---------- -->
 
-                    <button class="accordion" id="accord_2" ng-click="init(2);">Brand</button>
+                    <button class="accordion" id="accord_2" ng-if="brand_data.length > 0" ng-click="init(2);">Brand</button>
                     <div class="accordion-panel accordion-panel_2">
                         <div class="accordion-container">
                             <div class="accordion-options" ng-repeat="x in brand_data">
@@ -156,7 +156,7 @@
                         </div>
                     </div>
 
-                    <button class="accordion" id="accord_4" ng-click="init(4);">Manufacturer</button>
+                    <button class="accordion" id="accord_4"  ng-if="manufacturer_list.length > 0" ng-click="init(4);">Manufacturer</button>
                     <div class="accordion-panel accordion-panel_4">
                         <div class="accordion-container">
                             <div class="accordion-options" ng-repeat="a in manufacturer_list">

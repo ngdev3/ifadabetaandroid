@@ -294,6 +294,16 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 brand_str += ','+value;
             }
         });
+        var manufacturers =$cookieStore.get('manufacturer_array');
+        var manufacturer_str = '';
+        angular.forEach(manufacturers,(value,key)=>{
+            
+            if(manufacturer_str == ''){
+                manufacturer_str   =   value;
+            }else{
+                manufacturer_str += ','+value;
+            }
+        });
 
         if (!$cookieStore.get("userinfo")) {
             var userID = '';
@@ -314,6 +324,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             'user_id': userID,
             'user_type': user_type,
             'brand': brand_str,
+            'manufacture_id': manufacturer_str,
             'range': $rootScope.range
         })
         $http({
@@ -343,6 +354,10 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 if($rootScope.brand_data == '' || $rootScope.brand_data == undefined)
                 {
                     $rootScope.brand_data = res.data.data.brand_data;
+                }
+                if($rootScope.manufacturer_list == '' || $rootScope.manufacturer_list == undefined)
+                {
+                    $rootScope.manufacturer_list = res.data.data.manufacturer_list;
                 }
                 $rootScope.searchProduct = '';
                 // $rootScope.searchresult = '';

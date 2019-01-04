@@ -114,6 +114,24 @@
 									
 								</div>
 							</div>
+
+							<button class="accordion" id="accord_4"  ng-if="manufacturer_list.length > 0" ng-click="init(4);">Manufacturer</button>
+                    <div class="accordion-panel accordion-panel_4">
+                        <div class="accordion-container">
+                            <div class="accordion-options" ng-repeat="a in manufacturer_list">
+                                <div class="pretty p-icon p-curve p-pulse">
+                                    <input type="checkbox" id="manufacturer_{{a.manufacturer_id}}" value="a.manufacturer_id" ng-model="manufacturer"
+                                        name="manufacturer" ng-change="Filtering_manufacturer(a.id)">
+                                    <div class="state p-info-o">
+                                        <i class="icon fa fa-check"></i>
+                                        <label> {{a.Manufacturer_Name}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+										</div>
+										
 							
 						<button class="accordion" id="accord_3" ng-click="init(3);">Sort By</button>
 						<div class="accordion-panel accordion-panel_3">
