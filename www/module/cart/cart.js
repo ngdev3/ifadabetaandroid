@@ -127,6 +127,7 @@ app.controller('cart', function ($rootScope, $scope, $http, $location, $interval
             }
             var args = $.param({
                 user_id: $cookieStore.get('userinfo').uid,
+                user_type: $cookieStore.get('userinfo').user_type,
                 country_id: sessionStorage.country,
     
             });

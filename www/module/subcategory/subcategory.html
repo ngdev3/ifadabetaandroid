@@ -253,9 +253,9 @@
                                 </div>
                                 <div ng-repeat="sub in categorysubData" class="subcategory_div">
                                     <input type="button" ng-if="sub.sub.length == 0" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name=""
-                                        value="{{sub.name}}" ng-click="fetch_product_list(sub.id,sub.url);scrollPagination(sub.id,sub.url)">
+                                        value="{{sub.name | limitTo:15}}{{sub.name.length > 10 ? '...' : ''}}" ng-click="fetch_product_list(sub.id,sub.url);scrollPagination(sub.id,sub.url)">
                                     <input type="button" ng-if="sub.sub.length > 0" ng-click="loadchild(sub.id,sub.url)" class="btn btn-success all-sub-cat_buttons" id="sub_cat" name=""
-                                        value="{{sub.name}}">
+                                        value="{{sub.name | limitTo:15}}{{sub.name.length > 10 ? '...' : ''}}">
                                     <span class="sub_category_icon"  ng-if="sub.sub.length > 0">
                                         <i class="fa fa-th-large" aria-hidden="true"></i>
                                     </span>
@@ -316,7 +316,7 @@
 
                                         <div class="add_item_button sub_add_btn" data-rowid="{{x.product_varient[0].cart_row_id}}"
                                             id="enableCart_{{x.product_varient[0].id}}" ng-show="x.product_varient[0].cart_row_id">
-                                            <button class="less_item" data-menuid="{{x.product_varient[0].id}}"
+                                            <button class="less_item" data-menuid="{{x.id}}"
                                                 data-weightid="{{x.product_varient[0].id}}" id="minus_{{x.product_varient[0].id}}"
                                                 ng-click="minusToCart($event)">
                                                 -
@@ -325,7 +325,7 @@
                                             <input type="text" id="quantity_{{x.product_varient[0].id}}" value="{{x.product_varient[0].cart_quantity}}"
                                                 disabled="">
 
-                                            <button class="add_item" data-menuid="{{x.product_varient[0].id}}"
+                                            <button class="add_item" data-menuid="{{x.id}}"
                                                 data-weightid="{{x.product_varient[0].id}}" data-weightid="{{x.product_varient[0].id}}"
                                                 id="plus_{{x.product_varient[0].id}}" ng-click="plusToCart($event)">
                                                 +
@@ -335,7 +335,7 @@
 
                                         <div class="add_cart_button sub_add_btn" id="addToCart_{{x.product_varient[0].id}}"
                                             ng-show="x.product_varient[0].cart_row_id == '' && x.product_varient[0].ALLOW_TO_ADD_IN_CART == 'yes'">
-                                            <button class="addcart_button" data-menuid="{{x.product_varient[0].id}}"
+                                            <button class="addcart_button" data-menuid="{{x.id}}"
                                                 data-user_id="{{x.user_id}}" data-weightid="{{x.product_varient[0].id}}"
                                                 id="addCart_{{x.product_varient[0].id}}" ng-click="addToCart($event)">{{'Add'
                                                 | translate }}</button>

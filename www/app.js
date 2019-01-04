@@ -344,6 +344,15 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
                 
                 $rootScope.searchresult = res.data.data.category_product.products;
                 $rootScope.search_product = res.data.data.category_product;
+                $rootScope.minRangeSlider = {
+                    minValue: $rootScope.search_product.min_price_for_slider,
+                    maxValue: $rootScope.search_product.max_price_for_slider,
+                    options: {
+                        step: 0.01,
+                        precision: 3
+                        
+                      },
+                    };
                 $rootScope.total_rows_remainder = res.data.data.category_product.total_rows % 10;
                 $rootScope.total_rows_page = res.data.data.category_product.total_rows / 10;
                 console.log( $rootScope.total_rows_page);
