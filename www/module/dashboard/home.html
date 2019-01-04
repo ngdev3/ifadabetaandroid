@@ -401,6 +401,22 @@ width:100%;
         </div>
         <!--  END Featured Product Section -->
 
+          <!--  START Advertisement Section -->
+          <div class="container-fluid" ng-click="details($event)" ng-if="setdata == 1 && banner_category" >
+            <div class="row">
+                <div id="adv_2" class="mt-15">
+                    <a href="javascript:void(0)">
+                        <div class="category-img">
+                            <img id="custom_third_slider" data-catid="{{banner_category[0].id}}" data-offerid="{{banner_category[0].url}}"  style="min-height: 240px;max-height: 240px;" src="{{banner_category_image_path}}/{{banner_category[0].banner_image}}" alt="" class="" />
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!--  END Advertisement Section  -->
+
+        
         <!--  START Featured category Section -->
         <div class="container" ng-if="setdata == 1 && dairy_product"  >
             <div class="product_catg_section mt-15 mb-15">
@@ -437,20 +453,7 @@ width:100%;
         <!--  END featured category  Section -->
 
 
-        <!--  START Advertisement Section -->
-        <div class="container-fluid" ng-click="details($event)" ng-if="setdata == 1 && banner_category" >
-            <div class="row">
-                <div id="adv_2" class="mt-15">
-                    <a href="javascript:void(0)">
-                        <div class="category-img">
-                            <img id="custom_third_slider" data-catid="{{banner_category[0].id}}" data-offerid="{{banner_category[0].url}}"  style="min-height: 240px;max-height: 240px;" src="{{banner_category_image_path}}/{{banner_category[0].banner_image}}" alt="" class="" />
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!--  END Advertisement Section  -->
+      
 
 
         <!-- Location Modal -->
