@@ -248,7 +248,7 @@
 			</div>
 		</div>
 	</div>
-		<div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="!searchresult">
+		<div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="!searchresult || searchresult.length == 0">
 			<div class="">
 				<img src="img/no_data_found.png">
 				<h3 class="text-center">{{'No_Product_Found' | translate}}!!!</h3>
