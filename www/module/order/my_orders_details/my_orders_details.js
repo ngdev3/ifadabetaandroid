@@ -7,9 +7,9 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
         return false;
     }
     
-    $scope.home = function () {
-        //$location.path('/home');
-        window.history.back();
+    $scope.backtoorder = function () {
+        $location.path('/order/myorder');
+        //window.history.back();
     }
 
     $scope.fullName = $cookieStore.get("userinfo").fullName;

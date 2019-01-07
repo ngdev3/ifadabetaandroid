@@ -11,9 +11,9 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
     
     //loading.deactive();
 
-    $scope.home = function () {
-        //$location.path('/home');
-        window.history.back();
+    $scope.backtohome = function () {
+        $location.path('/dashboard/home');
+        //window.history.back();
     }
 
     $scope.orders = function () {
