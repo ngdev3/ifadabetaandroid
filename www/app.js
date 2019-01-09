@@ -1,5 +1,5 @@
 var project_name = '/ifadabeta/webservices';
-var domain = 'org';
+var domain = 'in';
 var base_url = 'http://projects.tekshapers.'+domain;
 var country = 'en';
 var WebUrl = base_url + project_name;
