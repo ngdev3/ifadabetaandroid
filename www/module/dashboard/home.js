@@ -549,6 +549,7 @@ $scope.searchresults = function(){
         'url': url
     }
     $cookieStore.put('subcategoryInfo', subcategoryInfo);
+    $cookieStore.put('from','home');
       $location.path('/subcategory');
   }
 

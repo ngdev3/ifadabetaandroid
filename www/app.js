@@ -1146,7 +1146,7 @@ app.run(function ($rootScope, $cookieStore, loading, model, $http, $location, $i
 
 
     $rootScope.back = function () {
-
+        $cookieStore.remove('from');
         model.hide();
         window.history.back();
     }

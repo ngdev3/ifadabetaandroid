@@ -597,8 +597,15 @@ app.controller('sub_category', function ($route, $filter, $scope, $http, $locati
     }
 
 // console.log($coo..kieStore.get('subcategoryInfo'));
-   $scope.valuekey = $cookieStore.get('subcategoryInfo').from
 // alert($scope.valuekey)
+    if($cookieStore.get('from')){
+        $scope.valuekey = $cookieStore.get('from');
+    }else{
+
+        $scope.valuekey = $cookieStore.get('subcategoryInfo').from
+    }
+
+
     $scope.backToGo = function () {
      //  alert($cookieStore.get('seq'))
      //  console.log(sessionStorage.seq)
