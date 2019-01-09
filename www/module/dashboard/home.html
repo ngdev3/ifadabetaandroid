@@ -258,7 +258,7 @@ width:100%;
 
         <!--  START Best Picks Section -->
         <div class="container" ng-init="season_fetch()">
-            <div class="product_catg_section mt-15" ng-if="setdata == 1" >
+            <div class="product_catg_section mt-15" ng-if="setdata == 1 && best_picks_of_the_season" >
 
                 <div class="section-heading">
                     <p>{{'Best_picks_of_the_season' | translate}}</p>
@@ -311,7 +311,7 @@ width:100%;
 
 
         <!--  START Product of the day  Section -->
-        <div class="container" ng-if="setdata == 1">
+        <div class="container" ng-if="setdata == 1 && product_of_the_day">
             <div class="product_catg_section mt-15">
 
                 <div class="section-heading">
@@ -365,7 +365,7 @@ width:100%;
 
 
         <!--  START Featured Product Section -->
-        <div class="container" ng-if="setdata == 1" >
+        <div class="container" ng-if="setdata == 1 && best_picks_of_the_featured_products" >
             <div class="product_catg_section mt-15">
 
                 <div class="section-heading">

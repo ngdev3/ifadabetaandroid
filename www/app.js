@@ -1,5 +1,5 @@
 var project_name = '/ifadabeta/webservices';
-var domain = 'in';
+var domain = 'org';
 var base_url = 'http://projects.tekshapers.'+domain;
 var country = 'en';
 var WebUrl = base_url + project_name;
@@ -1005,7 +1005,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
             $('#applied').addClass('ng-hide')
             $rootScope.promocode = ''
 
-            
+            $cookieStore.remove("coupon_data");
             $cookieStore.remove("promocode")
             $rootScope.mycart();
             return;

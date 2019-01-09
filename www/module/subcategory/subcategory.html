@@ -153,7 +153,7 @@
                                         ng-change="Filtering(x.id)">
                                     <div class="state p-info-o">
                                         <i class="icon fa fa-check"></i>
-                                        <label> {{x.name}}</label>
+                                        <label> {{x.name | ucwords}}</label>
                                     </div>
                                 </div>
                             </div>
@@ -170,7 +170,7 @@
                                         name="manufacturer" ng-change="Filtering_manufacturer(a.id)">
                                     <div class="state p-info-o">
                                         <i class="icon fa fa-check"></i>
-                                        <label> {{a.Manufacturer_Name}}</label>
+                                        <label> {{a.Manufacturer_Name | ucwords}}</label>
                                     </div>
                                 </div>
                             </div>
@@ -294,7 +294,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc" ng-click="product_view(x.id,x.url)">
                                     <!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
                                     <a href="javascript:void(0)">
-                                        <p class="sub_produt_name">{{x.menu_name}}</p>
+                                        <p class="sub_produt_name">{{x.menu_name | ucwords}}</p>
                                     </a>
                                     <p class="sub_product_qty">{{x.product_varient[0].unit_value}}
                                         {{x.product_varient[0].UNIT_NAME}}</p>
@@ -374,7 +374,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-6 sub_product_desc" ng-click="product_view(x.id)">
                                 <!-- <input type="button" class="btn btn-default btn_discounts" name="" value="6% Off"> -->
                                 <a href="javascript:void(0)">
-                                    <p class="sub_produt_name">{{x.menu_name}}</p>
+                                    <p class="sub_produt_name">{{x.menu_name | ucwords}}</p>
                                 </a>
                                 <!--                                             <p class="sub_product_qty">{{x.product_varient[0].unit_value}} {{x.product_varient[0].UNIT_NAME}}</p>
 -->
