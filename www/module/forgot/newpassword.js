@@ -84,6 +84,7 @@ $scope.forgot = function(form){
                    alert('Password is successfully changed');
                    $cookieStore.remove('userid');
                    if(response.data.data.result[0].user_type == '6'){
+                       console.log('fdsdsfd')
                     $location.path('/login');
                     }else{
                         var userinfo = {
@@ -95,7 +96,7 @@ $scope.forgot = function(form){
                             'profile_image' : response.data.data.result.profile_image
                         }
                         $cookieStore.put('userinfo', userinfo);
-                        
+                        console.log('ddddddfdsdsfd')
                         $location.path('/dashboard/home');
                     }
                 } else {

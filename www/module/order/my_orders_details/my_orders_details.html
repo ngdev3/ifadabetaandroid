@@ -214,7 +214,12 @@ ul.rating {
                                     <tr ng-if="detail.coupon_code_amount != '0.00'">
                                         <td>{{'Coupon_Discount' | translate}}</td>
                                         <td width="20px;">:</td>
-                                        <td>{{detail.coupon_code_amount}}</td>
+                                        <td>{{currency}}-{{detail.coupon_code_amount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'VAT' | translate}}</td>
+                                        <td width="20px;">:</td>
+                                        <td>{{currency}}-{{detail.tax_amount}}</td>
                                     </tr>
                                     <tr>
                                         <td>{{'Ordered_On' | translate}}</td>
